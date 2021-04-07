@@ -13,7 +13,7 @@ public class WordCountApplication {
         String input = inputOutputHelper.read(args);
 
         long numberOfWords = counter.countWords(input);
-        System.out.println("Number of words: " + numberOfWords);
+        inputOutputHelper.write(numberOfWords);
     }
 
 }

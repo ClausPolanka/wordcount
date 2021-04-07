@@ -12,7 +12,6 @@ public class Counter {
 
     private StopwordFilter stopwordFilter = new StopwordFilter(new StopwordReaderImpl());
 
-
     public long countWords(String text) {
         //Splits the input using a space character as delimiter and removes any empty strings
         String[] splittedString = text.split(" ");

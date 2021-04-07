@@ -38,4 +38,8 @@ public class InputOutputHelper {
         return scanner.nextLine();
     }
 
+    public void write(Long numberOfWords) {
+        System.out.println("Number of words: " + numberOfWords);
+    }
+
 }

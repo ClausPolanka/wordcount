@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,10 +15,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class InputOutputHelperTest {
 
     InputOutputHelper inputOutputHelper;
+    PrintStream standardOut;
+    ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @BeforeEach
     public void setup() {
         inputOutputHelper = new InputOutputHelper();
+        standardOut = System.out;
+        outputStreamCaptor = new ByteArrayOutputStream();
+
     }
 
     @Test
@@ -35,11 +42,13 @@ class InputOutputHelperTest {
         Assertions.assertEquals("Mary had a little lamb", result);
     }
 
+
     @Test
-    void test_readFromFile() {
-        String filename = "noExistingFile.txt";
-        String result = inputOutputHelper.readFromFile("noExistingFile.txt");
-        Assertions.assertEquals("File not found: " + filename, result);
+    void test_write() {
+        long numberOfWords = 5L;
+        System.setOut(new PrintStream(outputStreamCaptor));
+        inputOutputHelper.write(numberOfWords);
+        Assertions.assertEquals("Number of words: " + numberOfWords , outputStreamCaptor.toString().trim());
     }
 
 }

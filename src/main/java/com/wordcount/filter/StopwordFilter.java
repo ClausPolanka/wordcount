@@ -1,7 +1,6 @@
 package com.wordcount.filter;
 
 import com.wordcount.reader.StopwordReader;
-import com.wordcount.reader.StopwordReaderImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;

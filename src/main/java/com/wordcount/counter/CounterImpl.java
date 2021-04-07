@@ -41,7 +41,10 @@ public class CounterImpl implements Counter{
     }
 
     private boolean containsOnlyLetters(String word) {
-        return word.chars().allMatch(Character::isLetter);
+//        return word.matches("[a-z][A-z]\\.?");
+        return word.matches("[a-z][A-z]*-?[a-z][A-z]*\\.?");
+
+//        return word.chars().allMatch(Character::isLetter);
     }
 
 }

@@ -2,3 +2,4 @@
 - Input file will always be in the root folder
 
 - Words ending with a dot are considered words
+- Average word length will be rounded to two decimal places

@@ -3,6 +3,8 @@ package com.wordcount.counter;
 import com.wordcount.dto.CounterDto;
 import com.wordcount.filter.StopwordFilter;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,8 +25,9 @@ public class CounterImpl implements Counter{
         List<String> wordList = stopwordFilter.removeStopwords(wordStream.collect(Collectors.toList()));
         long numberOfWords = getNumberOfWords(wordList);
         long numberOfUniqueWords = getNumberOfUniqueWords(wordList);
+        BigDecimal averageWordLength = getAverageWordLength(wordList);
 
-        return new CounterDto(numberOfWords, numberOfUniqueWords);
+        return new CounterDto(numberOfWords, numberOfUniqueWords, averageWordLength);
     }
 
     private long getNumberOfWords(List<String> wordList) {
@@ -38,6 +41,15 @@ public class CounterImpl implements Counter{
                 .filter(this::isWord)
                 .distinct()
                 .count();
+    }
+
+    private BigDecimal getAverageWordLength(List<String> wordList) {
+        BigDecimal numberOfWords = BigDecimal.valueOf(getNumberOfWords(wordList));
+        BigDecimal sumOfLetters = BigDecimal.valueOf(wordList.stream().filter(this::isWord).mapToInt(String::length).sum());
+        if (numberOfWords.compareTo(BigDecimal.ZERO) == 0) {
+            return BigDecimal.ZERO;
+        }
+        return sumOfLetters.divide(numberOfWords, 2, RoundingMode.HALF_UP);
     }
 
     /**

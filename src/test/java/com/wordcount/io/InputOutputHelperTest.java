@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 
 class InputOutputHelperTest {
@@ -45,12 +46,13 @@ class InputOutputHelperTest {
     void test_write() {
         long numberOfWords = 9L;
         long numberOfUniqueWords = 7L;
+        BigDecimal averageWordLength = BigDecimal.valueOf(4.25);
 
-        CounterDto counterDto = new CounterDto(numberOfWords, numberOfUniqueWords);
+        CounterDto counterDto = new CounterDto(numberOfWords, numberOfUniqueWords, averageWordLength);
 
         System.setOut(new PrintStream(outputStreamCaptor));
         inputOutputHelper.write(counterDto);
-        Assertions.assertEquals("Number of words: " + numberOfWords + ", unique: " + numberOfUniqueWords, outputStreamCaptor.toString().trim());
+        Assertions.assertEquals("Number of words: " + numberOfWords + ", unique: " + numberOfUniqueWords + ", average word length: " + averageWordLength + " characters", outputStreamCaptor.toString().trim());
     }
 
 }

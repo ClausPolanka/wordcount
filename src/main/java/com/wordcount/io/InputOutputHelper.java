@@ -41,7 +41,10 @@ public class InputOutputHelper {
     }
 
     public void write(CounterDto counter) {
-        System.out.println("Number of words: " + counter.getNumberOfWords() + ", unique: " + counter.getNumberOfUniqueWords());
+        System.out.println("Number of words: "
+                + counter.getNumberOfWords() + ", unique: "
+                + counter.getNumberOfUniqueWords() + ", average word length: "
+                + counter.getAverageWorldLength() + " characters");
     }
 
 }

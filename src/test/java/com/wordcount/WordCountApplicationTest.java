@@ -26,7 +26,7 @@ class WordCountApplicationTest {
         WordCountApplication.main(new String[]{});
 
         String result = byteArrayOutputStream.toString();
-        String expected = "Enter text: " + System.lineSeparator() + "Number of words: " + 4 + ", unique: " + 4 + System.lineSeparator();
+        String expected = "Enter text: " + System.lineSeparator() + "Number of words: 4, unique: 4, average word length: 4.25 characters" + System.lineSeparator();
         Assertions.assertEquals(expected, result);
     }
 

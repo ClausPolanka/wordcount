@@ -1,4 +1,4 @@
-package com.wordcount.counter;
+package com.wordcount.filter;
 
 import com.wordcount.reader.StopwordReader;
 
@@ -13,6 +13,9 @@ public class StopwordFilter {
         this.reader = reader;
     }
 
+    /**
+     * Removes the stopwords from the provided list and returns it as a new list.
+     */
     public List<String> removeStopwords(List<String> words) {
         List<String> stopwords = reader.readStopwords();
         return words.stream()

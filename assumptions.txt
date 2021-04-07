@@ -1,0 +1,1 @@
+If stopwords.txt is not found I will assume it was not provided and no stopwords will be filtered.

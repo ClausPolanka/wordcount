@@ -1,5 +1,7 @@
 package com.wordcount.counter;
 
+import com.wordcount.filter.StopwordFilter;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +16,7 @@ public class Counter {
     }
 
     public long countWords(String words) {
+        //Splits the input using a space character as delimiter and removes any empty strings
         String[] splittedString = words.split(" ");
         Stream<String> wordStream = Arrays.stream(splittedString)
                 .filter(s -> !s.isEmpty());

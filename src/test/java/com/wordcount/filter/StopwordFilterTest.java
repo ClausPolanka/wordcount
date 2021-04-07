@@ -17,7 +17,7 @@ class StopwordFilterTest {
 
     @BeforeEach
     public void setup() {
-        stopwordFilter = new StopwordFilter(new StopwordReaderImpl());
+        stopwordFilter = new StopwordFilterImpl(new StopwordReaderImpl());
     }
 
     private static Stream<Arguments> provideWordsForFilterTest() {

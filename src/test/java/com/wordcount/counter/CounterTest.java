@@ -1,5 +1,6 @@
 package com.wordcount.counter;
 
+import com.wordcount.filter.StopwordFilterMockImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +15,7 @@ public class CounterTest {
 
     @BeforeEach
     public void setup() {
-        counter = new Counter();
+        counter = new CounterImpl(new StopwordFilterMockImpl());
     }
 
     private static Stream<Arguments> provideWordsForCounterTest() {
@@ -33,20 +34,5 @@ public class CounterTest {
     public void test_countWords(String word, long count) {
         Assertions.assertEquals(count, counter.countWords(word));
     }
-
-    private static Stream<Arguments> provideWordsForCounterTestWithStopwords() {
-        return Stream.of(
-                Arguments.of("dog cat", 2),
-                Arguments.of("the dog and the cat", 3)
-        );
-    }
-
-    @ParameterizedTest
-    @MethodSource("provideWordsForCounterTestWithStopwords")
-    public void test_stopwordFilter_countWords(String word, long count) {
-        Assertions.assertEquals(count, counter.countWords(word));
-    }
-
-
 
 }

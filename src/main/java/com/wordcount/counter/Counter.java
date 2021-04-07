@@ -1,6 +1,7 @@
 package com.wordcount.counter;
 
 import com.wordcount.filter.StopwordFilter;
+import com.wordcount.reader.StopwordReaderImpl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,11 +10,8 @@ import java.util.stream.Stream;
 
 public class Counter {
 
-    private StopwordFilter stopwordFilter = new StopwordFilter();
+    private StopwordFilter stopwordFilter = new StopwordFilter(new StopwordReaderImpl());
 
-    public void setStopwordFilter(StopwordFilter stopwordFilter) {
-        this.stopwordFilter = stopwordFilter;
-    }
 
     public long countWords(String text) {
         //Splits the input using a space character as delimiter and removes any empty strings

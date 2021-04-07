@@ -1,15 +1,16 @@
 package com.wordcount.filter;
 
 import com.wordcount.reader.StopwordReader;
+import com.wordcount.reader.StopwordReaderImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StopwordFilter {
 
-    private StopwordReader reader = new StopwordReader();
+    private StopwordReader reader;
 
-    public void setReader(StopwordReader reader) {
+    public StopwordFilter(StopwordReader reader) {
         this.reader = reader;
     }
 

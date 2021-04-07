@@ -12,7 +12,7 @@ public class WordCountApplication {
         Counter counter = new Counter();
 
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Please enter your input: ");
+        System.out.println("Enter text: ");
         String input = scanner.nextLine();
 
         long numberOfWords = counter.countWords(input);

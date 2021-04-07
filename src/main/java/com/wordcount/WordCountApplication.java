@@ -2,22 +2,18 @@ package com.wordcount;
 
 
 import com.wordcount.counter.Counter;
-
-import java.io.InputStreamReader;
-import java.util.Scanner;
+import com.wordcount.io.InputOutputHelper;
 
 public class WordCountApplication {
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         Counter counter = new Counter();
+        InputOutputHelper inputOutputHelper = new InputOutputHelper();
 
-        Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Enter text: ");
-        String input = scanner.nextLine();
+        String input = inputOutputHelper.read(args);
 
         long numberOfWords = counter.countWords(input);
         System.out.println("Number of words: " + numberOfWords);
     }
-
 
 }

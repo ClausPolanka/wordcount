@@ -25,12 +25,12 @@ class WordCountApplicationTest {
     @Test
     public void main_smokeTest() {
         System.setOut(new PrintStream(byteArrayOutputStream));
-        ByteArrayInputStream input = new ByteArrayInputStream("test".getBytes(StandardCharsets.UTF_8));
+        ByteArrayInputStream input = new ByteArrayInputStream("Mary had a little lamb".getBytes(StandardCharsets.UTF_8));
         System.setIn(input);
         WordCountApplication.main(new String[]{});
 
         String result = byteArrayOutputStream.toString();
-        String expected = "Enter text: " + System.lineSeparator() + "Number of words: " + 1 + System.lineSeparator();
+        String expected = "Enter text: " + System.lineSeparator() + "Number of words: " + 4 + System.lineSeparator();
         Assertions.assertEquals(expected, result);
     }
 

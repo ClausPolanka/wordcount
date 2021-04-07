@@ -1,1 +1,2 @@
-If stopwords.txt is not found I will assume it was not provided and no stopwords will be filtered.
+- If stopwords.txt is not found I will assume it was not provided and no stopwords will be filtered.
+- Input file will always be in the root folder

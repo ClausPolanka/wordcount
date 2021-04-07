@@ -15,9 +15,9 @@ public class Counter {
         this.stopwordFilter = stopwordFilter;
     }
 
-    public long countWords(String words) {
+    public long countWords(String text) {
         //Splits the input using a space character as delimiter and removes any empty strings
-        String[] splittedString = words.split(" ");
+        String[] splittedString = text.split(" ");
         Stream<String> wordStream = Arrays.stream(splittedString)
                 .filter(s -> !s.isEmpty());
 

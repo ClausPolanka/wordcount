@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.math.BigDecimal;
 import java.util.stream.Stream;
 
 public class CounterTest {
@@ -54,6 +55,20 @@ public class CounterTest {
     @MethodSource("provideWordsForNumberOfUniqueWords")
     public void test_numberOfUniqueWords(String word, long numberOfWords) {
         Assertions.assertEquals(numberOfWords, counter.countWords(word).getNumberOfUniqueWords());
+    }
+
+    private static Stream<Arguments> provideWordsForAverageWordLength() {
+        return Stream.of(
+                Arguments.of("word", new BigDecimal("4.00")),
+                Arguments.of("word bicycle", new BigDecimal("5.50")),
+                Arguments.of("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.", new BigDecimal("5.10"))
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideWordsForAverageWordLength")
+    public void test_averageWordLength(String word, BigDecimal average) {
+        Assertions.assertEquals(average, counter.countWords(word).getAverageWorldLength());
     }
 
 

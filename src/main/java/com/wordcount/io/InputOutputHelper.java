@@ -1,5 +1,7 @@
 package com.wordcount.io;
 
+import com.wordcount.dto.CounterDto;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
@@ -38,8 +40,8 @@ public class InputOutputHelper {
         return scanner.nextLine();
     }
 
-    public void write(Long numberOfWords) {
-        System.out.println("Number of words: " + numberOfWords);
+    public void write(CounterDto counter) {
+        System.out.println("Number of words: " + counter.getNumberOfWords() + ", unique: " + counter.getNumberOfUniqueWords());
     }
 
 }

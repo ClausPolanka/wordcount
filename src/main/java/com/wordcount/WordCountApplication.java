@@ -3,6 +3,7 @@ package com.wordcount;
 
 import com.wordcount.counter.Counter;
 import com.wordcount.counter.CounterImpl;
+import com.wordcount.dto.CounterDto;
 import com.wordcount.filter.StopwordFilterImpl;
 import com.wordcount.io.InputOutputHelper;
 import com.wordcount.reader.StopwordReaderImpl;
@@ -15,8 +16,8 @@ public class WordCountApplication {
 
         String input = inputOutputHelper.read(args);
 
-        long numberOfWords = counter.countWords(input);
-        inputOutputHelper.write(numberOfWords);
+        CounterDto counterDto = counter.countWords(input);
+        inputOutputHelper.write(counterDto);
     }
 
 }

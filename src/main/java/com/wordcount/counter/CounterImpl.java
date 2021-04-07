@@ -1,5 +1,6 @@
 package com.wordcount.counter;
 
+import com.wordcount.dto.CounterDto;
 import com.wordcount.filter.StopwordFilter;
 
 import java.util.Arrays;
@@ -15,7 +16,7 @@ public class CounterImpl implements Counter{
         this.stopwordFilter = stopwordFilter;
     }
 
-    public long countWords(String text) {
+    public CounterDto countWords(String text) {
         //Splits the input using a space character as delimiter and removes any empty strings
         String[] splittedString = text.split(" ");
         Stream<String> wordStream = Arrays.stream(splittedString)
@@ -23,8 +24,21 @@ public class CounterImpl implements Counter{
 
         List<String> wordList = stopwordFilter.removeStopwords(wordStream.collect(Collectors.toList()));
 
-        return wordList.stream()
+        long numberOfWords = wordList.stream()
                 .filter(this::containsOnlyLetters).count();
+
+
+        CounterDto counterDto = new CounterDto(1L, 1L);
+
+        return counterDto;
+    }
+
+    private long getNumberOfWords() {
+        return 0;
+    }
+
+    private long getNumberOfUniqueWords() {
+        return 0;
     }
 
     private boolean containsOnlyLetters(String word) {

@@ -1,6 +1,6 @@
 package com.wordcount.io;
 
-import com.wordcount.filter.StopwordFilter;
+import com.wordcount.dto.CounterDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputOutputHelperTest {
 
@@ -45,10 +43,14 @@ class InputOutputHelperTest {
 
     @Test
     void test_write() {
-        long numberOfWords = 5L;
+        long numberOfWords = 9L;
+        long numberOfUniqueWords = 7L;
+
+        CounterDto counterDto = new CounterDto(numberOfWords, numberOfUniqueWords);
+
         System.setOut(new PrintStream(outputStreamCaptor));
-        inputOutputHelper.write(numberOfWords);
-        Assertions.assertEquals("Number of words: " + numberOfWords , outputStreamCaptor.toString().trim());
+        inputOutputHelper.write(counterDto);
+        Assertions.assertEquals("Number of words: " + numberOfWords + ", unique: " + numberOfUniqueWords, outputStreamCaptor.toString().trim());
     }
 
 }

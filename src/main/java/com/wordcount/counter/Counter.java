@@ -1,7 +1,9 @@
 package com.wordcount.counter;
 
+import com.wordcount.dto.CounterDto;
+
 public interface Counter {
 
-    long countWords(String text);
+    CounterDto countWords(String text);
 
 }

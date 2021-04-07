@@ -9,6 +9,6 @@ class StopwordReaderTest {
     @Test
     void readStopwords() {
         StopwordReader reader = new StopwordReader();
-        System.out.println(reader.blep().toString());
+        reader.readStopwords().forEach(System.out::println);
     }
 }

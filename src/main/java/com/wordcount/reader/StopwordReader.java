@@ -1,21 +1,20 @@
 package com.wordcount.reader;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class StopwordReader {
 
     public List<String> readStopwords() {
+        //TODO cleanup
+
         String fileName = "stopwords.txt";
 
         // The class loader that loaded the class
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(fileName);
-
 
         // the stream holding the file content
         if (inputStream == null) {
@@ -23,15 +22,16 @@ public class StopwordReader {
         }
 
         String data = null;
-        List<String>
+        List<String> stopwords = new ArrayList<>();
 
         Scanner myReader = new Scanner(inputStream);
         while (myReader.hasNextLine()) {
             data = myReader.nextLine();
+            stopwords.add(data);
         }
         myReader.close();
 
-        return data;
+        return stopwords;
     }
 
 }

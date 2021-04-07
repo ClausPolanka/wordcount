@@ -19,12 +19,6 @@ public class CounterTest {
         counter = new Counter();
     }
 
-    @ParameterizedTest
-    @MethodSource("provideWordsForCounterTest")
-    public void test_countWords(String word, long count) {
-        Assertions.assertEquals(count, counter.countWords(word));
-    }
-
     private static Stream<Arguments> provideWordsForCounterTest() {
         return Stream.of(
                 Arguments.of("word", 1),
@@ -35,5 +29,26 @@ public class CounterTest {
                 Arguments.of(" word  tree 1banana ", 2)
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("provideWordsForCounterTest")
+    public void test_countWords(String word, long count) {
+        Assertions.assertEquals(count, counter.countWords(word));
+    }
+
+    private static Stream<Arguments> provideWordsForCounterTestWithStopwords() {
+        return Stream.of(
+                Arguments.of("dog cat", 2),
+                Arguments.of("the dog and the cat", 3)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideWordsForCounterTestWithStopwords")
+    public void test_stopwordFilter_countWords(String word, long count) {
+        Assertions.assertEquals(count, counter.countWords(word));
+    }
+
+
 
 }

@@ -29,22 +29,25 @@ public class CounterImpl implements Counter{
 
     private long getNumberOfWords(List<String> wordList) {
         return wordList.stream()
-                .filter(this::containsOnlyLetters)
+                .filter(this::isWord)
                 .count();
     }
 
     private long getNumberOfUniqueWords(List<String> wordList) {
         return wordList.stream()
-                .filter(this::containsOnlyLetters)
+                .filter(this::isWord)
                 .distinct()
                 .count();
     }
 
-    private boolean containsOnlyLetters(String word) {
-//        return word.matches("[a-z][A-z]\\.?");
-        return word.matches("[a-z][A-z]*-?[a-z][A-z]*\\.?");
-
-//        return word.chars().allMatch(Character::isLetter);
+    /**
+     * Check if the input is a valid word according to following rules:
+     * Words are stretches of letters (a-z,A-Z)
+     * Words can contain a hyphen
+     * Words can end with a dot
+     */
+    private boolean isWord(String word) {
+        return word.matches("[a-zA-Z]+\\.?") || word.matches("[a-zA-Z]+-[a-zA-Z]+\\.?");
     }
 
 }

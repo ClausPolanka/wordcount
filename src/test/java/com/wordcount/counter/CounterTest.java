@@ -27,7 +27,11 @@ public class CounterTest {
                 Arguments.of("  ", new CounterDto(0, 0)),
                 Arguments.of("word dog", new CounterDto(2, 2)),
                 Arguments.of(" word  tree 1banana ", new CounterDto(2, 2)),
-                Arguments.of("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.", new CounterDto(6, 5))
+                Arguments.of("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.", new CounterDto(10, 8)),
+                Arguments.of(".", new CounterDto(0, 0)),
+                Arguments.of("-", new CounterDto(0, 0)),
+                Arguments.of("a-", new CounterDto(0, 0)),
+                Arguments.of("-.", new CounterDto(0, 0))
         );
     }
 

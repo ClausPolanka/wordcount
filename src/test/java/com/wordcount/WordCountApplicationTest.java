@@ -6,12 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
-import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class WordCountApplicationTest {
 
@@ -30,7 +26,7 @@ class WordCountApplicationTest {
         WordCountApplication.main(new String[]{});
 
         String result = byteArrayOutputStream.toString();
-        String expected = "Enter text: " + System.lineSeparator() + "Number of words: " + 4 + System.lineSeparator();
+        String expected = "Enter text: " + System.lineSeparator() + "Number of words: " + 4 + ", unique: " + 4 + System.lineSeparator();
         Assertions.assertEquals(expected, result);
     }
 

@@ -10,35 +10,34 @@ import java.util.stream.Stream;
 
 public class CounterImpl implements Counter{
 
-    private StopwordFilter stopwordFilter;
+    private final StopwordFilter stopwordFilter;
 
     public CounterImpl(StopwordFilter stopwordFilter) {
         this.stopwordFilter = stopwordFilter;
     }
 
     public CounterDto countWords(String text) {
-        //Splits the input using a space character as delimiter and removes any empty strings
         String[] splittedString = text.split(" ");
-        Stream<String> wordStream = Arrays.stream(splittedString)
-                .filter(s -> !s.isEmpty());
+        Stream<String> wordStream = Arrays.stream(splittedString).filter(s -> !s.isEmpty());
 
         List<String> wordList = stopwordFilter.removeStopwords(wordStream.collect(Collectors.toList()));
+        long numberOfWords = getNumberOfWords(wordList);
+        long numberOfUniqueWords = getNumberOfUniqueWords(wordList);
 
-        long numberOfWords = wordList.stream()
-                .filter(this::containsOnlyLetters).count();
-
-
-        CounterDto counterDto = new CounterDto(1L, 1L);
-
-        return counterDto;
+        return new CounterDto(numberOfWords, numberOfUniqueWords);
     }
 
-    private long getNumberOfWords() {
-        return 0;
+    private long getNumberOfWords(List<String> wordList) {
+        return wordList.stream()
+                .filter(this::containsOnlyLetters)
+                .count();
     }
 
-    private long getNumberOfUniqueWords() {
-        return 0;
+    private long getNumberOfUniqueWords(List<String> wordList) {
+        return wordList.stream()
+                .filter(this::containsOnlyLetters)
+                .distinct()
+                .count();
     }
 
     private boolean containsOnlyLetters(String word) {

@@ -1,5 +1,6 @@
 package com.wordcount.counter;
 
+import com.wordcount.dto.CounterDto;
 import com.wordcount.filter.StopwordFilterMockImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,19 +21,20 @@ public class CounterTest {
 
     private static Stream<Arguments> provideWordsForCounterTest() {
         return Stream.of(
-                Arguments.of("word", 1),
-                Arguments.of("1dog 1cat", 0),
-                Arguments.of("", 0),
-                Arguments.of("  ", 0),
-                Arguments.of("word dog", 2),
-                Arguments.of(" word  tree 1banana ", 2)
+                Arguments.of("word", new CounterDto(1, 1)),
+                Arguments.of("1dog 1cat", new CounterDto(0, 0)),
+                Arguments.of("", new CounterDto(0, 0)),
+                Arguments.of("  ", new CounterDto(0, 0)),
+                Arguments.of("word dog", new CounterDto(2, 2)),
+                Arguments.of(" word  tree 1banana ", new CounterDto(2, 2)),
+                Arguments.of("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.", new CounterDto(6, 5))
         );
     }
 
     @ParameterizedTest
     @MethodSource("provideWordsForCounterTest")
-    public void test_countWords(String word, long count) {
-        Assertions.assertEquals(count, counter.countWords(word));
+    public void test_countWords(String word, CounterDto counterDto) {
+        Assertions.assertEquals(counterDto, counter.countWords(word));
     }
 
 }

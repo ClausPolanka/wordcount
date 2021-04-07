@@ -4,9 +4,15 @@ import java.util.Arrays;
 
 public class Counter {
 
-    public int countWords(String args[]) {
+    public long countWords(String words) {
+        String[] splittedString = words.split(" ");
+        return Arrays.stream(splittedString)
+                .filter(s -> !s.isEmpty())
+                .filter(this::containsOnlyLetters).count();
+    }
 
-        return 0;
+    private boolean containsOnlyLetters(String word) {
+        return word.chars().allMatch(Character::isLetter);
     }
 
 }

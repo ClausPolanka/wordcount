@@ -1,17 +1,23 @@
 package com.wordcount.counter;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.ByteArrayOutputStream;
 import java.util.stream.Stream;
 
 public class CounterTest {
 
-    Counter counter = new Counter();
+    Counter counter;
 
+    @BeforeEach
+    public void setup() {
+        counter = new Counter();
+    }
 
     @ParameterizedTest
     @MethodSource("provideWordsForCounterTest")

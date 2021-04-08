@@ -9,7 +9,7 @@ public class WordCountServiceTest {
     @Test
     public void countWords_testWordString() {
         int wordCount = wordCountService.count("Mary had a little lamb");
-        assertEquals(5, wordCount);
+        assertEquals(4, wordCount);
     }
 
     @Test
@@ -35,4 +35,17 @@ public class WordCountServiceTest {
         int wordCount = wordCountService.count("Hello");
         assertEquals(1, wordCount);
     }
+
+    @Test
+    public void countWords_onlyStopWords() {
+        int wordCount = wordCountService.count("the a on off");
+        assertEquals(0, wordCount);
+    }
+
+    @Test
+    public void countWords_mixtureBetween_stopwords_and_nonStopwords() {
+        int wordCount = wordCountService.count("the Mary had a little lamb on her last trip off wool");
+        assertEquals(8, wordCount);
+    }
+
 }

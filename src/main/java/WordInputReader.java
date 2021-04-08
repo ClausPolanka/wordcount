@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 public class WordInputReader {
 
-    Logger LOGGER = Logger.getLogger(WordInputReader.class.getName());
+    private Logger LOGGER = Logger.getLogger(WordInputReader.class.getName());
 
     public String readSystemInput() {
         System.out.print("Enter text: ");

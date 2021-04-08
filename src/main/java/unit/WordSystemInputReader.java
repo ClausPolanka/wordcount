@@ -1,3 +1,8 @@
+package unit;
+
+import exceptions.NotValidWordStringException;
+import services.WordSplitService;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,7 +19,7 @@ public class WordSystemInputReader {
         wordSplitService = new WordSplitService();
     }
 
-    public List<String> readSystemInput() {
+    public List<String> readSystemInput() throws NotValidWordStringException {
         System.out.print("Enter text: ");
 
         BufferedReader reader = new BufferedReader(

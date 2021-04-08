@@ -1,4 +1,7 @@
+import exceptions.NotValidWordStringException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import services.WordSplitService;
 
 import java.util.List;
 
@@ -10,7 +13,7 @@ public class WordSplitServiceTest {
     WordSplitService wordSplitService = new WordSplitService();
 
     @Test
-    public void testSplit_wordSequence(){
+    public void testSplit_wordSequence() throws NotValidWordStringException {
         String toTest = "Mary had a little lamb";
         List<String> splittedWords = wordSplitService.splitWordsFromString(toTest);
 
@@ -22,26 +25,26 @@ public class WordSplitServiceTest {
     }
 
     @Test
-    public void testSplit_emptyString(){
+    public void testSplit_emptyString() {
         String toTest = "";
-        List<String> splittedWords = wordSplitService.splitWordsFromString(toTest);
-
-        assertTrue(splittedWords == null);
+        Assertions.assertThrows(NotValidWordStringException.class, () -> {
+            wordSplitService.splitWordsFromString(toTest);
+        });
     }
 
     @Test
-    public void testSplit_emptyStringWithSpace(){
+    public void testSplit_emptyStringWithSpace() {
         String toTest = " ";
-        List<String> splittedWords = wordSplitService.splitWordsFromString(toTest);
-
-        assertTrue(splittedWords == null);
+        Assertions.assertThrows(NotValidWordStringException.class, () -> {
+            wordSplitService.splitWordsFromString(toTest);
+        });
     }
 
     @Test
-    public void testSplit_emptyStringWithComma(){
+    public void testSplit_emptyStringWithComma() {
         String toTest = " , ";
-        List<String> splittedWords = wordSplitService.splitWordsFromString(toTest);
-
-        assertTrue(splittedWords == null);
+        Assertions.assertThrows(NotValidWordStringException.class, () -> {
+            wordSplitService.splitWordsFromString(toTest);
+        });
     }
 }

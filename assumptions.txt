@@ -1,1 +1,4 @@
 In the first iteration the system input from the user has to be read.
+
+Iteration 4:
+"unique words" means that each word is only count once (stopwords are still excluded)

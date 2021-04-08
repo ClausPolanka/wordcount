@@ -1,21 +1,35 @@
+import entities.WordCountResult;
+import exceptions.FilenameNotProvidedException;
+import exceptions.NotValidWordStringException;
+import services.WordCountService;
+import unit.WordFileReader;
+import unit.WordSystemInputReader;
+
 import java.util.List;
+import java.util.logging.Logger;
 
 public class WordCountApp {
+
+    private static Logger LOGGER = Logger.getLogger(WordCountApp.class.getName());
 
     private static WordFileReader wordFileReader = new WordFileReader();
     private static WordSystemInputReader reader = new WordSystemInputReader();
     private static WordCountService wordCountService = new WordCountService();
 
     public static  void main(String[] args) {
-        WordCountApp.run("mytext.txt");
+        WordCountApp.run("mytextunique.txt");
     }
 
     public static void run(String filename){
         System.out.print("wordcount \n");
-        countFromFile(filename);
+        try {
+            countFromFile(filename);
+        } catch (NotValidWordStringException e) {
+            LOGGER.warning("Error occurred trying to count words: "+e.getMessage());
+        }
     }
 
-    private static void countFromFile(String filename){
+    private static void countFromFile(String filename) throws NotValidWordStringException {
         List<String> inputText;
         try {
             inputText = wordFileReader.loadWords(filename);
@@ -24,8 +38,9 @@ public class WordCountApp {
             inputText = reader.readSystemInput();
         }
 
-        int wordsCount = wordCountService.count(inputText);
+        WordCountResult result = wordCountService.count(inputText);
 
-        System.out.print("Number of words: " + wordsCount);
+        System.out.print("Number of words: "+ result.getAmountCountableWords() +
+                ", unique: " + result.getAmountUniqueWords());
     }
 }

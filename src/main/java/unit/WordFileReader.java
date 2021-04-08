@@ -1,3 +1,9 @@
+package unit;
+
+import exceptions.FilenameNotProvidedException;
+import exceptions.NotValidWordStringException;
+import services.WordSplitService;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -41,8 +47,8 @@ public class WordFileReader {
                 words.addAll(wordSplitService.splitWordsFromString(line));
             }
 
-        } catch (IOException e) {
-            LOGGER.warning("Error occurred trying to read stopwords: "+ e.getMessage());
+        } catch (IOException | NotValidWordStringException e) {
+            LOGGER.warning("Error occurred trying to read file '"+file.getAbsolutePath()+"': "+ e.getMessage());
         }
         return words;
     }

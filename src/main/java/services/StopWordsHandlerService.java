@@ -1,16 +1,21 @@
+package services;
+
+import exceptions.FilenameNotProvidedException;
+import unit.WordFileReader;
+
 import java.util.List;
 import java.util.logging.Logger;
 
-public class StopWordsHandler {
+public class StopWordsHandlerService {
 
-    private Logger LOGGER = Logger.getLogger(StopWordsHandler.class.getName());
+    private Logger LOGGER = Logger.getLogger(StopWordsHandlerService.class.getName());
 
     private static final String FILENAME_STOPWORDS = "stopwords.txt";
 
     private List<String> stopWords;
     private WordFileReader wordFileReader;
 
-    public StopWordsHandler(){
+    public StopWordsHandlerService(){
         wordFileReader = new WordFileReader();
         loadStopWordsFromFile();
     }

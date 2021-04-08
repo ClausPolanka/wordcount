@@ -1,0 +1,1 @@
+sample text to count average of characters.

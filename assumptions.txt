@@ -2,3 +2,8 @@ In the first iteration the system input from the user has to be read.
 
 Iteration 4:
 "unique words" means that each word is only count once (stopwords are still excluded)
+
+
+Iteration 6:
+characters such as dots, commas and semicolons should not be considered and will therefore be excluded form the average calculation.
+In the sample file "sometext.txt" we have a sum of 36 characters and an amount of 7 words which would be an average characters length of 5,1428..

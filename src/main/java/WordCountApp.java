@@ -17,7 +17,7 @@ public class WordCountApp {
     private static WordCountService wordCountService = new WordCountService();
 
     public static  void main(String[] args) {
-        WordCountApp.run("mytextunique.txt");
+        WordCountApp.run("sometext.txt");
     }
 
     public static void run(String filename){
@@ -41,6 +41,7 @@ public class WordCountApp {
         WordCountResult result = wordCountService.count(inputText);
 
         System.out.print("Number of words: "+ result.getAmountCountableWords() +
-                ", unique: " + result.getAmountUniqueWords());
+                ", unique: " + result.getAmountUniqueWords()+
+                "; average word length: " + result.getAverageWordLength() + " characters");
     }
 }

@@ -98,4 +98,23 @@ public class WordCountServiceTest {
         assertEquals(7, result.getAmountCountableWords());
         assertEquals(3, result.getAmountUniqueWords());
     }
+
+    @Test
+    public void countAverageOfCharacters_withoutStopWords() {
+        List<String> words = Arrays.asList("sample", "text", "to", "count", "average", "of", "characters");
+        WordCountResult result = wordCountService.count(words);
+        assertEquals(7, result.getAmountCountableWords());
+        assertEquals(7, result.getAmountUniqueWords());
+        assertEquals(5.142857142857143, result.getAverageWordLength());
+    }
+
+    @Test
+    public void countAverageOfCharacters_withStopWords() {
+        List<String> words = Arrays.asList("sample", "text", "to", "count", "the", "average", "of", "characters");
+        WordCountResult result = wordCountService.count(words);
+        assertEquals(7, result.getAmountCountableWords());
+        assertEquals(7, result.getAmountUniqueWords());
+        assertEquals(5.142857142857143, result.getAverageWordLength());
+    }
+
 }

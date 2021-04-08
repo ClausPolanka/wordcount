@@ -25,9 +25,11 @@ public class WordCountService {
 
         int amountCountableWords = getAmountOfCountableWords(words);
         int amountUniqueWords = getAmountOfUniqueWords(words);
+        double averageWordLength = getAverageWordLength(words);
 
-        return new WordCountResult(amountCountableWords, amountUniqueWords);
+        return new WordCountResult(amountCountableWords, amountUniqueWords, averageWordLength);
     }
+
 
     private int getAmountOfCountableWords(List<String> splitWords) {
         int numWords = 0;
@@ -49,6 +51,10 @@ public class WordCountService {
             }
         }
         return uniqueWords.size();
+    }
+
+    private double getAverageWordLength(List<String> words) {
+        return new AverageCalculatorService().getAverageOfCharacters(words);
     }
 
     private boolean isValid(String word){

@@ -20,8 +20,8 @@ public class WordSplitService {
     }
 
     private List<String> splitWords(String wordString){
-        List<String> split = Arrays.asList(wordString.split(PATTNER_SPACE));
-        return split;
+        String wordStringWithoutDotCommaAndSemicolon = wordString.replace(".","").replace(",","").replace(";","");
+        return Arrays.asList(wordStringWithoutDotCommaAndSemicolon.split(PATTNER_SPACE));
     }
 
     private boolean isValidWordString(String wordString){

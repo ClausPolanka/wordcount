@@ -69,10 +69,10 @@ public class WordCountServiceTest {
 
     @Test
     public void countWords_differentAmountWords_between_countableAndUniqueWords() {
-        List<String> words = Arrays.asList("Humpty", "Dumpty", "sat", "on", "a", "wall", "Humpty", "Dumpty", "had", "a", "great", "fall");
+        List<String> words = Arrays.asList("Humpty-Dumpty", "sat", "on", "a", "wall", "Humpty-Dumpty", "had", "a", "great", "fall");
         WordCountResult result = wordCountService.count(words);
-        assertEquals(9, result.getAmountCountableWords());
-        assertEquals(7, result.getAmountUniqueWords());
+        assertEquals(7, result.getAmountCountableWords());
+        assertEquals(6, result.getAmountUniqueWords());
     }
 
     @Test
@@ -81,5 +81,21 @@ public class WordCountServiceTest {
         WordCountResult result = wordCountService.count(words);
         assertEquals(5, result.getAmountCountableWords());
         assertEquals(1, result.getAmountUniqueWords());
+    }
+
+    @Test
+    public void countWords_alwaysSameWord_withHyphen() {
+        List<String> words = Arrays.asList("Humpty-Dumpty", "Humpty-Dumpty", "Humpty-Dumpty", "Humpty-Dumpty", "Humpty-Dumpty");
+        WordCountResult result = wordCountService.count(words);
+        assertEquals(5, result.getAmountCountableWords());
+        assertEquals(1, result.getAmountUniqueWords());
+    }
+
+    @Test
+    public void countWords_alwaysSameWord_withAndWithoutHyphen() {
+        List<String> words = Arrays.asList("Humpty-Dumpty", "Humpty", "Dumpty", "Humpty-Dumpty", "Humpty", "Dumpty", "Humpty-Dumpty");
+        WordCountResult result = wordCountService.count(words);
+        assertEquals(7, result.getAmountCountableWords());
+        assertEquals(3, result.getAmountUniqueWords());
     }
 }

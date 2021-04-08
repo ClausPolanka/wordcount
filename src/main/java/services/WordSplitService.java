@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class WordSplitService {
 
-    private static final String PATTNER_SPACE = "\\s|-"; //pattern of a whitespace or hyphen
+    private static final String PATTNER_SPACE = "\\s"; //pattern of a whitespace or hyphen
     private static final String PATTERN_LETTERS = "[A-Za-z]"; //pattern indicating if a letter is contained
 
     public List<String> splitWordsFromString(String wordString) throws NotValidWordStringException {

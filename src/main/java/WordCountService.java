@@ -1,22 +1,29 @@
+import java.util.List;
+import java.util.logging.Logger;
+
 public class WordCountService {
 
-    private static final String PATTNER_SPACE = "\\s"; //pattern of a whitespace
-    private static final String PATTERN_LETTERS = "([ ]*[A-Za-z]+[ ]*)+"; //pattern indicating if a letter is contained
+    private Logger LOGGER = Logger.getLogger(WordCountService.class.getName());
 
-    public int count(String words){
-        if(!isValidWordString(words)){
-            return 0;
-        }
+    private StopWordsHandler stopWordsHandler;
 
-        return getCountableWords(splitWords(words));
+    public WordCountService(){
+        stopWordsHandler = new StopWordsHandler();
     }
 
-    private int getCountableWords(String[] splitWords) {
+    public int count(List<String> words) throws IllegalArgumentException{
+        if(words == null){
+            LOGGER.warning("No words present to count.");
+            throw new IllegalArgumentException("words not count are missing");
+        }
+        return getCountableWords(words);
+    }
+
+    private int getCountableWords(List<String> splitWords) {
         int numWords = 0;
-        StopWordsHandler stopWordsHandler = new StopWordsHandler();
 
         for(String word: splitWords){
-            if(!stopWordsHandler.isStopword(word)){
+            if(isValid(word.trim())){
                 numWords++;
             }
         }
@@ -24,11 +31,7 @@ public class WordCountService {
         return  numWords;
     }
 
-    private String[] splitWords(String words){
-        return words.split(PATTNER_SPACE);
-    }
-
-    private boolean isValidWordString(String words){
-        return words.matches(PATTERN_LETTERS);
+    private boolean isValid(String word){
+        return word != null && !word.isEmpty() && !stopWordsHandler.isStopword(word);
     }
 }

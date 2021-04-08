@@ -1,19 +1,26 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.logging.Logger;
 
-public class WordInputReader {
+public class WordSystemInputReader {
 
-    private Logger LOGGER = Logger.getLogger(WordInputReader.class.getName());
+    private Logger LOGGER = Logger.getLogger(WordSystemInputReader.class.getName());
 
-    public String readSystemInput() {
+    private WordSplitService wordSplitService;
+
+    public WordSystemInputReader(){
+        wordSplitService = new WordSplitService();
+    }
+
+    public List<String> readSystemInput() {
         System.out.print("Enter text: ");
 
         BufferedReader reader = new BufferedReader(
-            new InputStreamReader(System.in));
+                new InputStreamReader(System.in));
 
-        return readLine(reader);
+        return wordSplitService.splitWordsFromString(readLine(reader));
     }
 
     private String readLine(BufferedReader reader){

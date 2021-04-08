@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WordCountServiceTest {
@@ -7,45 +10,53 @@ public class WordCountServiceTest {
     private WordCountService wordCountService = new WordCountService();
 
     @Test
-    public void countWords_testWordString() {
-        int wordCount = wordCountService.count("Mary had a little lamb");
+    public void countWords_test1() {
+        List<String> words = Arrays.asList("Mary", "had", "a", "little", "lamb");
+        int wordCount = wordCountService.count(words);
         assertEquals(4, wordCount);
     }
 
     @Test
-    public void countWords_testAnotherWordString() {
-        int wordCount = wordCountService.count("Mary had another very little lamb");
+    public void countWords_test2() {
+        List<String> words = Arrays.asList("Mary", "had", "another", "very","little", "lamb");
+        int wordCount = wordCountService.count(words);
         assertEquals(6, wordCount);
     }
 
     @Test
     public void countWords_emptyString() {
-        int wordCount = wordCountService.count("");
+        List<String> words = Arrays.asList("");
+        int wordCount = wordCountService.count(words);
         assertEquals(0, wordCount);
     }
 
     @Test
     public void countWords_emptyString_withSingleSpace() {
-        int wordCount = wordCountService.count(" ");
+        List<String> words = Arrays.asList(" ");
+        int wordCount = wordCountService.count(words);
         assertEquals(0, wordCount);
     }
 
     @Test
     public void countWords_singleWord() {
-        int wordCount = wordCountService.count("Hello");
+        List<String> words = Arrays.asList("Hello");
+        int wordCount = wordCountService.count(words);
         assertEquals(1, wordCount);
     }
 
     @Test
     public void countWords_onlyStopWords() {
-        int wordCount = wordCountService.count("the a on off");
+        List<String> words = Arrays.asList("the", "a", "on", "off");
+        int wordCount = wordCountService.count(words);
         assertEquals(0, wordCount);
     }
 
     @Test
     public void countWords_mixtureBetween_stopwords_and_nonStopwords() {
-        int wordCount = wordCountService.count("the Mary had a little lamb on her last trip off wool");
-        assertEquals(8, wordCount);
+        List<String> words = Arrays.asList("the", "Mary", "a", "little", "lamb", "on", "her", "last", "trip", "off", "wool");
+        int wordCount = wordCountService.count(words);
+        assertEquals(7, wordCount);
     }
+
 
 }

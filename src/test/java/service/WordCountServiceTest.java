@@ -44,6 +44,18 @@ public class WordCountServiceTest {
         str = " abc   d1ef";
         assertEquals(1, wordCountService.getWordCount(str));
 
+        //Onw word + One StopWord - a
+        str = "abc a";
+        assertEquals(1, wordCountService.getWordCount(str));
+
+        //Two Words - StopWord - but different case
+        str = "abc THE";
+        assertEquals(2, wordCountService.getWordCount(str));
+
+        //All are stopwords
+        str = "a the";
+        assertEquals(0, wordCountService.getWordCount(str));
+
     }
 
 }

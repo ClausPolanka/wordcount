@@ -32,6 +32,14 @@ public class WordCountControllerTest {
 
         assertEquals("Number of words: 1", controller.countWords());
 
+        io.setInputString("ABC the");
+
+        assertEquals("Number of words: 1", controller.countWords());
+
+        io.setInputString("a the");
+
+        assertEquals("Number of words: 0", controller.countWords());
+
     }
 
 }

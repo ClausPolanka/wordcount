@@ -1,10 +1,20 @@
 package service;
 
+import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
+
 public class WordCountService {
 
-    public static int getWordCount(String str){
+    public static int getWordCount(@NotNull String str){
 
-        return str.split("[a-z]").length;
+        final String wordRegex = "[a-zA-Z]+";
+
+        return (int) Arrays.asList(str.split(StringUtils.SPACE))
+                .stream()
+                .filter(word -> word.matches(wordRegex))
+                .count();
 
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class WordCountUtil {
+public class FileReader {
 
     public static List<String> getWordsFromFile(String filePath) {
 

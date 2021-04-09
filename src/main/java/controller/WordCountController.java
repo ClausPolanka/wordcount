@@ -1,43 +1,27 @@
 package controller;
 
-import io.InputOutputInterface;
-import org.apache.commons.lang3.StringUtils;
+import io.UserInterface;
 import service.WordCountService;
 
 import java.io.IOException;
 
 public class WordCountController {
 
-    InputOutputInterface io;
+    UserInterface ui;
     WordCountService wordCountService;
 
-    public WordCountController(InputOutputInterface io, WordCountService wordCountService) {
+    public WordCountController(UserInterface ui, WordCountService wordCountService) {
 
-        this.io = io;
+        this.ui = ui;
         this.wordCountService = wordCountService;
 
     }
 
-    public String countWords() {
+    public void countWords() {
 
-        String output = StringUtils.EMPTY;
-
-        try {
-
-            final String input = io.getInput();
-
-            final String count = String.valueOf(wordCountService.getWordCount(input));
-
-            output = io.displayOutput(count);
-
-
-        } catch (IOException exception) {
-
-            System.out.println("IO Exception" + exception.getMessage());
-
-        }
-
-        return output;
+        final String input = ui.getInput();
+        final int count = wordCountService.getWordCount(input);
+        ui.displayOutput(count);
 
     }
 

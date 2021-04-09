@@ -1,26 +1,26 @@
 package testUtil;
 
-import io.InputOutputInterface;
+import io.UserInterface;
 
-import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
-public class MockIO implements InputOutputInterface {
+public class MockIO implements UserInterface {
 
     String inputString;
 
     @Override
-    public String getInput() throws IOException {
+    public String getInput(){
         return this.inputString;
     }
 
     @Override
-    public String displayOutput(String outputString) {
-        return "Number of words: " + outputString;
+    public void displayOutput(int count) {
+        System.out.println("Number of words: " + count);
     }
 
     public void setInputString(String inputString) {
-
         this.inputString = inputString;
-
     }
+
 }

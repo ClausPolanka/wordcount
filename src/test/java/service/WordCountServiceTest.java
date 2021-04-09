@@ -1,6 +1,7 @@
 package service;
 
 import org.junit.jupiter.api.Test;
+import util.FileBasedStopWords;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,7 +11,8 @@ public class WordCountServiceTest {
     @Test
     public void testGetWordCount(){
 
-        WordCountService wordCountService = new WordCountService();
+        FileBasedStopWords stopWords = new FileBasedStopWords();
+        WordCountService wordCountService = new WordCountService(stopWords);
 
         //LowerCase + Special Character Separator
         String str = "abc def .k";

@@ -4,27 +4,34 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ConsoleIO implements InputOutputInterface {
+public class ConsoleIO implements UserInterface {
 
     @Override
-    public String getInput() throws IOException {
+    public String getInput() {
 
-        final BufferedReader reader = new BufferedReader(
-                new InputStreamReader(System.in));
+        String input = null;
 
-        // Reading data using readLine
-        final String name = reader.readLine();
+        try {
 
-        return name;
+            final BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(System.in));
+
+            input = reader.readLine();
+
+        } catch (IOException exception) {
+
+            System.out.println(exception.getMessage());
+        }
+
+        return input;
 
     }
 
     @Override
-    public String displayOutput(String outputString) {
+    public void displayOutput(int count) {
 
-        final String output = "Number of words: " + outputString;
+        final String output = "Number of words: " + count;
         System.out.println(output);
-        return output;
 
     }
 }

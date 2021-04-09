@@ -32,8 +32,8 @@ public class WordCountService {
 
     private Stream<String> getAllWords(@NotNull String str) {
 
-        final String delimiters ="\\s|-";
-        final String wordRegex = "[a-zA-Z.]+";
+        final String delimiters = StringUtils.SPACE;
+        final String wordRegex = "[a-zA-Z.-]+";
         final Pattern pattern = Pattern.compile(wordRegex);
 
         return Arrays.stream(str.split(delimiters))

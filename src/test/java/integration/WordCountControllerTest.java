@@ -126,7 +126,7 @@ public class WordCountControllerTest {
 
         controller.countWords();
 
-        assertEquals("Number of words: 9, unique:7", outputStreamCaptor.toString().trim());
+        assertEquals("Number of words: 7, unique:6", outputStreamCaptor.toString().trim());
     }
 
 

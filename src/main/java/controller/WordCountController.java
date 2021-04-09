@@ -3,8 +3,6 @@ package controller;
 import io.UserInterface;
 import service.WordCountService;
 
-import java.io.IOException;
-
 public class WordCountController {
 
     UserInterface ui;

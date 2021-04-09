@@ -1,5 +1,7 @@
 import controller.WordCountController;
 import io.ConsoleIO;
+import io.FileBasedUI;
+import io.UserInterface;
 import service.WordCountService;
 import util.FileBasedStopWords;
 
@@ -7,12 +9,24 @@ public class WordCountApplication {
 
     public static void main(String args[]){
 
-        final ConsoleIO io = new ConsoleIO();
+        final UserInterface userInterface;
         final FileBasedStopWords fileBasedStopWords = new FileBasedStopWords();
         final WordCountService wordCountService = new WordCountService(fileBasedStopWords);
-        final WordCountController wordCountController = new WordCountController(io, wordCountService);
 
-        System.out.println("Enter text");
+
+        if (args.length == 0) {
+
+            userInterface = new ConsoleIO();
+            System.out.println("Enter text");
+
+        } else {
+
+            userInterface = new FileBasedUI(args[0]);
+
+        }
+
+        final WordCountController wordCountController = new WordCountController(userInterface, wordCountService);
+
         wordCountController.countWords();
 
     }

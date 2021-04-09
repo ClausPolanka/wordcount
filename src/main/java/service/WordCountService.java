@@ -5,11 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import util.StopWords;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class WordCountService {
@@ -36,10 +32,11 @@ public class WordCountService {
 
     private Stream<String> getAllWords(@NotNull String str) {
 
-        final String wordRegex = "[a-zA-Z]+";
+        final String delimiters ="\\s|-";
+        final String wordRegex = "[a-zA-Z.]+";
         final Pattern pattern = Pattern.compile(wordRegex);
 
-        return Arrays.stream(str.split(StringUtils.SPACE))
+        return Arrays.stream(str.split(delimiters))
                 .filter(word -> (pattern.matcher(word)).matches())
                 .filter(word -> !stopWords.contains(word));
 

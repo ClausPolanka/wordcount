@@ -119,6 +119,17 @@ public class WordCountControllerTest {
         assertEquals("Number of words: 6, unique:5", outputStreamCaptor.toString().trim());
     }
 
+    @Test
+    public void test_countWords_FileBased_NoStopWords() {
+
+        WordCountController controller = setUpController_withFileBasedUI("src/test/java/resources/uniqueWords.txt");
+
+        controller.countWords();
+
+        assertEquals("Number of words: 9, unique:7", outputStreamCaptor.toString().trim());
+    }
+
+
 
     private WordCountController setUpController(String input) {
 

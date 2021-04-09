@@ -3,6 +3,7 @@ package service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import service.WordCountService;
 import util.FileBasedStopWords;
 
 import java.util.Arrays;
@@ -10,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class WordCountServiceTest {
+public class UniqueWordCountServiceTest {
 
     private String input;
     private Integer output;
@@ -25,21 +26,16 @@ public class WordCountServiceTest {
 
     private static List<Object> getIOPairs() {
 
-    return Arrays.asList(new Object[][] {
-                { "abc def .k", 2},
-                { "abc", 1},
-                { " abc   def", 2},
+        return Arrays.asList(new Object[][] {
+                { "abc top abc", 2},
+                { "abc top abcd", 3},
                 { "", 0},
-                { "&*(", 0},
-                { ".   ABC", 1},
-                { "abc d1ef", 1},
-                { "abc a", 1},
-                { "a the", 0},
-                {"   ABC", 1},
-                {"abc THE", 2}
+                { "a a a the abc", 1},
+                { "A THE", 2},
+                { "abc ABC", 2},
+                { "a the a", 0}
         });
     }
-
 
     @ParameterizedTest
     @MethodSource("getIOPairs")
@@ -48,7 +44,6 @@ public class WordCountServiceTest {
         System.out.println("Parameterized Input is : " + input);
         System.out.println("Parameterized Output is : " + output);
 
-        assertEquals(output, wordCountService.getWordCount(input));
+        assertEquals(output, wordCountService.getUniqueWordCount(input));
     }
-
 }

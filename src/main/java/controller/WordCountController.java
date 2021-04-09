@@ -23,4 +23,12 @@ public class WordCountController {
 
     }
 
+    public void countUniqueAndAllWords() {
+
+        final String input = ui.getInput();
+        final int count = wordCountService.getWordCount(input);
+        ui.displayOutput(count);
+
+    }
+
 }

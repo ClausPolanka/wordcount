@@ -6,6 +6,6 @@ public interface InputOutputInterface {
 
     String getInput() throws IOException;
 
-    void displayOutput(String output);
+    String displayOutput(String output);
 
 }

@@ -20,8 +20,11 @@ public class ConsoleIO implements InputOutputInterface {
     }
 
     @Override
-    public void displayOutput(String output) {
+    public String displayOutput(String outputString) {
 
+        final String output = "Number of words: " + outputString;
         System.out.println(output);
+        return output;
+
     }
 }

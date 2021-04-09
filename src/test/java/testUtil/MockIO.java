@@ -15,8 +15,10 @@ public class MockIO implements UserInterface {
     }
 
     @Override
-    public void displayOutput(int count) {
-        System.out.println("Number of words: " + count);
+    public void displayOutput(int count, int uniqueCount) {
+
+        final String output = String.format("Number of words: %d, unique:%d", count, uniqueCount);
+        System.out.println(output);
     }
 
     public void setInputString(String inputString) {

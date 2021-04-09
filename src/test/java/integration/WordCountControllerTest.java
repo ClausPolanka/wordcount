@@ -2,7 +2,6 @@ package integration;
 
 import controller.WordCountController;
 import io.FileBasedUI;
-import io.UserInterface;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +36,7 @@ public class WordCountControllerTest {
 
         controller.countWords();
 
-        assertEquals("Number of words: 1", outputStreamCaptor.toString().trim());
+        assertEquals("Number of words: 1, unique:1", outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -47,7 +46,7 @@ public class WordCountControllerTest {
 
         controller.countWords();
 
-        assertEquals("Number of words: 1", outputStreamCaptor.toString().trim());
+        assertEquals("Number of words: 1, unique:1", outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -57,7 +56,7 @@ public class WordCountControllerTest {
 
         controller.countWords();
 
-        assertEquals("Number of words: 0", outputStreamCaptor.toString().trim());
+        assertEquals("Number of words: 0, unique:0", outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -67,7 +66,7 @@ public class WordCountControllerTest {
 
         controller.countWords();
 
-        assertEquals("Number of words: 1", outputStreamCaptor.toString().trim());
+        assertEquals("Number of words: 1, unique:1", outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -77,7 +76,7 @@ public class WordCountControllerTest {
 
         controller.countWords();
 
-        assertEquals("Number of words: 1", outputStreamCaptor.toString().trim());
+        assertEquals("Number of words: 1, unique:1", outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -87,7 +86,7 @@ public class WordCountControllerTest {
 
         controller.countWords();
 
-        assertEquals("Number of words: 0", outputStreamCaptor.toString().trim());
+        assertEquals("Number of words: 0, unique:0", outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -97,7 +96,7 @@ public class WordCountControllerTest {
 
         controller.countWords();
 
-        assertEquals("Number of words: 4", outputStreamCaptor.toString().trim());
+        assertEquals("Number of words: 4, unique:4", outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -107,17 +106,17 @@ public class WordCountControllerTest {
 
         controller.countWords();
 
-        assertEquals("Number of words: 0", outputStreamCaptor.toString().trim());
+        assertEquals("Number of words: 0, unique:0", outputStreamCaptor.toString().trim());
     }
 
     @Test
-    public void test_countWords_FileBased_validAndStopWords() {
+    public void test_countWords_FileBased_duplicateValidAndStopWords() {
 
         WordCountController controller = setUpController_withFileBasedUI("src/test/java/resources/validAndStopWords.txt");
 
         controller.countWords();
 
-        assertEquals("Number of words: 5", outputStreamCaptor.toString().trim());
+        assertEquals("Number of words: 6, unique:5", outputStreamCaptor.toString().trim());
     }
 
 

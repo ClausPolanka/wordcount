@@ -1,3 +1,6 @@
 Iteration 2 :
 1. stopwords.txt is part of the repository
 2. stop words are case sensitive
+
+Iteration 4:
+1. Words are case sensitive

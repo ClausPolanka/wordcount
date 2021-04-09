@@ -28,9 +28,9 @@ public class ConsoleIO implements UserInterface {
     }
 
     @Override
-    public void displayOutput(int count) {
+    public void displayOutput(int count, int uniqueCount) {
 
-        final String output = "Number of words: " + count;
+        final String output = String.format("Number of words: %d, unique:%d", count, uniqueCount);
         System.out.println(output);
 
     }

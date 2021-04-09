@@ -34,17 +34,6 @@ public class WordCountService {
 
     }
 
-    public Map<String, Integer> getUniqueAndAllWordCount(@NotNull String str){
-
-        final Map<String, Integer> countMap = new HashMap<>();
-        Stream<String> words = getAllWords(str);
-
-        //countMap.put("ALL", getWordCount())
-
-
-
-    }
-
     private Stream<String> getAllWords(@NotNull String str) {
 
         final String wordRegex = "[a-zA-Z]+";

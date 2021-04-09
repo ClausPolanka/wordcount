@@ -18,16 +18,11 @@ public class WordCountController {
     public void countWords() {
 
         final String input = ui.getInput();
+
         final int count = wordCountService.getWordCount(input);
-        ui.displayOutput(count);
+        final int uniqueWordCount = wordCountService.getUniqueWordCount(input);
 
-    }
-
-    public void countUniqueAndAllWords() {
-
-        final String input = ui.getInput();
-        final int count = wordCountService.getWordCount(input);
-        ui.displayOutput(count);
+        ui.displayOutput(count, uniqueWordCount);
 
     }
 

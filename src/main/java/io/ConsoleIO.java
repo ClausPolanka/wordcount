@@ -1,5 +1,7 @@
 package io;
 
+import model.WordDetailsDTO;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,9 +30,10 @@ public class ConsoleIO implements UserInterface {
     }
 
     @Override
-    public void displayOutput(int count, int uniqueCount) {
+    public void displayOutput(WordDetailsDTO wordDetailsDTO) {
 
-        final String output = String.format("Number of words: %d, unique:%d", count, uniqueCount);
+        final String output = String.format("Number of words: %d, unique:%d;  average word length: %d characters",
+                wordDetailsDTO.getCount(), wordDetailsDTO.getUniqueCount(), wordDetailsDTO.getAverageLength());
         System.out.println(output);
 
     }

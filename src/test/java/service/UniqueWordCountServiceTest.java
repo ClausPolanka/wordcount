@@ -44,6 +44,6 @@ public class UniqueWordCountServiceTest {
         System.out.println("Parameterized Input is : " + input);
         System.out.println("Parameterized Output is : " + output);
 
-        assertEquals(output, wordCountService.getUniqueWordCount(input));
+        assertEquals(output, wordCountService.getWordDetails(input).getUniqueCount());
     }
 }

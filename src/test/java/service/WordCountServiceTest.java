@@ -48,7 +48,7 @@ public class WordCountServiceTest {
         System.out.println("Parameterized Input is : " + input);
         System.out.println("Parameterized Output is : " + output);
 
-        assertEquals(output, wordCountService.getWordCount(input));
+        assertEquals(output, wordCountService.getWordDetails(input).getCount());
     }
 
 }

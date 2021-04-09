@@ -1,6 +1,7 @@
 package controller;
 
 import io.UserInterface;
+import model.WordDetailsDTO;
 import service.WordCountService;
 
 public class WordCountController {
@@ -19,10 +20,9 @@ public class WordCountController {
 
         final String input = ui.getInput();
 
-        final int count = wordCountService.getWordCount(input);
-        final int uniqueWordCount = wordCountService.getUniqueWordCount(input);
+        final WordDetailsDTO wordDetailsDTO = wordCountService.getWordDetails(input);
 
-        ui.displayOutput(count, uniqueWordCount);
+        ui.displayOutput(wordDetailsDTO);
 
     }
 

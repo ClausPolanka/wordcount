@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class WordCountService {
 
-    public static int getWordCount(@NotNull String str){
+    public int getWordCount(@NotNull String str){
 
         final String wordRegex = "[a-zA-Z]+";
 

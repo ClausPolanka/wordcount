@@ -10,3 +10,7 @@ iteration #1
  
  The application can be started with a filename to read the text from instead of entering it manually. 
  If no filename is provided, the application will still ask for a text.
+ 
+ iteration #4
+ 
+ The application not only shows the number of words, but also the number of unique words.

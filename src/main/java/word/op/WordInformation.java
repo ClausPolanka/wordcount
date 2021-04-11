@@ -25,7 +25,10 @@ public class WordInformation implements IWord {
 	
 	@Override
 	public Set<String> getWords(String text) {
-		return Arrays.stream(text.split(ConstantRegex.SPACE_AND_WHITESPACE)).collect(Collectors.toSet());
+		return Arrays.
+				stream(text.trim().split(ConstantRegex.SPACE_AND_WHITESPACE))
+				.map(x -> removeDot(x)).
+				collect(Collectors.toSet());
 	}
 	
 	public Set<String> getValidWords(String text) {
@@ -42,8 +45,19 @@ public class WordInformation implements IWord {
 		.collect(Collectors.toSet());
 	 }
 	
+	public Set<String> getUniqueValidWordsWitoutStopWords(String text){
+		return getValidWords(text)
+		.stream()
+		.filter(not( this.stopWords.getStopWords()::contains))
+		.distinct()
+		.collect(Collectors.toSet());
+	 }
 	private static <T> Predicate<T> not(Predicate<T> predicate) {
         return predicate.negate();
     }
 
+		
+	private String removeDot(String word) {
+		return word.replace(".", "");
+	}
 }

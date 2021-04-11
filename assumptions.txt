@@ -1,3 +1,7 @@
 iteration #1
  
  It will then output the number of words found in the text. Words are stretches of letters (a-z,A-Z)
+
+ iteration #2
+ 
+ A list of stop words (provided in the file „stopwords.txt“) defines which words not to count

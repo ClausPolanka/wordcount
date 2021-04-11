@@ -26,3 +26,9 @@ iteration #1
  iteration #7
  
  Optionally an index of all counted words is printed
+ 
+ iteration #8
+ 
+ Allow the user to enter several texts and get them analyzed. 
+ The program is terminated by entering an empty text.
+ implementation of thread

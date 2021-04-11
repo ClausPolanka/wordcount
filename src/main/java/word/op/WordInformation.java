@@ -42,7 +42,6 @@ public class WordInformation implements IWord {
 		.collect(Collectors.toSet());
 	 }
 	
-	
 	private static <T> Predicate<T> not(Predicate<T> predicate) {
         return predicate.negate();
     }

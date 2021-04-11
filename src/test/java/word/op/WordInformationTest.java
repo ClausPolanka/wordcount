@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import word.ui.ConsoleWriter;
 import word.ui.FileReader;
 import word.ui.IReader;
 import word.ui.IWriter;
@@ -12,43 +13,22 @@ public class WordInformationTest {
 
 	WordInformation winfo;
 	StopWords stopWords ;
-	 
+	  
+ 
     @Test
-    public void WHEN_empty_input_THEN_return_0() {
-    	Reader reader = new Reader("");
-    	Writer writer = new Writer();
-    	FileReader fileReader = new FileReader("stopwords.txt");
-		stopWords = new StopWords(fileReader);
+    public void WHEN_getWordsFromFile_THEN_return_size() {
+     	Writer writer = new Writer();
+    	FileReader fileReaderstops = new FileReader("stopwords.txt");
+    	FileReader fileReaderWords = new FileReader("mytext.txt");
+    	stopWords = new StopWords(fileReaderWords);
+    	
 		 winfo = new WordInformation(stopWords);
-		assertEquals(0, winfo.getValidWordsWitoutStopWords(reader.getText()).size());
-		writer.message = String.format("Number of words: %d",winfo.getValidWordsWitoutStopWords(reader.getText()).size());
-		assertEquals("Number of words: 0", writer.message);
-   }
-    
-    @Test
-    public void WHEN_valid_input_THEN_return_Size() {
-    	Reader reader = new Reader("Mary had a little lamb");
-    	Writer writer = new Writer();
-    	FileReader fileReader = new FileReader("stopwords.txt");
-		stopWords = new StopWords(fileReader);
-		 winfo = new WordInformation(stopWords);
-		assertEquals(4, winfo.getValidWordsWitoutStopWords(reader.getText()).size());
-		writer.message = String.format("Number of words: %d",winfo.getValidWordsWitoutStopWords(reader.getText()).size());
+		assertEquals(4, winfo.getValidWordsWitoutStopWords(fileReaderstops.getText()).size());
+		writer.message = String.format("Number of words: %d",winfo.getValidWordsWitoutStopWords(fileReaderWords.getText()).size());
 		assertEquals("Number of words: 4", writer.message);
    }
     
-    @Test
-    public void WHEN_invalid_input_THEN_return_0() {
-    	Reader reader = new Reader(" %%  ## a# #  #&&");
-    	Writer writer = new Writer();
-    	FileReader fileReader = new FileReader("stopwords.txt");
-		stopWords = new StopWords(fileReader);
-		 winfo = new WordInformation(stopWords);
-		assertEquals(0, winfo.getValidWordsWitoutStopWords(reader.getText()).size());
-		writer.message = String.format("Number of words: %d",winfo.getValidWordsWitoutStopWords(reader.getText()).size());
-		assertEquals("Number of words: 0", writer.message);
-   }
-    
+  
     
     static class Reader implements IReader{
       	String text;

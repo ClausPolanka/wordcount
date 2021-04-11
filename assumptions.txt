@@ -5,3 +5,8 @@ iteration #1
  iteration #2
  
  A list of stop words (provided in the file „stopwords.txt“) defines which words not to count
+ 
+ iteration #3
+ 
+ The application can be started with a filename to read the text from instead of entering it manually. 
+ If no filename is provided, the application will still ask for a text.

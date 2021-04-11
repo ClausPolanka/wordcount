@@ -18,3 +18,7 @@ iteration #1
  iteration #5
  
  Words containing a hypen are no longer separated
+ 
+ iteration #6
+ 
+ The average word length of counted words is calculated and output,

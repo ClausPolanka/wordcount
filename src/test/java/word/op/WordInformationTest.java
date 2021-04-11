@@ -2,6 +2,8 @@ package word.op;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Test;
 
 import word.op.WordInformationTest.Reader;
@@ -17,53 +19,29 @@ public class WordInformationTest {
 	StopWords stopWords;
 
 	@Test
-	public void WHEN_empty_input_THEN_return_0() {
-		Reader reader = new Reader("");
-		Writer writer = new Writer();
-		FileReader fileReader = new FileReader("stopwords.txt");
-		stopWords = new StopWords(fileReader);
-		winfo = new WordInformation(stopWords);
-		assertEquals(0, winfo.getValidWordsWitoutStopWords(reader.getText()).size());
-		writer.message = String.format("Number of words: %d",
-				winfo.getValidWordsWitoutStopWords(reader.getText()).size());
-		assertEquals("Number of words: 0", writer.message);
-	}
-
-	@Test
 	public void WHEN_valid_input_THEN_return_Size() {
-		Reader reader = new Reader("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.");
+
 		Writer writer = new Writer();
-		FileReader fileReader = new FileReader("stopwords.txt");
-		stopWords = new StopWords(fileReader);
+		FileReader fileReaderstops = new FileReader("stopwords.txt");
+		FileReader fileReaderWords = new FileReader("mytext.txt");
+		stopWords = new StopWords(fileReaderstops);
 		winfo = new WordInformation(stopWords);
-		
-		assertEquals(6, winfo.getUniqueValidWordsWitoutStopWords(reader.getText()).size());
-		assertEquals(7, winfo.getValidWordsWitoutStopWords(reader.getText()).size());
+		assertEquals(4, winfo.getUniqueValidWordsWitoutStopWords(fileReaderWords.getText()).size());
+		assertEquals(4, winfo.getValidWordsWitoutStopWords(fileReaderWords.getText()).size());
 
-		writer.message = String.format("Number of words: %d, unique: %d",
-				winfo.getValidWordsWitoutStopWords(reader.getText()).size(),
-				winfo.getUniqueValidWordsWitoutStopWords(reader.getText()).size());
-		assertEquals("Number of words: 7, unique: 6", writer.message);
-	}
+		BigDecimal avg = AverageOperations
+				.getAverageWordLength(winfo.getValidWordsWitoutStopWords(fileReaderWords.getText()));
+		 
+		writer.message = String.format("Number of words: %d, unique: %d; average word length: %.2f characters",
+				 winfo.getValidWordsWitoutStopWords(fileReaderWords.getText()).size() ,
+				 winfo.getUniqueValidWordsWitoutStopWords(fileReaderWords.getText()).size() , 
+				  avg );
 
-	@Test
-	public void WHEN_invalid_input_THEN_return_0() {
-		Reader reader = new Reader(" %%  ## a# #  #&&");
-		Writer writer = new Writer();
-		FileReader fileReader = new FileReader("stopwords.txt");
-		stopWords = new StopWords(fileReader);
-		winfo = new WordInformation(stopWords);
-		assertEquals(0, winfo.getUniqueValidWordsWitoutStopWords(reader.getText()).size());
-		assertEquals(0, winfo.getValidWords(reader.getText()).size());
-
-		writer.message = String.format("Number of words: %d, unique: %d",
-				winfo.getValidWordsWitoutStopWords(reader.getText()).size(),
-				winfo.getUniqueValidWordsWitoutStopWords(reader.getText()).size());
-		assertEquals("Number of words: 0, unique: 0", writer.message);
+		assertEquals("Number of words: 4, unique: 4; average word length: 4,25 characters", writer.message);
 	}
 
 	static class Reader implements IReader {
-		String text;
+		private String text;
 
 		public Reader(String text) {
 			this.text = text;
@@ -79,11 +57,10 @@ public class WordInformationTest {
 
 	static class Writer implements IWriter {
 
-		String message;
+		private String message;
 
-		@Override
 		public void writeText(String message) {
-			// TODO Auto-generated method stub
+
 			this.message = message;
 		}
 

@@ -1,6 +1,7 @@
 package word.op;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
@@ -24,25 +25,25 @@ public class WordInformation implements IWord {
 	}
 	
 	@Override
-	public Set<String> getWords(String text) {
+	public List<String> getWords(String text) {
 		return Arrays.
 				stream(text.trim().split(ConstantRegex.SPACE_AND_WHITESPACE))
-				.map(x -> removeDot(x)).
-				collect(Collectors.toSet());
+				.map(x -> removeDot(x))
+				.collect(Collectors.toList());
 	}
 	
-	public Set<String> getValidWords(String text) {
+	public List<String>  getValidWords(String text) {
         return getWords(text)
 				.stream()
 				.filter(x -> x.matches(ConstantRegex.VALID_WORD))
-				.collect(Collectors.toSet());
+				.collect(Collectors.toList());
 	}
 	
-	public Set<String> getValidWordsWitoutStopWords(String text){
+	public List<String>  getValidWordsWitoutStopWords(String text){
 		return getValidWords(text)
 		.stream()
 		.filter(not( this.stopWords.getStopWords()::contains))
-		.collect(Collectors.toSet());
+		.collect(Collectors.toList());
 	 }
 	
 	public Set<String> getUniqueValidWordsWitoutStopWords(String text){
@@ -52,6 +53,7 @@ public class WordInformation implements IWord {
 		.distinct()
 		.collect(Collectors.toSet());
 	 }
+	
 	private static <T> Predicate<T> not(Predicate<T> predicate) {
         return predicate.negate();
     }
@@ -60,4 +62,5 @@ public class WordInformation implements IWord {
 	private String removeDot(String word) {
 		return word.replace(".", "");
 	}
+	
 }

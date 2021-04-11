@@ -14,3 +14,7 @@ iteration #1
  iteration #4
  
  The application not only shows the number of words, but also the number of unique words.
+ 
+ iteration #5
+ 
+ Words containing a hypen are no longer separated

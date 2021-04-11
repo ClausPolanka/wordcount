@@ -1,9 +1,9 @@
 package word.op;
 
-import java.util.Set;
+import java.util.List;
 
 public interface IWord {
 
-	 Set<String> getWords(String text);
+	 List<String> getWords(String text);
 	 int getWordCount(String text);
 }

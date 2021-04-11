@@ -37,13 +37,13 @@ public class WordInformationTest {
 		stopWords = new StopWords(fileReader);
 		winfo = new WordInformation(stopWords);
 		
-		assertEquals(7, winfo.getUniqueValidWordsWitoutStopWords(reader.getText()).size());
-		assertEquals(9, winfo.getValidWords(reader.getText()).size());
+		assertEquals(6, winfo.getUniqueValidWordsWitoutStopWords(reader.getText()).size());
+		assertEquals(7, winfo.getValidWordsWitoutStopWords(reader.getText()).size());
 
 		writer.message = String.format("Number of words: %d, unique: %d",
-				winfo.getValidWords(reader.getText()).size(),
+				winfo.getValidWordsWitoutStopWords(reader.getText()).size(),
 				winfo.getUniqueValidWordsWitoutStopWords(reader.getText()).size());
-		assertEquals("Number of words: 9, unique: 7", writer.message);
+		assertEquals("Number of words: 7, unique: 6", writer.message);
 	}
 
 	@Test

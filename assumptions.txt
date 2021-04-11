@@ -1,0 +1,3 @@
+iteration #1
+ 
+ It will then output the number of words found in the text. Words are stretches of letters (a-z,A-Z)

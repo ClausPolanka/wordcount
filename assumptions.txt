@@ -22,3 +22,7 @@ iteration #1
  iteration #6
  
  The average word length of counted words is calculated and output,
+ 
+ iteration #7
+ 
+ Optionally an index of all counted words is printed

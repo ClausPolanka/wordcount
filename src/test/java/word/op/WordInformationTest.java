@@ -39,6 +39,31 @@ public class WordInformationTest {
 
 		assertEquals("Number of words: 4, unique: 4; average word length: 4,25 characters", writer.message);
 	}
+	
+	
+	@Test
+	public void WHEN_valid_inputwith_index_THEN_return_Size() {
+		
+		Reader reader = new Reader("-index Mary had a little lamb");
+		Writer writer = new Writer();
+		FileReader fileReader = new FileReader("stopwords.txt");
+		stopWords = new StopWords(fileReader);
+		winfo = new WordInformation(stopWords);
+		
+		assertEquals(4, winfo.getUniqueValidWordsWitoutStopWords(reader.getText()).size());
+		assertEquals(4, winfo.getValidWordsWitoutStopWords(reader.getText()).size());
+
+		BigDecimal avg = AverageOperations
+				.getAverageWordLength(winfo.getValidWordsWitoutStopWords(reader.getText()));
+		 
+		writer.message = String.format("Number of words: %d, unique: %d; average word length: %.2f characters",
+				 winfo.getValidWordsWitoutStopWords(reader.getText()).size() ,
+				 winfo.getUniqueValidWordsWitoutStopWords(reader.getText()).size() , 
+				  avg );
+
+		assertEquals("Number of words: 4, unique: 4; average word length: 4,25 characters", writer.message);
+	}
+	
 
 	static class Reader implements IReader {
 		private String text;

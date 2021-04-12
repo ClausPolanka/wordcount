@@ -68,10 +68,16 @@ public class WordCounterTest {
     }
 
     @Test
-    void simpleAcceptanceTest() {
+    void hyphenAsOneWord() {
         CounterResult result = wordCounter.count(stringToInputStream("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall."));
         assertEquals(7, result.getTotal());
         assertEquals(6, result.getUnique());
+    }
+
+    @Test
+    void countAverageWordLength() {
+        CounterResult result = wordCounter.count(stringToInputStream("hell no"));
+        assertEquals(3, result.getAverageWordLength());
     }
 
     private InputStream stringToInputStream(String string) {

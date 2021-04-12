@@ -23,7 +23,7 @@ public class WordCounter {
 
     public CounterResult count(InputStream inputStream) {
         if (inputStream == null) {
-            return new CounterResult(0, 0);
+            return new CounterResult(0, 0, 0);
         }
 
         Scanner scanner = new Scanner(inputStream);
@@ -44,6 +44,9 @@ public class WordCounter {
             uniqueWords.addAll(words);
         }
 
-        return new CounterResult(counter, uniqueWords.size());
+        StringBuilder stringBuilder = new StringBuilder();
+        uniqueWords.stream().forEach(word -> stringBuilder.append(word));
+
+        return new CounterResult(counter, uniqueWords.size(), stringBuilder.length()/uniqueWords.size());
     }
 }

@@ -22,7 +22,7 @@ public class WordCountApplication {
         WordCounter wordCounter = new WordCounter(stopWordsFilter);
 
         AbstractUI ui = cliParameters.isFileBasedInput()
-                ? new FileBasedAbstractUI(cliParameters.getFileName()) : new CommandLineBasedAbstractUI();
+                ? new FileBasedAbstractUI(cliParameters.getInputFileName()) : new CommandLineBasedAbstractUI();
 
         CounterResult result = wordCounter.count(ui.getInput());
         ui.writeResults(result, cliParameters.isPrintIndex());

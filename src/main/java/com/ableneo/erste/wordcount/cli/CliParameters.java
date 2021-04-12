@@ -3,22 +3,32 @@ package com.ableneo.erste.wordcount.cli;
 public class CliParameters {
 
     private boolean printIndex;
-    private String fileName;
+    private String inputFileName;
+    private String dictionaryFileName;
 
-    public CliParameters(boolean printIndex, String fileName) {
+    public CliParameters(boolean printIndex, String inputFileName, String dictionaryFileName) {
         this.printIndex = printIndex;
-        this.fileName = fileName;
+        this.inputFileName = inputFileName;
+        this.dictionaryFileName = dictionaryFileName;
     }
 
     public boolean isPrintIndex() {
         return printIndex;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getInputFileName() {
+        return inputFileName;
+    }
+
+    public String getDictionaryFileName() {
+        return dictionaryFileName;
     }
 
     public boolean isFileBasedInput() {
-        return fileName != null;
+        return inputFileName != null;
+    }
+
+    public boolean isDictionaryBasedOutput() {
+        return dictionaryFileName != null;
     }
 }

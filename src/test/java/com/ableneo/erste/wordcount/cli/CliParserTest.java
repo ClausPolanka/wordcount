@@ -20,7 +20,7 @@ public class CliParserTest {
         CliParameters parameters = cliParser.parse(new String[] {"file.txt"});
         assertFalse(parameters.isPrintIndex());
         assertTrue(parameters.isFileBasedInput());
-        assertEquals("file.txt", parameters.getFileName());
+        assertEquals("file.txt", parameters.getInputFileName());
     }
 
     @Test
@@ -35,6 +35,14 @@ public class CliParserTest {
         CliParameters parameters = cliParser.parse(new String[] {"-index", "file.txt"});
         assertTrue(parameters.isPrintIndex());
         assertTrue(parameters.isFileBasedInput());
-        assertEquals("file.txt", parameters.getFileName());
+        assertEquals("file.txt", parameters.getInputFileName());
+    }
+
+    @Test
+    void containsDictionary() {
+        CliParameters parameters = cliParser.parse(new String[] {"-dictionary=dict.txt"});
+        assertTrue(parameters.isPrintIndex());
+        assertTrue(parameters.isFileBasedInput());
+        assertEquals("file.txt", parameters.getInputFileName());
     }
 }

@@ -76,8 +76,8 @@ public class WordCounterTest {
 
     @Test
     void countAverageWordLength() {
-        CounterResult result = wordCounter.count(stringToInputStream("hell no"));
-        assertEquals(3, result.getAverageWordLength());
+        CounterResult result = wordCounter.count(stringToInputStream("hell world"));
+        assertEquals(4.5, result.getAverageWordLength());
     }
 
     private InputStream stringToInputStream(String string) {

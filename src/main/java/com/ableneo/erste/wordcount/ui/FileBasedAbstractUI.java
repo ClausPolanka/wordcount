@@ -4,11 +4,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class FileBasedAbctractUI extends AbctractUI {
+public class FileBasedAbstractUI extends AbstractUI {
 
     private final String fileName;
 
-    public FileBasedAbctractUI(String fileName) {
+    public FileBasedAbstractUI(String fileName) {
         this.fileName = fileName;
     }
 

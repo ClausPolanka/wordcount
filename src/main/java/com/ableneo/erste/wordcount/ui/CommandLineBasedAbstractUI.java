@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class CommandLineBasedAbctractUI extends AbctractUI {
+public class CommandLineBasedAbstractUI extends AbstractUI {
 
     @Override
     public InputStream getInput() {

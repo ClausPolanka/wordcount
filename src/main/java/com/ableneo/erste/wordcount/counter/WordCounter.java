@@ -3,10 +3,7 @@ package com.ableneo.erste.wordcount.counter;
 import com.ableneo.erste.wordcount.filter.StopWordsFilter;
 
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WordCounter {
@@ -23,7 +20,7 @@ public class WordCounter {
 
     public CounterResult count(InputStream inputStream) {
         if (inputStream == null) {
-            return new CounterResult(0, 0, 0);
+            return new CounterResult(0, 0,  Collections.emptySet(), 0);
         }
 
         Scanner scanner = new Scanner(inputStream);
@@ -45,8 +42,12 @@ public class WordCounter {
         }
 
         StringBuilder stringBuilder = new StringBuilder();
-        uniqueWords.stream().forEach(word -> stringBuilder.append(word));
+        uniqueWords.forEach(stringBuilder::append);
 
-        return new CounterResult(counter, uniqueWords.size(), stringBuilder.length()/uniqueWords.size());
+        return new CounterResult(
+                counter,
+                uniqueWords.size(),
+                uniqueWords,
+                (double) stringBuilder.length()/uniqueWords.size());
     }
 }

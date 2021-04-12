@@ -1,1 +1,3 @@
 IV: Word ending with dot will be counted as a word. Word with any other special character (,?!) will not.
+VI: Couning from unique words.
+VII: Sorted alphabetically

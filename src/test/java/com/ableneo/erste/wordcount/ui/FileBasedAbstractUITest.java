@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FileBasedAbctractUITest {
+public class FileBasedAbstractUITest {
 
     @Test
     void readFile() throws IOException {
         String file = this.getClass().getClassLoader().getResource("mytext.txt").getPath();
-        FileBasedAbctractUI fileBasedUI = new FileBasedAbctractUI(file);
+        FileBasedAbstractUI fileBasedUI = new FileBasedAbstractUI(file);
 
         String fileContent = new BufferedReader(new InputStreamReader(fileBasedUI.getInput(), StandardCharsets.UTF_8))
                 .lines()

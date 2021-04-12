@@ -1,13 +1,17 @@
 package com.ableneo.erste.wordcount;
 
+import com.ableneo.erste.wordcount.stopwords.StopWordReader;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class WordCountApplication {
 
     public static void main(String[] args) throws IOException {
-        WordCounter wordCounter = new WordCounter();
+        List<String> stopWords = new StopWordReader().readFromResourceFile("stopwords/stopwords.txt");
+        WordCounter wordCounter = new WordCounter(stopWords);
 
         System.out.println("Enter text: ");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

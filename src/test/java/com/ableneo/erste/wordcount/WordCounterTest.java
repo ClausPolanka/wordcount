@@ -2,11 +2,13 @@ package com.ableneo.erste.wordcount;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WordCounterTest {
 
-    private WordCounter wordCounter = new WordCounter();
+    private WordCounter wordCounter = new WordCounter(Arrays.asList("the", "a", "on", "off"));
 
     @Test
     void shouldReturnZeroOnNullInput() {
@@ -47,6 +49,12 @@ public class WordCounterTest {
     @Test
     void shouldIgnoreWhitespaceAtTheBeginningAndEnd() {
         int count = wordCounter.count("  word  ");
+        assertEquals(1, count);
+    }
+
+    @Test
+    void shouldIgnoreStopWords() {
+        int count = wordCounter.count("the word");
         assertEquals(1, count);
     }
 }

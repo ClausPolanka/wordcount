@@ -1,5 +1,7 @@
 package com.ableneo.erste.wordcount.ui;
 
+import com.ableneo.erste.wordcount.counter.CounterResult;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
@@ -13,7 +15,7 @@ public class CommandLineBasedUI implements UI {
     }
 
     @Override
-    public void writeResults(int count) {
-        System.out.println("Number of words: " + count);
+    public void writeResults(CounterResult result) {
+        System.out.printf("Number of words: %d, unique: %d%n", result.getTotal(), result.getUnique());
     }
 }

@@ -1,5 +1,7 @@
 package com.ableneo.erste.wordcount;
 
+import com.ableneo.erste.wordcount.counter.CounterResult;
+import com.ableneo.erste.wordcount.counter.WordCounter;
 import com.ableneo.erste.wordcount.filter.StopWordsFilter;
 import com.ableneo.erste.wordcount.ui.CommandLineBasedUI;
 import com.ableneo.erste.wordcount.ui.FileBasedUI;
@@ -16,7 +18,7 @@ public class WordCountApplication {
 
         UI ui = args.length > 0 ? new FileBasedUI(args[0]) : new CommandLineBasedUI();
 
-        int count = wordCounter.count(ui.getInput());
-        ui.writeResults(count);
+        CounterResult result = wordCounter.count(ui.getInput());
+        ui.writeResults(result);
     }
 }

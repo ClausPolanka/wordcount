@@ -1,43 +1,35 @@
 package com.ableneo.erste.wordcount;
 
-import java.util.Collections;
-import java.util.List;
+import com.ableneo.erste.wordcount.filter.StopWordsFilter;
 
-/**
- * Word counter
- */
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class WordCounter {
 
     private static final String WORD_SPLITTING_PATTERN = "([a-zA-Z]+)";
 
-    private List<String> stopWords;
+    private StopWordsFilter stopWordsFilter;
 
-    /**
-     * Constructor
-     * @param stopWords words that should be ignored
-     */
-    public WordCounter(List<String> stopWords) {
-        this.stopWords = stopWords == null ? Collections.emptyList() : stopWords;
+    public WordCounter(StopWordsFilter stopWordsFilter) {
+        this.stopWordsFilter = stopWordsFilter;
     }
 
-    /**
-     * Counts words in input string. Stopwords are not counted.
-
-     * @param input input string
-     * @return number of words in input string, 0 if input is null.
-     */
-    public int count(String input) {
-        if (input == null) {
+    public int count(InputStream inputStream) {
+        if (inputStream == null) {
             return 0;
         }
 
+        Scanner scanner = new Scanner(inputStream);
         int counter = 0;
 
-        String[] tokens = input.split("\\s+");
-        for (String token : tokens) {
-            if (token.matches(WORD_SPLITTING_PATTERN) && !stopWords.contains(token)) {
-                counter++;
-            }
+        while (scanner.hasNextLine()) {
+            String[] tokens = scanner.nextLine().split("\\s+");
+            counter += Arrays.stream(tokens)
+                    .filter(token -> token.matches(WORD_SPLITTING_PATTERN))
+                    .filter(token -> !stopWordsFilter.isStopWord(token))
+                    .count();
         }
 
         return counter;

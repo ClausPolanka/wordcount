@@ -1,4 +1,4 @@
-package com.ableneo.erste.wordcount.stopwords;
+package com.ableneo.erste.wordcount.filter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,16 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Reads stop words
+ * Stop words filter
  */
-public class StopWordReader {
+public class StopWordsFilter {
 
-    /**
-     * Reads from resource file
-     * @param uri resource file URI
-     * @return list of stop words
-     */
-    public List<String> readFromResourceFile(String uri) throws IOException {
+    private final List<String> stopWords;
+
+    public StopWordsFilter(String stopWordsFile) {
+        try {
+            this.stopWords = readStopWordsFromResourceFile(stopWordsFile);
+        } catch (IOException e) {
+            throw new IllegalStateException("Stop words filter couldn't be initialized");
+        }
+    }
+
+    public boolean isStopWord(String word) {
+        return stopWords.contains(word);
+    }
+
+    private List<String> readStopWordsFromResourceFile(String uri) throws IOException {
         InputStream is = getClass().getClassLoader().getResourceAsStream(uri);
         InputStreamReader streamReader = new InputStreamReader(is, StandardCharsets.UTF_8);
         BufferedReader reader = new BufferedReader(streamReader);
@@ -28,6 +37,7 @@ public class StopWordReader {
             stopWords.add(line);
         }
 
+        reader.close();
         return stopWords;
     }
 }

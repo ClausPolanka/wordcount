@@ -20,15 +20,33 @@ public class WordCounterTest {
         assertEquals(0, count);
     }
 
-//    @Test
-//    void shouldReturnZeroOnEmptyInput() {
-//        int count = wordCounter.count(null);
-//        assertEquals(0, count);
-//    }
-//
-//    @Test
-//    void shouldReturnZeroOnEmptyInput() {
-//        int count = wordCounter.count(null);
-//        assertEquals(0, count);
-//    }
+    @Test
+    void shouldReturnOneOnSingleWord() {
+        int count = wordCounter.count("hello");
+        assertEquals(1, count);
+    }
+
+    @Test
+    void shouldReturnTwoOnTwoWords() {
+        int count = wordCounter.count("hello world");
+        assertEquals(2, count);
+    }
+
+    @Test
+    void shouldIgnoreWordsWithSpecialCharacters() {
+        int count = wordCounter.count("word, word. word?");
+        assertEquals(0, count);
+    }
+
+    @Test
+    void shouldIgnoreWhitespaces() {
+        int count = wordCounter.count("word word            word");
+        assertEquals(3, count);
+    }
+
+    @Test
+    void shouldIgnoreWhitespaceAtTheBeginning() {
+        int count = wordCounter.count("  word");
+        assertEquals(1, count);
+    }
 }

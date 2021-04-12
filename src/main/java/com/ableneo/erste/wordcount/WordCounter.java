@@ -5,18 +5,21 @@ import java.util.regex.Pattern;
 
 public class WordCounter {
 
-    private static final Pattern PATTERN = Pattern.compile(".*(\\w+).*");
+    private static final Pattern PATTERN = Pattern.compile("([a-zA-Z]+)\\s|\\b");
 
     public int count(String input) {
         if (input == null) {
             return 0;
         }
 
-        Matcher m = PATTERN.matcher(input);
-        if (m.matches()) {
+        int counter = 0;
 
+        Matcher m = PATTERN.matcher(input);
+
+        while (m.find()) {
+            counter++;
         }
 
-        return 0;
+        return counter;
     }
 }

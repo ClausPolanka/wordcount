@@ -70,8 +70,8 @@ public class WordCounterTest {
     @Test
     void simpleAcceptanceTest() {
         CounterResult result = wordCounter.count(stringToInputStream("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall."));
-        assertEquals(9, result.getTotal());
-        assertEquals(7, result.getUnique());
+        assertEquals(7, result.getTotal());
+        assertEquals(6, result.getUnique());
     }
 
     private InputStream stringToInputStream(String string) {

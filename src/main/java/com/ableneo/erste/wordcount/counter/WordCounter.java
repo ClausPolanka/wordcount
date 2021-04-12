@@ -35,10 +35,6 @@ public class WordCounter {
                     .map(token -> token.endsWith(".") ? token.substring(0, token.length() - 1) : token)
                     .collect(Collectors.toList());
 
-            tokens = tokens.stream()
-                    .flatMap(token -> Arrays.stream(token.split("-")))
-                    .collect(Collectors.toList());
-
             List<String> words = tokens.stream()
                     .filter(token -> token.matches(WORD_SPLITTING_PATTERN))
                     .filter(token -> !stopWordsFilter.isStopWord(token))

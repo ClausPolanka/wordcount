@@ -45,8 +45,8 @@ public class WordCounterTest {
     }
 
     @Test
-    void shouldIgnoreWhitespaceAtTheBeginning() {
-        int count = wordCounter.count("  word");
+    void shouldIgnoreWhitespaceAtTheBeginningAndEnd() {
+        int count = wordCounter.count("  word  ");
         assertEquals(1, count);
     }
 }

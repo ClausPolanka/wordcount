@@ -1,12 +1,18 @@
 package com.ableneo.erste.wordcount;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+/**
+ * Word counter
+ */
 public class WordCounter {
 
-    private static final Pattern PATTERN = Pattern.compile("([a-zA-Z]+)\\s|\\b");
+    private static final String WORD_SPLITTING_PATTERN = "([a-zA-Z]+)";
 
+    /**
+     * Counts words in input string
+
+     * @param input input string
+     * @return number of words in input string, 0 if input is null
+     */
     public int count(String input) {
         if (input == null) {
             return 0;
@@ -14,10 +20,11 @@ public class WordCounter {
 
         int counter = 0;
 
-        Matcher m = PATTERN.matcher(input);
-
-        while (m.find()) {
-            counter++;
+        String[] tokens = input.split("\\s+");
+        for (String token : tokens) {
+            if (token.matches(WORD_SPLITTING_PATTERN)) {
+                counter++;
+            }
         }
 
         return counter;

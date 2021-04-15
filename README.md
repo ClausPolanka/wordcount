@@ -9,7 +9,7 @@ This stage is split into two parts
 - Remote-Pair-Programming Sessions (4 hours)
 
 ### Home Assignment 
-We expect you to work 3 hours on the example application which we soon will explain to you in more detail. Of course, we can't prevent you from putting more hours in which we for sure don't expect. Please, as soon as you have finished the home assignment (3 hours of work) let us know, so that we can start with the evaluation.
+We expect you to work 3 hours on the example application which we soon will explain to you in more detail. Of course, we can't prevent you from putting more hours in, which we for sure don't expect. Please, __don't finish more than a maximum of 3 iterations__ even though this could mean that your spend less than 3 hours. Please, as soon as you have finished the home assignment (3 hours of work) let us know, so that we can start with the evaluation.
 
 ### Remote-Pair-Programming Sessions
 You will collaborate in four sessions with George Backend Chapter team members. These sessions will be done remotely via Skype. You will receive more details about the Remote-Pair-Programming sessions via email after we have evaluated your home assignment.

@@ -1,4 +1,4 @@
-package com.github.szsalyi.wordcount.io;
+package com.github.szsalyi;
 
 import com.github.szsalyi.wordcount.numbercount.UserInterface;
 

@@ -3,6 +3,7 @@ package com.github.szsalyi.wordcount.io;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 
 /**
  * @author Szabolcs Salyi
@@ -10,12 +11,10 @@ import java.io.InputStreamReader;
  */
 public class UserIOImpl implements UserIO {
 
-    private InputStreamReader inputStream;
     private BufferedReader bufferedReader;
 
-    public UserIOImpl(InputStreamReader inputStream) {
-        this.inputStream = inputStream;
-        this.bufferedReader = new BufferedReader(inputStream);
+    public UserIOImpl(BufferedReader bufferedReader) {
+        this.bufferedReader = bufferedReader;
     }
 
     @Override

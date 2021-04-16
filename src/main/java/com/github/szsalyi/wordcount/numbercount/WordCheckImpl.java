@@ -1,6 +1,8 @@
 package com.github.szsalyi.wordcount.numbercount;
 
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Szabolcs Salyi
@@ -8,15 +10,17 @@ import java.util.Set;
  */
 public class WordCheckImpl implements WordCheck {
 
-    private Set<Character> validChars;
+    private String validRegex;
 
-    public WordCheckImpl(Set<Character> validChars) {
-        this.validChars = validChars;
+    public WordCheckImpl(String validRegex) {
+        this.validRegex = validRegex;
     }
 
     @Override
     public boolean isValid(String word) {
-        
-        return false;
+        Pattern pattern = Pattern.compile(validRegex);
+        Matcher matcher = pattern.matcher(word);
+
+        return matcher.matches();
     }
 }

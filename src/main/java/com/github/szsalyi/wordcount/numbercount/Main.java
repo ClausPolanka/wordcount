@@ -7,6 +7,6 @@ public class Main {
         UserInterface userInterface = new ConsoleUserInterface();
         WordProcessor wordProcessor = new WordProcessor(userInterface);
 
-        wordProcessor.count();
+        userInterface.printResult(wordProcessor.count());
     }
 }

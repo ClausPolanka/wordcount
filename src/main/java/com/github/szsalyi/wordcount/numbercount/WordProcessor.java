@@ -14,11 +14,11 @@ public class WordProcessor {
         this.wordCounter = new WordCounter();
     }
 
-    public void count() {
+    public long count() {
         String userInput = userInterface.userInput();
 
         List<String> splitInput = contentSplit.stringList(userInput);
 
-        userInterface.printResult(wordCounter.count(splitInput));
+        return wordCounter.count(splitInput);
     }
 }

@@ -1,4 +1,4 @@
-package com.github.szsalyi;
+package com.github.szsalyi.io;
 
 import com.github.szsalyi.wordcount.numbercount.UserInterface;
 
@@ -7,9 +7,15 @@ import com.github.szsalyi.wordcount.numbercount.UserInterface;
  * @since 2021-04-16
  */
 public class TestUserInterface implements UserInterface {
+    private String testContent;
+
+    public TestUserInterface(String testContent) {
+        this.testContent = testContent;
+    }
+
     @Override
     public String userInput() {
-        return "Some string";
+        return testContent;
     }
 
     @Override

@@ -11,8 +11,8 @@ public class ContentSplit {
     private String regexDelimiter = "\\s+";
 
     public List<String> stringList(String inputContent) {
-        String[] splittedContent = inputContent.split(regexDelimiter);
+        String[] splitContent = inputContent.split(regexDelimiter);
 
-        return Arrays.asList(splittedContent);
+        return Arrays.asList(splitContent);
     }
 }

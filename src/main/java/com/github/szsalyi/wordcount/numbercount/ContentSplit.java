@@ -7,7 +7,7 @@ import java.util.List;
  * @author Szabolcs Salyi
  * @since 2021-04-16
  */
-public class ContentSplitImpl {
+public class ContentSplit {
     private String regexDelimiter = "\\s+";
 
     public List<String> stringList(String inputContent) {

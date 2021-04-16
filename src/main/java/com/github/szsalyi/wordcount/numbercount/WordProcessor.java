@@ -1,44 +1,24 @@
 package com.github.szsalyi.wordcount.numbercount;
 
-import com.github.szsalyi.wordcount.io.UserIO;
-
-import java.io.IOException;
 import java.util.List;
 
-/**
- * @author Szabolcs Salyi
- * @since 2021-04-16
- */
-public class WordCountImpl implements WordCount {
+public class WordProcessor {
 
     private UserIO userIO;
     private ContentSplit contentSplit;
-    private WordCheck wordCheck;
+    private WordCounter wordCounter;
 
-    public WordCountImpl(UserIO userIO, ContentSplit contentSplit, WordCheck wordCheck) {
+    public WordProcessor(UserIO userIO) {
         this.userIO = userIO;
-        this.contentSplit = contentSplit;
-        this.wordCheck = wordCheck;
+        this.contentSplit = new ContentSplit();
+        this.wordCounter = new WordCounter();
     }
 
-    @Override
-    public Long count(String input) {
-        long wordCount = 0L;
-        String userInput;
-        List<String> delimiteredInput;
+    public void count() {
+        String userInput = userIO.userInput();
 
-        try {
-            userInput = userIO.userInput();
-        } catch (IOException ioException) {
-            System.out.println(ioException.getMessage());
-        }
+        List<String> splitInput = contentSplit.stringList(userInput);
 
-        delimiteredInput = contentSplit.stringList(input);
-
-        for (String word: delimiteredInput) {
-            if(wordCheck.isValid(word)) wordCount++;
-        }
-
-        return wordCount;
+        userIO.printResult(wordCounter.count(splitInput));
     }
 }

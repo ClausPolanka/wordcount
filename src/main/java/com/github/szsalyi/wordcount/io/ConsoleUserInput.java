@@ -1,31 +1,21 @@
 package com.github.szsalyi.wordcount.io;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import com.github.szsalyi.wordcount.numbercount.UserIO;
 
-/**
- * @author Szabolcs Salyi
- * @since 2021-04-16
- */
-public class UserIOImpl implements UserIO {
+import java.util.Scanner;
 
-    private BufferedReader bufferedReader;
+public class ConsoleUserInput implements UserIO {
 
-    public UserIOImpl(BufferedReader bufferedReader) {
-        this.bufferedReader = bufferedReader;
+    @Override
+    public String userInput() {
+        System.out.println("Enter: ");
+        Scanner scanner = new Scanner(System.in);
+
+        return scanner.nextLine();
     }
 
     @Override
-    public String userInput() throws IOException {
-        String line;
-        StringBuilder stringBuilder = new StringBuilder();
-
-        while((line = bufferedReader.readLine()) != null) {
-            stringBuilder.append(line);
-        }
-
-        return stringBuilder.toString();
+    public void printResult(long wordCount) {
+        System.out.println(wordCount);
     }
 }

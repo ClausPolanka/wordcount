@@ -1,11 +1,7 @@
-package com.github.szsalyi.wordcount.io;
+package com.github.szsalyi.wordcount.numbercount;
 
-import java.io.IOException;
-
-/**
- * @author Szabolcs Salyi
- * @since 2021-04-16
- */
 public interface UserIO {
-    String userInput() throws IOException;
+    String userInput();
+
+    void printResult(long wordCount);
 }

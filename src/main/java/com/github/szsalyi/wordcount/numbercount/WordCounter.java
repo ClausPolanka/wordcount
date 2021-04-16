@@ -1,8 +1,17 @@
 package com.github.szsalyi.wordcount.numbercount;
 
-/**
- * @author Szabolcs Salyi
- * @since 2021-04-16
- */
+import java.util.List;
+
 public class WordCounter {
+    private WordCheck wordCheck;
+
+    public WordCounter() {
+        this.wordCheck = new WordCheck();
+    }
+
+    public long count(List<String> words) {
+        return words.stream()
+                .filter(w -> wordCheck.isValid(w))
+                .count();
+    }
 }

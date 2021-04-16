@@ -6,7 +6,7 @@ public class WordCounter {
     private WordCheck wordCheck;
 
     public WordCounter() {
-        this.wordCheck = new WordCheck();
+        this.wordCheck = new WordCheck(new StopWords());
     }
 
     public long count(List<String> words) {

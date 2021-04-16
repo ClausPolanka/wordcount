@@ -1,8 +1,14 @@
 package com.github.szsalyi.numbercount;
 
+import com.github.szsalyi.wordcount.numbercount.StopWords;
 import com.github.szsalyi.wordcount.numbercount.WordCheck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,7 +18,8 @@ public class WordCheckTest {
 
     @BeforeEach
     private void init() {
-        this.wordCheck = new WordCheck();
+        MockStopWords mockStopWords = new MockStopWords(new HashSet<>());
+        this.wordCheck = new WordCheck(mockStopWords);
     }
 
     @Test
@@ -45,6 +52,28 @@ public class WordCheckTest {
     @Test
     public void givenNull_whenIsValid_thenReturnFalse() {
         boolean isValid = wordCheck.isValid(null);
+
+        assertFalse(isValid);
+    }
+
+    @Test
+    public void givenValidStringWithoutStopWords_whenisValid_thenReturnTrue() {
+        Set<String> stopWords = new HashSet<>(Collections.singletonList("the"));
+        StopWords mockStopWord = new MockStopWords(stopWords);
+        this.wordCheck = new WordCheck(mockStopWord);
+
+        boolean isValid = this.wordCheck.isValid("word");
+
+        assertTrue(isValid);
+    }
+
+    @Test
+    public void givenValidStringWitStopWords_whenisValid_thenReturnFalse() {
+        Set<String> stopWords = new HashSet<>(Collections.singletonList("the"));
+        StopWords mockStopWord = new MockStopWords(stopWords);
+        this.wordCheck = new WordCheck(mockStopWord);
+
+        boolean isValid = this.wordCheck.isValid("the");
 
         assertFalse(isValid);
     }

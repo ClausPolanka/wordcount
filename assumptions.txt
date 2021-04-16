@@ -2,3 +2,5 @@ Comment:
 - word is a char of (a-z,A-Z)
 - in other cases the word wouldn't count
 - One or multiple white spaces are the only delimiter right now.
+
+- In case of IOException while stop words are loaded a runtime exception can occur

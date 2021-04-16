@@ -19,6 +19,8 @@ public class WordProcessor {
 
         List<String> splitInput = contentSplit.stringList(userInput);
 
-        return wordCounter.count(splitInput);
+        long wordCount = wordCounter.count(splitInput);
+
+        return wordCount;
     }
 }

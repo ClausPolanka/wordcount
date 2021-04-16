@@ -1,11 +1,11 @@
 package com.github.szsalyi.wordcount.numbercount;
 
-import com.github.szsalyi.wordcount.io.ConsoleUserInput;
+import com.github.szsalyi.wordcount.io.ConsoleUserInterface;
 
 public class Main {
     public static void main(String[] args) {
-        UserIO userIO = new ConsoleUserInput();
-        WordProcessor wordProcessor = new WordProcessor(userIO);
+        UserInterface userInterface = new ConsoleUserInterface();
+        WordProcessor wordProcessor = new WordProcessor(userInterface);
 
         wordProcessor.count();
     }

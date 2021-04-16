@@ -1,10 +1,10 @@
 package com.github.szsalyi.wordcount.io;
 
-import com.github.szsalyi.wordcount.numbercount.UserIO;
+import com.github.szsalyi.wordcount.numbercount.UserInterface;
 
 import java.util.Scanner;
 
-public class ConsoleUserInput implements UserIO {
+public class ConsoleUserInterface implements UserInterface {
 
     @Override
     public String userInput() {

@@ -10,6 +10,8 @@ public class WordCounter {
     }
 
     public long count(List<String> words) {
+        if (words == null) return 0L;
+
         return words.stream()
                 .filter(w -> wordCheck.isValid(w))
                 .count();

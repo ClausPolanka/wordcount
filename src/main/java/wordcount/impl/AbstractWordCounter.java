@@ -2,7 +2,9 @@ package wordcount.impl;
 
 import wordcount.IWordCounter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class AbstractWordCounter implements IWordCounter {
@@ -12,14 +14,7 @@ public class AbstractWordCounter implements IWordCounter {
         if (inputText == null) {
             return 0;
         }
-        int count = 0;
-        final String[] parts = splitToWords(inputText);
-        for (final String part : parts) {
-            if (isWord(part)) {
-                count++;
-            }
-        }
-        return count;
+        return extractWords(inputText).size();
     }
 
     @Override
@@ -35,6 +30,25 @@ public class AbstractWordCounter implements IWordCounter {
             }
         }
         return unique.size();
+    }
+
+    @Override
+    public double averageLength(String inputText) {
+        return extractWords(inputText).stream()
+                .mapToDouble(String::length)
+                .average()
+                .orElseThrow(() -> new RuntimeException("Unable to calculate average length"));
+    }
+
+    private List<String> extractWords(final String inputText) {
+        final String[] parts = splitToWords(inputText);
+        List<String> words = new ArrayList<>();
+        for (final String part : parts) {
+            if (isWord(part)) {
+                words.add(part);
+            }
+        }
+        return words;
     }
 
     protected boolean isWord(final String part) {

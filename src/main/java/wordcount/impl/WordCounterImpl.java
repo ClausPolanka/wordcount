@@ -1,4 +1,6 @@
-package wordcount;
+package wordcount.impl;
+
+import wordcount.IWordCounter;
 
 public class WordCounterImpl extends AbstractWordCounter implements IWordCounter {
 

@@ -1,4 +1,6 @@
-package wordcount;
+package wordcount.impl;
+
+import wordcount.IWordCounter;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +10,7 @@ import java.util.Set;
 
 public class WordCounterStopWordsImpl extends AbstractWordCounter implements IWordCounter {
 
-    private static final Set<String> STOP_WORDS = new HashSet<>();
+    protected static final Set<String> STOP_WORDS = new HashSet<>();
 
     public WordCounterStopWordsImpl(String filename) {
         try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(filename)) {

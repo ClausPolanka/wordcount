@@ -1,6 +1,9 @@
 package wordcount;
 
 import org.junit.jupiter.api.Test;
+import wordcount.impl.WordCounterAllowedDashImpl;
+import wordcount.impl.WordCounterImpl;
+import wordcount.impl.WordCounterStopWordsImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -60,19 +63,5 @@ public class WordCounterTest {
         final IWordCounter wordCounter = new WordCounterImpl();
         final String inputText = "Mary had a little lamb";
         assertEquals(wordCounter.count(inputText), 5);
-    }
-
-    @Test
-    public void testExampleInputWithStopWords() {
-        final IWordCounter wordCounter = new WordCounterStopWordsImpl("stopwords.txt");
-        final String inputText = "Mary had a little lamb";
-        assertEquals(wordCounter.count(inputText), 4);
-    }
-
-    @Test
-    public void testUniqueWordsWithStopWords() {
-        final IWordCounter wordCounter = new WordCounterStopWordsImpl("stopwords.txt");
-        final String inputText = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
-        assertEquals(wordCounter.countUnique(inputText), 7);
     }
 }

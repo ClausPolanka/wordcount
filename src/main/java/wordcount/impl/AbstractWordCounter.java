@@ -1,4 +1,6 @@
-package wordcount;
+package wordcount.impl;
+
+import wordcount.IWordCounter;
 
 import java.util.HashSet;
 import java.util.Set;

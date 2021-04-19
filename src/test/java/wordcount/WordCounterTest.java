@@ -61,4 +61,11 @@ public class WordCounterTest {
         final String inputText = "Mary had a little lamb";
         assertEquals(wordCounter.count(inputText), 5);
     }
+
+    @Test
+    public void testExampleInputWithStopWords() {
+        final IWordCounter wordCounter = new WordCounterImpl("stopwords.txt");
+        final String inputText = "Mary had a little lamb";
+        assertEquals(wordCounter.count(inputText), 4);
+    }
 }

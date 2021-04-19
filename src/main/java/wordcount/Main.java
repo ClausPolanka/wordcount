@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         final Main main = new Main();
         final String inputText = main.readInput();
-        final IWordCounter wordCounter = new WordCounterImpl();
+        final IWordCounter wordCounter = new WordCounterImpl("stopwords.txt");
         System.out.print("Number of words: " + wordCounter.count(inputText));
     }
 

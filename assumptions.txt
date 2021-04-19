@@ -4,3 +4,8 @@ Iteration 1
 - Word consists of letters [a-zA-z]
 - If consecutive characters contain invalid character (not [a-zA-z]), stretch of characters is not considered to be word
 
+
+
+Iteration 2
+- Stop words have the same rules as words in text - must contain only [a-zA-z], otherwise the stop word is ignored
+- A line in stopwords.txt can contain only one stop word

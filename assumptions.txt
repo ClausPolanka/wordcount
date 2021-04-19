@@ -1,0 +1,6 @@
+Iteration 1
+
+- Words are separated with whitespaces
+- Word consists of letters [a-zA-z]
+- If consecutive characters contain invalid character (not [a-zA-z]), stretch of characters is not considered to be word
+

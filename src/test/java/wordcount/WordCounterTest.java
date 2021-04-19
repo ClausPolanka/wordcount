@@ -31,7 +31,7 @@ public class WordCounterTest {
     public void testSpecialCharacterInWord() {
         final IWordCounter wordCounter = new WordCounterImpl();
         final String inputText = "word? wo$rd .word";
-        assertEquals(wordCounter.count(inputText), 0);
+        assertEquals(wordCounter.count(inputText), 1);
     }
 
     @Test
@@ -67,5 +67,12 @@ public class WordCounterTest {
         final IWordCounter wordCounter = new WordCounterImpl("stopwords.txt");
         final String inputText = "Mary had a little lamb";
         assertEquals(wordCounter.count(inputText), 4);
+    }
+
+    @Test
+    public void testUniqueWordsWithStopWords() {
+        final IWordCounter wordCounter = new WordCounterImpl("stopwords.txt");
+        final String inputText = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
+        assertEquals(wordCounter.countUnique(inputText), 7);
     }
 }

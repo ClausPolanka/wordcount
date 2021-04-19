@@ -36,13 +36,32 @@ public class WordCounterImpl implements IWordCounter {
             return 0;
         }
         int count = 0;
-        final String[] parts = inputText.split("\\s");
+        final String[] parts = splitToWords(inputText);
         for (final String part : parts) {
             if (isWord(part) && !STOP_WORDS.contains(part)) {
                 count++;
             }
         }
         return count;
+    }
+
+    @Override
+    public int countUnique(final String inputText) {
+        if (inputText == null) {
+            return 0;
+        }
+        final Set<String> unique = new HashSet<>();
+        final String[] parts = splitToWords(inputText);
+        for (final String part : parts) {
+            if (isWord(part) && !STOP_WORDS.contains(part)) {
+                unique.add(part);
+            }
+        }
+        return unique.size();
+    }
+
+    private String[] splitToWords(String input) {
+        return input.split("[\\s.-]");
     }
 
     private boolean isWord(final String part) {

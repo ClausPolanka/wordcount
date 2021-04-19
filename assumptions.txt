@@ -9,3 +9,7 @@ Iteration 1
 Iteration 2
 - Stop words have the same rules as words in text - must contain only [a-zA-z], otherwise the stop word is ignored
 - A line in stopwords.txt can contain only one stop word
+
+
+Iteration 4
+- According to example word counts output, dot (.) and dash (-) is now considered to be word delimiter

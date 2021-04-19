@@ -7,11 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MainTest {
 
     @Test
-    public void readFileTest() {
-        final IWordCounter wordCounter = new WordCounterImpl();
+    public void testReadFile() {
         final String inputText = "Mary had\n" +
                 "a little\n" +
                 "lamb\n";
-        assertEquals(wordCounter.count(inputText), 2);
+        assertEquals(new Main().readInput("src/test/resources/mytext.txt"), inputText);
     }
 }

@@ -2,8 +2,13 @@ package wordcount;
 
 import org.junit.jupiter.api.Test;
 import wordcount.impl.WordCounterStopWordsImpl;
+import wordcount.util.FileUtils;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 public class WordCounterStopWords {
 
@@ -24,10 +29,18 @@ public class WordCounterStopWords {
 
     @Test
     public void testAverageWordLength() {
-        String inputText = new Main().readInput("src/test/resources/sometext.txt");
         final IWordCounter wordCounter = new WordCounterStopWordsImpl("stopwords.txt");
+        String inputText = FileUtils.readFileAsString("src/test/resources/sometext.txt");
         assertEquals(20, wordCounter.count(inputText));
         assertEquals(16, wordCounter.countUnique(inputText));
         assertEquals(5.1, wordCounter.averageLength(inputText));
+    }
+
+    @Test
+    public void testIndex() {
+        final IWordCounter wordCounter = new WordCounterStopWordsImpl("stopwords.txt");
+        final String inputText = "Mary had a little lamb-chop";
+        final List<String> expected = Arrays.asList("chop", "had", "lamb", "little", "Mary");
+        assertIterableEquals(expected, wordCounter.getIndex(inputText));
     }
 }

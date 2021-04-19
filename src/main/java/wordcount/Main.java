@@ -1,27 +1,48 @@
 package wordcount;
 
 import wordcount.impl.WordCounterAllowedDashImpl;
+import wordcount.util.FileUtils;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Main {
 
+    private final IWordCounter wordCounter;
+
+    public Main(IWordCounter wordCounter) {
+        this.wordCounter = wordCounter;
+    }
+
     public static void main(String[] args) {
-        final Main main = new Main();
+        final Main main = new Main(new WordCounterAllowedDashImpl("stopwords.txt"));
         String fileName = null;
-        if (args.length > 0) {
-            fileName = args[0];
+        boolean printIndex = false;
+        for (int i = 0; i < args.length; i++) {
+            switch (args[i]) {
+                case "-index":
+                    printIndex = true;
+                    break;
+                default:
+                    fileName = args[i];
+            }
         }
         final String inputText = fileName != null ? main.readInput(fileName) : main.readInput();
 
-        final IWordCounter wordCounter = new WordCounterAllowedDashImpl("stopwords.txt");
-        System.out.print("Number of words: " + wordCounter.count(inputText) +
+        main.printOutput(inputText);
+        if (printIndex) {
+            main.printIndex(inputText);
+        }
+    }
+
+    private void printOutput(String inputText) {
+        System.out.println("Number of words: " + wordCounter.count(inputText) +
                 ", unique: " + wordCounter.countUnique(inputText) +
                 "; average word length: " + wordCounter.averageLength(inputText) + " characters");
+    }
+
+    private void printIndex(String inputText) {
+        System.out.println("Index:");
+        wordCounter.getIndex(inputText).forEach(System.out::println);
     }
 
     public String readInput() {
@@ -30,11 +51,6 @@ public class Main {
     }
 
     public String readInput(final String fileName) {
-        try {
-            byte[] encoded = Files.readAllBytes(Paths.get(fileName));
-            return new String(encoded, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return FileUtils.readFileAsString(fileName);
     }
 }

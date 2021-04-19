@@ -11,6 +11,6 @@ public class MainTest {
         final String inputText = "Mary had\n" +
                 "a little\n" +
                 "lamb\n";
-        assertEquals(inputText, new Main().readInput("src/test/resources/mytext.txt"));
+        assertEquals(inputText, new Main(null).readInput("src/test/resources/mytext.txt"));
     }
 }

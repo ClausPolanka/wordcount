@@ -16,7 +16,7 @@ public class Main {
         }
         final String inputText = fileName != null ? main.readInput(fileName) : main.readInput();
 
-        final IWordCounter wordCounter = new WordCounterImpl("stopwords.txt");
+        final IWordCounter wordCounter = new WordCounterStopWordsImpl("stopwords.txt");
         System.out.print("Number of words: " + wordCounter.count(inputText) + ", unique: " + wordCounter.countUnique(inputText));
     }
 

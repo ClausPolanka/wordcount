@@ -64,14 +64,14 @@ public class WordCounterTest {
 
     @Test
     public void testExampleInputWithStopWords() {
-        final IWordCounter wordCounter = new WordCounterImpl("stopwords.txt");
+        final IWordCounter wordCounter = new WordCounterStopWordsImpl("stopwords.txt");
         final String inputText = "Mary had a little lamb";
         assertEquals(wordCounter.count(inputText), 4);
     }
 
     @Test
     public void testUniqueWordsWithStopWords() {
-        final IWordCounter wordCounter = new WordCounterImpl("stopwords.txt");
+        final IWordCounter wordCounter = new WordCounterStopWordsImpl("stopwords.txt");
         final String inputText = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
         assertEquals(wordCounter.countUnique(inputText), 7);
     }

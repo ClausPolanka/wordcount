@@ -1,6 +1,7 @@
 package wordcount;
 
 import org.junit.jupiter.api.Test;
+import wordcount.impl.WordCounterAllowedDashImpl;
 import wordcount.impl.WordCounterImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -61,5 +62,14 @@ public class WordCounterTest {
         final IWordCounter wordCounter = new WordCounterImpl();
         final String inputText = "Mary had a little lamb";
         assertEquals(5, wordCounter.count(inputText));
+    }
+
+    @Test
+    public void testAverageWordLength() {
+        String inputText = new Main().readInput("src/test/resources/sometext.txt");
+        final IWordCounter wordCounter = new WordCounterImpl();
+        assertEquals(23, wordCounter.count(inputText));
+        assertEquals(17, wordCounter.countUnique(inputText));
+        assertEquals(4.83, wordCounter.averageLength(inputText));
     }
 }

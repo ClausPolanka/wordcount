@@ -19,8 +19,8 @@ public class WordCounterAllowedDashTest {
     public void testAverageWordLength() {
         String inputText = new Main().readInput("src/test/resources/sometext.txt");
         final IWordCounter wordCounter = new WordCounterAllowedDashImpl("stopwords.txt");
-        assertEquals(20, wordCounter.count(inputText));
-        assertEquals(16, wordCounter.countUnique(inputText));
-        assertEquals(5.1, wordCounter.averageLength(inputText));
+        assertEquals(19, wordCounter.count(inputText));
+        assertEquals(17, wordCounter.countUnique(inputText));
+        assertEquals(5.42, wordCounter.averageLength(inputText));
     }
 }

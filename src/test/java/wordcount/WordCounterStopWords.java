@@ -21,4 +21,13 @@ public class WordCounterStopWords {
         assertEquals(9, wordCounter.count(inputText));
         assertEquals(7, wordCounter.countUnique(inputText));
     }
+
+    @Test
+    public void testAverageWordLength() {
+        String inputText = new Main().readInput("src/test/resources/sometext.txt");
+        final IWordCounter wordCounter = new WordCounterStopWordsImpl("stopwords.txt");
+        assertEquals(20, wordCounter.count(inputText));
+        assertEquals(16, wordCounter.countUnique(inputText));
+        assertEquals(5.1, wordCounter.averageLength(inputText));
+    }
 }

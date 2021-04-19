@@ -13,3 +13,7 @@ Iteration 2
 
 Iteration 4
 - According to example word counts output, dot (.) and dash (-) is now considered to be word delimiter
+
+
+Iteration 6
+- The example specified average length as number with 2 decimal digits, so implementation rounds the number

@@ -2,6 +2,8 @@ package wordcount.impl;
 
 import wordcount.IWordCounter;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -34,10 +36,13 @@ public class AbstractWordCounter implements IWordCounter {
 
     @Override
     public double averageLength(String inputText) {
-        return extractWords(inputText).stream()
-                .mapToDouble(String::length)
-                .average()
-                .orElseThrow(() -> new RuntimeException("Unable to calculate average length"));
+        return new BigDecimal(
+                extractWords(inputText).stream()
+                        .mapToDouble(String::length)
+                        .average()
+                        .orElseThrow(() -> new RuntimeException("Unable to calculate average length"))
+        ).setScale(2, RoundingMode.HALF_UP)
+                .doubleValue();
     }
 
     private List<String> extractWords(final String inputText) {

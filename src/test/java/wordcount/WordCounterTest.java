@@ -1,6 +1,7 @@
 package wordcount;
 
 import org.junit.jupiter.api.Test;
+import wordcount.impl.WordCounterAllowedDashImpl;
 import wordcount.impl.WordCounterImpl;
 import wordcount.util.FileUtils;
 
@@ -82,6 +83,14 @@ public class WordCounterTest {
         final IWordCounter wordCounter = new WordCounterImpl();
         final String inputText = "Mary had a little lamb-chop";
         final List<String> expected = Arrays.asList("a", "chop", "had", "lamb", "little", "Mary");
+        assertIterableEquals(expected, wordCounter.getIndex(inputText));
+    }
+
+    @Test
+    public void testIndexWithDictionary() {
+        final IWordCounter wordCounter = new WordCounterImpl();
+        final String inputText = "Mary had a little lamb-chop";
+        final List<String> expected = Arrays.asList("a", "chop*", "had", "lamb*", "little", "Mary*");
         assertIterableEquals(expected, wordCounter.getIndex(inputText));
     }
 }

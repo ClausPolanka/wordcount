@@ -36,4 +36,12 @@ public class WordCounterAllowedDashTest {
         final List<String> expected = Arrays.asList("had", "lamb-chop", "little", "Mary");
         assertIterableEquals(expected, wordCounter.getIndex(inputText));
     }
+
+    @Test
+    public void testIndexWithDictionary() {
+        final IWordCounter wordCounter = new WordCounterAllowedDashImpl("stopwords.txt");
+        final String inputText = "Mary had a little lamb-chop";
+        final List<String> expected = Arrays.asList("had", "lamb-chop*", "little", "Mary*");
+        assertIterableEquals(expected, wordCounter.getIndex(inputText));
+    }
 }

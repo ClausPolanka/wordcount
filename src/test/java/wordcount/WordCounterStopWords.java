@@ -43,4 +43,12 @@ public class WordCounterStopWords {
         final List<String> expected = Arrays.asList("chop", "had", "lamb", "little", "Mary");
         assertIterableEquals(expected, wordCounter.getIndex(inputText));
     }
+
+    @Test
+    public void testIndexWithDictionary() {
+        final IWordCounter wordCounter = new WordCounterStopWordsImpl("stopwords.txt");
+        final String inputText = "Mary had a little lamb-chop";
+        final List<String> expected = Arrays.asList("chop*", "had", "lamb*", "little", "Mary*");
+        assertIterableEquals(expected, wordCounter.getIndex(inputText));
+    }
 }

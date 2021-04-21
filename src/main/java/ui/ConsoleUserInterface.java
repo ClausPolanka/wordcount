@@ -25,7 +25,7 @@ public class ConsoleUserInterface implements UserInterface {
 
     @Override
     public void printStats(WordsStats wordsStats) {
-        this.outputStream.println(wordsStats);
+        this.outputStream.print(wordsStats);
     }
 
 }

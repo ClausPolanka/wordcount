@@ -20,7 +20,8 @@ public class UniqueWordsCounter {
         }
 
         for (String word : wordsInSentence) {
-            Integer count = words.get(InputParser.cleanWord(word));
+            word = InputParser.cleanWord(word);
+            Integer count = words.get(word);
             if (count == null) {
                 words.put(word, 1);
             } else {

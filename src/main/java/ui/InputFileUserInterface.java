@@ -1,5 +1,7 @@
 package ui;
 
+import stats.WordsStats;
+
 import java.io.*;
 import java.net.URL;
 
@@ -31,7 +33,16 @@ public class InputFileUserInterface implements UserInterface {
     }
 
     @Override
-    public void printWordsCount(int wordCount) {
+    public void printStats(WordsStats wordsStats) {
+        printWordsCount(wordsStats.getWordCount());
+        printUniqueWordsCount(wordsStats.getUniqueWordCount());
+    }
+
+    private void printWordsCount(int wordCount) {
         this.outputStream.println("Number of words: " + wordCount);
+    }
+
+    private void printUniqueWordsCount(int wordCount) {
+        this.outputStream.println("unique: " + wordCount);
     }
 }

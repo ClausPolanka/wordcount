@@ -12,17 +12,23 @@ public class UniqueWordsCounter {
     }
 
     public Map<String, Integer> countUniqueWords(final String sentence) {
-        String[] wordsInSentence = sentence.trim().split("[\\S\\-]");
+        if (sentence == null || sentence.trim().length() == 0) {
+            return new HashMap<>();
+        }
+        String[] wordsInSentence = sentence.trim().split("[\\s\\-]+");
         if (wordsInSentence.length == 0) {
             return new HashMap<>();
         }
 
         for (String word : wordsInSentence) {
-            Integer count = this.words.get(word);
+            if (word.endsWith(".")) {
+                word = word.substring(0, word.length() - 1);
+            }
+            Integer count = words.get(word);
             if (count == null) {
                 words.put(word, 1);
             } else {
-                words.put(word, count++);
+                words.put(word, count + 1);
             }
         }
 

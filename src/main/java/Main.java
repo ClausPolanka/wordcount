@@ -1,5 +1,7 @@
+import counter.UniqueWordsCounter;
 import counter.WordCounter;
-import evaluator.WordEvaluator;
+import filters.StopWordsFilter;
+import stats.WordsStats;
 import stopwords.StopWordsFileLoader;
 import stopwords.StopWordsLoader;
 import ui.UserInterface;
@@ -11,12 +13,19 @@ public class Main {
 
     public static void main(String[] args) {
         final StopWordsLoader stopWordsFileLoader = new StopWordsFileLoader("stopwords.txt");
-        final WordCounter wordCounter = new WordCounter(new WordEvaluator(stopWordsFileLoader.loadStopWords()));
+        final StopWordsFilter stopWordsFilter = new StopWordsFilter(stopWordsFileLoader.loadStopWords());
+        final WordCounter wordCounter = new WordCounter();
+        final UniqueWordsCounter uniqueWordsCounter = new UniqueWordsCounter();
 
         final UserInterface userInterface = UserInterfaceFactory.createUserInterface(args);
 
         final Scanner scanner = new Scanner(userInterface.getUserInput());
+        final String rawSentence = scanner.nextLine();
+        final String stopWordsFilteredSentence = stopWordsFilter.filter(rawSentence);
 
-        userInterface.printWordsCount(wordCounter.countWords(scanner.nextLine()));
+        userInterface.printStats(
+                new WordsStats(wordCounter.countWords(stopWordsFilteredSentence),
+                        uniqueWordsCounter.countUniqueWords(stopWordsFilteredSentence).size()
+                ));
     }
 }

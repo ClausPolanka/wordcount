@@ -1,14 +1,11 @@
 package counter;
 
-import evaluator.WordEvaluator;
+
+import java.util.regex.Pattern;
 
 public class WordCounter {
 
-    private final WordEvaluator evaluator;
-
-    public WordCounter(final WordEvaluator evaluator) {
-        this.evaluator = evaluator;
-    }
+    private static final Pattern pattern = Pattern.compile("[a-zA-Z]+");
 
     public int countWords(final String sentence) {
         if (sentence == null) {
@@ -16,10 +13,13 @@ public class WordCounter {
         }
 
         int result = 0;
-        final String[] words = sentence.split("[\\S\\-]");
+        final String[] words = sentence.split("[\\s\\-]+");
 
         for (String word : words) {
-            if (evaluator.evaluate(word)) {
+            if (word.endsWith(".")) {
+                word = word.substring(0, word.length() - 1);
+            }
+            if (pattern.matcher(word).matches()) {
                 result++;
             }
         }

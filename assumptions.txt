@@ -13,3 +13,5 @@ presented in word count I
 sensitive
 
 7- words can also be separated by dashes
+
+8- im gonna clean the sentence by dropping any trailing dot

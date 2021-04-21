@@ -6,3 +6,5 @@ presented in word count I
 3- the list of stop words in the stopwords.txt file is relatively small
 
 4- stop words are case sensitive
+
+5 - always take cli args at index 0 to be the input file name

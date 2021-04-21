@@ -43,6 +43,6 @@ public class StopWordsFileLoader implements StopWordsLoader {
             return null;
         }
 
-        return null;
+        return words;
     }
 }

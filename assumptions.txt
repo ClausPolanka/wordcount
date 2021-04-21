@@ -1,0 +1,4 @@
+1- the delimiter in this case was assumed to be the space character and this assumption was made based on the examples
+presented in word count I
+
+2- always print result

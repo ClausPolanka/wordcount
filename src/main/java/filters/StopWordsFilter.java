@@ -30,6 +30,8 @@ public class StopWordsFilter {
                 builder.append(" ");
             }
         }
-        return builder.toString();
+        String result = builder.toString();
+        result = result.substring(0, result.length() - 1);
+        return result;
     }
 }

@@ -1,3 +1,7 @@
+package counter;
+
+import evaluator.Evaluator;
+
 public class WordCounter {
 
     private final Evaluator evaluator;
@@ -7,6 +11,9 @@ public class WordCounter {
     }
 
     public int countWords(String sentence, String delimiter) {
+        if (sentence == null || delimiter == null) {
+            return 0;
+        }
         int result = 0;
         String[] words = sentence.split(delimiter);
 

@@ -1,10 +1,15 @@
 
 
+import counter.WordCounter;
+import evaluator.Evaluator;
+import evaluator.WordEvaluator;
+
 import java.util.Scanner;
 
 public class Main {
 
     public Main() {
+        System.out.print("Enter text: ");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 

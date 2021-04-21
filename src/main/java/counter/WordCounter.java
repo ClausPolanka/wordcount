@@ -1,6 +1,8 @@
 package counter;
 
 
+import parser.InputParser;
+
 import java.util.regex.Pattern;
 
 public class WordCounter {
@@ -13,13 +15,10 @@ public class WordCounter {
         }
 
         int result = 0;
-        final String[] words = sentence.split("[\\s\\-]+");
+        final String[] words = InputParser.extractWords(sentence);
 
         for (String word : words) {
-            if (word.endsWith(".")) {
-                word = word.substring(0, word.length() - 1);
-            }
-            if (pattern.matcher(word).matches()) {
+            if (pattern.matcher(InputParser.cleanWord(word)).matches()) {
                 result++;
             }
         }

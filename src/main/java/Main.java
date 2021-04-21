@@ -25,7 +25,7 @@ public class Main {
 
         userInterface.printStats(
                 new WordsStats(wordCounter.countWords(stopWordsFilteredSentence),
-                        uniqueWordsCounter.countUniqueWords(stopWordsFilteredSentence).size()
+                        uniqueWordsCounter.countUniqueWords(stopWordsFilteredSentence)
                 ));
     }
 }

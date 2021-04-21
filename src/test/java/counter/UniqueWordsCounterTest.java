@@ -3,9 +3,7 @@ package counter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UniqueWordsCounterTest {
 
@@ -18,20 +16,16 @@ public class UniqueWordsCounterTest {
 
     @Test
     public void whenSentenceIsNullThenNoUniqueWords() {
-        assertTrue(uniqueWordsCounter.countUniqueWords(null).isEmpty());
+        assertEquals(0, uniqueWordsCounter.countUniqueWords(null));
     }
 
     @Test
     public void whenSentenceIsEmptyThenNoUniqueWords() {
-        assertTrue(uniqueWordsCounter.countUniqueWords("").isEmpty());
-        assertTrue(uniqueWordsCounter.countUniqueWords("    ").isEmpty());
+        assertEquals(0, uniqueWordsCounter.countUniqueWords(""));
+        assertEquals(0, uniqueWordsCounter.countUniqueWords("    "));
 
-        final Map<String, Integer> uniqueWords = uniqueWordsCounter.countUniqueWords("Humpty-Dumpty sat on a wall. wall wall wall");
-        assertFalse(uniqueWords.isEmpty());
-        assertEquals(6, uniqueWords.size());
-
-        assertEquals(4, uniqueWords.get("wall"));
-        assertEquals(1, uniqueWords.get("sat"));
+        final int uniqueWordsCount = uniqueWordsCounter.countUniqueWords("Humpty-Dumpty sat on a wall. wall wall wall");
+        assertEquals(6, uniqueWordsCount);
     }
 
 }

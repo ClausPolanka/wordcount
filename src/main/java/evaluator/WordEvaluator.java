@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class WordEvaluator {
 
-    private static final Pattern pattern = Pattern.compile("[a-zA-Z]*");
+    private static final Pattern pattern = Pattern.compile("[a-zA-Z]+");
     private final Set<String> stopWords;
 
     public WordEvaluator() {

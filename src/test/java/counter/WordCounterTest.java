@@ -22,24 +22,24 @@ class WordCounterTest {
 
     @Test
     public void whenSentenceIsNullThenWordCountIsZero() {
-        assertEquals(0, wordCounter.countWords(null, " "));
+        assertEquals(0, wordCounter.countWords(null));
     }
 
     @Test
     public void whenDelimiterIsNullThenWordCountIsZero() {
-        assertEquals(0, wordCounter.countWords("im a sentence", null));
+        assertEquals(0, wordCounter.countWords("im a sentence"));
     }
 
     @Test
     public void whenSentenceAndDelimiterAreNullThenWordCountIsZero() {
-        assertEquals(0, wordCounter.countWords(null, null));
+        assertEquals(0, wordCounter.countWords(null));
     }
 
     @Test
     public void testSentenceWithSpaceDelimiter() {
-        assertEquals(4, wordCounter.countWords("i am a sentence", " "));
-        assertEquals(0, wordCounter.countWords(" ", " "));
-        assertEquals(0, wordCounter.countWords("", " "));
+        assertEquals(4, wordCounter.countWords("i am a sentence"));
+        assertEquals(0, wordCounter.countWords(" "));
+        assertEquals(0, wordCounter.countWords(""));
     }
 
     @Test
@@ -54,9 +54,9 @@ class WordCounterTest {
         wordCounter = new WordCounter(wordEvaluator);
 
 
-        assertEquals(5, wordCounter.countWords("The Mary had a little lamb", " "));
+        assertEquals(5, wordCounter.countWords("The Mary had a little lamb"));
 
         stopwords.add("The");
-        assertEquals(4, wordCounter.countWords("The Mary had a little lamb", " "));
+        assertEquals(4, wordCounter.countWords("The Mary had a little lamb"));
     }
 }

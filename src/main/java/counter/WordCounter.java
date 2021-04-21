@@ -10,13 +10,13 @@ public class WordCounter {
         this.evaluator = evaluator;
     }
 
-    public int countWords(final String sentence, final String delimiter) {
-        if (sentence == null || delimiter == null) {
+    public int countWords(final String sentence) {
+        if (sentence == null) {
             return 0;
         }
 
         int result = 0;
-        final String[] words = sentence.split(delimiter);
+        final String[] words = sentence.split("[\\S\\-]");
 
         for (String word : words) {
             if (evaluator.evaluate(word)) {

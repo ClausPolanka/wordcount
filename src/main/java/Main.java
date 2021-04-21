@@ -17,6 +17,6 @@ public class Main {
 
         final Scanner scanner = new Scanner(userInterface.getUserInput());
 
-        userInterface.printWordsCount(wordCounter.countWords(scanner.nextLine(), " "));
+        userInterface.printWordsCount(wordCounter.countWords(scanner.nextLine()));
     }
 }

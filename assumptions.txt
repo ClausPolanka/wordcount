@@ -8,3 +8,8 @@ presented in word count I
 4- stop words are case sensitive
 
 5 - always take cli args at index 0 to be the input file name
+
+6- since we made the assumption that stop words are case sensitive then unique words are also case
+sensitive
+
+7- words can also be separated by dashes

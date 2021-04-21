@@ -33,16 +33,12 @@ public class InputFileUserInterface implements UserInterface {
     }
 
     @Override
+    public void askForInput() {
+        // empty on purpose
+    }
+
+    @Override
     public void printStats(WordsStats wordsStats) {
-        printWordsCount(wordsStats.getWordCount());
-        printUniqueWordsCount(wordsStats.getUniqueWordCount());
-    }
-
-    private void printWordsCount(int wordCount) {
-        this.outputStream.println("Number of words: " + wordCount);
-    }
-
-    private void printUniqueWordsCount(int wordCount) {
-        this.outputStream.println("unique: " + wordCount);
+        this.outputStream.println(wordsStats);
     }
 }

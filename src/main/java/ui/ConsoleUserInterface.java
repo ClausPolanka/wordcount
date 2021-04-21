@@ -19,18 +19,13 @@ public class ConsoleUserInterface implements UserInterface {
     }
 
     @Override
+    public void askForInput() {
+        this.outputStream.print("Enter text: ");
+    }
+
+    @Override
     public void printStats(WordsStats wordsStats) {
-        printWordsCount(wordsStats.getWordCount());
-        printUniqueWordsCount(wordsStats.getUniqueWordCount());
+        this.outputStream.println(wordsStats);
     }
-
-    private void printWordsCount(int wordCount) {
-        this.outputStream.println("Number of words: " + wordCount);
-    }
-
-    private void printUniqueWordsCount(int wordCount) {
-        this.outputStream.println("unique: " + wordCount);
-    }
-
 
 }

@@ -20,6 +20,7 @@ public class Main {
         final UserInterface userInterface = UserInterfaceFactory.createUserInterface(args);
 
         final Scanner scanner = new Scanner(userInterface.getUserInput());
+        userInterface.askForInput();
         final String rawSentence = scanner.nextLine();
         final String stopWordsFilteredSentence = stopWordsFilter.filter(rawSentence);
 

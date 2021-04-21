@@ -8,5 +8,7 @@ public interface UserInterface {
 
     InputStream getUserInput();
 
+    void askForInput();
+
     void printStats(WordsStats wordsStats);
 }

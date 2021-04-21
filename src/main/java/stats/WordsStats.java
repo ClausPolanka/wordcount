@@ -17,4 +17,10 @@ public class WordsStats {
     public int getUniqueWordCount() {
         return uniqueWordCount;
     }
+
+    @Override
+    public String toString() {
+        return "Number of words: " + this.wordCount + ", unique: " + this.uniqueWordCount;
+
+    }
 }

@@ -1,6 +1,5 @@
 package counter;
 
-import evaluator.Evaluator;
 import evaluator.WordEvaluator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordCounterTest {
 
-    private Evaluator wordEvaluator;
+    private WordEvaluator wordEvaluator;
     private WordCounter wordCounter;
 
     @BeforeEach

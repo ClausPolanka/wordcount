@@ -23,7 +23,7 @@ public class StopWordsFileLoader implements StopWordsLoader {
 
         final URL stopwordsFileresource = classLoader.getResource(filename);
         if (stopwordsFileresource == null) {
-            return null;
+            return new HashSet<>();
         }
 
         final File stopwordsFile = new File(stopwordsFileresource.getFile());
@@ -40,7 +40,7 @@ public class StopWordsFileLoader implements StopWordsLoader {
             }
             reader.close();
         } catch (IOException e) {
-            return null;
+            return new HashSet<>();
         }
 
         return words;

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WordEvaluatorTest {
 
-    private Evaluator evaluator;
+    private WordEvaluator evaluator;
 
     @BeforeEach
     void setUp() {

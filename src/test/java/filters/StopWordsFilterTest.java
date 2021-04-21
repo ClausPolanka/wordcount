@@ -29,6 +29,13 @@ public class StopWordsFilterTest {
     }
 
     @Test
+    public void whenNoStopWordsAreProvidedThenTheFilterIsEmpty() {
+        final String input = "the man ate the cow";
+        stopWordsFilter = new StopWordsFilter(null);
+        assertEquals(input, stopWordsFilter.filter(input));
+    }
+
+    @Test
     public void whenSentenceIsEmptyNoFilteringHappens() {
         stopWordsFilter = new StopWordsFilter(stopWords);
         assertEquals("", stopWordsFilter.filter(""));

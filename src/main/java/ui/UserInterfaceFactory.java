@@ -2,6 +2,9 @@ package ui;
 
 public class UserInterfaceFactory {
 
+    private UserInterfaceFactory() {
+    }
+
     public static UserInterface createUserInterface(String[] cliArgs) {
         if (cliArgs == null || cliArgs.length == 0) {
             return new ConsoleUserInterface(System.out);

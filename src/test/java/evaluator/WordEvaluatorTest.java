@@ -3,6 +3,9 @@ package evaluator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -41,5 +44,16 @@ class WordEvaluatorTest {
          */
         assertFalse(evaluator.evaluate("hello word"));
         assertFalse(evaluator.evaluate("hello       word"));
+    }
+
+    @Test
+    public void whenWordIsAStopwordThenEvaluateShouldReturnFalse() {
+        Set<String> stopwords = new HashSet<>();
+        stopwords.add("the");
+
+        evaluator = new WordEvaluator(stopwords);
+
+        assertTrue(evaluator.evaluate("hello"));
+        assertFalse(evaluator.evaluate("the"));
     }
 }

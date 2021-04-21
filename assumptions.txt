@@ -4,3 +4,5 @@ presented in word count I
 2- always print result
 
 3- the list of stop words in the stopwords.txt file is relatively small
+
+4- stop words are case sensitive

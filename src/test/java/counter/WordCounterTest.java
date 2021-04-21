@@ -5,6 +5,9 @@ import evaluator.WordEvaluator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordCounterTest {
@@ -38,5 +41,23 @@ class WordCounterTest {
         assertEquals(4, wordCounter.countWords("i am a sentence", " "));
         assertEquals(0, wordCounter.countWords(" ", " "));
         assertEquals(0, wordCounter.countWords("", " "));
+    }
+
+    @Test
+    public void whenSentenceHasStopwordsThenTheyShouldBeDisregarded() {
+        Set<String> stopwords = new HashSet<>();
+        stopwords.add("the");
+        stopwords.add("a");
+        stopwords.add("on");
+        stopwords.add("off");
+
+        wordEvaluator = new WordEvaluator(stopwords);
+        wordCounter = new WordCounter(wordEvaluator);
+
+
+        assertEquals(5, wordCounter.countWords("The Mary had a little lamb", " "));
+
+        stopwords.add("The");
+        assertEquals(4, wordCounter.countWords("The Mary had a little lamb", " "));
     }
 }

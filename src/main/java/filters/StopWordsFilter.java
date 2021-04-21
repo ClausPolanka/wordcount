@@ -1,5 +1,7 @@
 package filters;
 
+import parser.InputParser;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,9 +24,7 @@ public class StopWordsFilter {
         final String[] words = sentence.split("[\\s]+");
         final StringBuilder builder = new StringBuilder();
         for (String word : words) {
-            if (word.endsWith(".")) {
-                word = word.substring(0, word.length() - 1);
-            }
+            word = InputParser.cleanWord(word);
             if (!this.stopWords.contains(word)) {
                 builder.append(word);
                 builder.append(" ");

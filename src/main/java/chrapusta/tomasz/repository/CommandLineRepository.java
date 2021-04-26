@@ -1,6 +1,6 @@
 package chrapusta.tomasz.repository;
 
-public class CommandLine implements WordRepository {
+public class CommandLineRepository implements WordRepository {
 
     private String[] input;
 

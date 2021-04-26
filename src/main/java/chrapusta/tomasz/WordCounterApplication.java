@@ -1,7 +1,7 @@
 package chrapusta.tomasz;
 
-import chrapusta.tomasz.repository.CommandLine;
-import chrapusta.tomasz.repository.FileStructure;
+import chrapusta.tomasz.repository.CommandLineRepository;
+import chrapusta.tomasz.repository.FileStructureRepository;
 import chrapusta.tomasz.repository.StopWordsRepository;
 import chrapusta.tomasz.repository.WordRepository;
 
@@ -31,10 +31,10 @@ public class WordCounterApplication {
 
     public static void main(String[] args) throws IOException, URISyntaxException {
         ParamsValidator.validateParams(args);
-        WordRepository wordRepository = new CommandLine();
+        WordRepository wordRepository = new CommandLineRepository();
         wordRepository.setValidatedInput(args);
 
-        StopWordsRepository stopWordsRepository = new FileStructure();
+        StopWordsRepository stopWordsRepository = new FileStructureRepository();
         WordCounterApplication app = new WordCounterApplication(wordRepository, stopWordsRepository);
 
         app.execute();

@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-public class FileStructureIT {
+public class FileStructureRepositoryIT {
 
     @Test
     public void isAbleToReadStopWordsFromFile() throws IOException, URISyntaxException {
         //GIVEN
-        StopWordsRepository sut = new FileStructure();
+        StopWordsRepository sut = new FileStructureRepository();
         //WHEN
         Set<String> stopWords = sut.getStopWords();
         //THEN

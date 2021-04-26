@@ -1,20 +1,26 @@
 package chrapusta.tomasz;
 
 import chrapusta.tomasz.repository.CommandLine;
+import chrapusta.tomasz.repository.StopWordsRepository;
 import chrapusta.tomasz.repository.WordRepository;
+
+import java.util.Set;
 
 public class WordCounterApplication {
 
     private final WordRepository wordRepository;
+    private final StopWordsRepository stopWordsRepository;
 
-    public WordCounterApplication(WordRepository wordRepository) {
+    public WordCounterApplication(final WordRepository wordRepository, final StopWordsRepository stopWordsRepository) {
         this.wordRepository = wordRepository;
+        this.stopWordsRepository = stopWordsRepository;
     }
 
     public void execute() {
         String[] inputString = wordRepository.getInput();
         String separator = "@!@";
-        WordCounter wordCounter = new WordCounter(separator);
+        Set<String> stopWords = stopWordsRepository.getStopWords();
+        WordCounter wordCounter = new WordCounter(separator, stopWords);
         long countWords = wordCounter.countWords(inputString[0]);
         wordRepository.writeCount(countWords);
     }

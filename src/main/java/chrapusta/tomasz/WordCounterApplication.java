@@ -20,6 +20,7 @@ public class WordCounterApplication {
     }
 
     public static void main(String[] args) {
+        ParamsValidator.validateParams(args);
         WordRepository repository = new CommandLine();
         repository.setValidatedInput(args);
 

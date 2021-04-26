@@ -13,11 +13,15 @@ public class WordCounter {
     public long countWords(final String input) {
         validateString(input);
 
-        String separated = input.replaceAll("\\s+", this.separator);
+        String separated = separate(this.separator, input);
 
         return Arrays.stream(separated.split(this.separator))
                 .filter(s -> s.matches("[a-zA-Z]+"))
                 .count();
+    }
+
+    private String separate(final String separator, final String input) {
+        return input.replaceAll("\\s+", separator);
     }
 
     private void validateString(String input) {

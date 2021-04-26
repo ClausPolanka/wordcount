@@ -16,13 +16,7 @@ public class CommandLine implements WordRepository {
 
     @Override
     public void setValidatedInput(String[] input) {
-        validateParams(input);
         this.input = input;
     }
 
-    private void validateParams(String[] args) {
-        if (args.length != 1) {
-            throw new IllegalArgumentException("Please provide one argument!");
-        }
-    }
 }

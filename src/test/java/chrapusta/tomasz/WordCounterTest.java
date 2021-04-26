@@ -1,8 +1,11 @@
 package chrapusta.tomasz;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class WordCounterTest {
     @ParameterizedTest
@@ -22,5 +25,12 @@ public class WordCounterTest {
         long countWords = sut.countWords(inputStr);
         //THEN
         Assertions.assertEquals(countWords, countExpected);
+    }
+
+    @Test()
+    public void throwsExceptionForNullString() {
+        WordCounter sut = new WordCounter("@!@");
+
+        assertThrows(IllegalArgumentException.class, () -> sut.countWords(null));
     }
 }

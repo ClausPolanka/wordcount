@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -20,14 +21,21 @@ public class WordCounterTest {
             "@!@, word; word. word?, 0",
             "@!@, word word wo$d, 2",
             "@!@, ' ', 0",
+            "@!@, word word the a on off, 2",
+            "@!@, word word the aa on off, 3",
     })
     public void wordCountIsRight(final String separator, final String inputStr, final long countExpected) {
         //GIVEN
-        WordCounter sut = new WordCounter(separator, new HashSet<>(Arrays.asList("a", "the")));
+        Set<String> stopWords = getStopWords();
+        WordCounter sut = new WordCounter(separator, stopWords);
         //WHEN
         long countWords = sut.countWords(inputStr);
         //THEN
         Assertions.assertEquals(countWords, countExpected);
+    }
+
+    private Set<String> getStopWords() {
+        return new HashSet<>(Arrays.asList("the", "a", "on", "off"));
     }
 
     @Test()

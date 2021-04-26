@@ -1,9 +1,12 @@
 package chrapusta.tomasz;
 
 import chrapusta.tomasz.repository.CommandLine;
+import chrapusta.tomasz.repository.FileStructure;
 import chrapusta.tomasz.repository.StopWordsRepository;
 import chrapusta.tomasz.repository.WordRepository;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Set;
 
 public class WordCounterApplication {
@@ -11,12 +14,13 @@ public class WordCounterApplication {
     private final WordRepository wordRepository;
     private final StopWordsRepository stopWordsRepository;
 
-    public WordCounterApplication(final WordRepository wordRepository, final StopWordsRepository stopWordsRepository) {
+    public WordCounterApplication(final WordRepository wordRepository,
+                                  final StopWordsRepository stopWordsRepository) {
         this.wordRepository = wordRepository;
         this.stopWordsRepository = stopWordsRepository;
     }
 
-    public void execute() {
+    public void execute() throws IOException, URISyntaxException {
         String[] inputString = wordRepository.getInput();
         String separator = "@!@";
         Set<String> stopWords = stopWordsRepository.getStopWords();
@@ -25,12 +29,13 @@ public class WordCounterApplication {
         wordRepository.writeCount(countWords);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, URISyntaxException {
         ParamsValidator.validateParams(args);
-        WordRepository repository = new CommandLine();
-        repository.setValidatedInput(args);
+        WordRepository wordRepository = new CommandLine();
+        wordRepository.setValidatedInput(args);
 
-        WordCounterApplication app = new WordCounterApplication(repository);
+        StopWordsRepository stopWordsRepository = new FileStructure();
+        WordCounterApplication app = new WordCounterApplication(wordRepository, stopWordsRepository);
 
         app.execute();
     }

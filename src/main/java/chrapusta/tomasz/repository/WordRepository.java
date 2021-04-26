@@ -1,10 +1,10 @@
 package chrapusta.tomasz.repository;
 
+import java.io.IOException;
+
 public interface WordRepository {
 
-    String[] getInput();
+    String getInput() throws IOException;
 
     void writeCount(long countWords);
-
-    void setValidatedInput(String[] input);
 }

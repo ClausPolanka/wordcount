@@ -9,14 +9,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-public class FileStructureRepositoryIT {
+public class FileStructureRepositoryImplIT {
 
     @Test
     public void isAbleToReadStopWordsFromFile() throws IOException, URISyntaxException {
         //GIVEN
-        StopWordsRepository sut = new FileStructureRepository();
+        FileStructureRepository sut = new FileStructureRepositoryImpl();
         //WHEN
-        Set<String> stopWords = sut.getStopWords();
+        Set<String> stopWords = sut.readAllLines("/stopwords.txt");
         //THEN
         List<String> expected = Arrays.asList("the", "a", "on", "off");
         Assertions.assertTrue(stopWords.containsAll(expected) && expected.containsAll(stopWords));

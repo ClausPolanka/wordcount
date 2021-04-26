@@ -1,5 +1,10 @@
+I have misunderstood the idea of reading params, and I am passing the input string as a variable.
+
 I am not familiar with jUnit5 Assertions, that's why I am doing my assertion in that way
 
 Assertions.assertTrue(stopWords.containsAll(expected) && expected.containsAll(stopWords));
+
+I have decided to create mytext.txt file in resources directory,
+ because of hardcoded implementation of FileStructureRepository
 
 

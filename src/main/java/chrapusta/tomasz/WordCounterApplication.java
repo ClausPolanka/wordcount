@@ -1,9 +1,6 @@
 package chrapusta.tomasz;
 
-import chrapusta.tomasz.repository.CommandLineRepository;
-import chrapusta.tomasz.repository.FileStructureRepository;
-import chrapusta.tomasz.repository.StopWordsRepository;
-import chrapusta.tomasz.repository.WordRepository;
+import chrapusta.tomasz.repository.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -12,31 +9,32 @@ import java.util.Set;
 public class WordCounterApplication {
 
     private final WordRepository wordRepository;
-    private final StopWordsRepository stopWordsRepository;
+    private final FileStructureRepository fileStructureRepository;
+    private final WordCounterProvider wordCounterProvider;
 
     public WordCounterApplication(final WordRepository wordRepository,
-                                  final StopWordsRepository stopWordsRepository) {
+                                  final FileStructureRepository fileStructureRepository,
+                                  final WordCounterProvider wordCounterProvider) {
         this.wordRepository = wordRepository;
-        this.stopWordsRepository = stopWordsRepository;
+        this.fileStructureRepository = fileStructureRepository;
+        this.wordCounterProvider = wordCounterProvider;
     }
 
-    public void execute() throws IOException, URISyntaxException {
-        String[] inputString = wordRepository.getInput();
+    public void execute(String[] args) throws IOException, URISyntaxException {
+        String word = wordCounterProvider.provideWord(args);
         String separator = "@!@";
-        Set<String> stopWords = stopWordsRepository.getStopWords();
+        Set<String> stopWords = fileStructureRepository.readAllLines("/stopwords.txt");
         WordCounter wordCounter = new WordCounter(separator, stopWords);
-        long countWords = wordCounter.countWords(inputString[0]);
+        long countWords = wordCounter.countWords(word);
         wordRepository.writeCount(countWords);
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-        ParamsValidator.validateParams(args);
         WordRepository wordRepository = new CommandLineRepository();
-        wordRepository.setValidatedInput(args);
+        FileStructureRepository fileStructureRepository = new FileStructureRepositoryImpl();
+        WordCounterProvider wordCounterProvider = new WordCounterProvider(wordRepository, fileStructureRepository);
+        WordCounterApplication app = new WordCounterApplication(wordRepository, fileStructureRepository, wordCounterProvider);
 
-        StopWordsRepository stopWordsRepository = new FileStructureRepository();
-        WordCounterApplication app = new WordCounterApplication(wordRepository, stopWordsRepository);
-
-        app.execute();
+        app.execute(args);
     }
 }

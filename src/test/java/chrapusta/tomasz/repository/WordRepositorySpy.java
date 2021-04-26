@@ -2,11 +2,11 @@ package chrapusta.tomasz.repository;
 
 public class WordRepositorySpy implements WordRepository {
 
-    private String[] input;
+    private String input;
     private long countWords;
 
     @Override
-    public String[] getInput() {
+    public String getInput() {
         return this.input;
     }
 
@@ -15,12 +15,11 @@ public class WordRepositorySpy implements WordRepository {
         this.countWords = countWords;
     }
 
-    @Override
-    public void setValidatedInput(String[] input) {
-        this.input = input;
-    }
-
     public long getCountWords() {
         return countWords;
+    }
+
+    public void setInput(final String input) {
+        this.input = input;
     }
 }

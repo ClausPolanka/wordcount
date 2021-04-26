@@ -1,3 +1,5 @@
 I am not familiar with jUnit5 Assertions, that's why I am doing my assertion in that way
 
 Assertions.assertTrue(stopWords.containsAll(expected) && expected.containsAll(stopWords));
+
+

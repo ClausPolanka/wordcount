@@ -3,20 +3,26 @@ package chrapusta.tomasz;
 import java.util.Arrays;
 
 public class WordCounter {
-    public static void main(String[] args) {
-        String input2 = "word word            wo3d";
-        String input = "word word wo$d";
 
-        String separator = "@!@";
+    private final String separator;
 
-        String separated = input.replaceAll("\\s+",separator);
+    public WordCounter(String separator) {
+        this.separator = separator;
+    }
 
-        System.out.println(separated);
+    public long countWords(final String input) {
+        validateString(input);
 
-        long countWords = Arrays.stream(separated.split(separator))
+        String separated = input.replaceAll("\\s+", this.separator);
+
+        return Arrays.stream(separated.split(this.separator))
                 .filter(s -> s.matches("[a-zA-Z]+"))
                 .count();
+    }
 
-        System.out.println(countWords);
+    private void validateString(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("Provided String must not be null!");
+        }
     }
 }

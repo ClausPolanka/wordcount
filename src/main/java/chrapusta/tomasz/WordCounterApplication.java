@@ -1,22 +1,30 @@
 package chrapusta.tomasz;
 
+import chrapusta.tomasz.repository.CommandLine;
+import chrapusta.tomasz.repository.WordRepository;
+
 public class WordCounterApplication {
 
+    private final WordRepository wordRepository;
 
- public static void main(String[] args) {
+    public WordCounterApplication(WordRepository wordRepository) {
+        this.wordRepository = wordRepository;
+    }
 
-     validateParams(args);
-     String inputString = args[0];
-     String separator = "@!@";
-     WordCounter wordCounter = new WordCounter(separator);
-     long countWords = wordCounter.countWords(inputString);
-     System.out.println(countWords);
+    public void execute() {
+        String[] inputString = wordRepository.getInput();
+        String separator = "@!@";
+        WordCounter wordCounter = new WordCounter(separator);
+        long countWords = wordCounter.countWords(inputString[0]);
+        wordRepository.writeCount(countWords);
+    }
 
- }
+    public static void main(String[] args) {
+        WordRepository repository = new CommandLine();
+        repository.setValidatedInput(args);
 
-    private static void validateParams(String[] args) {
-        if (args.length != 1){
-            throw new IllegalArgumentException("Please provide one argument!");
-        }
+        WordCounterApplication app = new WordCounterApplication(repository);
+
+        app.execute();
     }
 }

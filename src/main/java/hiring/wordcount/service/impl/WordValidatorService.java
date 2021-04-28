@@ -12,6 +12,11 @@ public class WordValidatorService implements ValidatorService {
     }
 
     @Override
+    public void setValidatorResource(String resource) {
+        // It won't be used
+    }
+
+    @Override
     public boolean validate(String input) {
 
         Pattern pattern = Pattern.compile("[a-zA-Z]+");

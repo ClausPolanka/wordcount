@@ -10,6 +10,11 @@ class WordValidatorServiceTest extends BaseServiceTest {
 
     WordValidatorService service;
 
+    @Test
+    public void setResourceNameEmptyTest() {
+        service.setValidatorResource("string");
+    }
+
     @BeforeEach
     public void setUp() {
         service = new WordValidatorService();

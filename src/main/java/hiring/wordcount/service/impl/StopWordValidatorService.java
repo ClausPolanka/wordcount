@@ -11,27 +11,36 @@ import java.util.List;
 
 public class StopWordValidatorService implements ValidatorService {
     private List<String> filterWords;
-    private String stopWordsResourceName;
+    private String stopWordsResourcePath;
+
+    private void fillFilterWords() throws Exception {
+        final InputReaderService fileInputService =
+                WordCountServiceProvider.load(InputReaderService.class, "FileInputService");
+        if (getStopWordsResourcePath() == null || getStopWordsResourcePath().isEmpty())
+            throw new ValidatorException("The Stop word resource file name is not set");
+
+        final String input = fileInputService.read(getStopWordsResourcePath());
+
+        final List<String> stopWords =
+                WordCountServiceProvider.load(ParserService.class, "WordParserService").getWordsAsList(input);
+
+        if (stopWords != null) {
+            filterWords = stopWords;
+        }
+    }
 
     @Override
     public String getServiceName() {
         return "StopWordValidatorService";
     }
 
-    public List<String> getFilterWords() {
-        return filterWords;
+    public String getStopWordsResourcePath() {
+        return stopWordsResourcePath;
     }
 
-    public void setFilterWords(List<String> filterWords) {
-        this.filterWords = filterWords;
-    }
-
-    public String getStopWordsResourceName() {
-        return stopWordsResourceName;
-    }
-
-    public void setStopWordsResourceName(String stopWordsResourceName) {
-        this.stopWordsResourceName = stopWordsResourceName;
+    @Override
+    public void setValidatorResource(String resource) {
+        stopWordsResourcePath = resource;
     }
 
     @Override
@@ -48,21 +57,5 @@ public class StopWordValidatorService implements ValidatorService {
         }
 
         return !filterWords.contains(input);
-    }
-
-    private void fillFilterWords() throws Exception {
-        final InputReaderService fileInputService =
-                WordCountServiceProvider.load(InputReaderService.class, "FileInputService");
-        if (getStopWordsResourceName() == null || getStopWordsResourceName().isEmpty())
-            throw new ValidatorException("The Stop word resource file name is not set");
-
-        final String input = fileInputService.read(getClass().getClassLoader().getResource(getStopWordsResourceName()).getFile());
-
-        final List<String> stopWords =
-                WordCountServiceProvider.load(ParserService.class, "WordParserService").getWordsAsList(input);
-
-        if (stopWords != null) {
-            filterWords = stopWords;
-        }
     }
 }

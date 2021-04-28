@@ -41,7 +41,7 @@ class WordCountApplicationTest {
 
         assertDoesNotThrow(() -> WordCountApplication.main(args));
 
-        assertTrue(outContent.toString().contains("0"));
+        assertTrue(outContent.toString().contains("Number of words: 0"));
 
     }
 
@@ -54,7 +54,21 @@ class WordCountApplicationTest {
 
         assertDoesNotThrow(() -> WordCountApplication.main(args));
 
-        assertTrue(outContent.toString().contains("3"));
+        assertTrue(outContent.toString().contains("Number of words: 3"));
+        assertTrue(outContent.toString().contains("unique: 1"));
+    }
+
+    @Test
+    public void integrationTestForHypen() {
+        // for getting the standard io input
+        System.setIn(new ByteArrayInputStream("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.".getBytes(StandardCharsets.UTF_8)));
+        System.setOut(new PrintStream(outContent));
+        String[] args = new String[]{};
+
+        assertDoesNotThrow(() -> WordCountApplication.main(args));
+
+        assertTrue(outContent.toString().contains("Number of words: 5"));
+        assertTrue(outContent.toString().contains("unique: 4"));
     }
 
     @Test
@@ -73,8 +87,8 @@ class WordCountApplicationTest {
             String[] args = new String[]{getClass().getClassLoader().getResource("mytext.txt").getFile()};
             assertDoesNotThrow(() -> WordCountApplication.main(args));
 
-            assertTrue(outContent.toString().contains("4"));
+            assertTrue(outContent.toString().contains("Number of words: 4"));
+            assertTrue(outContent.toString().contains("unique: 4"));
         });
-
     }
 }

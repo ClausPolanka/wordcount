@@ -19,7 +19,7 @@ public class WordValidatorService implements ValidatorService {
     @Override
     public boolean validate(String input) {
 
-        Pattern pattern = Pattern.compile("[a-zA-Z]+");
+        Pattern pattern = Pattern.compile("[a-zA-Z\\-]+");
         Matcher matcher = pattern.matcher(input);
 
         return matcher.matches();

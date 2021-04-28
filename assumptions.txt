@@ -6,3 +6,8 @@ Iteration 1:
 Iteration 3:
 - In case a filename is provided, but a FileNotFoundException has occurred,
 then the application will throw a FileNotFoundException and exit immediately
+
+Iteration 4:
+- With the current Word validator service the "text-" and "-text" is also considered as a word.
+In case it cant be done so regarding the requirements the possible solution can be to have an advanced
+regular expression.

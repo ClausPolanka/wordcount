@@ -1,1 +1,2 @@
 hiring.wordcount.service.impl.WordValidatorService
+hiring.wordcount.service.impl.StopWordValidatorService

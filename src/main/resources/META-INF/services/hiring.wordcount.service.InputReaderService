@@ -1,1 +1,2 @@
 hiring.wordcount.service.impl.StandardIOService
+hiring.wordcount.service.impl.FileInputService

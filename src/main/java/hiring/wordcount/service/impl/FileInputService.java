@@ -25,10 +25,11 @@ public class FileInputService implements InputReaderService {
         StringBuilder result = new StringBuilder();
 
         Scanner scanner = new Scanner(file);
-        while (scanner.hasNext()){
+        while (scanner.hasNext()) {
             result.append(scanner.next()).append(" ");
         }
+        scanner.close();
 
-        return null;
+        return result.toString();
     }
 }

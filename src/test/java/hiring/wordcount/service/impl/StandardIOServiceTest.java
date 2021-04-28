@@ -3,42 +3,40 @@ package hiring.wordcount.service.impl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class StandardIOServiceTest extends BaseServiceTest{
+class StandardIOServiceTest extends BaseServiceTest {
 
-    private StandardIOService service;
     private static String SERVICE_NAME = "StandardIOService";
+    private StandardIOService service;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         service = new StandardIOService();
     }
 
     @Test
-    public void testName(){
+    public void testName() {
         super.getServiceName(service);
     }
 
-    @Test
-    public void testReadWithNull(){
-        testReadNotEmpty(null);
-        testReadEmpty(null);
+    private void testReadEmpty(String param) {
+        assertDoesNotThrow(() -> {
+            System.setIn(new ByteArrayInputStream("\n".getBytes(StandardCharsets.UTF_8)));
+            final String read = service.read(param);
+
+            assertNotNull(read);
+            assertTrue(read.isEmpty());
+        });
     }
 
-    @Test
-    public void testReadWithNotNull(){
-        testReadNotEmpty("null");
-        testReadEmpty("null");
-    }
-
-    private void testReadNotEmpty(String param){
+    private void testReadNotEmpty(String param) {
         assertDoesNotThrow(() -> {
             System.setIn(new ByteArrayInputStream("test test test".getBytes(StandardCharsets.UTF_8)));
             final String read = service.read(param);
@@ -48,13 +46,15 @@ class StandardIOServiceTest extends BaseServiceTest{
         });
     }
 
-    private void testReadEmpty(String param){
-        assertDoesNotThrow(() -> {
-            System.setIn(new ByteArrayInputStream("".getBytes(StandardCharsets.UTF_8)));
-            final String read = service.read(param);
+    @Test
+    public void testReadWithNotNull() {
+        testReadNotEmpty("null");
+        testReadEmpty("null");
+    }
 
-            assertNotNull(read);
-            assertTrue(read.isEmpty());
-        });
+    @Test
+    public void testReadWithNull() {
+        testReadNotEmpty(null);
+        testReadEmpty(null);
     }
 }

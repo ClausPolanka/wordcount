@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface ParserService extends BaseService {
 
-    void setValidator(ValidatorService validatorService);
-
     ValidatorService getValidatorService();
 
     List<String> getWordsAsList(String input) throws ValidatorNotFoundException;
+
+    void setValidator(ValidatorService validatorService);
 
 }

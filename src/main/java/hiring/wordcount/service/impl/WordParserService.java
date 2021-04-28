@@ -18,11 +18,6 @@ public class WordParserService implements ParserService {
     }
 
     @Override
-    public void setValidator(ValidatorService validatorService) {
-        this.validatorService = validatorService;
-    }
-
-    @Override
     public ValidatorService getValidatorService() {
         return this.validatorService;
     }
@@ -45,6 +40,11 @@ public class WordParserService implements ParserService {
         });
 
         return validWords;
+    }
+
+    @Override
+    public void setValidator(ValidatorService validatorService) {
+        this.validatorService = validatorService;
     }
 
 }

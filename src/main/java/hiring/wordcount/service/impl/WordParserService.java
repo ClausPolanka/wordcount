@@ -4,33 +4,13 @@ import hiring.wordcount.exception.ValidatorNotFoundException;
 import hiring.wordcount.service.ParserService;
 import hiring.wordcount.service.ValidatorService;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ServiceLoader;
 
 public class WordParserService implements ParserService {
-
-    private static String WORD_VALIDATOR = "WordValidatorService";
     private ValidatorService validatorService;
-    public WordParserService() throws ValidatorNotFoundException {
-        ServiceLoader<ValidatorService> serviceLoader = ServiceLoader.load(ValidatorService.class);
-        serviceLoader.reload();
-
-        final Iterator<ValidatorService> validatorServiceIterator = serviceLoader.iterator();
-
-        while (validatorServiceIterator.hasNext()) {
-            final ValidatorService validatorService = validatorServiceIterator.next();
-            if (validatorService.getServiceName().equalsIgnoreCase(WORD_VALIDATOR)) {
-                this.validatorService = validatorService;
-            }
-        }
-
-        if (validatorService == null) {
-            throw new ValidatorNotFoundException(WORD_VALIDATOR);
-        }
-    }
 
     @Override
     public String getServiceName() {
@@ -38,7 +18,22 @@ public class WordParserService implements ParserService {
     }
 
     @Override
-    public List<String> getWordsAsList(String input) {
+    public void setValidator(ValidatorService validatorService) {
+        this.validatorService = validatorService;
+    }
+
+    @Override
+    public ValidatorService getValidatorService() {
+        return this.validatorService;
+    }
+
+    @Override
+    public List<String> getWordsAsList(String input) throws ValidatorNotFoundException {
+        if (getValidatorService() == null)
+            throw new ValidatorNotFoundException("No Validator Service has been set");
+        if (input == null)
+            throw new InvalidParameterException("Input cannot be null");
+
         String[] rawWords = input.split("\\s+");
 
         List<String> validWords = new ArrayList<>();

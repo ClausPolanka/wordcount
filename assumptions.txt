@@ -2,3 +2,7 @@ Iteration 1:
 - One ore more white spaces are the only delimiter how words are split.
 - Words are only considered as stretches of letters ([a-z][A-Z])
 - If the word contains any other character, then it won't be consider as word
+
+Iteration 3:
+- In case a filename is provided, but a FileNotFoundException has occurred,
+then the application will throw a FileNotFoundException and exit immediately

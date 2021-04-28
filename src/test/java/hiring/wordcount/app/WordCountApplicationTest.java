@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
@@ -54,5 +55,26 @@ class WordCountApplicationTest {
         assertDoesNotThrow(() -> WordCountApplication.main(args));
 
         assertTrue(outContent.toString().contains("3"));
+    }
+
+    @Test
+    public void integrationTestForNotValidArgs() {
+        System.setOut(new PrintStream(outContent));
+        String[] args = new String[]{"asdf"};
+
+        assertThrows(FileNotFoundException.class, () -> WordCountApplication.main(args));
+    }
+
+    @Test
+    public void integrationTestForValidArgs() {
+        // for getting the standard io input
+        System.setOut(new PrintStream(outContent));
+        assertDoesNotThrow(() -> {
+            String[] args = new String[]{getClass().getClassLoader().getResource("mytext.txt").getFile()};
+            assertDoesNotThrow(() -> WordCountApplication.main(args));
+
+            assertTrue(outContent.toString().contains("4"));
+        });
+
     }
 }

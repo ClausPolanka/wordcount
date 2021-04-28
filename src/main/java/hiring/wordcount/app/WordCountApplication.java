@@ -10,10 +10,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class WordCountApplication {
-    private static String INPUT_READER_SERVICE = "StandardIOService";
-    private static String PARSER_SERVICE = "WordParserService";
-    private static String STOP_WORD_VALIDATOR_SERVICE = "StopWordValidatorService";
-    private static String VALIDATOR_SERVICE = "WordValidatorService";
+    private static final String FILE_INPUT_SERVICE = "FileInputService";
+    private static final String INPUT_READER_SERVICE = "StandardIOService";
+    private static final String PARSER_SERVICE = "WordParserService";
+    private static final String STOP_WORD_VALIDATOR_SERVICE = "StopWordValidatorService";
+    private static final String VALIDATOR_SERVICE = "WordValidatorService";
 
     public static void main(String[] args) throws Exception {
         final InputReaderService inputReaderService =
@@ -23,12 +24,20 @@ public class WordCountApplication {
                 WordCountServiceProvider.load(ValidatorService.class, VALIDATOR_SERVICE);
         final ValidatorService stopWordService =
                 WordCountServiceProvider.load(ValidatorService.class, STOP_WORD_VALIDATOR_SERVICE);
+        final InputReaderService fileInputService =
+                WordCountServiceProvider.load(InputReaderService.class, FILE_INPUT_SERVICE);
 
         stopWordService.setValidatorResource(
                 Objects.requireNonNull(WordCountApplication.class.getClassLoader().getResource("stopwords.txt"))
                         .getFile());
 
-        final String line = inputReaderService.read(null);
+        String line;
+        if (args != null && args.length != 0 && args[0] != null && !args[0].isEmpty()) {
+            line = fileInputService.read(args[0]);
+        } else {
+            line = inputReaderService.read(null);
+        }
+
         final List<String> wordsAsList = parserService.getWordsAsList(line);
         List<String> validWords = new ArrayList<>();
         for (String word : wordsAsList) {

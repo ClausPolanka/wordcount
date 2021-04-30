@@ -42,6 +42,17 @@ public class WordProcessorTest {
     }
 
     @Test
+    public void testWordLengthAvg() {
+        List<String> words = new ArrayList<>();
+        words.add("aaaaaaaaaa"); //10 chars
+        words.add("aaaaa"); // 5 chars
+
+        double countActual = new WordProcessor(words, new ArrayList<>()).getStatistics().getLengthAvg();
+
+        Assertions.assertEquals(7.50, countActual);
+    }
+
+    @Test
     public void testWordCountUnique() {
         List<String> words = new ArrayList<>();
         words.add("ahoj");

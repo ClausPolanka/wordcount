@@ -10,7 +10,9 @@ import com.oscerba.george.processor.WordProcessor;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Main {
 
@@ -29,7 +31,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        WordProcessor wordProcessor = new WordProcessor(words, stopWords);
+        //TODO: add configuration and file
+        Set<String> dictionary = new HashSet<>();
+        dictionary.add("lamb");
+        WordProcessor wordProcessor = new WordProcessor(words, stopWords, dictionary);
 
         Writeable writeable = new ConsoleWriter(wordProcessor.getStatistics(), applicationConfig.isIndexEnabled());
         writeable.write();

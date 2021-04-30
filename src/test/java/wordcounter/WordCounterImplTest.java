@@ -22,8 +22,8 @@ public class WordCounterImplTest {
         List<String> words = WordCounterUtils.retrieveWordsFromUserInput("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall");
         WordCounter wordCounter = new WordCounterImpl(words);
 
-        assertEquals(9, wordCounter.computeTotalWordsNumber());
-        assertEquals(7, wordCounter.computeUniqueWordsNumber());
+        assertEquals(7, wordCounter.computeTotalWordsNumber());
+        assertEquals(6, wordCounter.computeUniqueWordsNumber());
     }
 
     @Test

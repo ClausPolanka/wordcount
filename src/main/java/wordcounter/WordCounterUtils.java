@@ -17,7 +17,7 @@ public final class WordCounterUtils {
     }
 
     public static List<String> retrieveWordsFromUserInput(String input) {
-        List<String> words = Arrays.asList(input.split(HYPEN_OR_WHITESPACE));
+        List<String> words = Arrays.asList(input.split(WHITESPACE));
         return words.stream()
                 .filter(WordCounterUtils::isCountable)
                 .collect(toList());

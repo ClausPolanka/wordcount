@@ -13,6 +13,6 @@ public class WordCounterImplTest {
         List<String> words = WordCounterUtils.retrieveWordsFromUserInput("Mary had a little lamb");
         WordCounter wordCounter = new WordCounterImpl(words);
 
-        assertEquals(5, wordCounter.computeTotalWordsNumber());
+        assertEquals(4, wordCounter.computeTotalWordsNumber());
     }
 }

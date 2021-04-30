@@ -1,11 +1,9 @@
 package com.oscerba.george;
 
-import com.oscerba.george.input.WordConsoleInputReader;
-import com.oscerba.george.input.StopWordFileInputReader;
-import com.oscerba.george.input.WordFileInputReader;
-import com.oscerba.george.input.WordInputReader;
+import com.oscerba.george.input.*;
 import com.oscerba.george.output.ConsoleWriter;
 import com.oscerba.george.output.Writeable;
+import com.oscerba.george.parser.WordParser;
 import com.oscerba.george.processor.WordProcessor;
 
 import java.io.IOException;
@@ -16,20 +14,18 @@ import java.util.List;
 
 public class Main {
 
+    public static final String STOPWORDS_INPUT = "src/main/resources/stopwords.txt";
+
     public static void main(String[] args) {
-        WordInputReader consoleWordInputReader;
+        WordInputReader wordInputReader;
+        List<String> words = new ArrayList<>();
+        List<String> stopWords = new ArrayList<>();
         try {
-            if (args.length > 0) {
-                Path path = Paths.get(args[0]);
-                consoleWordInputReader = new WordFileInputReader(path);
-            } else {
-                consoleWordInputReader = new WordConsoleInputReader();
-            }
+            wordInputReader = new WordInputReaderFactory().getWordInputReader(args);
 
-            List<String> words = consoleWordInputReader.getWords();
+            words = new WordParser().getWords(wordInputReader.getWords());
 
-            Path path = Paths.get("src/main/resources/stopwords.txt");
-            List<String> stopWords = new ArrayList<>();
+            Path path = Paths.get(STOPWORDS_INPUT);
 
             stopWords = new StopWordFileInputReader(path).getStopWords();
         } catch (IOException e) {

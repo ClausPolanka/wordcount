@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WordFileInputReader extends WordInputReader{
     private Path path;
@@ -13,7 +14,7 @@ public class WordFileInputReader extends WordInputReader{
     }
 
     @Override
-    public List<String> getWords() throws IOException {
-        return Files.readAllLines(path);
+    public String getWords() throws IOException {
+        return String.join(" ", Files.readAllLines(path));
     }
 }

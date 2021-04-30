@@ -7,11 +7,9 @@ import java.util.Scanner;
 public class WordConsoleInputReader extends WordInputReader {
 
     @Override
-    public List<String> getWords() {
+    public String getWords() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter text: ");
-        String input = scanner.nextLine();
-
-        return Arrays.asList(input.split("\\s"));
+        return scanner.nextLine();
     }
 }

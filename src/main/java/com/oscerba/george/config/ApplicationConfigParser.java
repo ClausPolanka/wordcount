@@ -2,7 +2,9 @@ package com.oscerba.george.config;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ApplicationConfigParser {
@@ -10,7 +12,9 @@ public class ApplicationConfigParser {
     public static final String INDEX_COMMAND_LINE_ARG = "-index";
 
     public ApplicationConfig parse(String[] args) {
-        List<String> argList = Arrays.asList(args);
+        List<String> argList = new ArrayList<>();
+        Collections.addAll(argList, args);
+
         int index = argList.indexOf(INDEX_COMMAND_LINE_ARG);
         boolean indexEnabled;
         if (index != -1) {

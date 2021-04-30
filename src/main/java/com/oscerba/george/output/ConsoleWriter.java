@@ -14,7 +14,7 @@ public class ConsoleWriter implements Writeable {
 
     @Override
     public void write() {
-        System.out.printf("Number of words: %d, unique: %d; average word length: %.2f",wordStatistics.getCount(), wordStatistics.getUniqueCount(), wordStatistics.getLengthAvg());
+        System.out.printf("Number of words: %d, unique: %d; average word length: %.2f\n",wordStatistics.getCount(), wordStatistics.getUniqueCount(), wordStatistics.getLengthAvg());
         if (indexEnabled){
             System.out.println("Index:");
             wordStatistics.getWords().forEach(System.out::println);

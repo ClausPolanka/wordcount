@@ -22,11 +22,19 @@ public final class ConsoleReader {
         ConsoleArguments arguments = new ConsoleArguments(scanner.nextLine());
 
         if (arguments.extractExternalResourcePath().isEmpty()) {
-            System.out.print("Enter text: ");
-            String userInput = scanner.nextLine();
-            List<String> words = WordCounterUtils.retrieveWordsFromUserInput(userInput);
-            WordCounter wordCounter = new WordCounterImpl(words);
-            displayWordsNumber(wordCounter, arguments);
+            while (true) {
+                System.out.print("Enter text: ");
+                String userInput = scanner.nextLine();
+
+                if (userInput.isEmpty()) {
+                    System.out.println("The program is ending because user's input is empty.");
+                    break;
+                }
+
+                List<String> words = WordCounterUtils.retrieveWordsFromUserInput(userInput);
+                WordCounter wordCounter = new WordCounterImpl(words);
+                displayWordsNumber(wordCounter, arguments);
+            }
         } else {
             List<String> words = WordCounterUtils.retrieveWordsFromResource(arguments.extractExternalResourcePath());
             WordCounter wordCounter = new WordCounterImpl(words);

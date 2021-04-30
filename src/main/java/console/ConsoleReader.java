@@ -1,11 +1,13 @@
 package console;
 
+import dictionary.Dictionary;
 import wordcounter.WordCounter;
 import wordcounter.WordCounterImpl;
 import wordcounter.WordCounterUtils;
 
 import java.util.List;
 import java.util.Scanner;
+
 
 public final class ConsoleReader {
 
@@ -37,8 +39,24 @@ public final class ConsoleReader {
                 wordCounter.computeTotalWordsNumber(), wordCounter.computeUniqueWordsNumber(), wordCounter.computeWordLengthAverage()));
 
         if (arguments.isShowIndexPresent()) {
-            System.out.println("Index:");
-            wordCounter.retrieveWordsSorted().forEach(System.out::println);
+            if (!arguments.extractDictionaryPath().isEmpty()) {
+                displayWordsWithDictionary(wordCounter);
+            } else {
+                displayWordsWithIndex(wordCounter);
+            }
         }
+    }
+
+    private static void displayWordsWithDictionary(WordCounter wordCounter) {
+        List<String> words = Dictionary.searchInDictionary(wordCounter.retrieveWordsSorted());
+        Integer unknownWords = (int) words.stream()
+                .filter(word -> word.contains("*")).count();
+        System.out.println(String.format("Index (unknown: %d):", unknownWords));
+        words.forEach(System.out::println);
+    }
+
+    private static void displayWordsWithIndex(WordCounter wordCounter) {
+        System.out.println("Index:");
+        wordCounter.retrieveWordsSorted().forEach(System.out::println);
     }
 }

@@ -17,6 +17,6 @@ public class WordProcessor {
     }
 
     public WordStatistics getStatistics(){
-        return new WordStatistics(words.size(), words.stream().distinct().count(), words.stream().mapToInt(String::length).average().orElse(Double.NaN));
+        return new WordStatistics(words);
     }
 }

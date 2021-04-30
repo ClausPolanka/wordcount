@@ -1,15 +1,13 @@
 package com.oscerba.george.input;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class WordInputReaderFactory {
 
-    public WordInputReader getWordInputReader(String[] args) {
+    public WordInputReader getWordInputReader(Path inputFilePath) {
         WordInputReader consoleWordInputReader;
-        if (args.length > 0) {
-            Path path = Paths.get(args[0]);
-            consoleWordInputReader = new WordFileInputReader(path);
+        if (inputFilePath != null) {
+            consoleWordInputReader = new WordFileInputReader(inputFilePath);
         } else {
             consoleWordInputReader = new WordConsoleInputReader();
         }

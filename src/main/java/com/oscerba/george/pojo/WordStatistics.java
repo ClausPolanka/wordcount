@@ -1,15 +1,19 @@
 package com.oscerba.george.pojo;
 
+import java.util.List;
+
 public class WordStatistics {
 
+    private final List<String> words;
     private final long count;
     private final long uniqueCount;
     private final double lengthAvg;
 
-    public WordStatistics(long count, long uniqueCount, double lengthAvg) {
-        this.count = count;
-        this.uniqueCount = uniqueCount;
-        this.lengthAvg = lengthAvg;
+    public WordStatistics(List<String> words) {
+        this.words = words;
+        this.count = words.size();
+        this.uniqueCount = words.stream().distinct().count();
+        this.lengthAvg = words.stream().mapToInt(String::length).average().orElse(Double.NaN);
     }
 
     public long getCount() {
@@ -22,5 +26,9 @@ public class WordStatistics {
 
     public double getLengthAvg() {
         return lengthAvg;
+    }
+
+    public List<String> getWords() {
+        return words;
     }
 }

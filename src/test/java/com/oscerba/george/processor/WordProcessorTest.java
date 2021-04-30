@@ -11,16 +11,16 @@ public class WordProcessorTest {
 
     @Test
     public void testWordCount() {
-        String[] words = {"ahoj"};
-
-        long countActual = new WordProcessor(words, new ArrayList<>()).getCount();
+        long countActual = new WordProcessor(Collections.singletonList("ahoj"), new ArrayList<>()).getCount();
 
         Assertions.assertEquals(1, countActual);
     }
 
     @Test
     public void testWordCountWithInvalidCharacters() {
-        String[] words = {"ahoj2", "Ahoj?"};
+        List<String> words = new ArrayList<>();
+        words.add("ahoj2");
+        words.add("Ahoj?");
 
         long countActual = new WordProcessor(words, new ArrayList<>()).getCount();
 
@@ -29,7 +29,7 @@ public class WordProcessorTest {
 
     @Test
     public void testWordCountIncludedInStopWords() {
-        String[] words = {"on"};
+        List<String> words = Collections.singletonList("on");
         List<String> stopWords = Collections.singletonList("on");
 
         long countActual = new WordProcessor(words, stopWords).getCount();

@@ -1,15 +1,17 @@
 package com.oscerba.george.input;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-public class ConsoleWordInputReader extends WordInputReader {
+public class WordConsoleInputReader extends WordInputReader {
 
     @Override
-    public String[] getWords() {
+    public List<String> getWords() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter text: ");
         String input = scanner.nextLine();
 
-        return input.split("\\s");
+        return Arrays.asList(input.split("\\s"));
     }
 }

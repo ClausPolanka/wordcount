@@ -1,5 +1,6 @@
 package wordcounter;
 
+import filereader.FileReader;
 import stopwords.Stopwords;
 
 import java.util.Arrays;
@@ -17,6 +18,15 @@ public final class WordCounterUtils {
     public static List<String> retrieveWordsFromUserInput(String input) {
         List<String> words = Arrays.asList(input.split(WHITESPACE));
         return words.stream()
+                .filter(WordCounterUtils::isCountable)
+                .collect(toList());
+    }
+
+    public static List<String> retrieveWordsFromResource(String path) {
+        List<String> words = FileReader.readLines(path);
+
+        return words.stream()
+                .flatMap(line -> Arrays.stream(line.split(WHITESPACE)))
                 .filter(WordCounterUtils::isCountable)
                 .collect(toList());
     }

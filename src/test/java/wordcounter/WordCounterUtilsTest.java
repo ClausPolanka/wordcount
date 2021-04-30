@@ -17,6 +17,14 @@ public class WordCounterUtilsTest {
     }
 
     @Test
+    public void whenRetrieveWordsFromExternalResource_thenReturnList() {
+        List<String> words = WordCounterUtils.retrieveWordsFromResource("mytext.txt");
+
+        assertEquals(4, words.size());
+        assertFalse(words.contains("a"));
+    }
+
+    @Test
     public void whenWordIsCountable_thenReturnBoolean() {
         assertTrue(WordCounterUtils.isCountable("yeey"));
         assertFalse(WordCounterUtils.isCountable("off"));

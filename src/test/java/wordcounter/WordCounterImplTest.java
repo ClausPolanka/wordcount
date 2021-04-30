@@ -15,6 +15,7 @@ public class WordCounterImplTest {
 
         assertEquals(4, wordCounter.computeTotalWordsNumber());
         assertEquals(4, wordCounter.computeUniqueWordsNumber());
+        assertEquals(4.25, wordCounter.computeWordLengthAverage());
     }
 
     @Test
@@ -24,6 +25,7 @@ public class WordCounterImplTest {
 
         assertEquals(7, wordCounter.computeTotalWordsNumber());
         assertEquals(6, wordCounter.computeUniqueWordsNumber());
+        assertEquals(6.57, wordCounter.computeWordLengthAverage());
     }
 
     @Test
@@ -33,5 +35,6 @@ public class WordCounterImplTest {
 
         assertEquals(4, wordCounter.computeTotalWordsNumber());
         assertEquals(4, wordCounter.computeUniqueWordsNumber());
+        assertEquals(4.25, wordCounter.computeWordLengthAverage());
     }
 }

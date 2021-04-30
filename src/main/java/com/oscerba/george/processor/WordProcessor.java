@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class WordProcessor {
 
     private List<String> words;
-    public static final Pattern WORD_PATTERN = Pattern.compile("[a-zA-Z]+");
+    public static final Pattern WORD_PATTERN = Pattern.compile("[a-zA-Z-]+\\.?");
 
     public WordProcessor(List<String> words, List<String> stopWords) {
         this.words = words.stream().filter(word -> WORD_PATTERN.matcher(word).matches() && !stopWords.contains(word)).collect(Collectors.toList());

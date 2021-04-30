@@ -17,6 +17,20 @@ public class WordProcessorTest {
     }
 
     @Test
+    public void testWordWithHyphenCount() {
+        long countActual = new WordProcessor(Collections.singletonList("Humpty-Dumpty"), new ArrayList<>()).getStatistics().getCount();
+
+        Assertions.assertEquals(1, countActual);
+    }
+
+    @Test
+    public void testWordWithDotCount() {
+        long countActual = new WordProcessor(Collections.singletonList("Dot."), new ArrayList<>()).getStatistics().getCount();
+
+        Assertions.assertEquals(1, countActual);
+    }
+
+    @Test
     public void testWordCountWithInvalidCharacters() {
         List<String> words = new ArrayList<>();
         words.add("ahoj2");

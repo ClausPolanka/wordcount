@@ -5,7 +5,6 @@ import com.oscerba.george.pojo.WordStatistics;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class WordProcessor {
 
@@ -16,7 +15,7 @@ public class WordProcessor {
         this.words = words.stream().filter(word -> WORD_PATTERN.matcher(word).matches() && !stopWords.contains(word)).collect(Collectors.toList());
     }
 
-    public WordStatistics getStatistics(){
+    public WordStatistics getStatistics() {
         return new WordStatistics(words);
     }
 }

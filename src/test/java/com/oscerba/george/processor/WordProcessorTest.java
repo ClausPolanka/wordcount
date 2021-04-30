@@ -11,7 +11,7 @@ public class WordProcessorTest {
 
     @Test
     public void testWordCount() {
-        long countActual = new WordProcessor(Collections.singletonList("ahoj"), new ArrayList<>()).getCount();
+        long countActual = new WordProcessor(Collections.singletonList("ahoj"), new ArrayList<>()).getStatistics().getCount();
 
         Assertions.assertEquals(1, countActual);
     }
@@ -22,9 +22,20 @@ public class WordProcessorTest {
         words.add("ahoj2");
         words.add("Ahoj?");
 
-        long countActual = new WordProcessor(words, new ArrayList<>()).getCount();
+        long countActual = new WordProcessor(words, new ArrayList<>()).getStatistics().getCount();
 
         Assertions.assertEquals(0, countActual);
+    }
+
+    @Test
+    public void testWordCountUnique() {
+        List<String> words = new ArrayList<>();
+        words.add("ahoj");
+        words.add("ahoj");
+
+        long countActual = new WordProcessor(words, new ArrayList<>()).getStatistics().getUniqueCount();
+
+        Assertions.assertEquals(1, countActual);
     }
 
     @Test
@@ -32,7 +43,7 @@ public class WordProcessorTest {
         List<String> words = Collections.singletonList("on");
         List<String> stopWords = Collections.singletonList("on");
 
-        long countActual = new WordProcessor(words, stopWords).getCount();
+        long countActual = new WordProcessor(words, stopWords).getStatistics().getCount();
 
         Assertions.assertEquals(0, countActual);
     }

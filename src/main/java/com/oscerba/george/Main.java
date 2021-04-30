@@ -34,7 +34,7 @@ public class Main {
 
         WordProcessor wordProcessor = new WordProcessor(words, stopWords);
 
-        Writeable writeable = new ConsoleWriter(wordProcessor.getCount());
+        Writeable writeable = new ConsoleWriter(wordProcessor.getStatistics());
         writeable.write();
     }
 }

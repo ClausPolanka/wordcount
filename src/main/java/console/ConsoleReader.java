@@ -33,6 +33,7 @@ public final class ConsoleReader {
     }
 
     private static void displayWordsNumber(WordCounter wordCounter) {
-        System.out.println(String.format("Number of words: %d", wordCounter.computeTotalWordsNumber()));
+        System.out.println(String.format("Number of words: %d, unique: %d",
+                wordCounter.computeTotalWordsNumber(), wordCounter.computeUniqueWordsNumber()));
     }
 }

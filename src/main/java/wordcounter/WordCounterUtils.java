@@ -11,13 +11,14 @@ import static java.util.stream.Collectors.toList;
 public final class WordCounterUtils {
     public static final String WHITESPACE = " ";
     public static final String HYPEN_OR_WHITESPACE = "[- ]+";
+    public static final String DOT_OR_WHITESPACE = "[. ]+";
 
     private WordCounterUtils() {
         //private access
     }
 
     public static List<String> retrieveWordsFromUserInput(String input) {
-        List<String> words = Arrays.asList(input.split(WHITESPACE));
+        List<String> words = Arrays.asList(input.split(DOT_OR_WHITESPACE));
         return words.stream()
                 .filter(WordCounterUtils::isCountable)
                 .collect(toList());

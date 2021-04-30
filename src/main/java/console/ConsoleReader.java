@@ -24,16 +24,21 @@ public final class ConsoleReader {
             String userInput = scanner.nextLine();
             List<String> words = WordCounterUtils.retrieveWordsFromUserInput(userInput);
             WordCounter wordCounter = new WordCounterImpl(words);
-            displayWordsNumber(wordCounter);
+            displayWordsNumber(wordCounter, arguments);
         } else {
             List<String> words = WordCounterUtils.retrieveWordsFromResource(arguments.extractExternalResourcePath());
             WordCounter wordCounter = new WordCounterImpl(words);
-            displayWordsNumber(wordCounter);
+            displayWordsNumber(wordCounter, arguments);
         }
     }
 
-    private static void displayWordsNumber(WordCounter wordCounter) {
+    private static void displayWordsNumber(WordCounter wordCounter, ConsoleArguments arguments) {
         System.out.println(String.format("Number of words: %d, unique: %d; average word length: %,.2f",
                 wordCounter.computeTotalWordsNumber(), wordCounter.computeUniqueWordsNumber(), wordCounter.computeWordLengthAverage()));
+
+        if (arguments.isShowIndexPresent()) {
+            System.out.println("Index:");
+            wordCounter.retrieveWordsSorted().forEach(System.out::println);
+        }
     }
 }

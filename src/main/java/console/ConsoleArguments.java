@@ -15,4 +15,8 @@ public class ConsoleArguments {
                 .findFirst()
                 .orElse("");
     }
+
+    public Boolean isShowIndexPresent() {
+        return inputArgs.contains("-index");
+    }
 }

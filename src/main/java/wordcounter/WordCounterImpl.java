@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static java.util.stream.Collectors.toList;
+
 public class WordCounterImpl implements WordCounter {
 
     private List<String> words;
@@ -33,5 +35,12 @@ public class WordCounterImpl implements WordCounter {
                 .orElse(0.0);
 
         return Double.valueOf(format.format(wordLengthAverage));
+    }
+
+    @Override
+    public List<String> retrieveWordsSorted() {
+        return words.stream()
+                .sorted()
+                .collect(toList());
     }
 }

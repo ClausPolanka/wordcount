@@ -1,0 +1,28 @@
+package console;
+
+import wordcounter.WordCounter;
+import wordcounter.WordCounterImpl;
+import wordcounter.WordCounterUtils;
+
+import java.util.List;
+import java.util.Scanner;
+
+public final class ConsoleReader {
+
+    private ConsoleReader() {
+        // private access
+    }
+
+    public static void startConsole() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("wordcount ");
+        System.out.print("Enter text: ");
+
+        String userInput = scanner.nextLine();
+        List<String> words = WordCounterUtils.retrieveWordsFromUserInput(userInput);
+        WordCounter wordCounter = new WordCounterImpl(words);
+
+        System.out.println(String.format("Number of words: %d", wordCounter.computeTotalWordsNumber()));
+    }
+}

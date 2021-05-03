@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -49,7 +50,7 @@ class WordCountApplicationTest {
     @Test
     void wordCountApplication() throws IOException {
         //arrange
-        String testString = "Hello, magic JAVA world!";
+        String testString = "Hello, a magic JAVA world!";
         fileOutputStream.write(testString.getBytes(StandardCharsets.UTF_8)); //write test string
         fileOutputStream.flush();
 
@@ -59,7 +60,7 @@ class WordCountApplicationTest {
         MockOutputWriter outputWriter = new MockOutputWriter();
 
         //act
-        new WordCountApplication(inputReader, outputWriter);
+        new WordCountApplication(inputReader, outputWriter, Arrays.asList("a", "the"));
 
         //assert
         assertEquals("Number of words: 2", outputWriter.getOutput());

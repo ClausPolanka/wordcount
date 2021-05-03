@@ -2,11 +2,13 @@ package wordcount.counter;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import wordcount.counter.SimpleWordCounter;
 import wordcount.counter.delimiter.RegexSentenceSplitter;
 import wordcount.counter.delimiter.SentenceSplitter;
 import wordcount.counter.matcher.RegexWordMatcher;
 import wordcount.counter.matcher.WordMatcher;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 class SimpleWordCounterTest {
 
@@ -34,7 +36,7 @@ class SimpleWordCounterTest {
         String inputString = "Today.it's.a.nice.weather!";
 
         //act
-        int actualCount = simpleWordCounter.countWords(inputString);
+        int actualCount = simpleWordCounter.countWords(Arrays.asList(inputString));
 
         //assert
         Assertions.assertEquals(2, actualCount);
@@ -46,7 +48,7 @@ class SimpleWordCounterTest {
         SimpleWordCounter simpleWordCounter = new SimpleWordCounter();
 
         //act
-        int actualCount = simpleWordCounter.countWords(inputString);
+        int actualCount = simpleWordCounter.countWords(Collections.singletonList(inputString));
 
         //assert
         Assertions.assertEquals(expectedCount, actualCount);

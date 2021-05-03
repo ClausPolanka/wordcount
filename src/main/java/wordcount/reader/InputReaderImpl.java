@@ -1,7 +1,7 @@
 package wordcount.reader;
 
-import java.io.InputStream;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 /**
  * InputReaderImpl default implementation for handling input over streams
@@ -28,8 +28,15 @@ public class InputReaderImpl implements InputReader {
      * Reads a line from a constructed stream
      */
     @Override
-    public String readLine() {
-        return new Scanner(inputStream).nextLine();
+    public List<String> readLines() throws IOException {
+        List<String> readLines = new ArrayList<>();
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"))){
+            String line;
+            while((line = bufferedReader.readLine()) != null){
+                readLines.add(line);
+            }
+        }
+        return readLines;
     }
 
 }

@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,10 +51,10 @@ class InputReaderImplTest {
         InputReaderImpl inputReader = new InputReaderImpl(fileInputStream);
 
         //act
-        String actualString = inputReader.readLine();
+        List<String> actualString = inputReader.readLines();
 
         //assert
-        assertEquals(testString, actualString);
+        assertEquals(testString, actualString.get(0));
     }
 
 }

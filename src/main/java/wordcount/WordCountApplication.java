@@ -27,9 +27,9 @@ public class WordCountApplication {
         SimpleWordCounter wordCounter = new SimpleWordCounter(new RegexSentenceSplitter(), compositeWordMatcher);
 
         System.out.print("Enter text: ");
-        String input = inputReader.readLine();
-        int wordsCount = wordCounter.countWords(input);
-        outputWriter.writeResult("Number of words: " + wordsCount);
+        List<String> input = inputReader.readLines();
+        int wordCounts = wordCounter.countWords(input);
+        outputWriter.writeResult("Number of words: " + wordCounts);
     }
 
     public static void main(String[] args) {

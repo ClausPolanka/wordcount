@@ -42,8 +42,15 @@ public class SimpleWordCounter implements WordCounter {
      * @return number of words
      */
     @Override
-    public int countWords(String input) {
+    public int countWords(List<String> input) {
         if (input == null) {
+            return 0;
+        }
+        return input.stream().map(this::countWordsInSentence).reduce(0, Integer::sum);
+    }
+
+    private int countWordsInSentence(String input) {
+        if(input == null){
             return 0;
         }
         String[] split = sentenceSplitter.splitSentence(input);

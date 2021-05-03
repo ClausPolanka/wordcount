@@ -1,5 +1,7 @@
 package wordcount.counter;
 
+import java.util.List;
+
 /**
  * WordCounter interface calculates how many words are in a sentence
  */
@@ -10,6 +12,6 @@ public interface WordCounter {
      * @param input - sentence
      * @return words count
      */
-    int countWords(String input);
+    int countWords(List<String> input);
 
 }

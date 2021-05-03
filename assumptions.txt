@@ -1,3 +1,4 @@
 1.In my application more than one space-characters in a sentence are considered if it would be a one:
 Sentence "Hello     java    world" will be splitted in words {"Hello", "java", "world"}
 2.By default app reads input from System.in and writes it to System.out
+3.stop words should also match a regex [a-zA-Z]+

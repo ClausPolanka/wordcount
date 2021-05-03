@@ -2,3 +2,4 @@
 Sentence "Hello     java    world" will be splitted in words {"Hello", "java", "world"}
 2.By default app reads input from System.in and writes it to System.out
 3.stop words should also match a regex [a-zA-Z]+
+4.If program is started with System.in, text will be read until EOF is reached

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * SimpleWordCounter implementation of WordCounter. Counts the words in given sentence
+ * SimpleWordCounter implementation of WordCounter. Counts the words in a given list of strings (sentences)
  */
 public class SimpleWordCounter implements WordCounter {
 
@@ -37,23 +37,23 @@ public class SimpleWordCounter implements WordCounter {
     }
 
     /**
-     * calculates number of words in a sentence
-     * @param input - sentence
+     * calculates number of words in a list
+     * @param sentenceList - list of sentences
      * @return number of words
      */
     @Override
-    public int countWords(List<String> input) {
-        if (input == null) {
+    public int countWords(List<String> sentenceList) {
+        if (sentenceList == null) {
             return 0;
         }
-        return input.stream().map(this::countWordsInSentence).reduce(0, Integer::sum);
+        return sentenceList.stream().map(this::countWordsInSentence).reduce(0, Integer::sum);
     }
 
-    private int countWordsInSentence(String input) {
-        if(input == null){
+    private int countWordsInSentence(String sentence) {
+        if(sentence == null){
             return 0;
         }
-        String[] split = sentenceSplitter.splitSentence(input);
+        String[] split = sentenceSplitter.splitSentence(sentence);
         List<String> matchedWords = Arrays.stream(split).filter(wordMatcher::isWordMatch)
                 .collect(Collectors.toList());
         return matchedWords.size();

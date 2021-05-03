@@ -7,24 +7,31 @@ import wordcount.counter.delimiter.SentenceSplitter;
 import wordcount.counter.matcher.RegexWordMatcher;
 import wordcount.counter.matcher.WordMatcher;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 class SimpleWordCounterTest {
 
     @Test
-    void countWordsDefaultPatternNullString() {
+    void countWordsDefaultPatternNullList() {
         testWordCountCalculation(null, 0);
     }
 
     @Test
+    void countWordsDefaultPatternEmptyList() {
+        testWordCountCalculation(new ArrayList<>(), 0);
+    }
+
+    @Test
     void countWordsDefaultPatternEmptyString() {
-        testWordCountCalculation("        ", 0);
+        testWordCountCalculation(Collections.singletonList("        "), 0);
     }
 
     @Test
     void countWordsDefaultPatternNotEmptyString() {
-        testWordCountCalculation("Today  it's a     nice weather!", 3);
+        testWordCountCalculation(Collections.singletonList("Today  it's a     nice weather!"), 3);
     }
 
     @Test
@@ -36,19 +43,19 @@ class SimpleWordCounterTest {
         String inputString = "Today.it's.a.nice.weather!";
 
         //act
-        int actualCount = simpleWordCounter.countWords(Arrays.asList(inputString));
+        int actualCount = simpleWordCounter.countWords(Collections.singletonList(inputString));
 
         //assert
         Assertions.assertEquals(2, actualCount);
     }
 
 
-    private void testWordCountCalculation(String inputString, int expectedCount) {
+    private void testWordCountCalculation(List<String> inputSentences, int expectedCount) {
         //arrange
         SimpleWordCounter simpleWordCounter = new SimpleWordCounter();
 
         //act
-        int actualCount = simpleWordCounter.countWords(Collections.singletonList(inputString));
+        int actualCount = simpleWordCounter.countWords(inputSentences);
 
         //assert
         Assertions.assertEquals(expectedCount, actualCount);

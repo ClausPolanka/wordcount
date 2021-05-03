@@ -2,12 +2,15 @@ package wordcount.writer;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
  * OutputWriterImpl default implementation for handling output over streams
  */
 public class OutputWriterImpl implements OutputWriter {
+
+    private static final Charset CHARSET = StandardCharsets.UTF_8;
 
     private final OutputStream outputStream;
 
@@ -27,12 +30,12 @@ public class OutputWriterImpl implements OutputWriter {
 
     /**
      * Writes result to a stream using UTF_8 encoding
-     * @param output
-     * @throws IOException
+     * @param output - string to write
+     * @throws IOException, when write causes exception
      */
     @Override
     public void writeResult(String output) throws IOException {
-        outputStream.write(output.getBytes(StandardCharsets.UTF_8));
+        outputStream.write(output.getBytes(CHARSET));
         outputStream.flush();
     }
 

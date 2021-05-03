@@ -1,12 +1,16 @@
 package wordcount.reader;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
  * InputReaderImpl default implementation for handling input over streams
  */
 public class InputReaderImpl implements InputReader {
+
+    private static final Charset CHARSET = StandardCharsets.UTF_8;
 
     private final InputStream inputStream;
 
@@ -25,12 +29,12 @@ public class InputReaderImpl implements InputReader {
     }
 
     /**
-     * Reads a line from a constructed stream
+     * Reads all lines from a constructed stream
      */
     @Override
     public List<String> readLines() throws IOException {
         List<String> readLines = new ArrayList<>();
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"))){
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, CHARSET))){
             String line;
             while((line = bufferedReader.readLine()) != null){
                 readLines.add(line);

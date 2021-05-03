@@ -10,6 +10,7 @@ import wordcount.reader.InputReaderImpl;
 import wordcount.writer.OutputWriter;
 import wordcount.writer.OutputWriterImpl;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -26,7 +27,6 @@ public class WordCountApplication {
         CompositeWordMatcher compositeWordMatcher = createCompositeWordMatcher(stopWords);
         SimpleWordCounter wordCounter = new SimpleWordCounter(new RegexSentenceSplitter(), compositeWordMatcher);
 
-        System.out.print("Enter text: ");
         List<String> input = inputReader.readLines();
         int wordCounts = wordCounter.countWords(input);
         outputWriter.writeResult("Number of words: " + wordCounts);
@@ -35,7 +35,15 @@ public class WordCountApplication {
     public static void main(String[] args) {
         try {
             List<String> stopWords = Files.readAllLines(Paths.get("resources/stopwords.txt"));
-            new WordCountApplication(new InputReaderImpl(), new OutputWriterImpl(), stopWords);
+            if (args.length == 0) {
+                //Start with console
+                System.out.print("Enter text: ");
+                new WordCountApplication(new InputReaderImpl(), new OutputWriterImpl(), stopWords);
+            } else {
+                //start with file
+                new WordCountApplication(new InputReaderImpl(new FileInputStream(args[0])), new OutputWriterImpl(),
+                        stopWords);
+            }
         } catch (Exception e) {
             System.err.println("Exception happened in a programm: " + e);
         }

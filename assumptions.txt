@@ -1,0 +1,2 @@
+Iteration 1:
+* Any number of spaces should not be counted as word. To be able to support multiple sentences also with dot at the end, I decided to replace '.' with ' '

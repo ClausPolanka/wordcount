@@ -5,3 +5,6 @@ Interface documentation is general, whereas documentation on implementations spe
 Iteration 2:
 Stopwords should be case-insensitive and spaces in the stopwords input should be ignored
 If the stopwords input cannot be loaded then no stopwords are assumed
+
+Iteration 3:
+New line characters in the input file should be treated like spaces (they start a new word)

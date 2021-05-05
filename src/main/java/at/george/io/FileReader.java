@@ -14,16 +14,16 @@ public class FileReader implements Reader {
     private final String filename;
     private final Reader fallbackReader;
 
-    /**
-     * Reads an input string from a file with a name which is received as an application argument
-     *
-     * @return The content from the file
-     */
     public FileReader(String[] args, Reader fallbackReader) {
         this.filename = extractFilenameIfExists(args);
         this.fallbackReader = fallbackReader;
     }
 
+    /**
+     * Reads an input string from a file with a name which is received as an application argument (filename field)
+     *
+     * @return The content from the file with lines joined to one single-line string
+     */
     @Override
     public String read() {
         if (filename.isEmpty()) return fallbackReader.read();

@@ -13,27 +13,27 @@ public class SpecialCharactersTests {
     public void testMultipleWordsWithSpaces() {
         long count = textSequenceCounter.count("word  word                                    word                                word");
 
-        assertEquals(count, 4);
+        assertEquals(4, count);
     }
 
     @Test
     public void testSingleWordWithNumbersInBetween() {
         long count = textSequenceCounter.count("wo3d");
 
-        assertEquals(count, 0);
+        assertEquals(0, count);
     }
 
     @Test
     public void testMultipleWordsWithSpecialCharactersInBetween() {
         long count = textSequenceCounter.count("word wo$rd");
 
-        assertEquals(count, 1);
+        assertEquals(1, count);
     }
 
     @Test
     public void testMultipleWordsWithSpecialCharactersAtTheEnd() {
         long count = textSequenceCounter.count("word, word. word? word");
 
-        assertEquals(count, 1);
+        assertEquals(1, count);
     }
 }

@@ -23,23 +23,29 @@ public class WordCounterAppTest {
     @Test
     public void testCorrectInput() {
         String testSentence = "Mary had a little lamb";
-        Assertions.assertEquals( 5, counter.countWords(testSentence));
+        Assertions.assertEquals( 4, counter.countWords(testSentence));
     }
 
     @Test
     public void testCorrectInputWithDotAtTheEnd() {
         String testSentence = "Mary had a little lamb.";
-        Assertions.assertEquals( 5, counter.countWords(testSentence));
+        Assertions.assertEquals( 4, counter.countWords(testSentence));
     }
 
     @Test
     public void testInputWithNumbers() {
         String testSentence = "This is the sentence    for test with the     number 123 which should not be counted as     word java18 also should not count";
-        Assertions.assertEquals( 20, counter.countWords(testSentence));
+        Assertions.assertEquals( 18, counter.countWords(testSentence));
     }
 
     @Test
     public void testNullInput() {
         Assertions.assertEquals( 0, counter.countWords(null));
+    }
+
+    @Test
+    public void testSentenceWithOnlyStopWords() {
+        String testSentence = "The off a A ON";
+        Assertions.assertEquals( 0, counter.countWords(testSentence));
     }
 }

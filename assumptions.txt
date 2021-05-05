@@ -1,5 +1,8 @@
 Iteration 1:
 * Any number of spaces should not be counted as word. To be able to support multiple sentences also with dot at the end, I decided to replace '.' with ' '
 
-Itteration 2:
+Iteration 2:
 * Support stopwords case insensitively. Words in stopwords.txt can be written also with camel case, upper case also in the sentence, cause they are compared as lowercase.
+
+Iteration 3:
+* Try to find entered file in the root of app and also in the 'input/' directory

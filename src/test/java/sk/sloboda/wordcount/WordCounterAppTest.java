@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import sk.sloboda.wordcount.common.ArgumentHelper;
 import sk.sloboda.wordcount.common.WordCounter;
 import sk.sloboda.wordcount.common.WordCounterImpl;
 import sk.sloboda.wordcount.validator.WordValidator;
@@ -13,11 +14,13 @@ public class WordCounterAppTest {
 
     private static WordValidator validator;
     private static WordCounter counter;
+    private static ArgumentHelper argumentHelper;
 
     @BeforeAll
     public static void init() {
         validator = new WordValidatorImpl();
         counter = new WordCounterImpl(validator);
+        argumentHelper = new ArgumentHelper();
     }
 
     @Test
@@ -47,5 +50,11 @@ public class WordCounterAppTest {
     public void testSentenceWithOnlyStopWords() {
         String testSentence = "The off a A ON";
         Assertions.assertEquals( 0, counter.countWords(testSentence));
+    }
+
+    @Test
+    public void testCountWordsFromFile() {
+        Assertions.assertTrue(argumentHelper.isFileNameEntered("mytext.txt"));
+        Assertions.assertEquals(4, counter.countWords(argumentHelper.loadTextFromFile()));
     }
 }

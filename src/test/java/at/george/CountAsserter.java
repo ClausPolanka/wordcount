@@ -1,7 +1,5 @@
 package at.george;
 
-import at.george.Writer;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CountAsserter implements Writer {

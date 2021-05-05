@@ -1,7 +1,5 @@
 package at.george;
 
-import at.george.Reader;
-
 public class FixedInputReader implements Reader {
 
     private final String input;

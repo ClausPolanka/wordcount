@@ -1,0 +1,3 @@
+Iteration 1:
+Interfaces and implementations are documented using a Design-by-contract approach
+Interface documentation is general, whereas documentation on implementations specifies details

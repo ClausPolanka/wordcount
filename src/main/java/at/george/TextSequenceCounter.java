@@ -2,10 +2,10 @@ package at.george;
 
 import java.util.Arrays;
 
-public class TextSequenceCounter implements Processor {
+import static at.george.WordCountConstants.MATCH_LETTERS_REGEX;
+import static at.george.WordCountConstants.SPLIT_SYMBOL;
 
-    private final String splitSymbol = " ";
-    private final String matchLettersRegex = "[a-zA-Z]+";
+public class TextSequenceCounter implements Processor {
 
     /**
      * Counts the number of words in a given line by treating chains of (a-z,A-Z)'s as words
@@ -15,9 +15,9 @@ public class TextSequenceCounter implements Processor {
      */
     @Override
     public long process(String line) {
-        return Arrays.stream(line.split(splitSymbol))
+        return Arrays.stream(line.split(SPLIT_SYMBOL))
                 .map(String::trim)
-                .filter(word -> word.matches(matchLettersRegex))
+                .filter(word -> word.matches(MATCH_LETTERS_REGEX))
                 .count();
     }
 }

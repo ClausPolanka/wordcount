@@ -18,7 +18,10 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FixedInputReader(""),
                 new TextSequenceCounter(),
-                (count, uniqueCount) -> assertEquals(0, count)
+                (count, uniqueCount) -> {
+                    assertEquals(0, count);
+                    assertEquals(0, uniqueCount);
+                }
         );
 
         wordCountRunner.run(configuration);
@@ -27,9 +30,12 @@ public class WordCountRunnerTest {
     @Test
     public void testUserSample() {
         WordCountConfiguration configuration = new WordCountConfiguration(
-                new FixedInputReader("Mary had a little lamb"),
+                new FixedInputReader("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall."),
                 new TextSequenceCounter(),
-                (count, uniqueCount) -> assertEquals(5, count)
+                (count, uniqueCount) -> {
+                    assertEquals(12, count);
+                    assertEquals(9, uniqueCount);
+                }
         );
 
         wordCountRunner.run(configuration);
@@ -40,7 +46,10 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FileReader(new String[]{"mytext.txt"}, new ConsoleReader()),
                 new TextSequenceCounter(),
-                (count, uniqueCount) -> assertEquals(5, count)
+                (count, uniqueCount) -> {
+                    assertEquals(6, count);
+                    assertEquals(5, uniqueCount);
+                }
         );
 
         wordCountRunner.run(configuration);
@@ -49,9 +58,12 @@ public class WordCountRunnerTest {
     @Test
     public void testUserSampleWithStopwords() {
         WordCountConfiguration configuration = new WordCountConfiguration(
-                new FixedInputReader("Mary had a little lamb"),
+                new FixedInputReader("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall."),
                 new StopwordsFilterDecorator(new TextSequenceCounter(), new ResourceBasedStopwordsProvider()),
-                (count, uniqueCount) -> assertEquals(4, count)
+                (count, uniqueCount) -> {
+                    assertEquals(9, count);
+                    assertEquals(7, uniqueCount);
+                }
         );
 
         wordCountRunner.run(configuration);
@@ -62,7 +74,10 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FileReader(new String[]{"mytext.txt"}, new ConsoleReader()),
                 new StopwordsFilterDecorator(new TextSequenceCounter(), new ResourceBasedStopwordsProvider()),
-                (count, uniqueCount) -> assertEquals(4, count)
+                (count, uniqueCount) -> {
+                    assertEquals(5, count);
+                    assertEquals(4, uniqueCount);
+                }
         );
 
         wordCountRunner.run(configuration);

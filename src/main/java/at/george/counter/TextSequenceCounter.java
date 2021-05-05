@@ -3,9 +3,9 @@ package at.george.counter;
 import at.george.Counter;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
-import static at.george.WordCountConstants.MATCH_LETTERS_REGEX;
-import static at.george.WordCountConstants.SPLIT_SYMBOL;
+import static at.george.WordCountConstants.*;
 
 public class TextSequenceCounter implements Counter {
 
@@ -17,9 +17,7 @@ public class TextSequenceCounter implements Counter {
      */
     @Override
     public long count(String line) {
-        return Arrays.stream(line.split(SPLIT_SYMBOL))
-                .map(String::trim)
-                .filter(word -> MATCH_LETTERS_REGEX.matcher(word).matches())
+        return preprocessLine(line)
                 .count();
     }
 
@@ -31,6 +29,24 @@ public class TextSequenceCounter implements Counter {
      */
     @Override
     public long countUnique(String line) {
-        return 0;
+        return preprocessLine(line)
+                .distinct()
+                .count();
+    }
+
+    private Stream<String> preprocessLine(String line) {
+        return Arrays.stream(line.split(SPLIT_SYMBOL))
+                .map(String::trim)
+                .map(this::removeEndingDot)
+                .flatMap(this::splitOnDash)
+                .filter(word -> MATCH_LETTERS_REGEX.matcher(word).matches());
+    }
+
+    private String removeEndingDot(String word) {
+        return word.endsWith(DOT) ? word.substring(0, word.length() - 1) : word;
+    }
+
+    private Stream<String> splitOnDash(String word) {
+        return Arrays.stream(word.contains(DASH) ? word.split(DASH) : new String[]{word});
     }
 }

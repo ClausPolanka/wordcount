@@ -19,7 +19,7 @@ public class WordCountRunnerEndToEndTests {
 
     @Test
     public void testWithInputFromConsole() {
-        String input = "Mary had a little lamb";
+        String input = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
 
         InputStream stdin = System.in;
         PrintStream stdout = System.out;
@@ -38,7 +38,8 @@ public class WordCountRunnerEndToEndTests {
             new WordCountRunner().run(configuration);
 
             String out = outContent.toString().trim();
-            assertTrue(out.endsWith("4"));
+            assertTrue(out.contains("Number of words: 9"));
+            assertTrue(out.contains("unique: 7"));
         } finally {
             System.setIn(stdin);
             System.setOut(stdout);
@@ -62,7 +63,8 @@ public class WordCountRunnerEndToEndTests {
             new WordCountRunner().run(configuration);
 
             String out = outContent.toString().trim();
-            assertTrue(out.endsWith("4"));
+            assertTrue(out.contains("Number of words: 5"));
+            assertTrue(out.contains("unique: 4"));
         } finally {
             System.setOut(stdout);
         }

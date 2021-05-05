@@ -34,6 +34,6 @@ public class SpecialCharactersTests {
     public void testMultipleWordsWithSpecialCharactersAtTheEnd() {
         long count = textSequenceCounter.count("word, word. word? word");
 
-        assertEquals(1, count);
+        assertEquals(2, count);
     }
 }

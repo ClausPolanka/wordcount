@@ -11,47 +11,88 @@ public class TextSequenceCounterTests {
 
     @Test
     public void testSingleWord() {
-        long count = textSequenceCounter.count("word");
+        String input = "word";
+        long count = textSequenceCounter.count(input);
+        long countUnique = textSequenceCounter.countUnique(input);
 
         assertEquals(1, count);
+        assertEquals(1, countUnique);
+    }
+
+    @Test
+    public void testSingleWordWithDashes() {
+        String input = "word-word";
+        long count = textSequenceCounter.count(input);
+        long countUnique = textSequenceCounter.countUnique(input);
+
+        assertEquals(2, count);
+        assertEquals(1, countUnique);
     }
 
     @Test
     public void testMultipleWords() {
-        long count = textSequenceCounter.count("word word");
+        String inputWithTwoWords = "word word";
+        long count = textSequenceCounter.count(inputWithTwoWords);
+        long countUnique = textSequenceCounter.countUnique(inputWithTwoWords);
 
         assertEquals(2, count);
+        assertEquals(1, countUnique);
 
-        count = textSequenceCounter.count("word word word");
+        String inputWithThreeWords = "word word word";
+        count = textSequenceCounter.count(inputWithThreeWords);
+        countUnique = textSequenceCounter.countUnique(inputWithThreeWords);
 
         assertEquals(3, count);
+        assertEquals(1, countUnique);
+    }
+
+    @Test
+    public void testMultipleWordsWithDashes() {
+        String input = "word-word test word-word";
+        long count = textSequenceCounter.count(input);
+        long countUnique = textSequenceCounter.countUnique(input);
+
+        assertEquals(5, count);
+        assertEquals(2, countUnique);
     }
 
     @Test
     public void testMultipleWordsWithSpaces() {
-        long count = textSequenceCounter.count("word  word             word                           word");
+        String input = "word  word             word                           word";
+        long count = textSequenceCounter.count(input);
+        long countUnique = textSequenceCounter.countUnique(input);
 
         assertEquals(4, count);
+        assertEquals(1, countUnique);
     }
 
     @Test
     public void testMultipleWordsWithNumbersInBetween() {
-        long count = textSequenceCounter.count("wo3d wo3d");
+        String input = "wo3d wo3d";
+        long count = textSequenceCounter.count(input);
+        long countUnique = textSequenceCounter.countUnique(input);
 
         assertEquals(0, count);
+        assertEquals(0, countUnique);
     }
 
     @Test
     public void testMultipleWordsWithSpecialCharactersAtTheEnd() {
-        long count = textSequenceCounter.count("word, word. word? word");
+        String input = "word, word. word? word";
+        long count = textSequenceCounter.count(input);
+        long countUnique = textSequenceCounter.countUnique(input);
 
-        assertEquals(1, count);
+        assertEquals(2, count);
+        assertEquals(1, countUnique);
     }
 
     @Test
     public void testMultipleWordsWithSpecialCharactersAtTheBeginning() {
-        long count = textSequenceCounter.count(",word .word ?word word");
+        String input = ",word .word ?word word";
+        long count = textSequenceCounter.count(input);
+        long countUnique = textSequenceCounter.countUnique(input);
 
         assertEquals(1, count);
+        assertEquals(1, countUnique);
     }
 }

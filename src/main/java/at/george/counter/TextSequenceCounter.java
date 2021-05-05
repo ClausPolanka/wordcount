@@ -1,4 +1,6 @@
-package at.george;
+package at.george.counter;
+
+import at.george.Counter;
 
 import java.util.Arrays;
 

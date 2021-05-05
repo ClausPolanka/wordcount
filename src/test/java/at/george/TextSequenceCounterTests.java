@@ -1,5 +1,6 @@
 package at.george;
 
+import at.george.counter.TextSequenceCounter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

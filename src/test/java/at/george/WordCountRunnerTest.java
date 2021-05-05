@@ -1,5 +1,8 @@
 package at.george;
 
+import at.george.counter.StopwordsFilterDecorator;
+import at.george.counter.TextSequenceCounter;
+import at.george.io.ResourceBasedStopwordsProvider;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,7 +26,7 @@ public class WordCountRunnerTest {
     public void testUserSampleWithStopwords() {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FixedInputReader("Mary had a little lamb"),
-                new StopwordsFilterDecorator(new TextSequenceCounter()),
+                new StopwordsFilterDecorator(new TextSequenceCounter(), new ResourceBasedStopwordsProvider()),
                 count -> assertEquals(4, count)
         );
 

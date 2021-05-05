@@ -1,30 +1,32 @@
 package at.george;
 
+import at.george.counter.StopwordsFilterDecorator;
+import at.george.counter.TextSequenceCounter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StopwordsFilterDecoratorTests {
 
-    private final Counter textSequenceCounterWithStopwordsFilter = new StopwordsFilterDecorator(new TextSequenceCounter());
+    private final Counter textSequenceCounterWithStopwordsFilter = new StopwordsFilterDecorator(new TextSequenceCounter(), new FixedStopwordsProvider());
 
     @Test
-    public void testWithNoStopswords() {
+    public void testWithNoStopwords() {
         long count = textSequenceCounterWithStopwordsFilter.count("test test");
 
         assertEquals(2, count);
     }
 
     @Test
-    public void testWithSomeStopswords() {
-        long count = textSequenceCounterWithStopwordsFilter.count("a a test test");
+    public void testWithSomeStopwords() {
+        long count = textSequenceCounterWithStopwordsFilter.count("a a A A I i test test on off");
 
-        assertEquals(2, count);
+        assertEquals(4, count);
     }
 
     @Test
-    public void testWithAllStopswords() {
-        long count = textSequenceCounterWithStopwordsFilter.count("the a on off");
+    public void testWithAllStopwords() {
+        long count = textSequenceCounterWithStopwordsFilter.count("THE a I i a ThE");
 
         assertEquals(0, count);
     }

@@ -1,4 +1,6 @@
-package at.george;
+package at.george.io;
+
+import at.george.Writer;
 
 public class ConsoleWriter implements Writer {
 

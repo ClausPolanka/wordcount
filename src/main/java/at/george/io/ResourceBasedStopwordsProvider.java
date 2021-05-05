@@ -1,4 +1,7 @@
-package at.george;
+package at.george.io;
+
+import at.george.StopwordsProvider;
+import at.george.WordCountApp;
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,13 +14,20 @@ import java.util.List;
 import static at.george.WordCountConstants.STOPWORDS_FILE;
 
 public class ResourceBasedStopwordsProvider implements StopwordsProvider {
+
+    /**
+     * Retrieves the stopwords which should not be included in the counting process
+     * from a resource file
+     *
+     * @return All stopwords
+     */
     @Override
     public List<String> retrieveStopwords() {
         URL stopwordsResource = WordCountApp.class.getClassLoader()
                 .getResource(STOPWORDS_FILE);
 
         if (stopwordsResource == null) {
-            //return delegate.count(line);
+            return new ArrayList<>();
         }
 
         return loadStopwords(stopwordsResource);

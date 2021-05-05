@@ -1,3 +1,7 @@
 Iteration 1:
 Interfaces and implementations are documented using a Design-by-contract approach
 Interface documentation is general, whereas documentation on implementations specifies details
+
+Iteration 2:
+Stopwords should be case-insensitive and spaces in the stopwords input should be ignored
+If the stopwords input cannot be loaded then no stopwords are assumed

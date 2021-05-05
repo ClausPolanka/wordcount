@@ -20,7 +20,8 @@ public class FileReader implements Reader {
     }
 
     /**
-     * Reads an input string from a file with a name which is received as an application argument (filename field)
+     * Reads the word count input string from a file with a name which is received as an application
+     * argument (filename field)
      *
      * @return The content from the file with lines joined to one single-line string
      */

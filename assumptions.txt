@@ -8,3 +8,7 @@ If the stopwords input cannot be loaded then no stopwords are assumed
 
 Iteration 3:
 New line characters in the input file should be treated like spaces (they start a new word)
+
+Iteration 4:
+Dashes (-) should be treated like spaces (they start a new word)
+Words with a dot (.) at the end should now be included in the count

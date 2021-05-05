@@ -3,7 +3,7 @@ package at.george;
 public interface Reader {
 
     /**
-     * Reads an input string
+     * Reads the word count input string
      *
      * @return The received input
      */

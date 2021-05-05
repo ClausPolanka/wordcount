@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class ConsoleReader implements Reader {
 
     /**
-     * Reads an input string from the console
+     * Reads the word count input string from the console
      *
      * @return The received input
      */

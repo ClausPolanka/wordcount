@@ -7,7 +7,7 @@ public class ConsoleWriter implements Writer {
     /**
      * Writes the count and the unique count to the console
      *
-     * @param count The count to be written to the console, must not be negative
+     * @param count       The count to be written to the console, must not be negative
      * @param uniqueCount The count of unique words to be written to the console, must not be negative
      */
     @Override

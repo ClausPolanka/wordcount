@@ -3,7 +3,11 @@ package sk.sloboda.wordcount.common;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static sk.sloboda.wordcount.common.Constants.INDEX_ARGUMENT;
 
 public class ArgumentHelper {
 
@@ -28,5 +32,12 @@ public class ArgumentHelper {
             System.err.printf("Unable to load input from text file %s, cause: %s. %n", inputFile.getPath(), e.getCause());
         }
         return null;
+    }
+
+    public boolean showIndex(String[] args) {
+        if (args == null || args.length == 0) return false;
+
+        Optional<String> indexArg = Arrays.stream(args).filter(arg -> arg.equalsIgnoreCase(INDEX_ARGUMENT)).findAny();
+        return indexArg.isPresent();
     }
 }

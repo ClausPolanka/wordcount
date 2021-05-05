@@ -1,5 +1,7 @@
 package sk.sloboda.wordcount;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -92,5 +94,21 @@ public class WordCounterAppTest {
         Assertions.assertEquals(7, result.getCount());
         Assertions.assertEquals(6, result.getUniqueCount());
         Assertions.assertEquals( 6.43, result.getAverageLength());
+    }
+
+    @Test
+    public void testSortWords() {
+        String testSentence = "Mary had a little lamb";
+        WordCount result =  counter.countWords(testSentence);
+        Assertions.assertEquals(4, result.getCount());
+        Assertions.assertEquals(4, result.getUniqueCount());
+        Assertions.assertEquals(4.25, result.getAverageLength());
+
+        List<String> sortedWords = result.getSortedWords();
+        Assertions.assertNotNull(sortedWords);
+        Assertions.assertEquals("had", sortedWords.get(0));
+        Assertions.assertEquals("lamb", sortedWords.get(1));
+        Assertions.assertEquals("little", sortedWords.get(2));
+        Assertions.assertEquals("Mary", sortedWords.get(3));
     }
 }

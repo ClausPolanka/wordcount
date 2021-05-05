@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import sk.sloboda.wordcount.common.ArgumentHelper;
 import sk.sloboda.wordcount.common.WordCounter;
 import sk.sloboda.wordcount.common.WordCounterImpl;
+import sk.sloboda.wordcount.model.WordCount;
 import sk.sloboda.wordcount.validator.WordValidator;
 import sk.sloboda.wordcount.validator.WordValidatorImpl;
 
@@ -26,35 +27,55 @@ public class WordCounterAppTest {
     @Test
     public void testCorrectInput() {
         String testSentence = "Mary had a little lamb";
-        Assertions.assertEquals( 4, counter.countWords(testSentence));
+        WordCount result = counter.countWords(testSentence);
+        Assertions.assertEquals( 4, result.getCount());
+        Assertions.assertEquals( 4, result.getUniqueCount());
     }
 
     @Test
     public void testCorrectInputWithDotAtTheEnd() {
         String testSentence = "Mary had a little lamb.";
-        Assertions.assertEquals( 4, counter.countWords(testSentence));
+        WordCount result = counter.countWords(testSentence);
+        Assertions.assertEquals( 4, result.getCount());
+        Assertions.assertEquals( 4, result.getUniqueCount());
     }
 
     @Test
     public void testInputWithNumbers() {
         String testSentence = "This is the sentence    for test with the     number 123 which should not be counted as     word java18 also should not count";
-        Assertions.assertEquals( 18, counter.countWords(testSentence));
+        WordCount result = counter.countWords(testSentence);
+        Assertions.assertEquals( 18, result.getCount());
+        Assertions.assertEquals( 16, result.getUniqueCount());
     }
 
     @Test
     public void testNullInput() {
-        Assertions.assertEquals( 0, counter.countWords(null));
+        WordCount result = counter.countWords(null);
+        Assertions.assertEquals( 0, result.getCount());
+        Assertions.assertEquals( 0, result.getUniqueCount());
     }
 
     @Test
     public void testSentenceWithOnlyStopWords() {
         String testSentence = "The off a A ON";
-        Assertions.assertEquals( 0, counter.countWords(testSentence));
+        WordCount result = counter.countWords(testSentence);
+        Assertions.assertEquals( 0, result.getCount());
+        Assertions.assertEquals( 0, result.getUniqueCount());
     }
 
     @Test
     public void testCountWordsFromFile() {
         Assertions.assertTrue(argumentHelper.isFileNameEntered("mytext.txt"));
-        Assertions.assertEquals(4, counter.countWords(argumentHelper.loadTextFromFile()));
+        WordCount result =  counter.countWords(argumentHelper.loadTextFromFile());
+        Assertions.assertEquals(4, result.getCount());
+        Assertions.assertEquals(4, result.getUniqueCount());
+    }
+
+    @Test
+    public void testUniqueWords() {
+        String testSentence = "Lorem ipsum dolor sit amet consectetur adipiscing elit ipsum sit amet";
+        WordCount result =  counter.countWords(testSentence);
+        Assertions.assertEquals(11, result.getCount());
+        Assertions.assertEquals(8, result.getUniqueCount());
     }
 }

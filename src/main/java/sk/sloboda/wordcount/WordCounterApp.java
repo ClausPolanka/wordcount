@@ -5,6 +5,7 @@ import java.util.Scanner;
 import sk.sloboda.wordcount.common.ArgumentHelper;
 import sk.sloboda.wordcount.common.WordCounter;
 import sk.sloboda.wordcount.common.WordCounterImpl;
+import sk.sloboda.wordcount.model.WordCount;
 import sk.sloboda.wordcount.validator.WordValidatorImpl;
 
 
@@ -30,7 +31,7 @@ public class WordCounterApp {
         }
     }
 
-    private void displayResult(long numberOfWords) {
-        System.out.printf("You entered sentence with: ' %s ' words.%n", numberOfWords);
+    private void displayResult(WordCount wordCount) {
+        System.out.printf("Number of words: %s, unique: %s. %n", wordCount.getCount(), wordCount.getUniqueCount());
     }
 }

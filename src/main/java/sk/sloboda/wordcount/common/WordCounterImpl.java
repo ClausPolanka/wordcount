@@ -1,7 +1,11 @@
 package sk.sloboda.wordcount.common;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import sk.sloboda.wordcount.model.WordCount;
 import sk.sloboda.wordcount.validator.WordValidator;
 
 public class WordCounterImpl implements WordCounter {
@@ -13,13 +17,14 @@ public class WordCounterImpl implements WordCounter {
     }
 
     @Override
-    public long countWords(String input) {
-        if (input == null || input.isEmpty()) return 0;
+    public WordCount countWords(String input) {
+        if (input == null || input.isEmpty()) return new WordCount();
 
         // replace dots in sentences with space
         input = input.replaceAll("\\.", " ");
 
         String[] split = input.split("\\s+");
-        return Arrays.stream(split).filter(validator::isValidWord).count();
+        List<String> words =  Arrays.stream(split).filter(validator::isValidWord).collect(Collectors.toList());
+        return new WordCount(words.size(), new HashSet<>(words).size());
     }
 }

@@ -1,6 +1,8 @@
 package sk.sloboda.wordcount.common;
 
+import sk.sloboda.wordcount.model.WordCount;
+
 public interface WordCounter {
 
-    long countWords(String input);
+    WordCount countWords(String input);
 }

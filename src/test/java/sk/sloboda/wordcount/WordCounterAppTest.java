@@ -78,4 +78,12 @@ public class WordCounterAppTest {
         Assertions.assertEquals(11, result.getCount());
         Assertions.assertEquals(8, result.getUniqueCount());
     }
+
+    @Test
+    public void testWordWithDash() {
+        String testSentence = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
+        WordCount result = counter.countWords(testSentence);
+        Assertions.assertEquals(7, result.getCount());
+        Assertions.assertEquals(6, result.getUniqueCount());
+    }
 }

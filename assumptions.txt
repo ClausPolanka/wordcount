@@ -10,3 +10,7 @@ Iteration 3:
 Iteration 4:
 * from the iteration 1 it was defined that words are stretches of letters (a-zA-Z), no dash was defined as part of word, so from my
 point of view word 'Humpty-Dumpty' is not correct word when we use space as splitter for word and follow rules from iteration 1.
+
+Iteration 5:
+* As I mention in previous iteration, default definition for words letters was (a-zA-Z), so I need to update it to contain also
+hypen and take account also dot at the end of the sentence

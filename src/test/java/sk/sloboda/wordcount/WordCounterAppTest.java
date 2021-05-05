@@ -30,6 +30,7 @@ public class WordCounterAppTest {
         WordCount result = counter.countWords(testSentence);
         Assertions.assertEquals( 4, result.getCount());
         Assertions.assertEquals( 4, result.getUniqueCount());
+        Assertions.assertEquals( 4.25, result.getAverageLength());
     }
 
     @Test
@@ -38,6 +39,7 @@ public class WordCounterAppTest {
         WordCount result = counter.countWords(testSentence);
         Assertions.assertEquals( 4, result.getCount());
         Assertions.assertEquals( 4, result.getUniqueCount());
+        Assertions.assertEquals( 4.25, result.getAverageLength());
     }
 
     @Test
@@ -46,6 +48,7 @@ public class WordCounterAppTest {
         WordCount result = counter.countWords(testSentence);
         Assertions.assertEquals( 18, result.getCount());
         Assertions.assertEquals( 16, result.getUniqueCount());
+        Assertions.assertEquals( 4.33, result.getAverageLength());
     }
 
     @Test
@@ -53,6 +56,7 @@ public class WordCounterAppTest {
         WordCount result = counter.countWords(null);
         Assertions.assertEquals( 0, result.getCount());
         Assertions.assertEquals( 0, result.getUniqueCount());
+        Assertions.assertEquals( 0.0, result.getAverageLength());
     }
 
     @Test
@@ -61,6 +65,7 @@ public class WordCounterAppTest {
         WordCount result = counter.countWords(testSentence);
         Assertions.assertEquals( 0, result.getCount());
         Assertions.assertEquals( 0, result.getUniqueCount());
+        Assertions.assertEquals( 0.0, result.getAverageLength());
     }
 
     @Test
@@ -77,6 +82,7 @@ public class WordCounterAppTest {
         WordCount result =  counter.countWords(testSentence);
         Assertions.assertEquals(11, result.getCount());
         Assertions.assertEquals(8, result.getUniqueCount());
+        Assertions.assertEquals( 5.36, result.getAverageLength());
     }
 
     @Test
@@ -85,5 +91,6 @@ public class WordCounterAppTest {
         WordCount result = counter.countWords(testSentence);
         Assertions.assertEquals(7, result.getCount());
         Assertions.assertEquals(6, result.getUniqueCount());
+        Assertions.assertEquals( 6.43, result.getAverageLength());
     }
 }

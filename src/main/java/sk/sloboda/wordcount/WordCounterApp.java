@@ -32,6 +32,6 @@ public class WordCounterApp {
     }
 
     private void displayResult(WordCount wordCount) {
-        System.out.printf("Number of words: %s, unique: %s. %n", wordCount.getCount(), wordCount.getUniqueCount());
+        System.out.printf("Number of words: %s, unique: %s; average word length: %,.2f. %n", wordCount.getCount(), wordCount.getUniqueCount(), wordCount.getAverageLength());
     }
 }

@@ -25,6 +25,10 @@ public class WordCounterImpl implements WordCounter {
 
         String[] split = input.split("\\s+");
         List<String> words =  Arrays.stream(split).filter(validator::isValidWord).collect(Collectors.toList());
-        return new WordCount(words.size(), new HashSet<>(words).size());
+        WordCount result = new WordCount(words.size(), new HashSet<>(words).size());
+        if (words.size() > 0) {
+            result.setAndRoundAverageLength(words.stream().mapToInt(String::length).average().getAsDouble());
+        }
+        return result;
     }
 }

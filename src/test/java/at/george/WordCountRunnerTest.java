@@ -18,7 +18,7 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FixedInputReader(""),
                 new TextSequenceCounter(),
-                count -> assertEquals(0, count)
+                (count, uniqueCount) -> assertEquals(0, count)
         );
 
         wordCountRunner.run(configuration);
@@ -29,7 +29,7 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FixedInputReader("Mary had a little lamb"),
                 new TextSequenceCounter(),
-                count -> assertEquals(5, count)
+                (count, uniqueCount) -> assertEquals(5, count)
         );
 
         wordCountRunner.run(configuration);
@@ -40,7 +40,7 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FileReader(new String[]{"mytext.txt"}, new ConsoleReader()),
                 new TextSequenceCounter(),
-                count -> assertEquals(5, count)
+                (count, uniqueCount) -> assertEquals(5, count)
         );
 
         wordCountRunner.run(configuration);
@@ -51,7 +51,7 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FixedInputReader("Mary had a little lamb"),
                 new StopwordsFilterDecorator(new TextSequenceCounter(), new ResourceBasedStopwordsProvider()),
-                count -> assertEquals(4, count)
+                (count, uniqueCount) -> assertEquals(4, count)
         );
 
         wordCountRunner.run(configuration);
@@ -62,7 +62,7 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FileReader(new String[]{"mytext.txt"}, new ConsoleReader()),
                 new StopwordsFilterDecorator(new TextSequenceCounter(), new ResourceBasedStopwordsProvider()),
-                count -> assertEquals(4, count)
+                (count, uniqueCount) -> assertEquals(4, count)
         );
 
         wordCountRunner.run(configuration);

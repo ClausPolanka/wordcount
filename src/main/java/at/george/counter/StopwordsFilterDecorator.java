@@ -28,11 +28,23 @@ public class StopwordsFilterDecorator implements Counter {
      */
     @Override
     public long count(String line) {
-        List<String> stopwords = stopwordsProvider.retrieveStopwords();
-        List<String> stopwordsTrimmed = normalizeStopwords(stopwords);
-        line = filterStopwords(line, stopwordsTrimmed);
+        line = filterStopwords(line);
 
         return delegate.count(line);
+    }
+
+    /**
+     * Counts the number of unique words in a given line by delegating the unique counting process to delegate and filtering
+     * stopwords beforehand
+     *
+     * @param line The line to be processed, must not be null
+     * @return The number of unique words counted
+     */
+    @Override
+    public long countUnique(String line) {
+        line = filterStopwords(line);
+
+        return delegate.countUnique(line);
     }
 
     private List<String> normalizeStopwords(List<String> stopwords) {
@@ -41,9 +53,12 @@ public class StopwordsFilterDecorator implements Counter {
                 .collect(Collectors.toList());
     }
 
-    private String filterStopwords(String line, final List<String> stopwords) {
+    private String filterStopwords(String line) {
+        List<String> stopwords = stopwordsProvider.retrieveStopwords();
+        final List<String> stopwordsTrimmed = normalizeStopwords(stopwords);
+
         return Arrays.stream(line.split(SPLIT_SYMBOL))
-                .filter(word -> !stopwords.contains(normalize(word)))
+                .filter(word -> !stopwordsTrimmed.contains(normalize(word)))
                 .collect(Collectors.joining(SPLIT_SYMBOL));
     }
 

@@ -10,7 +10,8 @@ public class WordCountRunner {
         String userInput = reader.read();
 
         long count = counter.count(userInput);
+        long countUnique = counter.countUnique(userInput);
 
-        writer.write(count);
+        writer.write(count, countUnique);
     }
 }

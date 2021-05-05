@@ -22,4 +22,15 @@ public class TextSequenceCounter implements Counter {
                 .filter(word -> MATCH_LETTERS_REGEX.matcher(word).matches())
                 .count();
     }
+
+    /**
+     * Counts the number of unique words in a given line by treating chains of (a-z,A-Z)'s as words
+     *
+     * @param line The line to be processed, must not be null
+     * @return The number of unique words counted
+     */
+    @Override
+    public long countUnique(String line) {
+        return 0;
+    }
 }

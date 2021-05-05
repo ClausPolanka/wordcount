@@ -4,4 +4,5 @@ public interface Constants {
 
     String WORD_REGEX = "[a-zA-Z\\-\\.]+";
     String INDEX_ARGUMENT = "-index";
+    String DICTIONARY_ARGUMENT = "-dictionary";
 }

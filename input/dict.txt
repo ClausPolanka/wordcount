@@ -1,0 +1,8 @@
+big
+small
+little
+cat
+dog
+have
+has
+had

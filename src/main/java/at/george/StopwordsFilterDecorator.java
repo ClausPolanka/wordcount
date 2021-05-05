@@ -13,29 +13,30 @@ import java.util.stream.Collectors;
 import static at.george.WordCountConstants.SPLIT_SYMBOL;
 import static at.george.WordCountConstants.STOPWORDS_FILE;
 
-public class StopwordsFilter implements Processor {
+public class StopwordsFilterDecorator implements Counter {
 
-    private final Processor delegate;
+    private final Counter delegate;
+    private final List<String> stopwords;
 
-    public StopwordsFilter(Processor delegate) {
+    public StopwordsFilterDecorator(Counter delegate, List<String> stopwords) {
         this.delegate = delegate;
+        this.stopwords = stopwords;
     }
 
-
     @Override
-    public long process(String line) {
+    public long count(String line) {
         URL stopwordsResource = WordCountApp.class.getClassLoader()
                 .getResource(STOPWORDS_FILE);
 
         if (stopwordsResource == null) {
-            return delegate.process(line);
+            return delegate.count(line);
         }
 
         List<String> stopwords = loadStopwords(stopwordsResource);
         List<String> stopwordsTrimmed = trimStopwords(stopwords);
         line = filterStopwords(line, stopwordsTrimmed);
 
-        return delegate.process(line);
+        return delegate.count(line);
     }
 
     private List<String> loadStopwords(URL stopwordsResource) {

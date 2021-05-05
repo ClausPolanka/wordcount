@@ -2,6 +2,8 @@ package at.george;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class WordCountRunnerTest {
 
     private final WordCountRunner wordCountRunner = new WordCountRunner();
@@ -11,7 +13,18 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FixedInputReader("Mary had a little lamb"),
                 new TextSequenceCounter(),
-                new CountAsserter(5)
+                count -> assertEquals(5, count)
+        );
+
+        wordCountRunner.run(configuration);
+    }
+
+    @Test
+    public void testUserSampleWithStopwords() {
+        WordCountConfiguration configuration = new WordCountConfiguration(
+                new FixedInputReader("Mary had a little lamb"),
+                new StopwordsFilterDecorator(new TextSequenceCounter()),
+                count -> assertEquals(4, count)
         );
 
         wordCountRunner.run(configuration);
@@ -22,7 +35,7 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FixedInputReader("word"),
                 new TextSequenceCounter(),
-                new CountAsserter(1)
+                count -> assertEquals(1, count)
         );
 
         wordCountRunner.run(configuration);
@@ -33,7 +46,7 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FixedInputReader("word word"),
                 new TextSequenceCounter(),
-                new CountAsserter(2)
+                count -> assertEquals(2, count)
         );
 
         wordCountRunner.run(configuration);
@@ -41,7 +54,7 @@ public class WordCountRunnerTest {
         configuration = new WordCountConfiguration(
                 new FixedInputReader("word word word"),
                 new TextSequenceCounter(),
-                new CountAsserter(3)
+                count -> assertEquals(3, count)
         );
 
         wordCountRunner.run(configuration);
@@ -52,7 +65,7 @@ public class WordCountRunnerTest {
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new FixedInputReader(""),
                 new TextSequenceCounter(),
-                new CountAsserter(0)
+                count -> assertEquals(0, count)
         );
 
         wordCountRunner.run(configuration);

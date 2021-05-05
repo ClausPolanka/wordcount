@@ -12,8 +12,12 @@ public class ConsoleReader implements Reader {
     @Override
     public String read() {
         System.out.print("Enter text: ");
-        Scanner scanner = new Scanner(System.in);
 
-        return scanner.nextLine();
+        String userInput;
+        try (Scanner scanner = new Scanner(System.in)) {
+            userInput = scanner.nextLine();
+        }
+
+        return userInput;
     }
 }

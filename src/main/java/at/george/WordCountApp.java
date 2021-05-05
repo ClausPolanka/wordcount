@@ -6,7 +6,7 @@ public class WordCountApp {
 
         WordCountConfiguration configuration = new WordCountConfiguration(
                 new ConsoleReader(),
-                new StopwordsFilter(new TextSequenceCounter()),
+                new StopwordsFilterDecorator(new TextSequenceCounter()),
                 new ConsoleWriter()
         );
 

@@ -1,6 +1,6 @@
 package at.george;
 
-public interface Processor {
+public interface Counter {
 
     /**
      * Counts the number of words in a given line
@@ -8,5 +8,5 @@ public interface Processor {
      * @param line The line to be processed, must not be null
      * @return The number of words counted
      */
-    long process(String line);
+    long count(String line);
 }

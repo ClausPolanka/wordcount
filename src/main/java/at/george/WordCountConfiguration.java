@@ -4,13 +4,13 @@ public class WordCountConfiguration {
 
     private final Reader reader;
 
-    private final Processor processor;
+    private final Counter counter;
 
     private final Writer writer;
 
-    public WordCountConfiguration(Reader reader, Processor processor, Writer writer) {
+    public WordCountConfiguration(Reader reader, Counter counter, Writer writer) {
         this.reader = reader;
-        this.processor = processor;
+        this.counter = counter;
         this.writer = writer;
     }
 
@@ -18,8 +18,8 @@ public class WordCountConfiguration {
         return reader;
     }
 
-    public Processor processor() {
-        return processor;
+    public Counter counter() {
+        return counter;
     }
 
     public Writer writer() {

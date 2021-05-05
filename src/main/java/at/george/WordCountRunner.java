@@ -4,12 +4,12 @@ public class WordCountRunner {
 
     public void run(WordCountConfiguration configuration) {
         Reader reader = configuration.reader();
-        Processor processor = configuration.processor();
+        Counter counter = configuration.counter();
         Writer writer = configuration.writer();
 
-        String line = reader.read();
+        String userInput = reader.read();
 
-        long count = processor.process(line);
+        long count = counter.count(userInput);
 
         writer.write(count);
     }

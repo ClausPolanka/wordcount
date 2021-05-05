@@ -2,51 +2,37 @@ package at.george;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class SpecialCharactersTests {
 
-    private final WordCountRunner wordCountRunner = new WordCountRunner();
+    private final Counter textSequenceCounter = new TextSequenceCounter();
 
     @Test
     public void testMultipleWordsWithSpaces() {
-        WordCountConfiguration configuration = new WordCountConfiguration(
-                new FixedInputReader("word  word                                    word                                word"),
-                new TextSequenceCounter(),
-                new CountAsserter(4)
-        );
+        long count = textSequenceCounter.count("word  word                                    word                                word");
 
-        wordCountRunner.run(configuration);
+        assertEquals(count, 4);
     }
 
     @Test
-    public void testSingleWordWithSpecialCharactersInBetween() {
-        WordCountConfiguration configuration = new WordCountConfiguration(
-                new FixedInputReader("wo3d"),
-                new TextSequenceCounter(),
-                new CountAsserter(0)
-        );
+    public void testSingleWordWithNumbersInBetween() {
+        long count = textSequenceCounter.count("wo3d");
 
-        wordCountRunner.run(configuration);
+        assertEquals(count, 0);
     }
 
     @Test
     public void testMultipleWordsWithSpecialCharactersInBetween() {
-        WordCountConfiguration configuration = new WordCountConfiguration(
-                new FixedInputReader("word wo$rd"),
-                new TextSequenceCounter(),
-                new CountAsserter(1)
-        );
+        long count = textSequenceCounter.count("word wo$rd");
 
-        wordCountRunner.run(configuration);
+        assertEquals(count, 1);
     }
 
     @Test
     public void testMultipleWordsWithSpecialCharactersAtTheEnd() {
-        WordCountConfiguration configuration = new WordCountConfiguration(
-                new FixedInputReader("word, word. word? word"),
-                new TextSequenceCounter(),
-                new CountAsserter(1)
-        );
+        long count = textSequenceCounter.count("word, word. word? word");
 
-        wordCountRunner.run(configuration);
+        assertEquals(count, 1);
     }
 }

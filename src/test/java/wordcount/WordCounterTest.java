@@ -1,4 +1,4 @@
-package wordcount.iter1;
+package wordcount;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtensionContext;

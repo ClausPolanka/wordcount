@@ -1,4 +1,4 @@
-package wordcount.iter1;
+package wordcount;
 
 public class ResponseBuilder {
 

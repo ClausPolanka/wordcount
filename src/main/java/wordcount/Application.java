@@ -1,4 +1,4 @@
-package wordcount.iter1;
+package wordcount;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

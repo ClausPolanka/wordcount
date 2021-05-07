@@ -1,4 +1,4 @@
-package wordcount.iter1;
+package wordcount;
 
 public class WordCounterApplication {
     private ResponseBuilder responseBuilder = new ResponseBuilder();

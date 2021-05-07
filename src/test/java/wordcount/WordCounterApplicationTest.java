@@ -1,24 +1,27 @@
-package wordcount.iter1;
+package wordcount;
 
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordCounterApplicationTest {
     @Test
-    void run() {
-        StringReader reader = new StringReader("Mary_Mery");
-        StringWriter writer = new StringWriter(1);
+    void run() throws IOException {
+        StringReader reader = new StringReader("ABC the");
+        StringWriter writer = new StringWriter();
+        BufferedWriter bufWriter = new BufferedWriter(writer);
 
         ConsoleInteractor interactor = new ConsoleInteractor(
                 new BufferedReader(reader),
-                new BufferedWriter(writer));
+                bufWriter);
 
         StopwordsProvider stopwordsProvider = () -> {
             Set<String> result = new HashSet<>();
@@ -36,7 +39,10 @@ class WordCounterApplicationTest {
 
         //then
 
-        String out = writer.getBuffer().toString();
+        bufWriter.flush();
+
+        assertEquals("Number of words: 1", writer.toString());
+
     }
 
 

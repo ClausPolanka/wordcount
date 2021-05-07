@@ -1,4 +1,4 @@
-package wordcount.iter1;
+package wordcount;
 import java.util.Set;
 
 public interface StopwordsProvider {

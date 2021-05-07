@@ -12,18 +12,12 @@ public class Application {
         try(BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out))) {
 
-            ResponseBuilder responseBuilder = new ResponseBuilder();
-            ConsoleInteractor consoleInteractor = new ConsoleInteractor(
-                    in,
-                    out
+            WordCounterApplication wordCounterApplication = new WordCounterApplication(
+                    new ConsoleInteractor(in, out),
+                    new ClasspathStopwordsProvider("stopwords.txt")
             );
-            WordCounter wordCounter = new WordCounter();
 
-            String inputLine = consoleInteractor.read();
-
-            long count = wordCounter.count(inputLine);
-
-            consoleInteractor.write(responseBuilder.createOutputMessage(count));
+            wordCounterApplication.run();
 
         } catch (IOException e) {
             throw new UncheckedIOException(e);

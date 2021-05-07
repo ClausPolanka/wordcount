@@ -56,9 +56,9 @@ class WordCounterTest {
 
                     arguments(
                             new TestData()
+                                    .setInputString("Mary")
                                     .setExpectedCount(1)
                                     .setExpectedUniqueCount(1)
-                                    .setInputString("Mary")
                                     .setStopwords(emptySet())
                     ),
                     arguments(
@@ -138,7 +138,15 @@ class WordCounterTest {
                                     .setInputString("_the")
                                     .setExpectedUniqueCount(0)
                                     .setExpectedCount(0)
-                                    .setStopwords(createStopwords("the a")))
+                                    .setStopwords(createStopwords("the a"))
+                    ),
+                    arguments(
+                            new TestData()
+                                    .setInputString("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.")
+                                    .setExpectedUniqueCount(7)
+                                    .setExpectedCount(9)
+                                    .setStopwords(createStopwords("the a"))
+                    )
             );
 
         }

@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class WordCounterOptions {
     private String isAWordRegex = "[a-zA-Z]+";
-    private String wordSplitRegex = "\\s+";
+    private String wordSplitRegex = "[\\s\\-]+";
     private Set<String> stopWords = new HashSet<>();
 
     public String getIsAWordRegex() {

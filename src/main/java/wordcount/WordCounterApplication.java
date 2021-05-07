@@ -10,7 +10,6 @@ public class WordCounterApplication {
     private final BufferedReader reader;
     private final BufferedWriter writer;
     private final StopwordsProvider stopwordsProvider;
-    private WordCounterOptions defaultOptions = new WordCounterOptions();
 
     public WordCounterApplication(BufferedReader reader,
                                   BufferedWriter writer,
@@ -21,7 +20,10 @@ public class WordCounterApplication {
     }
 
     public void run(String[] args) {
+        //change non default ones
+        WordCounterOptions defaultOptions = new WordCounterOptions();
         defaultOptions.setStopWords(stopwordsProvider.getStopWords());
+
         WordCounter wordCounter = new WordCounter(defaultOptions);
 
         String inputText = createTextProvider(args).readInputText();

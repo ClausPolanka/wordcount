@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordCounterApplicationTest {
     @Test
-    void runWithoutArgument() throws IOException {
+    void runWithoutCommandLineArgument() throws IOException {
         BufferedReader reader = new BufferedReader(new StringReader("abc the"));
         StringWriter writer = new StringWriter();
         BufferedWriter bufWriter = new BufferedWriter(writer);
@@ -32,7 +32,7 @@ class WordCounterApplicationTest {
     }
 
     @Test
-    void runWithFileArgument() throws IOException {
+    void runWithCommandLineFileArgument() throws IOException {
         BufferedReader reader = new BufferedReader(new StringReader("abc the"));
         StringWriter writer = new StringWriter();
         BufferedWriter bufWriter = new BufferedWriter(writer);

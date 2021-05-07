@@ -20,9 +20,9 @@ public class WordCounterApplication {
     }
 
     public void run(String[] args) {
-        //change non default ones
-        WordCounterOptions defaultOptions = new WordCounterOptions();
-        defaultOptions.setStopWords(stopwordsProvider.getStopWords());
+        WordCounterOptions defaultOptions = new WordCounterOptions(
+                stopwordsProvider.getStopWords()
+        );
 
         WordCounter wordCounter = new WordCounter(defaultOptions);
 

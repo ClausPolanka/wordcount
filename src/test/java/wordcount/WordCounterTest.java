@@ -20,11 +20,8 @@ class WordCounterTest {
     @ArgumentsSource(TestDataProvider.class)
     @ParameterizedTest
     void givenSimpleText_thenWordCountIsCorrect(TestData data) {
-        WordCounterOptions options = new WordCounterOptions();
-        options.setStopWords(data.stopwords);
-        WordCounter counter = new WordCounter(
-                options
-        );
+        WordCounterOptions options = new WordCounterOptions(data.stopwords);
+        WordCounter counter = new WordCounter(options);
 
         WordCounterOutput output = counter.calculateOutput(data.inputString);
 

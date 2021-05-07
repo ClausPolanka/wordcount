@@ -1,17 +1,15 @@
 package wordcount;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class WordCounterOptions {
-    private Set<String> stopWords = new HashSet<>();
+    private final Set<String> stopWords;
+
+    public WordCounterOptions(Set<String> stopWords) {
+        this.stopWords = stopWords;
+    }
 
     public Set<String> getStopWords() {
         return stopWords;
-    }
-
-    public WordCounterOptions setStopWords(Set<String> stopWords) {
-        this.stopWords = stopWords;
-        return this;
     }
 }

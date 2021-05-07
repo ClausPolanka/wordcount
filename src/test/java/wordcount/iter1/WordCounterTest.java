@@ -27,7 +27,7 @@ class WordCounterTest {
     public static class TestDataProvider implements ArgumentsProvider {
 
         @Override
-        public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+        public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
             return Stream.of(
                     arguments(new TestData("Mary had a little lamb", 5)),
                     arguments(new TestData("", 0)),
@@ -44,8 +44,8 @@ class WordCounterTest {
 
 
     static class TestData {
-        private String inputString;
-        private long expectedCount;
+        private final String inputString;
+        private final long expectedCount;
 
         public TestData(String inputString, long expectedCount) {
             this.inputString = inputString;

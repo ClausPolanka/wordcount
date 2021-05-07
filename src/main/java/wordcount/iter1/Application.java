@@ -1,5 +1,7 @@
 package wordcount.iter1;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -7,9 +9,10 @@ import java.io.UncheckedIOException;
 
 public class Application {
     public static void main(String[] args) {
-        try(InputStreamReader in = new InputStreamReader(System.in);
-                OutputStreamWriter out = new OutputStreamWriter(System.out)) {
+        try(BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out))) {
 
+            ResponseBuilder responseBuilder = new ResponseBuilder();
             ConsoleInteractor consoleInteractor = new ConsoleInteractor(
                     in,
                     out
@@ -18,13 +21,13 @@ public class Application {
 
             String inputLine = consoleInteractor.read();
 
-
             long count = wordCounter.count(inputLine);
 
-            consoleInteractor.write(String.valueOf(count));
+            consoleInteractor.write(responseBuilder.createOutputMessage(count));
 
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
     }
+
 }

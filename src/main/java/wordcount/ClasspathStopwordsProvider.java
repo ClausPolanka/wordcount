@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class ClasspathStopwordsProvider implements StopwordsProvider {
+public class ClasspathStopwordsProvider {
     private final String fileName;
 
     /**
@@ -25,6 +25,9 @@ public class ClasspathStopwordsProvider implements StopwordsProvider {
 
         URL resource = this.getClass().getResource(fileName.startsWith("/") ? fileName : "/" + fileName);
         try {
+            if (resource == null) {
+                throw new IllegalArgumentException("Cannot find the file specified in classpath with fileName=" + fileName);
+            }
             List<String> content = Files.readAllLines(Paths.get(resource.getFile()));
             return new HashSet<>(content);
         } catch (IOException e) {

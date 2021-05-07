@@ -17,9 +17,8 @@ class WordCounterApplicationTest {
         StringWriter writer = new StringWriter();
         BufferedWriter bufWriter = new BufferedWriter(writer);
 
-        StopwordsProvider stopwordsProvider = getStopWordsProvider();
-
-        WordCounterApplication app = new WordCounterApplication(reader, bufWriter, stopwordsProvider);
+        WordCounterApplication app = new WordCounterApplication(reader, bufWriter,
+                getStopWordsProvider());
 
         //when
         app.run(new String[]{});

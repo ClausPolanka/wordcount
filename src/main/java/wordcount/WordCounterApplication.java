@@ -9,11 +9,11 @@ public class WordCounterApplication {
     private ResponseBuilder responseBuilder = new ResponseBuilder();
     private final BufferedReader reader;
     private final BufferedWriter writer;
-    private final StopwordsProvider stopwordsProvider;
+    private final ClasspathStopwordsProvider stopwordsProvider;
 
     public WordCounterApplication(BufferedReader reader,
                                   BufferedWriter writer,
-                                  StopwordsProvider stopwordsProvider) {
+                                  ClasspathStopwordsProvider stopwordsProvider) {
         this.reader = reader;
         this.writer = writer;
         this.stopwordsProvider = stopwordsProvider;

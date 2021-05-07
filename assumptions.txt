@@ -30,3 +30,4 @@ return 0 if no words are found
 count also hyphen in between words
 not counting full-stop at the end of the word. e.g-> full. has length 4 not 5 (because of dot)
 always keep 2 decimals even they are 0. e.g -> 3.00 is included in the output
+in case provided file does not exist, simply return java IO exception. Assume it is fine for the client.

@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ClasspathStopwordsProviderTest {
     @Test
@@ -23,4 +25,13 @@ class ClasspathStopwordsProviderTest {
         assertEquals(expected, stopWords);
     }
 
+    @Test
+    void getStopWords_nonExistingFile() {
+
+        String exceptionMessage = assertThrows(IllegalArgumentException.class, () -> new ClasspathStopwordsProvider("some_bla_this_is_not_there.txt").getStopWords())
+                .getMessage();
+
+        assertTrue(exceptionMessage.contains("Cannot find the file specified"));
+
+    }
 }

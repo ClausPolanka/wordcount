@@ -214,6 +214,14 @@ class WordCounterTest {
                                     .setExpectedWordCount(0)
                                     .setStopwords(createStopwords("the a on"))
                                     .setExpectedAvarageLength(0.0)
+                    ),
+                    arguments(
+                            new TestData()
+                                    .setInputString("b")
+                                    .setExpectedUniqueCount(1)
+                                    .setExpectedWordCount(1)
+                                    .setStopwords(createStopwords("the a on"))
+                                    .setExpectedAvarageLength(1.0)
                     )
 
             );

@@ -13,17 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class WordCounterApplicationTest {
     @Test
     void runWithoutArgument() throws IOException {
-        StringReader reader = new StringReader("abc the");
+        BufferedReader reader = new BufferedReader(new StringReader("abc the"));
         StringWriter writer = new StringWriter();
         BufferedWriter bufWriter = new BufferedWriter(writer);
 
-        ConsoleInteractor interactor = new ConsoleInteractor(
-                new BufferedReader(reader),
-                bufWriter);
-
         StopwordsProvider stopwordsProvider = getStopWordsProvider();
 
-        WordCounterApplication app = new WordCounterApplication(interactor,  stopwordsProvider);
+        WordCounterApplication app = new WordCounterApplication(reader, bufWriter, stopwordsProvider);
 
         //when
         app.run(new String[]{});
@@ -37,18 +33,13 @@ class WordCounterApplicationTest {
 
     @Test
     void runWithFileArgument() throws IOException {
-        StringReader reader = new StringReader("");
+        BufferedReader reader = new BufferedReader(new StringReader("abc the"));
         StringWriter writer = new StringWriter();
         BufferedWriter bufWriter = new BufferedWriter(writer);
 
-        ConsoleInteractor interactor = new ConsoleInteractor(
-                new BufferedReader(reader),
-                bufWriter);
-
-        StopwordsProvider stopwordsProvider = getStopWordsProvider();
 
         WordCounterApplication app = new WordCounterApplication(
-                interactor, getStopWordsProvider());
+                 reader, bufWriter, getStopWordsProvider());
 
         //when
         app.run(new String[]{"input.txt"});

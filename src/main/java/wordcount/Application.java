@@ -13,8 +13,7 @@ public class Application {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out))) {
 
             WordCounterApplication wordCounterApplication = new WordCounterApplication(
-                    new ConsoleInteractor(in, out),
-                    new ClasspathStopwordsProvider("stopwords.txt"));
+                    in, out ,new ClasspathStopwordsProvider("stopwords.txt"));
 
             wordCounterApplication.run(args);
 

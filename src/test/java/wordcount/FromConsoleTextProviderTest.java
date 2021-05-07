@@ -12,10 +12,7 @@ class FromConsoleTextProviderTest {
     @Test
     public void testFromConsole() {
         FromConsoleTextProvider consoleTextProvider = new FromConsoleTextProvider(
-                new ConsoleInteractor(
-                        new BufferedReader(new StringReader("adbc dce")),
-                        null
-                )
+                new BufferedReader(new StringReader("adbc dce"))
         );
 
         String input = consoleTextProvider.readInputText();

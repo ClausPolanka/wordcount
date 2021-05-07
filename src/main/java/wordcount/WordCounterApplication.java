@@ -1,14 +1,22 @@
 package wordcount;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+
 public class WordCounterApplication {
     private ResponseBuilder responseBuilder = new ResponseBuilder();
-    private final ConsoleInteractor consoleInteractor;
+    private final BufferedReader reader;
+    private final BufferedWriter writer;
     private final StopwordsProvider stopwordsProvider;
     private WordCounterOptions defaultOptions = new WordCounterOptions();
 
-    public WordCounterApplication(ConsoleInteractor consoleInteractor,
+    public WordCounterApplication(BufferedReader reader,
+                                  BufferedWriter writer,
                                   StopwordsProvider stopwordsProvider) {
-        this.consoleInteractor = consoleInteractor;
+        this.reader = reader;
+        this.writer = writer;
         this.stopwordsProvider = stopwordsProvider;
     }
 
@@ -20,7 +28,11 @@ public class WordCounterApplication {
 
         long count = wordCounter.count(inputText);
 
-        consoleInteractor.write(responseBuilder.createOutputMessage(count));
+        try {
+            writer.write(responseBuilder.createOutputMessage(count));
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
 
     }
 
@@ -29,7 +41,7 @@ public class WordCounterApplication {
         if (args.length > 0) {
             textProvider = new FromFileInputTextProvider(args[0]);
         } else {
-            textProvider = new FromConsoleTextProvider(consoleInteractor);
+            textProvider = new FromConsoleTextProvider(reader);
         }
         return textProvider;
     }

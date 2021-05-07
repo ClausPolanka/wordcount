@@ -20,9 +20,13 @@ class WordCounterTest {
     @ArgumentsSource(TestDataProvider.class)
     @ParameterizedTest
     void givenSimpleText_thenWordCountIsCorrect(TestData data) {
-        WordCounter counter = new WordCounter();
+        WordCounterOptions options = new WordCounterOptions();
+        options.setStopWords(data.stopwords);
+        WordCounter counter = new WordCounter(
+                options
+        );
 
-        long output = counter.count(data.inputString, data.stopwords);
+        long output = counter.count(data.inputString);
 
         Assertions.assertEquals(data.expectedCount, output);
 
@@ -40,7 +44,7 @@ class WordCounterTest {
                     arguments(new TestData("Mary_Mery", 0, emptySet())),
                     arguments(new TestData("word       word", 2, emptySet())),
                     arguments(new TestData("    word       word", 2, emptySet())),
-                    arguments(new TestData("word\tword", 0, emptySet())),
+                    arguments(new TestData("word\tword", 2, emptySet())),
 
                     arguments(new TestData("word the word a", 2, createStopwords("the a"))),
                     arguments(new TestData("  the a ", 0, createStopwords("the a"))),
@@ -70,6 +74,16 @@ class WordCounterTest {
             this.inputString = inputString;
             this.expectedCount = expectedCount;
             this.stopwords = stopwords;
+        }
+
+        @Override
+        public String toString() {
+            final StringBuilder sb = new StringBuilder("TestData{");
+            sb.append("inputString='").append(inputString).append('\'');
+            sb.append(", expectedCount=").append(expectedCount);
+            sb.append(", stopwords=").append(stopwords);
+            sb.append('}');
+            return sb.toString();
         }
     }
 }

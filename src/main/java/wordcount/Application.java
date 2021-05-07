@@ -14,10 +14,9 @@ public class Application {
 
             WordCounterApplication wordCounterApplication = new WordCounterApplication(
                     new ConsoleInteractor(in, out),
-                    new ClasspathStopwordsProvider("stopwords.txt")
-            );
+                    new ClasspathStopwordsProvider("stopwords.txt"));
 
-            wordCounterApplication.run();
+            wordCounterApplication.run(args);
 
         } catch (IOException e) {
             throw new UncheckedIOException(e);

@@ -5,3 +5,7 @@ user provides 1 input and then program quits
 
 iteration - 2
 stopwords.txt are present in classpath and not provided from user
+
+iteration - 3
+the input file assumed to be present under repo root
+there can be only 1 argument from command line

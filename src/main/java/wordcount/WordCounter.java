@@ -1,16 +1,19 @@
 package wordcount;
 
 import java.util.Arrays;
-import java.util.Set;
 
 public class WordCounter {
-    private static final String IS_A_WORD = "[a-zA-Z]+";
+    private final WordCounterOptions options;
 
-    public long count(String inputString, Set<String> stopWords) {
-        String[] possibleWords = inputString.split("[ ]+");
+    public WordCounter(WordCounterOptions options) {
+        this.options = options;
+    }
+
+    public long count(String inputString) {
+        String[] possibleWords =inputString.split(options.getWordSplitRegex());
         return Arrays.stream(possibleWords)
-                .filter(w -> w.matches(IS_A_WORD))
-                .filter(w -> !stopWords.contains(w))
+                .filter(w -> w.matches(options.getIsAWordRegex()))
+                .filter(w -> !options.getStopWords().contains(w))
                 .count();
     }
 }

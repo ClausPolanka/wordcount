@@ -14,10 +14,10 @@ public class WordCounter {
     }
 
     public WordCounterOutput count(String inputString) {
-        List<String> possibleWords = Arrays.asList(inputString.split(options.getWordSplitRegex()));
+        List<String> possibleWords = Arrays.asList(options.getWordSplitRegex().split(inputString));
 
         List<String> matchedWords = possibleWords.stream()
-                .filter(w -> w.matches(options.getIsAWordRegex()))
+                .filter(w -> options.getIsAWordRegex().matcher(w).matches())
                 .filter(w -> !options.getStopWords().contains(w))
                 .collect(Collectors.toList());
 

@@ -12,7 +12,7 @@ class FromFileInputTextProviderTest {
 
         String out = inputTextProvider.readInputText();
 
-        String expected = "Mary had\nlamb";
+        String expected = "Mary had\nlamb.\nthe\nHumpty-Dumpty";
         assertEquals(expected, out);
     }
 }

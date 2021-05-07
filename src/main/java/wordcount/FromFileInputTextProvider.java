@@ -13,6 +13,10 @@ public class FromFileInputTextProvider implements InputTextProvider{
         this.filePath = filePath;
     }
 
+    /**
+     *
+     * @return with LF concatenated list
+     */
     public String readInputText(){
         Path path = Paths.get(filePath);
         try {

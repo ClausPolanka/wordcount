@@ -47,7 +47,7 @@ class WordCounterApplicationTest {
         //then
         bufWriter.flush();
 
-        assertEquals("Number of words: 5, unique: 5", writer.toString());
+        assertEquals("Number of words: 4, unique: 4", writer.toString());
 
     }
 

@@ -143,16 +143,55 @@ class WordCounterTest {
                     arguments(
                             new TestData()
                                     .setInputString("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.")
-                                    .setExpectedUniqueCount(7)
-                                    .setExpectedCount(9)
+                                    .setExpectedUniqueCount(6)
+                                    .setExpectedCount(7)
                                     .setStopwords(createStopwords("the a on"))
                     ),
                     arguments(
                             new TestData()
                                     // notice "fall.." will be skipped
                                     .setInputString("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall..")
-                                    .setExpectedUniqueCount(6)
-                                    .setExpectedCount(8)
+                                    .setExpectedUniqueCount(5)
+                                    .setExpectedCount(6)
+                                    .setStopwords(createStopwords("the a on"))
+                    ),
+                    arguments(
+                            new TestData()
+                                    .setInputString("Humpty--Dumpty")
+                                    .setExpectedUniqueCount(0)
+                                    .setExpectedCount(0)
+                                    .setStopwords(createStopwords("the a on"))
+                    ),
+
+                    arguments(
+                            new TestData()
+                                    .setInputString("-")
+                                    .setExpectedUniqueCount(0)
+                                    .setExpectedCount(0)
+                                    .setStopwords(createStopwords("the a on"))
+                    ),
+
+                    arguments(
+                            new TestData()
+                                    .setInputString("--")
+                                    .setExpectedUniqueCount(0)
+                                    .setExpectedCount(0)
+                                    .setStopwords(createStopwords("the a on"))
+                    ),
+
+                    arguments(
+                            new TestData()
+                                    .setInputString("-Dumpty")
+                                    .setExpectedUniqueCount(0)
+                                    .setExpectedCount(0)
+                                    .setStopwords(createStopwords("the a on"))
+                    ),
+
+                    arguments(
+                            new TestData()
+                                    .setInputString("Dumpty-")
+                                    .setExpectedUniqueCount(0)
+                                    .setExpectedCount(0)
                                     .setStopwords(createStopwords("the a on"))
                     )
 

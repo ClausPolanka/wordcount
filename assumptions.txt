@@ -16,3 +16,8 @@ assuming input file fits into the memory
 assume additionally: hyphen is also a word separator. e.g -> Humpty-Dumpty
 full-stop at the end is not causing word to be ignored. e.g -> wall.
 assuming multiple full-stops will be ignored e.g -> wall.. then skip it
+
+iteration - 5
+more than 1 hyphen is a ignored word. e.g : Humpty--Dumpty is ignored
+hyphen alone is ignored
+words beginning or ending with hyphen are ignored. e.g: -humpty or humpty-

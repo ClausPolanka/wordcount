@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 
 public class WordCounterOptions {
     // single full-stop at the end is not causing word to be ignored
-    private Pattern isAWordRegex = Pattern.compile("[a-zA-Z]+(\\.)?");
-    private Pattern wordSplitRegex = Pattern.compile("[\\s\\-]+");
+    private Pattern isAWordRegex = Pattern.compile("([a-zA-Z]+(-)?[a-zA-Z+]+|[a-zA-Z]+)(\\.)?");
+    private Pattern wordSplitRegex = Pattern.compile("[\\s]+");
     private Set<String> stopWords = new HashSet<>();
 
     public Pattern getIsAWordRegex() {

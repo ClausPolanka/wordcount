@@ -26,10 +26,11 @@ class WordCounterTest {
                 options
         );
 
-        WordCounterOutput output = counter.count(data.inputString);
+        WordCounterOutput output = counter.calculateOutput(data.inputString);
 
         Assertions.assertEquals(data.expectedCount, output.getWordCount());
         Assertions.assertEquals(data.expectedUniqueCount, output.getUniqueCount());
+        Assertions.assertEquals(data.expectedAvarageLength, output.getWordAverage());
 
     }
 
@@ -41,31 +42,35 @@ class WordCounterTest {
                     arguments(
                             new TestData()
                                     .setInputString("Mary had a little lamb")
-                                    .setExpectedCount(5)
+                                    .setExpectedWordCount(5)
                                     .setStopwords(emptySet())
                                     .setExpectedUniqueCount(5)
+                                    .setExpectedAvarageLength(3.6)
                     ),
 
                     arguments(
                             new TestData()
                                     .setInputString("")
                                     .setExpectedUniqueCount(0)
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
                                     .setStopwords(emptySet())
+                                    .setExpectedAvarageLength(0.0)
                     ),
 
                     arguments(
                             new TestData()
                                     .setInputString("Mary")
-                                    .setExpectedCount(1)
+                                    .setExpectedWordCount(1)
                                     .setExpectedUniqueCount(1)
                                     .setStopwords(emptySet())
+                                    .setExpectedAvarageLength(4.0)
                     ),
                     arguments(
                             new TestData()
                                     .setStopwords(emptySet())
                                     .setExpectedUniqueCount(0)
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
+                                    .setExpectedAvarageLength(0)
                                     .setInputString("Mary!")
 
                     ),
@@ -74,38 +79,43 @@ class WordCounterTest {
                             new TestData()
                                     .setInputString("Mary_Mery")
                                     .setStopwords(emptySet())
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
                                     .setExpectedUniqueCount(0)
+                                    .setExpectedAvarageLength(0.0)
                     ),
                     arguments(
                             new TestData()
                                     .setInputString("word       word")
                                     .setExpectedUniqueCount(1)
-                                    .setExpectedCount(2)
+                                    .setExpectedWordCount(2)
                                     .setStopwords(emptySet())
+                                    .setExpectedAvarageLength(4.0)
                     ),
                     arguments(
                             new TestData()
                                     .setInputString("    word       word")
                                     .setExpectedUniqueCount(1)
-                                    .setExpectedCount(2)
+                                    .setExpectedWordCount(2)
                                     .setStopwords(emptySet())
+                                    .setExpectedAvarageLength(4.0)
                     ),
                     arguments(
 
                             new TestData()
                                     .setInputString("word\tword")
                                     .setExpectedUniqueCount(1)
-                                    .setExpectedCount(2)
+                                    .setExpectedWordCount(2)
                                     .setStopwords(emptySet())
+                                    .setExpectedAvarageLength(4.0)
                     ),
 
                     arguments(
                             new TestData()
                                     .setInputString("word the word a")
                                     .setExpectedUniqueCount(1)
-                                    .setExpectedCount(2)
+                                    .setExpectedWordCount(2)
                                     .setStopwords(createStopwords("the a"))
+                                    .setExpectedAvarageLength(4.0)
 
                     ),
                     arguments(
@@ -113,86 +123,97 @@ class WordCounterTest {
                             new TestData()
                                     .setInputString("  the a ")
                                     .setExpectedUniqueCount(0)
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
                                     .setStopwords(createStopwords("the a"))
+                                    .setExpectedAvarageLength(0.0)
 
                     ),
                     arguments(
                             new TestData()
                                     .setInputString(" ")
                                     .setExpectedUniqueCount(0)
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
                                     .setStopwords(createStopwords("the a"))
+                                    .setExpectedAvarageLength(0.0)
 
                     ),
                     arguments(
                             new TestData()
                                     .setInputString("theword")
                                     .setExpectedUniqueCount(1)
-                                    .setExpectedCount(1)
+                                    .setExpectedWordCount(1)
                                     .setStopwords(createStopwords("the a"))
+                                    .setExpectedAvarageLength(7.0)
 
                     ),
                     arguments(
                             new TestData()
                                     .setInputString("_the")
                                     .setExpectedUniqueCount(0)
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
                                     .setStopwords(createStopwords("the a"))
+                                    .setExpectedAvarageLength(0.0)
                     ),
                     arguments(
                             new TestData()
                                     .setInputString("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.")
                                     .setExpectedUniqueCount(6)
-                                    .setExpectedCount(7)
+                                    .setExpectedWordCount(7)
                                     .setStopwords(createStopwords("the a on"))
+                                    .setExpectedAvarageLength(6.43)
                     ),
                     arguments(
                             new TestData()
                                     // notice "fall.." will be skipped
                                     .setInputString("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall..")
                                     .setExpectedUniqueCount(5)
-                                    .setExpectedCount(6)
+                                    .setExpectedWordCount(6)
                                     .setStopwords(createStopwords("the a on"))
+                                    .setExpectedAvarageLength(6.83)
                     ),
                     arguments(
                             new TestData()
                                     .setInputString("Humpty--Dumpty")
                                     .setExpectedUniqueCount(0)
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
                                     .setStopwords(createStopwords("the a on"))
+                                    .setExpectedAvarageLength(0.0)
                     ),
 
                     arguments(
                             new TestData()
                                     .setInputString("-")
                                     .setExpectedUniqueCount(0)
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
                                     .setStopwords(createStopwords("the a on"))
+                                    .setExpectedAvarageLength(0.0)
                     ),
 
                     arguments(
                             new TestData()
                                     .setInputString("--")
                                     .setExpectedUniqueCount(0)
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
                                     .setStopwords(createStopwords("the a on"))
+                                    .setExpectedAvarageLength(0.0)
                     ),
 
                     arguments(
                             new TestData()
                                     .setInputString("-Dumpty")
                                     .setExpectedUniqueCount(0)
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
                                     .setStopwords(createStopwords("the a on"))
+                                    .setExpectedAvarageLength(0.0)
                     ),
 
                     arguments(
                             new TestData()
                                     .setInputString("Dumpty-")
                                     .setExpectedUniqueCount(0)
-                                    .setExpectedCount(0)
+                                    .setExpectedWordCount(0)
                                     .setStopwords(createStopwords("the a on"))
+                                    .setExpectedAvarageLength(0.0)
                     )
 
             );
@@ -212,6 +233,7 @@ class WordCounterTest {
         private String inputString;
         private long expectedCount;
         private long expectedUniqueCount;
+        private double expectedAvarageLength;
         private Set<String> stopwords;
 
         public String getInputString() {
@@ -227,7 +249,7 @@ class WordCounterTest {
             return expectedCount;
         }
 
-        public TestData setExpectedCount(long expectedCount) {
+        public TestData setExpectedWordCount(long expectedCount) {
             this.expectedCount = expectedCount;
             return this;
         }
@@ -250,12 +272,22 @@ class WordCounterTest {
             return this;
         }
 
+        public double getExpectedAvarageLength() {
+            return expectedAvarageLength;
+        }
+
+        public TestData setExpectedAvarageLength(double expectedAvarageLength) {
+            this.expectedAvarageLength = expectedAvarageLength;
+            return this;
+        }
+
         @Override
         public String toString() {
             final StringBuilder sb = new StringBuilder("TestData{");
             sb.append("inputString='").append(inputString).append('\'');
             sb.append(", expectedCount=").append(expectedCount);
             sb.append(", expectedUniqueCount=").append(expectedUniqueCount);
+            sb.append(", expecteAvarageLength=").append(expectedAvarageLength);
             sb.append(", stopwords=").append(stopwords);
             sb.append('}');
             return sb.toString();

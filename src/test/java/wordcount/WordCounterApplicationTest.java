@@ -27,7 +27,7 @@ class WordCounterApplicationTest {
         //then
         bufWriter.flush();
 
-        assertEquals("Number of words: 2, unique: 1", writer.toString());
+        assertEquals("Number of words: 2, unique: 1; average word length: 3.00 characters", writer.toString());
 
     }
 
@@ -47,7 +47,7 @@ class WordCounterApplicationTest {
         //then
         bufWriter.flush();
 
-        assertEquals("Number of words: 4, unique: 4", writer.toString());
+        assertEquals("Number of words: 4, unique: 4; average word length: 6.00 characters", writer.toString());
 
     }
 

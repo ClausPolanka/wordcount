@@ -21,3 +21,12 @@ iteration - 5
 more than 1 hyphen is a ignored word. e.g : Humpty--Dumpty is ignored
 hyphen alone is ignored
 words beginning or ending with hyphen are ignored. e.g: -humpty or humpty-
+
+iteration - 6
+assuming average will work over the number of words. not the unique ones.
+calculating average is not an optional feature. will always be calculated.
+will print 2 decimals numbers. and will use javas RoundingMode.HALF_UP
+return 0 if no words are found
+count also hyphen in between words
+not counting full-stop at the end of the word. e.g-> full. has length 4 not 5 (because of dot)
+always keep 2 decimals even they are 0. e.g -> 3.00 is included in the output

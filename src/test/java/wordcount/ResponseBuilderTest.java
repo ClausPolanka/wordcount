@@ -16,9 +16,10 @@ class ResponseBuilderTest {
                 new WordCounterOutput()
                     .setWordCount(5)
                     .setUniqueCount(4)
+                    .setWordAverage(5.63111d)
         );
 
-        String expected = "Number of words: 5, unique: 4";
+        String expected = "Number of words: 5, unique: 4; average word length: 5.63 characters";
         assertEquals(expected,outputMessage);
     }
 

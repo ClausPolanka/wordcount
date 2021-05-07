@@ -28,10 +28,10 @@ public class WordCounterApplication {
 
         String inputText = createTextProvider(args).readInputText();
 
-        WordCounterOutput count = wordCounter.count(inputText);
+        WordCounterOutput output = wordCounter.calculateOutput(inputText);
 
         try {
-            writer.write(responseBuilder.createOutputMessage(count));
+            writer.write(responseBuilder.createOutputMessage(output));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

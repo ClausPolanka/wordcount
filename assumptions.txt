@@ -1,0 +1,3 @@
+separator is only 1 or more space only characters
+no handling of special characters like, `,'"`
+user provides 1 input and then program quits

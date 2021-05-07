@@ -145,8 +145,17 @@ class WordCounterTest {
                                     .setInputString("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.")
                                     .setExpectedUniqueCount(7)
                                     .setExpectedCount(9)
-                                    .setStopwords(createStopwords("the a"))
+                                    .setStopwords(createStopwords("the a on"))
+                    ),
+                    arguments(
+                            new TestData()
+                                    // notice "fall.." will be skipped
+                                    .setInputString("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall..")
+                                    .setExpectedUniqueCount(6)
+                                    .setExpectedCount(8)
+                                    .setStopwords(createStopwords("the a on"))
                     )
+
             );
 
         }

@@ -13,3 +13,6 @@ there can be only 1 argument from command line
 iteration - 4
 calculating unique words are not optional feature. always to be calculated.
 assuming input file fits into the memory
+assume additionally: hyphen is also a word separator. e.g -> Humpty-Dumpty
+full-stop at the end is not causing word to be ignored. e.g -> wall.
+assuming multiple full-stops will be ignored e.g -> wall.. then skip it

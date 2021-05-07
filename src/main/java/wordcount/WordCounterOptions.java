@@ -4,7 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class WordCounterOptions {
-    private String isAWordRegex = "[a-zA-Z]+";
+    // single full-stop at the end is not causing word to be ignored
+    private String isAWordRegex = "[a-zA-Z]+(\\.)?";
     private String wordSplitRegex = "[\\s\\-]+";
     private Set<String> stopWords = new HashSet<>();
 

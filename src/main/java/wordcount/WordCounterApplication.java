@@ -28,7 +28,7 @@ public class WordCounterApplication {
 
         String inputText = createTextProvider(args).readInputText();
 
-        long count = wordCounter.count(inputText);
+        WordCounterOutput count = wordCounter.count(inputText);
 
         try {
             writer.write(responseBuilder.createOutputMessage(count));

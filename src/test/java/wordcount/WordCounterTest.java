@@ -26,9 +26,10 @@ class WordCounterTest {
                 options
         );
 
-        long output = counter.count(data.inputString);
+        WordCounterOutput output = counter.count(data.inputString);
 
-        Assertions.assertEquals(data.expectedCount, output);
+        Assertions.assertEquals(data.expectedCount, output.getWordCount());
+        Assertions.assertEquals(data.expectedUniqueCount, output.getUniqueCount());
 
     }
 
@@ -37,20 +38,107 @@ class WordCounterTest {
         @Override
         public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
             return Stream.of(
-                    arguments(new TestData("Mary had a little lamb", 5, emptySet())),
-                    arguments(new TestData("", 0, emptySet())),
-                    arguments(new TestData("Mary", 1, emptySet())),
-                    arguments(new TestData("Mary!", 0, emptySet())),
-                    arguments(new TestData("Mary_Mery", 0, emptySet())),
-                    arguments(new TestData("word       word", 2, emptySet())),
-                    arguments(new TestData("    word       word", 2, emptySet())),
-                    arguments(new TestData("word\tword", 2, emptySet())),
+                    arguments(
+                            new TestData()
+                                    .setInputString("Mary had a little lamb")
+                                    .setExpectedCount(5)
+                                    .setStopwords(emptySet())
+                                    .setExpectedUniqueCount(5)
+                    ),
 
-                    arguments(new TestData("word the word a", 2, createStopwords("the a"))),
-                    arguments(new TestData("  the a ", 0, createStopwords("the a"))),
-                    arguments(new TestData(" ", 0, createStopwords("the a"))),
-                    arguments(new TestData("theword", 1, createStopwords("the a"))),
-                    arguments(new TestData("_the", 0, createStopwords("the a")))
+                    arguments(
+                            new TestData()
+                                    .setInputString("")
+                                    .setExpectedUniqueCount(0)
+                                    .setExpectedCount(0)
+                                    .setStopwords(emptySet())
+                    ),
+
+                    arguments(
+                            new TestData()
+                                    .setExpectedCount(1)
+                                    .setExpectedUniqueCount(1)
+                                    .setInputString("Mary")
+                                    .setStopwords(emptySet())
+                    ),
+                    arguments(
+                            new TestData()
+                                    .setStopwords(emptySet())
+                                    .setExpectedUniqueCount(0)
+                                    .setExpectedCount(0)
+                                    .setInputString("Mary!")
+
+                    ),
+
+                    arguments(
+                            new TestData()
+                                    .setInputString("Mary_Mery")
+                                    .setStopwords(emptySet())
+                                    .setExpectedCount(0)
+                                    .setExpectedUniqueCount(0)
+                    ),
+                    arguments(
+                            new TestData()
+                                    .setInputString("word       word")
+                                    .setExpectedUniqueCount(1)
+                                    .setExpectedCount(2)
+                                    .setStopwords(emptySet())
+                    ),
+                    arguments(
+                            new TestData()
+                                    .setInputString("    word       word")
+                                    .setExpectedUniqueCount(1)
+                                    .setExpectedCount(2)
+                                    .setStopwords(emptySet())
+                    ),
+                    arguments(
+
+                            new TestData()
+                                    .setInputString("word\tword")
+                                    .setExpectedUniqueCount(1)
+                                    .setExpectedCount(2)
+                                    .setStopwords(emptySet())
+                    ),
+
+                    arguments(
+                            new TestData()
+                                    .setInputString("word the word a")
+                                    .setExpectedUniqueCount(1)
+                                    .setExpectedCount(2)
+                                    .setStopwords(createStopwords("the a"))
+
+                    ),
+                    arguments(
+
+                            new TestData()
+                                    .setInputString("  the a ")
+                                    .setExpectedUniqueCount(0)
+                                    .setExpectedCount(0)
+                                    .setStopwords(createStopwords("the a"))
+
+                    ),
+                    arguments(
+                            new TestData()
+                                    .setInputString(" ")
+                                    .setExpectedUniqueCount(0)
+                                    .setExpectedCount(0)
+                                    .setStopwords(createStopwords("the a"))
+
+                    ),
+                    arguments(
+                            new TestData()
+                                    .setInputString("theword")
+                                    .setExpectedUniqueCount(1)
+                                    .setExpectedCount(1)
+                                    .setStopwords(createStopwords("the a"))
+
+                    ),
+                    arguments(
+                            new TestData()
+                                    .setInputString("_the")
+                                    .setExpectedUniqueCount(0)
+                                    .setExpectedCount(0)
+                                    .setStopwords(createStopwords("the a")))
             );
 
         }
@@ -64,16 +152,46 @@ class WordCounterTest {
         }
     }
 
-
     static class TestData {
-        private final String inputString;
-        private final long expectedCount;
-        private final Set<String> stopwords;
+        private String inputString;
+        private long expectedCount;
+        private long expectedUniqueCount;
+        private Set<String> stopwords;
 
-        public TestData(String inputString, long expectedCount, Set<String> stopwords) {
+        public String getInputString() {
+            return inputString;
+        }
+
+        public TestData setInputString(String inputString) {
             this.inputString = inputString;
+            return this;
+        }
+
+        public long getExpectedCount() {
+            return expectedCount;
+        }
+
+        public TestData setExpectedCount(long expectedCount) {
             this.expectedCount = expectedCount;
+            return this;
+        }
+
+        public long getExpectedUniqueCount() {
+            return expectedUniqueCount;
+        }
+
+        public TestData setExpectedUniqueCount(long expectedUniqueCount) {
+            this.expectedUniqueCount = expectedUniqueCount;
+            return this;
+        }
+
+        public Set<String> getStopwords() {
+            return stopwords;
+        }
+
+        public TestData setStopwords(Set<String> stopwords) {
             this.stopwords = stopwords;
+            return this;
         }
 
         @Override
@@ -81,6 +199,7 @@ class WordCounterTest {
             final StringBuilder sb = new StringBuilder("TestData{");
             sb.append("inputString='").append(inputString).append('\'');
             sb.append(", expectedCount=").append(expectedCount);
+            sb.append(", expectedUniqueCount=").append(expectedUniqueCount);
             sb.append(", stopwords=").append(stopwords);
             sb.append('}');
             return sb.toString();

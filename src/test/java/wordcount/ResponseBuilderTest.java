@@ -12,9 +12,14 @@ class ResponseBuilderTest {
     public void testOutput() {
         ResponseBuilder responseBuilder = new ResponseBuilder();
 
-        String outputMessage = responseBuilder.createOutputMessage(5);
+        String outputMessage = responseBuilder.createOutputMessage(
+                new WordCounterOutput()
+                    .setWordCount(5)
+                    .setUniqueCount(4)
+        );
 
-        assertEquals(outputMessage, "Number of words: 5");
+        String expected = "Number of words: 5, unique: 4";
+        assertEquals(expected,outputMessage);
     }
 
 }

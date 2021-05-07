@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class WordCounterApplicationTest {
     @Test
     void runWithoutCommandLineArgument() throws IOException {
-        BufferedReader reader = new BufferedReader(new StringReader("abc the"));
+        BufferedReader reader = new BufferedReader(new StringReader("abc the abc"));
         StringWriter writer = new StringWriter();
         BufferedWriter bufWriter = new BufferedWriter(writer);
 
@@ -27,7 +27,7 @@ class WordCounterApplicationTest {
         //then
         bufWriter.flush();
 
-        assertEquals("Number of words: 1", writer.toString());
+        assertEquals("Number of words: 2, unique: 1", writer.toString());
 
     }
 
@@ -47,7 +47,7 @@ class WordCounterApplicationTest {
         //then
         bufWriter.flush();
 
-        assertEquals("Number of words: 3", writer.toString());
+        assertEquals("Number of words: 3, unique: 3", writer.toString());
 
     }
 

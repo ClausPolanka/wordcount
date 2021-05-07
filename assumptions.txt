@@ -9,3 +9,7 @@ stopwords.txt are present in classpath and not provided from user
 iteration - 3
 the input file assumed to be present under repo root
 there can be only 1 argument from command line
+
+iteration - 4
+calculating unique words are not optional feature. always to be calculated.
+assuming input file fits into the memory

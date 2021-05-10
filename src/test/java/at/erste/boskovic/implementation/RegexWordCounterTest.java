@@ -31,7 +31,11 @@ class RegexWordCounterTest {
                 Arguments.of("", 0),
                 Arguments.of(null, 0),
                 Arguments.of("wordü word", 1),
-                Arguments.of("wor>d", 0)
+                Arguments.of("wor>d", 0),
+                Arguments.of("word \t  word", 2),
+                Arguments.of("word\nword", 2),
+                Arguments.of("word\rword", 2),
+                Arguments.of("123 word", 1)
         );
     }
 

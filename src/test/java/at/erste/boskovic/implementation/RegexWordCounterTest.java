@@ -13,38 +13,63 @@ import static org.junit.jupiter.api.Assertions.*;
 class RegexWordCounterTest {
 
     @ParameterizedTest
-    @MethodSource("at.erste.boskovic.implementation.RegexWordCounterTest#provideTestCasesForWordCounter")
-    void given_sentence_when_countWords_then_expected_value(String sentence, long expectedCount){
-
+    @MethodSource("at.erste.boskovic.implementation.RegexWordCounterTest#provideTestCasesForWordCorrectWordsCounter")
+    void shouldCountWordsForOnlyCorrectWords(String sentence, long expectedCount){
         WordCounter wordCounter = new RegexWordCounter();
-
         assertEquals(expectedCount, wordCounter.countWords(sentence));
     }
 
-    private static Stream<Arguments> provideTestCasesForWordCounter() {
+    private static Stream<Arguments> provideTestCasesForWordCorrectWordsCounter() {
         return Stream.of(
                 Arguments.of("word", 1),
-                Arguments.of("         word         word                          word                ", 3),
-                Arguments.of("wor3d", 0),
-                Arguments.of("wo$rd", 0),
-                Arguments.of("word, word", 1),
-                Arguments.of("word? word. word! word", 1),
-                Arguments.of("", 0),
-                Arguments.of(null, 0),
-                Arguments.of("wordü word", 1),
-                Arguments.of("wor>d", 0),
-                Arguments.of("word \t  word", 2),
+                Arguments.of("word word word", 3)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("at.erste.boskovic.implementation.RegexWordCounterTest#provideTestCasesForWordsWithWhitespaces")
+    void shouldCountCorrectForSeveralWhitespaces(String sentence, long expectedCount){
+        test(sentence, expectedCount);
+    }
+
+    private static Stream<Arguments> provideTestCasesForWordsWithWhitespaces() {
+        return Stream.of(
                 Arguments.of("word\nword", 2),
                 Arguments.of("word\rword", 2),
-                Arguments.of("123 word", 1)
+                Arguments.of("word\tword", 2)
         );
     }
 
     @Test
-
-    void shouldCountWordsForOnlyCorrectWords(){
-
+    void shouldCountWhenSeveralWhitespacesAreConcatenated(){
+        test("word word \n\r word", 3);
     }
 
+    @Test
+    void shouldCountZeroForEmptyStringAndNull(){
+        test("", 0);
+        test(null, 0);
+    }
+
+    @Test
+    void shouldNotCountWhenUmlaut(){
+        test("wordü", 0);
+    }
+
+    @Test
+    void shouldNotCountWithSpecialCharacters(){
+        test("word? word. word! word wo$rd", 1);
+    }
+
+    @Test
+    void shouldNotCountWithNumbers(){
+        test("word word9 123", 1);
+    }
+
+
+    private void test(String sentence, long expectedCount){
+        WordCounter wordCounter = new RegexWordCounter();
+        assertEquals(expectedCount, wordCounter.countWords(sentence));
+    }
 
 }

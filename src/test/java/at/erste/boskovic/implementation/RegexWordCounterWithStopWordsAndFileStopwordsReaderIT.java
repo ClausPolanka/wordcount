@@ -23,7 +23,7 @@ public class RegexWordCounterWithStopWordsAndFileStopwordsReaderIT {
 
     @Test
     void shouldCountCorrectWithStopwords(){
-        test("word test_off word test_on word", 3);
+        test("word testoff word teston word", 3);
     }
 
     private void test(String sentence, long expectedCount){

@@ -18,7 +18,7 @@ public class FileStopWordReaderTest {
         List<String> stopwords = stopWordsReader.readStopwords();
         assertFalse(stopwords.isEmpty());
         assertEquals(4, stopwords.size());
-        List<String> testStopwords = Arrays.asList("test_the", "test_a", "test_on", "test_off");
+        List<String> testStopwords = Arrays.asList("testthe", "testa", "teston", "testoff");
         for (String testStopword : testStopwords){
             assertTrue(stopwords.contains(testStopword));
         }

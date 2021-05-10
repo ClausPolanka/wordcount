@@ -8,21 +8,20 @@ import at.erste.boskovic.ui.FileInputTextReader;
 
 public class Application {
 
-    public static final String STOPWORDS_FILE_NAME = "stopword_files/stopwords.txt";
-
-    public long countWordsFromInput(String[] args){
+    public long countWordsFromInput(String[] args, String stopwordsFileName){
 
         String input;
         InputTextReader inputTextReader;
 
         if(args.length == 0) {
+            new ConsoleUserInterface().sendToOutput("Enter text:");
             inputTextReader = new ConsoleInputTextReader();
         } else {
             inputTextReader = new FileInputTextReader(args[0]);
         }
 
         input = inputTextReader.readInput();
-        StopWordsReader stopWordsReader = new FileStopWordReader(Application.STOPWORDS_FILE_NAME);
+        StopWordsReader stopWordsReader = new FileStopWordReader(stopwordsFileName);
         WordCounter wordCounter = new RegexWordCounter(stopWordsReader.readStopwords());
         return wordCounter.countWords(input);
     }

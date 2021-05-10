@@ -19,13 +19,8 @@ public final class RegexWordCounter implements WordCounter {
     public RegexWordCounter() {
     }
 
-    public RegexWordCounter(InputStream stopWordsInputStream) {
-        Scanner myReader = new Scanner(stopWordsInputStream);
-
-        while (myReader.hasNextLine()) {
-            String line = myReader.nextLine();
-            stopWords.add(line);
-        }
+    public RegexWordCounter(List<String> stopWords) {
+        this.stopWords = stopWords;
     }
 
     @Override

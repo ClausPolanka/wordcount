@@ -1,6 +1,8 @@
 package at.erste.boskovic.implementation;
 
+import at.erste.boskovic.StopWordsReader;
 import at.erste.boskovic.WordCounter;
+import at.erste.boskovic.stopwordsreaders.FileStopWordReader;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -76,9 +78,9 @@ class RegexWordCounterTest {
     @ParameterizedTest
     @MethodSource("at.erste.boskovic.implementation.RegexWordCounterTest#provideTestCasesForWordCounterWithStopWords")
     void given_sentenceandstopwordsfile_when_countWords_then_expected_value(String sentence, long expectedCount) {
-        InputStream stopWordsInputStream = getClass().getClassLoader().getResourceAsStream("stopword_test_files/test_stopwords.txt");
+        StopWordsReader stopWordsReader = new FileStopWordReader();
 
-        WordCounter wordCounter = new RegexWordCounter(stopWordsInputStream);
+        WordCounter wordCounter = new RegexWordCounter(stopWordsReader.readStopwords());
 
         assertEquals(expectedCount, wordCounter.countWords(sentence));
 
@@ -95,9 +97,9 @@ class RegexWordCounterTest {
 
     @Test
     void plain_simple_test_case(){
-        InputStream stopWordsInputStream = getClass().getClassLoader().getResourceAsStream("stopword_test_files/test_stopwords.txt");
+        StopWordsReader stopWordsReader = new FileStopWordReader();
 
-        WordCounter wordCounter = new RegexWordCounter(stopWordsInputStream);
+        WordCounter wordCounter = new RegexWordCounter(stopWordsReader.readStopwords());
 
         assertEquals(1, wordCounter.countWords("word the"));
     }

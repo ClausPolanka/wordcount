@@ -1,6 +1,7 @@
 package at.erste.boskovic;
 
 import at.erste.boskovic.implementation.RegexWordCounter;
+import at.erste.boskovic.stopwordsreaders.FileStopWordReader;
 import at.erste.boskovic.ui.ConsoleUserInterface;
 
 public class Main {
@@ -9,7 +10,8 @@ public class Main {
         UserInterface userInterface = new ConsoleUserInterface();
         userInterface.sendToOutput("Write a sentence: ");
         String input = userInterface.readFromInput();
-        WordCounter wordCounter = new RegexWordCounter();
+        StopWordsReader stopWordsReader = new FileStopWordReader();
+        WordCounter wordCounter = new RegexWordCounter(stopWordsReader.readStopwords());
         userInterface.sendToOutput("The number of words is: " + wordCounter.countWords(input));
     }
 }

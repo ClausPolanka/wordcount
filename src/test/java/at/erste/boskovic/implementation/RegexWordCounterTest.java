@@ -1,6 +1,7 @@
 package at.erste.boskovic.implementation;
 
-import at.erste.WordCounter;
+import at.erste.boskovic.WordCounter;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -15,7 +16,7 @@ class RegexWordCounterTest {
     @MethodSource("at.erste.boskovic.implementation.RegexWordCounterTest#provideTestCasesForWordCounter")
     void given_sentence_when_countWords_then_expected_value(String sentence, long expectedCount){
 
-        WordCounter wordCounter = new RegexWordCounter("[A-Za-z]+", "\\s+");
+        WordCounter wordCounter = new RegexWordCounter();
 
         assertEquals(expectedCount, wordCounter.countWords(sentence));
     }
@@ -37,6 +38,12 @@ class RegexWordCounterTest {
                 Arguments.of("word\rword", 2),
                 Arguments.of("123 word", 1)
         );
+    }
+
+    @Test
+
+    void shouldCountWordsForOnlyCorrectWords(){
+
     }
 
 

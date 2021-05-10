@@ -6,18 +6,18 @@ import java.util.stream.Stream;
 
 import static java.util.Objects.isNull;
 
-public class RegexWordCounter implements WordCounter {
+public final class RegexWordCounter implements WordCounter {
 
-    private String wordDefinitionRegex;
-    private String spaceBetweenWordsDefinitionRegex;
+    private final String wordDefinitionRegex;
+    private final String spaceBetweenWordsDefinitionRegex;
 
-    public RegexWordCounter(String wordDefinitionRegex, String spaceBetweenWordsDefinitionRegex) {
+    public RegexWordCounter(final String wordDefinitionRegex, final String spaceBetweenWordsDefinitionRegex) {
         this.wordDefinitionRegex = wordDefinitionRegex;
         this.spaceBetweenWordsDefinitionRegex = spaceBetweenWordsDefinitionRegex;
     }
 
     @Override
-    public long countWords(String sentence) {
+    final public long countWords(String sentence) {
         if (isNull(sentence)){
             return 0;
         }
@@ -35,6 +35,6 @@ public class RegexWordCounter implements WordCounter {
     }
 
     private long countWords(String[] potentialWords){
-        return Stream.of(potentialWords).filter(potentialWord -> isWord(potentialWord)).count();
+        return Stream.of(potentialWords).filter(this::isWord).count();
     }
 }

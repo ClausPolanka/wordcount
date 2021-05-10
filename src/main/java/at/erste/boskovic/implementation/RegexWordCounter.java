@@ -16,6 +16,9 @@ public final class RegexWordCounter implements WordCounter {
     private static final String SPACE_BETWEEN_WORDS_DEFINITION_REGEX = "\\s+";
     private List<String> stopWords = new ArrayList<>();
 
+    public RegexWordCounter() {
+    }
+
     public RegexWordCounter(InputStream stopWordsInputStream) {
         Scanner myReader = new Scanner(stopWordsInputStream);
 

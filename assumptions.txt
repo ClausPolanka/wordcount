@@ -1,0 +1,1 @@
+Assumption 1. according to the spec, I assume that there are no umlauts. (word is a stream of A-Za-z)

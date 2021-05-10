@@ -30,7 +30,6 @@ public class RegexWordCounter implements WordCounter {
         return sentence.split(spaceBetweenWordsDefinitionRegex);
     }
 
-
     private boolean isWord(String potentialWord){
         return potentialWord.matches(wordDefinitionRegex);
     }

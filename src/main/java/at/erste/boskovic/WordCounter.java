@@ -1,4 +1,4 @@
-package at.erste;
+package at.erste.boskovic;
 
 public interface WordCounter {
 

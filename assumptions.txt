@@ -1,1 +1,6 @@
 Assumption 1. according to the spec, I assume that there are no umlauts. (word is a stream of A-Za-z)
+
+Assumption 2. normaly I would use the logging library, but for the purpose of this test I am using System.out.println()
+
+Assumption 3. I am assuming that the file name and the location will be given in the program, and in the case that the file
+is not given, or not placed at the proper location, I would not stop the program, just provide an erro message.

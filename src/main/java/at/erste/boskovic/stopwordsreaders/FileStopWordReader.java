@@ -11,11 +11,15 @@ import static java.util.Objects.nonNull;
 
 public class FileStopWordReader implements StopWordsReader {
 
-    private static final String STOPWORDS_FILE_NAME = "stopword_test_files/test_stopwords.txt";
+    private final String stopwordsFileName;
+
+    public FileStopWordReader(String stopwordsFileName) {
+        this.stopwordsFileName = stopwordsFileName;
+    }
 
     @Override
     public List<String> readStopwords() {
-        InputStream stopWordsInputStream = getClass().getClassLoader().getResourceAsStream(STOPWORDS_FILE_NAME);
+        InputStream stopWordsInputStream = getClass().getClassLoader().getResourceAsStream(stopwordsFileName);
 
         List<String> stopWords = new ArrayList<>();
 

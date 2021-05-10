@@ -75,33 +75,5 @@ class RegexWordCounterTest {
         WordCounter wordCounter = new RegexWordCounter();
         assertEquals(expectedCount, wordCounter.countWords(sentence));
     }
-    @ParameterizedTest
-    @MethodSource("at.erste.boskovic.implementation.RegexWordCounterTest#provideTestCasesForWordCounterWithStopWords")
-    void given_sentenceandstopwordsfile_when_countWords_then_expected_value(String sentence, long expectedCount) {
-        StopWordsReader stopWordsReader = new FileStopWordReader();
-
-        WordCounter wordCounter = new RegexWordCounter(stopWordsReader.readStopwords());
-
-        assertEquals(expectedCount, wordCounter.countWords(sentence));
-
-    }
-
-    private static Stream<Arguments> provideTestCasesForWordCounterWithStopWords() {
-        return Stream.of(
-                Arguments.of("word the", 1),
-                Arguments.of("word a", 1),
-                Arguments.of("wor3d on", 0),
-                Arguments.of("wo$rd off", 0)
-        );
-    }
-
-    @Test
-    void plain_simple_test_case(){
-        StopWordsReader stopWordsReader = new FileStopWordReader();
-
-        WordCounter wordCounter = new RegexWordCounter(stopWordsReader.readStopwords());
-
-        assertEquals(1, wordCounter.countWords("word the"));
-    }
 
 }

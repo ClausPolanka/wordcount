@@ -1,0 +1,12 @@
+This is quite simple but yet pretty extendable implementation for the requested words counter application
+It has 3 main workflow objects:
+1. Modifier - modifies the input word, for example, if we need to clean a word, like remove the dot at the end, or whatever
+2. Filter - check if the word is valid
+3. Aggregator - perform aggregation on each word, like count words
+
+Source of information is provided through Source interface, it can be console, file or anything
+WordsProcessor will get data from the source, split each line around SPACE (\ s), apply all modifications for each word,
+test it against all available filter and if the word is OK will perform aggregation
+
+The result of the processor work is a State object. Which contains all calculated information and can be used later
+to print out it or use it later in further calculations

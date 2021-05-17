@@ -6,7 +6,6 @@ import java.util.List;
 public class WordCounter {
 
     public static final String WHITESPACES = "\\s+";
-
     private final List<String> stopWords;
 
     public WordCounter(List<String> stopWords) {

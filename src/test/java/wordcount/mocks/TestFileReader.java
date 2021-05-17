@@ -8,15 +8,15 @@ import java.util.Optional;
 
 public class TestFileReader extends FileReader {
 
-    private final String response;
+    private final Optional<String> response;
 
-    public TestFileReader(String response) {
+    public TestFileReader(Optional<String> response) {
         this.response = response;
     }
 
     @Override
     public Optional<String> read(String fileName) {
-        return Optional.of(response);
+        return response;
     }
 
 

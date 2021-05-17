@@ -25,6 +25,6 @@ class MainTest {
 
         Main.main();
 
-        assertEquals("Enter text: Number of words: 5", outputStreamCaptor.toString());
+        assertEquals("Enter text: Number of words: 4", outputStreamCaptor.toString());
     }
 }

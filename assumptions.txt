@@ -1,3 +1,5 @@
 I had an assumption that we will give a message for the user to telling him to provide input
 I had an other assumption that the user will always respond.
 I had the assumption that the user input will be one line.
+I had the assumption that separator can be any whitespace and nothing else
+I had the assumption that a word what contains something what is not a letter is invalid and should be counted as 0 word

@@ -22,9 +22,10 @@ class WordCounterTest {
             "         ,0",
             "Mary had a little lamb,5",
             "           word    word                             word                 ,3",
-            "word,1"
+            "word,1",
+            "WORD,1"
     })
-    void should_Return_Count(String input, long expected) {
+    void should_Count_Return_Count(String input, long expected) {
         long actual = sut.count(input);
 
         Assertions.assertEquals(expected, actual);

@@ -3,9 +3,7 @@ package wordcount;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,11 +19,12 @@ class MainTest {
     }
 
     @Test
-    void should_Count_Words_From_User_Input() {
+    void should_Main_Interact_With_User() {
+        System.setOut(new PrintStream(outputStreamCaptor));
         System.setIn(new ByteArrayInputStream(USER_INPUT_MESSAGE.getBytes()));
 
         Main.main();
 
-        assertEquals("Number of words: 5", outputStreamCaptor.toString());
+        assertEquals("Enter text: Number of words: 5", outputStreamCaptor.toString());
     }
 }

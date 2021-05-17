@@ -35,7 +35,7 @@ class UserInterActorTest {
     }
 
     @Test
-    void should_Write_Message_To_User() throws IOException {
+    void should_Read_Write_Message_To_User() throws IOException {
         sut.read(MESSAGE_TO_THE_USER);
 
         assertEquals(MESSAGE_TO_THE_USER, getWriteMessage());

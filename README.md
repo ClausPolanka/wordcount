@@ -2,12 +2,22 @@
 Congratulations. You made it to our next recruiting stage which is a coding challenge. In this stage you have to show practical skills in the things which you discussed in the previous recruiting stage:
 - Object-Oriented Programming
 - Refactoring
-- Automated Testing (Developer Tests) 
+- Automated Testing (Developer Tests)
+
+This stage is split into two parts
+
+1. Home Assignment (expected effort: 3 hours)
+2. Remote-Pair-Programming Sessions (4 hours)
+
+__Please note__: The home assignment is the precondition for the Remote-Pair-Programming Sessions. Only if we are happy with part 1 you will be invited to part 2 of our coding challenge stage.
+
+### Home Assignment
+We expect you to work 3 hours on the example application which we soon will explain to you in more detail. Of course, we can't prevent you from putting more hours in, which we for sure don't expect. Please, __don't finish more than a maximum of 3 iterations__ even though this could mean that your spend less than 3 hours. Please, as soon as you have finished the home assignment (3 hours of work) let us know, so that we can start with the evaluation.
 
 ### Remote-Pair-Programming Sessions
-You will collaborate in seven sessions with George Backend Chapter team members in a remote fashion using Skype. The first session starts at 9 am. Every session takes one hour. There will be a one-hour lunch break from 12am to 1pm. The last session goes from 4pm to 5pm. At the beginning of every session a new George Backend team member will join the Skype call while the previous colleague leaves.
+Considering your home assignment was successful, you will be invited to the 2nd part of this stage. You will collaborate in four sessions with George Backend Chapter team members in a remote fashion using Skype. The first session starts at 9 am. Every session takes one hour. At the beginning of every session a new George Backend team member will join the Skype call while the previous colleague leaves.
 
-In the Remote-Pair-Programming Sessions you need to share your screen so that we can follow your progress. In case you have a dual monitor setup, please make sure that you also share your browswer window. Of course, you can use the web to research in case you need to look up something. In general it should feel as if you would have a regular working day at work. 
+In the Remote-Pair-Programming Sessions you need to share your screen so that we can follow your progress. In case you have a dual monitor setup, please make sure that you also share your browswer window. Of course, you can use the web to research in case you need to look up something. In general, it should feel as if you would have a regular working day at work. 
 
 ### Exercise: Word Count Kata
 Please find the requirements for the Word Count Kata on the following [website](https://ccd-school.de/coding-dojo/#cd8). At the bottom of that page you will find all requirements split into 9 iterations. The goal of this exercise is __not__ to finish as many iterations as possible. We will evaluate your solution based on quality over quantity. 
@@ -37,7 +47,7 @@ Please use Java 8 or Kotlin as a programming language. No Framework is allowed f
 
 ### Let's Get Startet
 1. Please clone the repository.
-2. Create a branch off master (if you use Java) or off kotlin_maven_baseline (in case you use Kotlin): `firstname_lastname_iteration_1_colleague`
+2. Create a branch off master (if you use Java) or off kotlin_maven_baseline (in case you use Kotlin): `firstname_lastname_iteration_1_homeassignment`
 3. Push this branch to the repository.
 4. Run `mvn clean install` via your terminal.
 5. Open the project in your IDE of choice.

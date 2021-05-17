@@ -1,2 +1,3 @@
 I had an assumption that we will give a message for the user to telling him to provide input
 I had an other assumption that the user will always respond.
+I had the assumption that the user input will be one line.

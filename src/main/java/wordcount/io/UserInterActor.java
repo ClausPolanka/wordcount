@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class UserInterActor {
 
+    public static final String SPACE = " ";
     private final Scanner scanner;
     private final BufferedWriter bufferedWriter;
 
@@ -21,8 +22,9 @@ public class UserInterActor {
         return scanner.nextLine();
     }
 
-    public void write(String message, long count) {
-
+    public void write(String message, long count) throws IOException {
+        String concatenatedMessage = message + SPACE + count;
+        bufferedWriter.write(concatenatedMessage);
+        bufferedWriter.flush();
     }
-
 }

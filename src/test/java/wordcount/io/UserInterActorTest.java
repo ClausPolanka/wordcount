@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserInterActorTest {
     public static final String MESSAGE_TO_THE_USER = "Message to the user";
     public static final String MESSAGE_FROM_THE_USER = "Message from the user";
+    public static final String CONCATENATED_MESSAGE_TO_THE_USER = "Message to the user 5";
+    public static final int COUNT = 5;
 
     private Scanner scanner;
     private BufferedWriter bufferedWriter;
@@ -44,6 +46,13 @@ class UserInterActorTest {
         String actual = sut.read(MESSAGE_TO_THE_USER);
 
         assertEquals(MESSAGE_FROM_THE_USER, actual);
+    }
+
+    @Test
+    void should_Write_Concatenated_message() throws IOException {
+        sut.write(MESSAGE_TO_THE_USER, COUNT);
+
+        assertEquals(CONCATENATED_MESSAGE_TO_THE_USER, getWriteMessage());
     }
 
     private String getWriteMessage() {

@@ -3,7 +3,6 @@ package wordcount;
 import wordcount.domain.WordCounter;
 import wordcount.io.UserInterActor;
 
-import javax.imageio.IIOException;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -18,7 +17,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out))) {
             UserInterActor userInterActor = new UserInterActor(scanner, bufferedWriter);
-            WordCounter wordCounter = new WordCounter();
+            WordCounter wordCounter = new WordCounter(stopWords);
 
             String text = userInterActor.read(ENTER_TEXT_MESSAGE);
             long count = wordCounter.count(text);

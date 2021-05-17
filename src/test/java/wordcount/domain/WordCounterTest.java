@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class WordCounterTest {
 
-    private WordCounter sut = new WordCounter();
+    private WordCounter sut = new WordCounter(stopWords);
 
     @Test
     void should_Return_0_When_Text_Is_Null() {

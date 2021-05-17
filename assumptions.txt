@@ -5,3 +5,5 @@ I had the assumption that separator can be any whitespace and nothing else
 I had the assumption that a word what contains something what is not a letter is invalid and should be counted as 0 word
 I had the assumption that the stopwords.txt is provided in the same directory as the application
 I had the assumption that if the stopwords.txt is not provided we should count the words like it was an empty list
+I had the assumption that if wrong filename is provided, the application will still ask for a text
+I had the assumption that the provided file on the classpath

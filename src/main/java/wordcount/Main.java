@@ -8,8 +8,8 @@ import wordcount.io.UserInterActor;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -25,13 +25,24 @@ public class Main {
             List<String> stopWords = stopWordsReader.read("/stopwords.txt");
             UserInterActor userInterActor = new UserInterActor(scanner, bufferedWriter);
             WordCounter wordCounter = new WordCounter(stopWords);
-
-            String text = userInterActor.read(ENTER_TEXT_MESSAGE);
+            String text = readTextToCount(args, fileReader, userInterActor);
             long count = wordCounter.count(text);
             userInterActor.write(NUMBER_OF_WORDS_MESSAGE, count);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    private static String readTextToCount(String[] args, FileReader fileReader, UserInterActor userInterActor) throws IOException {
+        if (args.length != 0) {
+            String fileWithWords = "/" + args[0];
+            Optional<String> textFromFile = fileReader.read(fileWithWords);
+
+            if (textFromFile.isPresent()) {
+                return textFromFile.get();
+            }
+        }
+        return userInterActor.read(ENTER_TEXT_MESSAGE);
     }
 }

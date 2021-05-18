@@ -15,8 +15,8 @@ class WordFilterTest {
     final WordFilter filter = new WordFilter();
 
     @ParameterizedTest
-    @ValueSource(strings = { "a", "aBc" })
-    void shouldAllowOnlyLetters(String word) {
+    @ValueSource(strings = { "a", "aBc", "a-b" })
+    void shouldAllowOnlyLettersAndHyphen(String word) {
         // when
         final boolean isLetter = filter.test(word, state);
 
@@ -27,7 +27,7 @@ class WordFilterTest {
 
     @ParameterizedTest
     @NullSource
-    @ValueSource(strings = { "a123", "a!b", "a-b", "", " " })
+    @ValueSource(strings = { "a123", "a!b", "", " " })
     void shouldNotAllowWords(String word) {
         // when
         final boolean isLetter = filter.test(word, state);

@@ -25,5 +25,7 @@ class WordCounterTest {
         assertEquals(wordCounter.countWords(), 1);
         wordCounter.setText("           word           word                 word     ");
         assertEquals(wordCounter.countWords(), 3);
+        wordCounter.setText("Mary had a little lamb");
+        assertEquals(wordCounter.countWords(), 4);
     }
 }

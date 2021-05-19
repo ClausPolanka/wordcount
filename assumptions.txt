@@ -1,0 +1,3 @@
+iteration 2
+Should I create the stopwords.txt? Yes
+And where to put it? I'll put it next to the app

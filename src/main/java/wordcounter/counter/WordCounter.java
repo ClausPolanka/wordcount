@@ -2,26 +2,24 @@ package wordcounter.counter;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class WordCounter {
 
-    // TODO
-    private String text;
+    private static final String WORD_REGEX = "[a-zA-Z]+";
+    private static final Pattern WORD_PATTERN = Pattern.compile(WORD_REGEX);
+
     private List<String> stopWords;
 
     public WordCounter(List<String> stopWords) {
         this.stopWords = stopWords;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public int countWords() {
+    public int countWordsIn(String text) {
         String[] candidates = text.trim().split(" ");
         List<String> result = Arrays.stream(candidates)
-                .filter(w -> w.matches("[a-zA-Z]+") && !stopWords.contains(w))
+                .filter(w -> WORD_PATTERN.matcher(w).matches() && !stopWords.contains(w))
                 .collect(Collectors.toList());
         return result.size();
     }

@@ -13,43 +13,36 @@ class WordCounterTest {
 
     @Test
     void shouldHave1WordIn1AlphabeticWord() {
-        wordCounter.setText("word");
-        assertEquals(wordCounter.countWords(), 1);
+        assertEquals(wordCounter.countWordsIn("word"), 1);
     }
 
     @Test
     void shouldHave2WordsIn2AlphabeticWords() {
-        wordCounter.setText("word word");
-        assertEquals(wordCounter.countWords(), 2);
+        assertEquals(wordCounter.countWordsIn("word word"), 2);
     }
 
     @Test
     void shouldHave0WordsIfNumberIsInWords() {
-        wordCounter.setText("wo4rD");
-        assertEquals(wordCounter.countWords(), 0);
+        assertEquals(wordCounter.countWordsIn("wo4rD"), 0);
     }
 
     @Test
     void shouldHave0WordsIfSpecialCharIsInWords() {
-        wordCounter.setText("wo$rd");
-        assertEquals(wordCounter.countWords(), 0);
+        assertEquals(wordCounter.countWordsIn("wo$rd"), 0);
     }
 
     @Test
     void shouldHave0WordsIfNothingInputted() {
-        wordCounter.setText("");
-        assertEquals(wordCounter.countWords(), 0);
+        assertEquals(wordCounter.countWordsIn(""), 0);
     }
 
     @Test
     void shouldHave3WordsWithWhitespace() {
-        wordCounter.setText("           word           word                 word     ");
-        assertEquals(wordCounter.countWords(), 3);
+        assertEquals(wordCounter.countWordsIn("           word           word                 word     "), 3);
     }
 
     @Test
     void shouldHave6WordsWithStopWords() {
-        wordCounter.setText("Mary had a little lamb and a big");
-        assertEquals(wordCounter.countWords(), 6);
+        assertEquals(wordCounter.countWordsIn("Mary had a little lamb and a big"), 6);
     }
 }

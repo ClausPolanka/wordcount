@@ -12,10 +12,8 @@ public class WordCounterApplication {
         String userInput = userInterface.getInput();
 
         List<String> stopWords = new StopWordReaderFromFile("stopwords.txt").getStopWords();
-        WordCounter wordCounter = new WordCounter(stopWords);
-        wordCounter.setText(userInput);
+        int numberOfWordsInUserInput = new WordCounter(stopWords).countWordsIn(userInput);
 
-        int numberOfWordsInUserInput = wordCounter.countWords();
         userInterface.showOutput(numberOfWordsInUserInput);
     }
 }

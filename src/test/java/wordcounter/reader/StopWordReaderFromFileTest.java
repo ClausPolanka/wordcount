@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class StopWordReaderFromFileTest {
 
     @Test
-    void shouldReadStopWords() {
+    void shouldReadStopWordsFromTxt() {
         StopWordReaderFromFile stopWordReaderFromFile = new StopWordReaderFromFile("stopwords.txt");
         assertEquals(Stream.of("the", "a", "on", "off").collect(Collectors.toList()), stopWordReaderFromFile.getStopWords());
     }

@@ -1,0 +1,1 @@
+I assume that all provided files will be in the resources (classpath) (starting with /)

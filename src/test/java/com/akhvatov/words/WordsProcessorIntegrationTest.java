@@ -7,6 +7,7 @@ import com.akhvatov.words.filter.StopWordsFilter;
 import com.akhvatov.words.filter.WordFilter;
 import com.akhvatov.words.modifier.Modifier;
 import com.akhvatov.words.modifier.WordCleaner;
+import com.akhvatov.words.source.FileSource;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -49,6 +50,22 @@ class WordsProcessorIntegrationTest {
 
         // when
         final State state = wordsProcessor.count(() -> Stream.of("Mary had a little lamb"));
+
+        // then
+        assertThat(state.getCount()).isEqualTo(4);
+    }
+
+    @Test
+    void wordCountIII() {
+        // given
+        final WordsProcessor wordsProcessor = new WordsProcessor(
+                Collections.singletonList(wordCleaner),
+                Arrays.asList(wordFilter, stopWordsFilter),
+                Collections.singletonList(countAggregator)
+        );
+
+        // when
+        final State state = wordsProcessor.count(new FileSource("/mytext.txt"));
 
         // then
         assertThat(state.getCount()).isEqualTo(4);

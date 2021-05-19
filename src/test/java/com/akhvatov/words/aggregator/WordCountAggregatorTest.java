@@ -3,12 +3,11 @@ package com.akhvatov.words.aggregator;
 import com.akhvatov.words.State;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class WordCountAggregatorTest {
 
-    final State               state      = mock(State.class);
+    final State               state      = new State();
     final WordCountAggregator aggregator = new WordCountAggregator();
 
     @Test
@@ -17,6 +16,6 @@ class WordCountAggregatorTest {
         aggregator.aggregate("word", state);
 
         // then
-        verify(state).incrementCounter();
+        assertThat(state.getCount()).isEqualTo(1);
     }
 }

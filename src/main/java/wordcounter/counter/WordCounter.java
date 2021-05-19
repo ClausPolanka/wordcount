@@ -1,22 +1,21 @@
 package wordcounter.counter;
 
-import wordcounter.reader.FileReader;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class WordCounter {
 
+    // TODO
     private String text;
     private List<String> stopWords;
 
-    public void setText(String text) {
-        this.text = text;
+    public WordCounter(List<String> stopWords) {
+        this.stopWords = stopWords;
     }
 
-    public void setStopWords(FileReader fileReader) {
-        stopWords = fileReader.getContent();
+    public void setText(String text) {
+        this.text = text;
     }
 
     public int countWords() {

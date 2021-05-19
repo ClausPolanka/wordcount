@@ -17,21 +17,19 @@ public class UserInterface {
     }
 
     public String getInput() {
-        Scanner myObj = new Scanner(inputStream);
+        Scanner input = new Scanner(inputStream);
         try {
             outputStream.write("Enter text: ".getBytes(StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
-        return myObj.nextLine();
+        return input.nextLine();
     }
 
     public void showOutput(int output) {
         String data = "Number of words: " + output;
         try {
             outputStream.write(data.getBytes(StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
     }
 }

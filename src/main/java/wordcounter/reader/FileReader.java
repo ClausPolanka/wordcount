@@ -14,16 +14,12 @@ public class FileReader {
         return content;
     }
 
-    public void setContent(List<String> content) {
-        this.content = content;
-    }
-
-    public FileReader() {
-        Path path = Paths.get("stopwords.txt");
+    public FileReader(String filePath) {
+        Path path = Paths.get(filePath);
         try {
             content = Files.readAllLines(path);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException();
         }
     }
 }

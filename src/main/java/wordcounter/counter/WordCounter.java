@@ -7,30 +7,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WordCounter {
-    private String text;
-    private FileReader fileReader;
 
-    public String getText() {
-        return text;
-    }
+    private String text;
+    private List<String> stopWords;
 
     public void setText(String text) {
         this.text = text;
     }
 
-    public FileReader getFileReader() {
-        return fileReader;
-    }
-
-    public void setFileReader(FileReader fileReader) {
-        this.fileReader = fileReader;
+    public void setStopWords(FileReader fileReader) {
+        stopWords = fileReader.getContent();
     }
 
     public int countWords() {
-        List<String> content = fileReader.getContent();
         String[] candidates = text.trim().split(" ");
         List<String> result = Arrays.stream(candidates)
-                .filter(w -> w.matches("[a-zA-Z]+") && !content.contains(w))
+                .filter(w -> w.matches("[a-zA-Z]+") && !stopWords.contains(w))
                 .collect(Collectors.toList());
         return result.size();
     }

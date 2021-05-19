@@ -11,7 +11,8 @@ public class WordCounterApplication {
         System.out.println("Enter text: ");
         String text = myObj.nextLine();
         WordCounter wordCounter = new WordCounter();
-        wordCounter.setFileReader(new FileReader());
+        // TODO handle IOException
+        wordCounter.setStopWords(new FileReader("stopwords.txt"));
         wordCounter.setText(text);
         System.out.println("Number of words: " + wordCounter.countWords());
     }

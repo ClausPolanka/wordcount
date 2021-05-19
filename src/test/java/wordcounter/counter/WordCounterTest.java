@@ -10,7 +10,7 @@ class WordCounterTest {
     @Test
     void shouldCountWords() {
         WordCounter wordCounter = new WordCounter();
-        wordCounter.setFileReader(new FileReader());
+        wordCounter.setStopWords(new FileReader("stopwords.txt"));
         wordCounter.setText("word");
         assertEquals(wordCounter.countWords(), 1);
         wordCounter.setText("word word");

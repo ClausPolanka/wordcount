@@ -7,14 +7,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verifyNoInteractions;
 
 class StopWordsFilterTest {
 
     static final String STOP_WORD = "abc";
 
-    final State           state  = mock(State.class);
+    final State           state  = new State();
     final StopWordsFilter filter = new StopWordsFilter(Stream.of(STOP_WORD));
 
     @ParameterizedTest
@@ -25,7 +23,6 @@ class StopWordsFilterTest {
 
         // then
         assertThat(filtered).isFalse();
-        verifyNoInteractions(state);
     }
 
     @ParameterizedTest
@@ -36,6 +33,5 @@ class StopWordsFilterTest {
 
         // then
         assertThat(filtered).isTrue();
-        verifyNoInteractions(state);
     }
 }

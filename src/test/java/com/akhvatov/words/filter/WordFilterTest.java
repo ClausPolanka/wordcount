@@ -6,12 +6,10 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verifyNoInteractions;
 
 class WordFilterTest {
 
-    final State      state  = mock(State.class);
+    final State      state  = new State();
     final WordFilter filter = new WordFilter();
 
     @ParameterizedTest
@@ -22,7 +20,6 @@ class WordFilterTest {
 
         // then
         assertThat(isLetter).isTrue();
-        verifyNoInteractions(state);
     }
 
     @ParameterizedTest
@@ -34,6 +31,5 @@ class WordFilterTest {
 
         // then
         assertThat(isLetter).isFalse();
-        verifyNoInteractions(state);
     }
 }

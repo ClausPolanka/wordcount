@@ -1,5 +1,7 @@
 package com.wordcount;
 
+import java.util.Set;
+
 import static java.lang.String.format;
 
 public class WordCounterResult {
@@ -8,12 +10,12 @@ public class WordCounterResult {
     public final static String AVERAGE_WORD = "average word length:";
 
     private final int allWordsCount;
-    private final int uniqueWordsCount;
     private final double averageWordLength;
+    private final Set<String> uniqueWords;
 
-    public WordCounterResult(int allWordsCount, int uniqueWordsCount, double averageWordLength) {
+    public WordCounterResult(int allWordsCount, Set<String> uniqueWords, double averageWordLength) {
         this.allWordsCount = allWordsCount;
-        this.uniqueWordsCount = uniqueWordsCount;
+        this.uniqueWords = uniqueWords;
         this.averageWordLength = averageWordLength;
     }
 
@@ -22,19 +24,18 @@ public class WordCounterResult {
     }
 
     public int getUniqueWordsCount() {
-        return uniqueWordsCount;
+        return uniqueWords.size();
     }
 
     public double getAverageWordLength() {
         return averageWordLength;
     }
 
-    @Override
-    public String toString() {
-        return format("%s %d, %s %d; %s %.2f", NUMBER_OF_WORDS, allWordsCount, UNIQUE_WORDS, uniqueWordsCount, AVERAGE_WORD, averageWordLength);
+    public String print() {
+        return format("%s %d, %s %d; %s %.2f", NUMBER_OF_WORDS, allWordsCount, UNIQUE_WORDS, getUniqueWordsCount(), AVERAGE_WORD, averageWordLength);
     }
 
-    public static WordCounterResult of(int allWordsCount, int uniqueWordsCount, double averageWordLength) {
-        return new WordCounterResult(allWordsCount, uniqueWordsCount, averageWordLength);
+    public static WordCounterResult of(int allWordsCount, Set<String> uniqueWords, double averageWordLength) {
+        return new WordCounterResult(allWordsCount, uniqueWords, averageWordLength);
     }
 }

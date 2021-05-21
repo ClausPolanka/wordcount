@@ -15,3 +15,7 @@ Application can run without providing file 'stopwords.txt'.
 
 iteration_6:
 Assumption that average word length can be rounded to 2 decimal places 0.5 UP.
+
+iteration_7:
+Order of words in index is non-case-sensitive.
+-index argument can be passed together with user input file.

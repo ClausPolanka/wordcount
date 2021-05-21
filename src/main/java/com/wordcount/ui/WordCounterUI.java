@@ -23,6 +23,6 @@ public class WordCounterUI {
         String userInput = inputInterface.getInput();
 
         WordCounterResult countResult = wordCounter.countWords(userInput);
-        outputInterface.println(countResult.toString());
+        outputInterface.println(countResult.print());
     }
 }

@@ -6,8 +6,10 @@ import com.wordcount.WordCounterResult;
 import org.junit.jupiter.api.Test;
 
 import static com.wordcount.ui.UserInputFileTestFixtures.EXAMPLE_FILE_CONTENT;
+import static com.wordcount.ui.UserInputFileTestFixtures.exampleFileUniqueWords;
 import static com.wordcount.ui.WordCounterUI.INTRO_TEXT;
 import static java.lang.String.format;
+import static java.util.Collections.singleton;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WordCounterUITest {
@@ -19,7 +21,7 @@ class WordCounterUITest {
         WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), testIOManualInterface, testIOManualInterface);
         wordCounterUI.countWords();
 
-        String expectedOutput = expectedUIManualOutput(userInput, WordCounterResult.of(2, 1, 3d));
+        String expectedOutput = expectedUIManualOutput(userInput, WordCounterResult.of(2, singleton("abc"), 3d));
         String actualOutput = testIOManualInterface.getOutput();
         assertEquals(expectedOutput, actualOutput);
     }
@@ -30,18 +32,18 @@ class WordCounterUITest {
         WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), testIOFileInterface, testIOFileInterface);
         wordCounterUI.countWords();
 
-        String expectedOutput = expectedUIFileOutput(EXAMPLE_FILE_CONTENT, WordCounterResult.of(4, 4, 4.25d));
+        String expectedOutput = expectedUIFileOutput(EXAMPLE_FILE_CONTENT, WordCounterResult.of(4, exampleFileUniqueWords(), 4.25d));
         String actualOutput = testIOFileInterface.getOutput();
         assertEquals(expectedOutput, actualOutput);
     }
 
     @SuppressWarnings("SameParameterValue")
     private String expectedUIManualOutput(String userInput, WordCounterResult result) {
-        return format("%s%s\n%s\n", INTRO_TEXT, userInput, result.toString());
+        return format("%s%s\n%s\n", INTRO_TEXT, userInput, result.print());
     }
 
     @SuppressWarnings("SameParameterValue")
     private String expectedUIFileOutput(String userInput, WordCounterResult result) {
-        return format("%s\n%s\n", userInput, result.toString());
+        return format("%s\n%s\n", userInput, result.print());
     }
 }

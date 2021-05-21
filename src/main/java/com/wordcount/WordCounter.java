@@ -17,7 +17,7 @@ public class WordCounter {
 
     public WordCounterResult countWords(String text) {
         if (Objects.isNull(text)) {
-            return new WordCounterResult(0, 0, 0d);
+            return new WordCounterResult(0, new HashSet<>(), 0d);
         }
 
         String[] allWords = text.split(WHITESPACE_REGEX);
@@ -31,6 +31,6 @@ public class WordCounter {
     private WordCounterResult calculateResult(List<String> matchedWords) {
         Set<String> uniqueWords = new HashSet<>(matchedWords);
         double wordAverage = matchedWords.stream().mapToInt(String::length).average().orElse(0d);
-        return new WordCounterResult(matchedWords.size(), uniqueWords.size(), wordAverage);
+        return new WordCounterResult(matchedWords.size(), uniqueWords, wordAverage);
     }
 }

@@ -1,10 +1,9 @@
-package Tests;
+package WordCountApplicationTests.Tests.UnitTests;
 
-import Helpers.IOWorker;
+import WordCountApplication.Helpers.IOWorker;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,33 +16,33 @@ public class IOWorkerSpec {
 
     @Test
     void canReadSimpleLine() {
-        //given
+        // given
         String input = "Test String\n\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         Scanner scanner = new Scanner(System.in);
         worker = new IOWorker(scanner);
 
-        //when
+        // when
         List<String> result = worker.readFromConsole();
 
-        //then
+        // then
         assertEquals(new ArrayList<String>(){{add("Test String");}}, result);
     }
 
     @Test
     void canReadMultipleLine() {
-        //given
+        // given
         String input = "Test String\nTest String 2nd Line\n\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         Scanner scanner = new Scanner(System.in);
         worker = new IOWorker(scanner);
 
-        //when
+        // when
         List<String> result = worker.readFromConsole();
 
-        //then
+        // then
         assertEquals(new ArrayList<String>(){{add("Test String"); add("Test String 2nd Line");}}, result);
     }
 }

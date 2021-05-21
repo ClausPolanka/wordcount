@@ -1,10 +1,10 @@
-package Helpers;
+package WordCountApplication.Helpers;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class IOWorker implements Controller.Interfaces.IOWorker {
+public class IOWorker implements WordCountApplication.Controller.Interfaces.IOWorker {
 
     private final Scanner scanner;
 

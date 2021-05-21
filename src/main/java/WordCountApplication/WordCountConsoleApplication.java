@@ -1,6 +1,8 @@
-import Controller.WordCounter;
-import Helpers.IOWorker;
-import View.WordCounterConsoleView;
+package WordCountApplication;
+
+import WordCountApplication.Controller.WordCounter;
+import WordCountApplication.Helpers.IOWorker;
+import WordCountApplication.View.WordCounterConsoleView;
 
 import java.util.Scanner;
 

@@ -1,9 +1,9 @@
-package Tests;
+package WordCountApplicationTests.Tests.UnitTests;
 
-import Controller.Interfaces.View;
-import Controller.WordCounter;
-import TestHelper.MockIoWorker;
-import View.WordCounterConsoleView;
+import WordCountApplication.Controller.Interfaces.View;
+import WordCountApplication.Controller.WordCounter;
+import WordCountApplicationTests.TestHelper.MockIoWorker;
+import WordCountApplication.View.WordCounterConsoleView;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;

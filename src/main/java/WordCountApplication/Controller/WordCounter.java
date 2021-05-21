@@ -1,8 +1,8 @@
-package Controller;
+package WordCountApplication.Controller;
 
-import Controller.Interfaces.IOWorker;
-import Controller.Interfaces.View;
-import Model.Word;
+import WordCountApplication.Controller.Interfaces.IOWorker;
+import WordCountApplication.Controller.Interfaces.View;
+import WordCountApplication.Model.Word;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class WordCounter {
     }
 
     public void countWords() {
-        counterView.updateView("Please give words to count!");
+        counterView.updateView("Please give words to count (Press enter(s) to start the counting):");
         try {
             this.parseInputToStrings(ioWorker.readFromConsole());
         } catch (Exception exc) {
@@ -44,14 +44,22 @@ public class WordCounter {
         }
     }
 
-    private void addStringsToWords(String[] possibleWords){
-        for (String possibleWord:
-             possibleWords) {
-            if (possibleWord.matches("[a-z,A-Z]+")) {
+    private void addStringsToWords(String[] possibleWords) {
+        for (String possibleWord :
+                possibleWords) {
+            if (isWordMatch(possibleWord,"[a-z,A-Z]+")) {
                 Word word = new Word();
                 word.setWord(possibleWord);
                 listOfWords.add(word);
             }
+        }
+    }
+
+    private boolean isWordMatch(String word, String regEx) {
+        if (word.matches(regEx)) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

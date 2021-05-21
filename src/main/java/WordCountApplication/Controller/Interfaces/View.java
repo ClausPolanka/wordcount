@@ -1,4 +1,4 @@
-package Controller.Interfaces;
+package WordCountApplication.Controller.Interfaces;
 
 public interface View {
 

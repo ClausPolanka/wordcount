@@ -1,6 +1,6 @@
-package TestHelper;
+package WordCountApplicationTests.TestHelper;
 
-import Controller.Interfaces.IOWorker;
+import WordCountApplication.Controller.Interfaces.IOWorker;
 
 import java.util.List;
 

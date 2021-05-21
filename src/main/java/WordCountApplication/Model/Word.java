@@ -1,4 +1,4 @@
-package Model;
+package WordCountApplication.Model;
 
 public class Word {
 

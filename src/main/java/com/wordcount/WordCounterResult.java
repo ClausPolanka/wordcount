@@ -4,14 +4,17 @@ import static java.lang.String.format;
 
 public class WordCounterResult {
     public final static String NUMBER_OF_WORDS = "Number of words:";
-    public final static String UNIQUE_WORDS = ", unique:";
+    public final static String UNIQUE_WORDS = "unique:";
+    public final static String AVERAGE_WORD = "average word length:";
 
     private final int allWordsCount;
     private final int uniqueWordsCount;
+    private final double averageWordLength;
 
-    public WordCounterResult(int allWordsCount, int uniqueWordsCount) {
+    public WordCounterResult(int allWordsCount, int uniqueWordsCount, double averageWordLength) {
         this.allWordsCount = allWordsCount;
         this.uniqueWordsCount = uniqueWordsCount;
+        this.averageWordLength = averageWordLength;
     }
 
     public int getAllWordsCount() {
@@ -22,8 +25,12 @@ public class WordCounterResult {
         return uniqueWordsCount;
     }
 
+    public double getAverageWordLength() {
+        return averageWordLength;
+    }
+
     @Override
     public String toString() {
-        return format("%s %d%s %d", NUMBER_OF_WORDS, allWordsCount, UNIQUE_WORDS, uniqueWordsCount);
+        return format("%s %d, %s %d; %s %.2f", NUMBER_OF_WORDS, allWordsCount, UNIQUE_WORDS, uniqueWordsCount, AVERAGE_WORD, averageWordLength);
     }
 }

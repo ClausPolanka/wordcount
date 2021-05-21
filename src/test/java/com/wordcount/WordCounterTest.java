@@ -50,6 +50,19 @@ public class WordCounterTest {
         assertEquals(expectedUniqueWordsCount, counterResult.getUniqueWordsCount());
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {
+            "word word;4",
+            "word wordb wordbb;5",
+            "word;4",
+            "NIL;0",
+            ";0"
+    }, nullValues = "NIL", delimiter = ';')
+    public void thatAverageWordLengthIsCalculated(String text, double expectedAverage) {
+        WordCounterResult counterResult = counter.countWords(text);
+        assertEquals(expectedAverage, counterResult.getAverageWordLength());
+    }
+
     @Test
     public void thatWordWithHyphenIsCounted() {
         WordCounterResult counterResult = counter.countWords("word-with-hypen");

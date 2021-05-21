@@ -37,7 +37,7 @@ class WordCounterUITest {
     }
 
     @SuppressWarnings("SameParameterValue")
-    private String expectedUIManualOutput(String userInput, int expectedAllCount, int expectedUniqueCount) {
+    private String expectedUIManualOutput(String userInput, int expectedAllCount, int expectedUniqueCount, ) {
         return format("%s%s\n%s %d%s %d\n", INTRO_TEXT, userInput, NUMBER_OF_WORDS, expectedAllCount, UNIQUE_WORDS, expectedUniqueCount);
     }
 

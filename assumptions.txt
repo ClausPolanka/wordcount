@@ -12,3 +12,6 @@ Assumption is that in the end after displaying result is new line symbol.
 iteration_2:
 Input values can be trimmed.
 Application can run without providing file 'stopwords.txt'.
+
+iteration_6:
+Assumption that average word length can be rounded to 2 decimal places 0.5 UP.

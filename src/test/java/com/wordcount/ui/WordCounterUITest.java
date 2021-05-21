@@ -1,8 +1,7 @@
 package com.wordcount.ui;
 
+import com.wordcount.StopWordsReader;
 import com.wordcount.WordCounter;
-import com.wordcount.ui.TestIOInterface;
-import com.wordcount.ui.WordCounterUI;
 import org.junit.jupiter.api.Test;
 
 import static com.wordcount.ui.WordCounterUI.INTRO_TEXT;
@@ -16,7 +15,7 @@ class WordCounterUITest {
     public void thatUICanShowExpectedOutput() {
         String userInput = "abc abc";
         TestIOInterface testIOInterface = new TestIOInterface(userInput);
-        WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(), testIOInterface, testIOInterface);
+        WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), testIOInterface, testIOInterface);
         wordCounterUI.countWords();
 
         String expectedOutput = expectedUIOutput(userInput, 2);

@@ -7,7 +7,7 @@ import com.wordcount.ui.WordCounterUI;
 public class WorkCounterApplication {
 
     public static void main(String[] args) {
-        WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(), new SystemOutOutputInterface(), new ScannerInputInterface());
+        WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), new SystemOutOutputInterface(), new ScannerInputInterface());
         wordCounterUI.countWords();
     }
 }

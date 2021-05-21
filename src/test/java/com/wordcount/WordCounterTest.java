@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WordCounterTest {
 
-    private final WordCounter counter = new WordCounter();
+    private final WordCounter counter = new WordCounter(new StopWordsReader());
 
     @ParameterizedTest
     @CsvSource(value = {
@@ -18,7 +18,17 @@ public class WordCounterTest {
             "word, word? word. word;1",
             "NIL;0"
     }, nullValues = "NIL", delimiter = ';')
-    public void thatWorkCounterCanCountCorrectly(String text, int expectedCount) {
+    public void thatWordsWithNonAlphabeticalCharactersAndNullsAreNotCounted(String text, int expectedCount) {
+        assertEquals(counter.countWords(text), expectedCount);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "word the;1",
+            "word the a on off an;2",
+            "word;1"
+    }, nullValues = "NIL", delimiter = ';')
+    public void thatStopWordsAreNotCounted(String text, int expectedCount) {
         assertEquals(counter.countWords(text), expectedCount);
     }
 }

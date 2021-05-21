@@ -1,4 +1,6 @@
-package com.wordcount;
+package com.wordcount.ui;
+
+import com.wordcount.WordCounter;
 
 public class WordCounterUI {
     public final static String INTRO_TEXT = "Enter Text: ";
@@ -14,7 +16,7 @@ public class WordCounterUI {
         this.inputInterface = inputInterface;
     }
 
-    void countWords() {
+    public void countWords() {
         outputInterface.print(INTRO_TEXT);
         String userInput = inputInterface.getInput();
 

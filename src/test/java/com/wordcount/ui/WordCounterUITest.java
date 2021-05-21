@@ -1,9 +1,12 @@
-package com.wordcount;
+package com.wordcount.ui;
 
+import com.wordcount.WordCounter;
+import com.wordcount.ui.TestIOInterface;
+import com.wordcount.ui.WordCounterUI;
 import org.junit.jupiter.api.Test;
 
-import static com.wordcount.WordCounterUI.INTRO_TEXT;
-import static com.wordcount.WordCounterUI.RESULT_TEXT;
+import static com.wordcount.ui.WordCounterUI.INTRO_TEXT;
+import static com.wordcount.ui.WordCounterUI.RESULT_TEXT;
 import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.*;
 

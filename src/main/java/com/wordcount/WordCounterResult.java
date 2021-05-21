@@ -33,4 +33,8 @@ public class WordCounterResult {
     public String toString() {
         return format("%s %d, %s %d; %s %.2f", NUMBER_OF_WORDS, allWordsCount, UNIQUE_WORDS, uniqueWordsCount, AVERAGE_WORD, averageWordLength);
     }
+
+    public static WordCounterResult of(int allWordsCount, int uniqueWordsCount, double averageWordLength) {
+        return new WordCounterResult(allWordsCount, uniqueWordsCount, averageWordLength);
+    }
 }

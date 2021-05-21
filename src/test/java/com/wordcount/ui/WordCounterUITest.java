@@ -2,10 +2,9 @@ package com.wordcount.ui;
 
 import com.wordcount.StopWordsReader;
 import com.wordcount.WordCounter;
+import com.wordcount.WordCounterResult;
 import org.junit.jupiter.api.Test;
 
-import static com.wordcount.WordCounterResult.NUMBER_OF_WORDS;
-import static com.wordcount.WordCounterResult.UNIQUE_WORDS;
 import static com.wordcount.ui.UserInputFileTestFixtures.EXAMPLE_FILE_CONTENT;
 import static com.wordcount.ui.WordCounterUI.INTRO_TEXT;
 import static java.lang.String.format;
@@ -20,7 +19,7 @@ class WordCounterUITest {
         WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), testIOManualInterface, testIOManualInterface);
         wordCounterUI.countWords();
 
-        String expectedOutput = expectedUIManualOutput(userInput, 2, 1);
+        String expectedOutput = expectedUIManualOutput(userInput, WordCounterResult.of(2, 1, 3d));
         String actualOutput = testIOManualInterface.getOutput();
         assertEquals(expectedOutput, actualOutput);
     }
@@ -31,18 +30,18 @@ class WordCounterUITest {
         WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), testIOFileInterface, testIOFileInterface);
         wordCounterUI.countWords();
 
-        String expectedOutput = expectedUIFileOutput(EXAMPLE_FILE_CONTENT, 4, 4);
+        String expectedOutput = expectedUIFileOutput(EXAMPLE_FILE_CONTENT, WordCounterResult.of(4, 4, 4.25d));
         String actualOutput = testIOFileInterface.getOutput();
         assertEquals(expectedOutput, actualOutput);
     }
 
     @SuppressWarnings("SameParameterValue")
-    private String expectedUIManualOutput(String userInput, int expectedAllCount, int expectedUniqueCount, ) {
-        return format("%s%s\n%s %d%s %d\n", INTRO_TEXT, userInput, NUMBER_OF_WORDS, expectedAllCount, UNIQUE_WORDS, expectedUniqueCount);
+    private String expectedUIManualOutput(String userInput, WordCounterResult result) {
+        return format("%s%s\n%s\n", INTRO_TEXT, userInput, result.toString());
     }
 
     @SuppressWarnings("SameParameterValue")
-    private String expectedUIFileOutput(String userInput, int expectedAllCount, int expectedUniqueCount) {
-        return format("%s\n%s %d%s %d\n", userInput, NUMBER_OF_WORDS, expectedAllCount, UNIQUE_WORDS, expectedUniqueCount);
+    private String expectedUIFileOutput(String userInput, WordCounterResult result) {
+        return format("%s\n%s\n", userInput, result.toString());
     }
 }

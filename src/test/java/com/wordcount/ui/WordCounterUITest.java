@@ -10,7 +10,7 @@ import static com.wordcount.ui.UserInputFileTestFixtures.exampleFileUniqueWords;
 import static com.wordcount.ui.WordCounterUI.INTRO_TEXT;
 import static java.lang.String.format;
 import static java.util.Collections.singleton;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordCounterUITest {
 
@@ -39,11 +39,11 @@ class WordCounterUITest {
 
     @SuppressWarnings("SameParameterValue")
     private String expectedUIManualOutput(String userInput, WordCounterResult result) {
-        return format("%s%s\n%s\n", INTRO_TEXT, userInput, result.print());
+        return format("%s%s\n%s\n", INTRO_TEXT, userInput, result.printStats());
     }
 
     @SuppressWarnings("SameParameterValue")
     private String expectedUIFileOutput(String userInput, WordCounterResult result) {
-        return format("%s\n%s\n", userInput, result.print());
+        return format("%s\n%s\n", userInput, result.printStats());
     }
 }

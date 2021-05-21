@@ -12,7 +12,7 @@ public class UserInputFileTestFixtures {
         return new UserInputFileInterface(TEST_RESOURCES_EXAMPLE_TXT);
     }
 
-    static Set<String> exampleFileUniqueWords() {
+    public static Set<String> exampleFileUniqueWords() {
         return new HashSet<>(Arrays.asList("Mary", "had", "little", "lamb"));
     }
 }

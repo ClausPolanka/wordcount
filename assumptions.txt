@@ -1,0 +1,3 @@
+The application is case sensitive.
+The place of the resource files are predefined. If there is no resource defined, then the application work as expected in the first iteration.
+The test were implemented for a windows system.

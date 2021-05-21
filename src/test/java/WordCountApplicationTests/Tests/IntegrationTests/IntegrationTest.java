@@ -18,7 +18,6 @@ public class IntegrationTest {
 
     private String initialMessageToUser = "Please give words to count (Press enter(s) to start the counting):";
     private String[] testArgs = new String[]{"Integration test"};
-    private WordCounterConsoleView consoleView;
     private ByteArrayOutputStream byteArrayOfStream;
     private PrintStream newPrintStream;
     private PrintStream oldPrintStream;

@@ -2,6 +2,6 @@ package WordCountApplication.Controller.Interfaces;
 
 public interface View {
 
-    public void updateView(String message);
+    void updateView(String message);
 
 }

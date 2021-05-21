@@ -36,4 +36,16 @@ public class WordCounterSpec {
         // then
         assertEquals(2, wordCounter.listOfWords.size());
     }
+
+    @Test
+    void canCountWordsWithStopWords() {
+        // given
+        mockWorker.setMockInput(new ArrayList<String>(){ { add("test text with! mock forbi123dden word"); } });
+
+        // when
+        wordCounter.countWords();
+
+        // then
+        assertEquals(2, wordCounter.listOfWords.size());
+    }
 }

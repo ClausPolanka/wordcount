@@ -4,5 +4,6 @@ import java.util.List;
 
 public interface IOWorker {
 
-    public List<String> readFromConsole();
+    List<String> readFromConsole();
+    List<String> fileReader(String fileName);
 }

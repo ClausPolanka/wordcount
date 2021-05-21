@@ -2,6 +2,7 @@ package WordCountApplicationTests.TestHelper;
 
 import WordCountApplication.Controller.Interfaces.IOWorker;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MockIoWorker implements IOWorker {
@@ -15,5 +16,10 @@ public class MockIoWorker implements IOWorker {
     @Override
     public List<String> readFromConsole() {
         return mockInput;
+    }
+
+    @Override
+    public List<String> fileReader(String fileName) {
+        return new ArrayList<String>() { { add("test"); add("mock"); } };
     }
 }

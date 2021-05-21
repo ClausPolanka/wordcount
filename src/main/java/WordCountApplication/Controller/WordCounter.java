@@ -4,15 +4,17 @@ import WordCountApplication.Controller.Interfaces.IOWorker;
 import WordCountApplication.Controller.Interfaces.View;
 import WordCountApplication.Model.Word;
 
+import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WordCounter {
 
+    private static String stopWordsFileName = "stop_words.txt";
     private static String spaceSeparator = " ";
-
     private final View counterView;
     private final IOWorker ioWorker;
+    private List<String> stopWords;
 
     public List<Word> listOfWords;
 
@@ -20,12 +22,12 @@ public class WordCounter {
         this.counterView = counterView;
         this.ioWorker = ioWorker;
         listOfWords = new ArrayList<>();
-
     }
 
     public void countWords() {
         counterView.updateView("Please give words to count (Press enter(s) to start the counting):");
         try {
+            stopWords = ioWorker.fileReader(stopWordsFileName);
             this.parseInputToStrings(ioWorker.readFromConsole());
         } catch (Exception exc) {
             counterView.updateView("There was an error, while parsing input. \n" + "Error massage: " + exc);
@@ -47,7 +49,7 @@ public class WordCounter {
     private void addStringsToWords(String[] possibleWords) {
         for (String possibleWord :
                 possibleWords) {
-            if (isWordMatch(possibleWord,"[a-z,A-Z]+")) {
+            if (isWordMatch(possibleWord,"[a-z,A-Z]+") && !isStopWord(possibleWord)) {
                 Word word = new Word();
                 word.setWord(possibleWord);
                 listOfWords.add(word);
@@ -57,6 +59,14 @@ public class WordCounter {
 
     private boolean isWordMatch(String word, String regEx) {
         if (word.matches(regEx)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isStopWord(String word) {
+        if(stopWords.contains(word)){
             return true;
         } else {
             return false;

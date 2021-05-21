@@ -1,10 +1,10 @@
 package com.wordcount.ui;
 
 import com.wordcount.WordCounter;
+import com.wordcount.WordCounterResult;
 
 public class WordCounterUI {
     public final static String INTRO_TEXT = "Enter Text: ";
-    public final static String RESULT_TEXT = "Number of words: ";
 
     private final WordCounter wordCounter;
     private final OutputInterface outputInterface;
@@ -22,7 +22,7 @@ public class WordCounterUI {
         }
         String userInput = inputInterface.getInput();
 
-        int countOfWords = wordCounter.countWords(userInput);
-        outputInterface.println(RESULT_TEXT + countOfWords);
+        WordCounterResult countResult = wordCounter.countWords(userInput);
+        outputInterface.println(countResult.toString());
     }
 }

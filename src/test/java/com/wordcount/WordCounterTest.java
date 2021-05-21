@@ -16,10 +16,12 @@ public class WordCounterTest {
             "wo3d;0",
             "wo$d;0",
             "word, word? word. word;1",
-            "NIL;0"
+            "NIL;0",
+            ";0"
     }, nullValues = "NIL", delimiter = ';')
-    public void thatWordsWithNonAlphabeticalCharactersAndNullsAreNotCounted(String text, int expectedCount) {
-        assertEquals(counter.countWords(text), expectedCount);
+    public void thatWordsWithNonAlphabeticalCharactersAndNullsAreNotCounted(String text, int expectedAllWordsCount) {
+        WordCounterResult counterResult = counter.countWords(text);
+        assertEquals(counterResult.getAllWordsCount(), expectedAllWordsCount);
     }
 
     @ParameterizedTest
@@ -28,7 +30,22 @@ public class WordCounterTest {
             "word the a on off an;2",
             "word;1"
     }, nullValues = "NIL", delimiter = ';')
-    public void thatStopWordsAreNotCounted(String text, int expectedCount) {
-        assertEquals(counter.countWords(text), expectedCount);
+    public void thatStopWordsAreNotCounted(String text, int expectedAllWordsCount) {
+        WordCounterResult counterResult = counter.countWords(text);
+        assertEquals(counterResult.getAllWordsCount(), expectedAllWordsCount);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "word word;2;1",
+            "word the a on off an;2;2",
+            "word worda wordb word;4;3",
+            "NIL;0;0",
+            ";0;0"
+    }, nullValues = "NIL", delimiter = ';')
+    public void thatUniquesWordsAreCountedCorrectly(String text, int expectedAllWordsCount, int expectedUniqueWordsCount) {
+        WordCounterResult counterResult = counter.countWords(text);
+        assertEquals(counterResult.getAllWordsCount(), expectedAllWordsCount);
+        assertEquals(counterResult.getUniqueWordsCount(), expectedUniqueWordsCount);
     }
 }

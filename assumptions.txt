@@ -1,0 +1,7 @@
+Based on examples below my assumption is that separator is whitespace.
+"word word" -> 2
+"              word              word                        word                           " -> 3
+"wo3d" -> 0
+"wo$d" -> 0
+"word, word? word. word" -> 1
+"" -> 0

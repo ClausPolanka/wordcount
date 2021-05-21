@@ -17,6 +17,24 @@ public class IOWorkerSpec {
     private Scanner scanner;
 
     @Test
+    void canSingLineReaderReadALine(){
+        // given
+        String input = "Test String\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        Scanner scanner = new Scanner(System.in);
+        worker = new IOWorker(scanner);
+
+        // when
+        List<String> result = worker.readFromConsole();
+
+        // then
+        assertEquals(new ArrayList<String>() {{
+            add("Test String");
+        }}, result);
+    }
+
+    @Test
     void canReadSimpleLine() {
         // given
         String input = "Test String\n\n";

@@ -4,7 +4,6 @@ import WordCountApplication.Controller.Interfaces.IOWorker;
 import WordCountApplication.Controller.Interfaces.View;
 import WordCountApplication.Model.Word;
 
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,7 @@ public class WordCounter {
     private final View counterView;
     private final IOWorker ioWorker;
     private List<String> stopWords;
+    private List<String> stringOfFile;
 
     public List<Word> listOfWords;
 
@@ -25,10 +25,19 @@ public class WordCounter {
     }
 
     public void countWords() {
-        counterView.updateView("Please give words to count (Press enter(s) to start the counting):");
         try {
             stopWords = ioWorker.fileReader(stopWordsFileName);
-            this.parseInputToStrings(ioWorker.readFromConsole());
+
+            counterView.updateView("Please add the name of a file to count the words of the file! (Press enter to skip it)");
+            String fileName = ioWorker.singleLineReader();
+            stringOfFile = ioWorker.fileReader(fileName);
+
+            if(stringOfFile.isEmpty()){
+                counterView.updateView("Please give words to count (Press enter(s) to start the counting):");
+                this.parseInputToStrings(ioWorker.readFromConsole());
+            } else {
+                parseInputToStrings(stringOfFile);
+            }
         } catch (Exception exc) {
             counterView.updateView("There was an error, while parsing input. \n" + "Error massage: " + exc);
         }

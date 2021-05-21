@@ -17,6 +17,11 @@ public class IOWorker implements WordCountApplication.Controller.Interfaces.IOWo
     }
 
     @Override
+    public String singleLineReader() {
+        return scanner.nextLine();
+    }
+
+    @Override
     public List<String> readFromConsole() {
         List<String> consoleInput = new ArrayList<>();
         String line;

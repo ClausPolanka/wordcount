@@ -5,7 +5,9 @@ import WordCountApplication.Controller.WordCounter;
 import WordCountApplicationTests.TestHelper.MockIoWorker;
 import WordCountApplication.View.WordCounterConsoleView;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WordCounterSpec {
@@ -16,7 +18,12 @@ public class WordCounterSpec {
     @Test
     void canCountWordsWithOutForbiddenCharacters() {
         // given
-        mockWorker.setMockInput(new ArrayList<String>(){ { add("Test text without forbidden word"); } });
+        mockWorker.setMockLine("");
+        mockWorker.setMockInput(new ArrayList<String>() {
+            {
+                add("Test text without forbidden word");
+            }
+        });
 
         // when
         wordCounter.countWords();
@@ -28,7 +35,12 @@ public class WordCounterSpec {
     @Test
     void canCountWordsWithForbiddenCharacters() {
         // given
-        mockWorker.setMockInput(new ArrayList<String>(){ { add("Te*st text with! forbi123dden word"); } });
+        mockWorker.setMockLine("");
+        mockWorker.setMockInput(new ArrayList<String>() {
+            {
+                add("Te*st text with! forbi123dden word");
+            }
+        });
 
         // when
         wordCounter.countWords();
@@ -40,7 +52,57 @@ public class WordCounterSpec {
     @Test
     void canCountWordsWithStopWords() {
         // given
-        mockWorker.setMockInput(new ArrayList<String>(){ { add("test text with! mock forbi123dden word"); } });
+        mockWorker.setMockLine("");
+        mockWorker.setMockInput(new ArrayList<String>() {
+            {
+                add("test text with! mock forbi123dden word");
+            }
+        });
+
+        // when
+        wordCounter.countWords();
+
+        // then
+        assertEquals(2, wordCounter.listOfWords.size());
+    }
+
+    @Test
+    void canCountWordsWithOutForbiddenCharactersFromFile() {
+        // given
+        mockWorker.setMockLine("mytext.txt");
+        mockWorker.setMockUpFile(new ArrayList<String>() {{
+            add("Test text without forbidden word");
+        }});
+
+        // when
+        wordCounter.countWords();
+
+        // then
+        assertEquals(5, wordCounter.listOfWords.size());
+    }
+
+    @Test
+    void canCountWordsWithForbiddenCharactersFromFile() {
+        // given
+        mockWorker.setMockLine("mytext.txt");
+        mockWorker.setMockUpFile(new ArrayList<String>() {{
+            add("Te*st text with! forbi123dden word");
+        }});
+
+        // when
+        wordCounter.countWords();
+
+        // then
+        assertEquals(2, wordCounter.listOfWords.size());
+    }
+
+    @Test
+    void canCountWordsWithStopWordsFromFile() {
+        // given
+        mockWorker.setMockLine("mytext.txt");
+        mockWorker.setMockUpFile(new ArrayList<String>() {{
+            add("test text with! mock forbi123dden word");
+        }});
 
         // when
         wordCounter.countWords();

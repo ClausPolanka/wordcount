@@ -1,3 +1,5 @@
 The application is case sensitive.
 The place of the resource files are predefined. If there is no resource defined, then the application work as expected in the first iteration.
 The test were implemented for a windows system.
+
+The user can give a different file, but it has to be in the resources. If the user give a file, which is not exists, the app will continue with a text request.

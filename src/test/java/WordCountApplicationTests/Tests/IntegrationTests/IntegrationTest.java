@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IntegrationTest {
 
+    private String fileAskMessageToUser = "Please add the name of a file to count the words of the file! (Press enter to skip it)";
     private String initialMessageToUser = "Please give words to count (Press enter(s) to start the counting):";
     private String[] testArgs = new String[]{"Integration test"};
     private ByteArrayOutputStream byteArrayOfStream;
@@ -41,7 +42,7 @@ public class IntegrationTest {
     @Test
     void isApplicationWorkingWithSingleLineConsoleInput() {
         // given
-        String input = "Test String\n\n";
+        String input = "\nTest String\n\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -49,13 +50,13 @@ public class IntegrationTest {
         WordCountConsoleApplication.main(testArgs);
 
         // then
-        assertEquals(initialMessageToUser + endOfLineSeparatorForWindows + "Number of words: 2" + endOfLineSeparatorForWindows, byteArrayOfStream.toString());
+        assertEquals(fileAskMessageToUser + endOfLineSeparatorForWindows + initialMessageToUser + endOfLineSeparatorForWindows + "Number of words: 2" + endOfLineSeparatorForWindows, byteArrayOfStream.toString());
     }
 
     @Test
     void isApplicationWorkingWithMultipleLineConsoleInput() {
         // given
-        String input = "Test S2ring\n Dummy text with forbi!den cha!s\n";
+        String input = "\nTest S2ring\n Dummy text with forbi!den cha!s\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -63,6 +64,48 @@ public class IntegrationTest {
         WordCountConsoleApplication.main(testArgs);
 
         // then
-        assertEquals(initialMessageToUser + endOfLineSeparatorForWindows + "Number of words: 4" + endOfLineSeparatorForWindows, byteArrayOfStream.toString());
+        assertEquals(fileAskMessageToUser + endOfLineSeparatorForWindows + initialMessageToUser + endOfLineSeparatorForWindows + "Number of words: 4" + endOfLineSeparatorForWindows, byteArrayOfStream.toString());
+    }
+
+    @Test
+    void isApplicationWorkingWithSingleLineConsoleInputWithStopWords() {
+        // given
+        String input = "\nthe Test String\n\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        // when
+        WordCountConsoleApplication.main(testArgs);
+
+        // then
+        assertEquals(fileAskMessageToUser + endOfLineSeparatorForWindows + initialMessageToUser + endOfLineSeparatorForWindows + "Number of words: 2" + endOfLineSeparatorForWindows, byteArrayOfStream.toString());
+    }
+
+    @Test
+    void isApplicationWorkingWithMultipleLineConsoleInputWithStopWords() {
+        // given
+        String input = "\nthe Test S2ring\n a Dummy text with forbi!den cha!s\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        // when
+        WordCountConsoleApplication.main(testArgs);
+
+        // then
+        assertEquals(fileAskMessageToUser + endOfLineSeparatorForWindows + initialMessageToUser + endOfLineSeparatorForWindows + "Number of words: 4" + endOfLineSeparatorForWindows, byteArrayOfStream.toString());
+    }
+
+    @Test
+    void isApplicationWorkingWithMultipleLineFileInputWithStopWords() {
+        // given
+        String input = "mytext.txt\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        // when
+        WordCountConsoleApplication.main(testArgs);
+
+        // then
+        assertEquals(fileAskMessageToUser + endOfLineSeparatorForWindows + "Number of words: 4" + endOfLineSeparatorForWindows, byteArrayOfStream.toString());
     }
 }

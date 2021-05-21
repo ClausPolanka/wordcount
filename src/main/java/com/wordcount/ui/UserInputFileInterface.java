@@ -23,4 +23,9 @@ public class UserInputFileInterface implements InputInterface {
             throw new IllegalArgumentException("User Input file cannot be loaded", e);
         }
     }
+
+    @Override
+    public InputType getInputType() {
+        return InputType.FILE;
+    }
 }

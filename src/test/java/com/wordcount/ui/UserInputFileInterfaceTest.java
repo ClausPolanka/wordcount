@@ -2,15 +2,15 @@ package com.wordcount.ui;
 
 import org.junit.jupiter.api.Test;
 
+import static com.wordcount.ui.UserInputFileTestFixtures.EXAMPLE_FILE_CONTENT;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserInputFileInterfaceTest {
-    private final static String EXPECTED_USER_INPUT = "Mary had\na little\nlamb";
 
     @Test
     public void thatUserInputFileCanBeLoaded() {
-        UserInputFileInterface userInputFileInterface = new UserInputFileInterface("src/test/resources/mytext.txt");
-        assertEquals(EXPECTED_USER_INPUT, userInputFileInterface.getInput());
+        UserInputFileInterface userInputFileInterface = UserInputFileTestFixtures.createFromExampleFile();
+        assertEquals(EXAMPLE_FILE_CONTENT, userInputFileInterface.getInput());
     }
 
     @Test

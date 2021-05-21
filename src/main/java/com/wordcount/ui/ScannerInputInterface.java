@@ -10,4 +10,9 @@ public class ScannerInputInterface implements InputInterface {
     public String getInput() {
         return SCANNER.nextLine();
     }
+
+    @Override
+    public InputType getInputType() {
+        return InputType.MANUAL;
+    }
 }

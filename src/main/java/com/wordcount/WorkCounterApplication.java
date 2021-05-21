@@ -1,13 +1,12 @@
 package com.wordcount;
 
-import com.wordcount.ui.ScannerInputInterface;
-import com.wordcount.ui.SystemOutOutputInterface;
-import com.wordcount.ui.WordCounterUI;
+import com.wordcount.ui.*;
 
 public class WorkCounterApplication {
 
     public static void main(String[] args) {
-        WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), new SystemOutOutputInterface(), new ScannerInputInterface());
+        InputInterface inputInterface = InputInterfaceFactory.create(args);
+        WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), new SystemOutOutputInterface(), inputInterface);
         wordCounterUI.countWords();
     }
 }

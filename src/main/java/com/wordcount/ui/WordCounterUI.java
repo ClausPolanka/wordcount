@@ -17,7 +17,9 @@ public class WordCounterUI {
     }
 
     public void countWords() {
-        outputInterface.print(INTRO_TEXT);
+        if (inputInterface.getInputType() == InputType.MANUAL) {
+            outputInterface.print(INTRO_TEXT);
+        }
         String userInput = inputInterface.getInput();
 
         int countOfWords = wordCounter.countWords(userInput);

@@ -4,9 +4,11 @@ public class TestIOInterface implements InputInterface, OutputInterface {
 
     private final StringBuilder sb = new StringBuilder();
     private final String userInput;
+    private final InputType inputType;
 
-    public TestIOInterface(String userInput) {
+    public TestIOInterface(String userInput, InputType inputType) {
         this.userInput = userInput;
+        this.inputType = inputType;
     }
 
     @Override
@@ -27,5 +29,10 @@ public class TestIOInterface implements InputInterface, OutputInterface {
 
     public String getOutput() {
         return sb.toString();
+    }
+
+    @Override
+    public InputType getInputType() {
+        return inputType;
     }
 }

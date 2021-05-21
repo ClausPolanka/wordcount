@@ -4,6 +4,7 @@ import com.wordcount.StopWordsReader;
 import com.wordcount.WordCounter;
 import org.junit.jupiter.api.Test;
 
+import static com.wordcount.ui.UserInputFileTestFixtures.EXAMPLE_FILE_CONTENT;
 import static com.wordcount.ui.WordCounterUI.INTRO_TEXT;
 import static com.wordcount.ui.WordCounterUI.RESULT_TEXT;
 import static java.lang.String.format;
@@ -12,19 +13,35 @@ import static org.junit.jupiter.api.Assertions.*;
 class WordCounterUITest {
 
     @Test
-    public void thatUICanShowExpectedOutput() {
+    public void thatUICanShowExpectedOutputForManualInput() {
         String userInput = "abc abc";
-        TestIOInterface testIOInterface = new TestIOInterface(userInput);
-        WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), testIOInterface, testIOInterface);
+        TestIOInterface testIOManualInterface = new TestIOInterface(userInput, InputType.MANUAL);
+        WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), testIOManualInterface, testIOManualInterface);
         wordCounterUI.countWords();
 
-        String expectedOutput = expectedUIOutput(userInput, 2);
-        String actualOutput = testIOInterface.getOutput();
+        String expectedOutput = expectedUIManualOutput(userInput, 2);
+        String actualOutput = testIOManualInterface.getOutput();
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void thatUICanShowExpectedOutputForFileInput() {
+        TestIOInterface testIOFileInterface = new TestIOInterface(EXAMPLE_FILE_CONTENT, InputType.FILE);
+        WordCounterUI wordCounterUI = new WordCounterUI(new WordCounter(new StopWordsReader()), testIOFileInterface, testIOFileInterface);
+        wordCounterUI.countWords();
+
+        String expectedOutput = expectedUIFileOutput(EXAMPLE_FILE_CONTENT, 4);
+        String actualOutput = testIOFileInterface.getOutput();
         assertEquals(expectedOutput, actualOutput);
     }
 
     @SuppressWarnings("SameParameterValue")
-    private String expectedUIOutput(String userInput, int expectedCount) {
+    private String expectedUIManualOutput(String userInput, int expectedCount) {
         return format("%s%s\n%s%d\n", INTRO_TEXT, userInput, RESULT_TEXT, expectedCount);
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private String expectedUIFileOutput(String userInput, int expectedCount) {
+        return format("%s\n%s%d\n", userInput, RESULT_TEXT, expectedCount);
     }
 }

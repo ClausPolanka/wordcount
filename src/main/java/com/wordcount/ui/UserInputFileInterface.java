@@ -5,11 +5,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class UserFileInputInterface implements InputInterface {
+public class UserInputFileInterface implements InputInterface {
 
     private final String pathToFile;
 
-    public UserFileInputInterface(String pathToFile) {
+    public UserInputFileInterface(String pathToFile) {
         this.pathToFile = pathToFile;
     }
 

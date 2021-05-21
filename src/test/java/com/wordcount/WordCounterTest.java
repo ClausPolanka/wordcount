@@ -1,5 +1,6 @@
 package com.wordcount;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -21,7 +22,7 @@ public class WordCounterTest {
     }, nullValues = "NIL", delimiter = ';')
     public void thatWordsWithNonAlphabeticalCharactersAndNullsAreNotCounted(String text, int expectedAllWordsCount) {
         WordCounterResult counterResult = counter.countWords(text);
-        assertEquals(counterResult.getAllWordsCount(), expectedAllWordsCount);
+        assertEquals(expectedAllWordsCount, counterResult.getAllWordsCount());
     }
 
     @ParameterizedTest
@@ -32,7 +33,7 @@ public class WordCounterTest {
     }, nullValues = "NIL", delimiter = ';')
     public void thatStopWordsAreNotCounted(String text, int expectedAllWordsCount) {
         WordCounterResult counterResult = counter.countWords(text);
-        assertEquals(counterResult.getAllWordsCount(), expectedAllWordsCount);
+        assertEquals(expectedAllWordsCount, counterResult.getAllWordsCount());
     }
 
     @ParameterizedTest
@@ -45,7 +46,14 @@ public class WordCounterTest {
     }, nullValues = "NIL", delimiter = ';')
     public void thatUniquesWordsAreCountedCorrectly(String text, int expectedAllWordsCount, int expectedUniqueWordsCount) {
         WordCounterResult counterResult = counter.countWords(text);
-        assertEquals(counterResult.getAllWordsCount(), expectedAllWordsCount);
-        assertEquals(counterResult.getUniqueWordsCount(), expectedUniqueWordsCount);
+        assertEquals(expectedAllWordsCount, counterResult.getAllWordsCount());
+        assertEquals(expectedUniqueWordsCount, counterResult.getUniqueWordsCount());
+    }
+
+    @Test
+    public void thatWordWithHyphenIsCounted() {
+        WordCounterResult counterResult = counter.countWords("word-with-hypen");
+        assertEquals(1, counterResult.getAllWordsCount());
+        assertEquals(1, counterResult.getUniqueWordsCount());
     }
 }

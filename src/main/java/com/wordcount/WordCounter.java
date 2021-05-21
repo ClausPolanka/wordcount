@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class WordCounter {
 
-    private static final Pattern ONLY_CHARACTERS = Pattern.compile("^[a-zA-Z]+$");
+    private static final Pattern ONLY_ALPHABETIC_AND_HYPEN = Pattern.compile("^[a-zA-Z\\-]+$");
     private static final String WHITESPACE_REGEX = "\\s+";
 
     private final Set<String> stopWords;
@@ -22,7 +22,7 @@ public class WordCounter {
 
         String[] allWords = text.split(WHITESPACE_REGEX);
         List<String> matchedWords =  Arrays.stream(allWords)
-                .filter(word -> ONLY_CHARACTERS.matcher(word).matches() && !stopWords.contains(word))
+                .filter(word -> ONLY_ALPHABETIC_AND_HYPEN.matcher(word).matches() && !stopWords.contains(word))
                 .collect(Collectors.toList());
 
         Set<String> uniqueWords = new HashSet<>(matchedWords);

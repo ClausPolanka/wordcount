@@ -1,0 +1,1 @@
+unique word is not case sensitive eg:("Text sample. This is the text." -> text is not considered unique)

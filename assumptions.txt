@@ -21,3 +21,4 @@ iteration 7
 - indexing function is additional to the filename parameter
 - order of the parameters is <filname - optional> <-index - optional>
 - index is alphabetically sorted
+- no words are in the index twice

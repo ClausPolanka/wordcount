@@ -1,3 +1,4 @@
+package wordcount.iosupport;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -6,8 +7,9 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WordCountFileReader {
+public class WordCountFileReader implements WordCountFileReaderInterface {
 
+	@Override
 	public List<String> readWordsFromFile(String path) throws IOException {
 
 		File file = new File(getClass().getClassLoader().getResource(path).getFile());
@@ -25,6 +27,7 @@ public class WordCountFileReader {
 		}
 	}
 
+	@Override
 	public String readFullFile(String filename) throws IOException {
 		return new String(
 				Files.readAllBytes(new File(getClass().getClassLoader().getResource(filename).getFile()).toPath()));

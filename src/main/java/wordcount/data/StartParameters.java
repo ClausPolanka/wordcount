@@ -1,4 +1,4 @@
-package data;
+package wordcount.data;
 
 public class StartParameters {
 	private boolean index;

@@ -1,3 +1,4 @@
+package wordcount.iosupport;
 
 public interface ConsoleInterface {
 

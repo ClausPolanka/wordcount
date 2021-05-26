@@ -1,19 +1,16 @@
+package wordcount;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import data.StartParameters;
+import wordcount.MainClass;
+import wordcount.data.StartParameters;
 
 public class MainClassTest {
 
 	@Test
-	public void testMain1() {
-
-	}
-
-	@Test
 	public void testParameterResolution() {
-		StartParameters params = MainClass.getFromParams(new String[] { "-index" });
+		StartParameters params = MainClass.processParams(new String[] { "-index" });
 		assertTrue(params.isIndex());
 	}
 

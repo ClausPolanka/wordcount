@@ -1,0 +1,3 @@
+iteration 2
+- case sensitive stop words
+- one word in file per line

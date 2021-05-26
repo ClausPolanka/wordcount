@@ -1,8 +1,9 @@
 import java.util.Arrays;
+import java.util.List;
 
 public class WordCounter {
 
-	public int countWords(String input) {
+	public long countWords(String input, List<String> stopwords) {
 
 		if (input == null) {
 			return 0;
@@ -10,16 +11,15 @@ public class WordCounter {
 
 		String[] parts = input.split("\s");
 
-		Arrays.stream(parts).filter(s -> isWord(s)).count();
+		return Arrays.stream(parts).filter(s -> isWord(s)).filter(s -> notAStopWord(s, stopwords)).count();
+	}
 
-		return 0;
+	private boolean notAStopWord(String word, List<String> stopwords) {
+		return stopwords == null || !stopwords.contains(word);
 	}
 
 	private boolean isWord(String input) {
-
-		input.matches("");
-		return true;
-
+		return input.matches("[a-zA-Z]+");
 	}
 
 }

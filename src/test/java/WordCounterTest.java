@@ -19,6 +19,10 @@ class WordCounterTest {
 		assertEquals(3, sut.countWords("one      two    three", Collections.emptyList()));
 		assertEquals(1, sut.countWords("on1e tw2o three", Collections.emptyList()));
 		assertEquals(0, sut.countWords(null, Collections.emptyList()));
+
+		assertEquals(3, sut.countWords("one two\nthree", Collections.emptyList()));
+		assertEquals(3, sut.countWords("one \r\n\r\n\ntwo\nthree", Collections.emptyList()));
+
 	}
 
 	@Test

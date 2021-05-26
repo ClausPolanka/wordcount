@@ -3,11 +3,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StopWordFileReader {
+public class WordCountFileReader {
 
 	public List<String> readWordsFromFile(String path) throws IOException {
 
@@ -26,12 +25,9 @@ public class StopWordFileReader {
 		}
 	}
 
-	public static String readFullFile(String filename) throws IOException {
-		String content = null;
-
-		content = new String(Files.readAllBytes(Paths.get(filename)));
-
-		return content;
+	public String readFullFile(String filename) throws IOException {
+		return new String(
+				Files.readAllBytes(new File(getClass().getClassLoader().getResource(filename).getFile()).toPath()));
 	}
 
 }

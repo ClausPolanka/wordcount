@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-class StopWordFileReaderTest {
+class WordCountFileReaderTest {
 
 	@Test
-	void test() throws IOException {
+	void testReadWordsFromFile() throws IOException {
 
-		StopWordFileReader sut = new StopWordFileReader();
+		WordCountFileReader sut = new WordCountFileReader();
 
 		List<String> result = sut.readWordsFromFile("stopwordstest.txt");
 
@@ -21,7 +21,14 @@ class StopWordFileReaderTest {
 		assertTrue(result.contains("a"));
 		assertTrue(result.contains("on"));
 		assertTrue(result.contains("off"));
+	}
 
+	@Test
+	void testReadFullFile() throws IOException {
+		WordCountFileReader sut = new WordCountFileReader();
+
+		String result = sut.readFullFile("mytexttest.txt");
+		assertEquals("Mary had\r\n" + "a little\r\n" + "lamb 2", result);
 	}
 
 }

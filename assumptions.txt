@@ -1,3 +1,7 @@
 iteration 2
 - case sensitive stop words
 - one word in file per line
+
+iteration 3
+- file name in the paramerter is correct and file exists
+- stopword file exists

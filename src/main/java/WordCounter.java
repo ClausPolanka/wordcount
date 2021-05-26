@@ -9,7 +9,7 @@ public class WordCounter {
 			return 0;
 		}
 
-		String[] parts = input.split("\s");
+		String[] parts = input.split("[\s\r\n]");
 
 		return Arrays.stream(parts).filter(s -> isWord(s)).filter(s -> notAStopWord(s, stopwords)).count();
 	}

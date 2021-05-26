@@ -7,11 +7,18 @@ public class MainClass {
 
 	public static void main(String... args) throws IOException {
 
-		System.out.print("Enter text: ");
-
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		String input = reader.readLine();
-
+		String filename = null;
+		if (args.length == 1) {
+			filename = args[0];
+		}
+		String input = null;
+		if (filename == null) {
+			System.out.print("Enter text: ");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			input = reader.readLine();
+		} else {
+			input = StopWordFileReader.readFullFile(filename);
+		}
 		List<String> stopWords = new StopWordFileReader().readWordsFromFile("stopwords.txt");
 
 		long result = new WordCounter().countWords(input, stopWords);

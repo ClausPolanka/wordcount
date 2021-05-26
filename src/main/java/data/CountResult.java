@@ -1,14 +1,18 @@
 package data;
 
+import java.math.BigDecimal;
+
 public class CountResult {
 
 	private long count;
 	private long unique;
+	private BigDecimal average;
 
-	public CountResult(long count, long unique) {
+	public CountResult(long count, long unique, BigDecimal average) {
 		super();
 		this.count = count;
 		this.unique = unique;
+		this.average = average;
 	}
 
 	public long getCount() {
@@ -27,10 +31,19 @@ public class CountResult {
 		this.unique = unique;
 	}
 
+	public BigDecimal getAverage() {
+		return average;
+	}
+
+	public void setAverage(BigDecimal average) {
+		this.average = average;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((average == null) ? 0 : average.hashCode());
 		result = prime * result + (int) (count ^ (count >>> 32));
 		result = prime * result + (int) (unique ^ (unique >>> 32));
 		return result;
@@ -45,6 +58,11 @@ public class CountResult {
 		if (getClass() != obj.getClass())
 			return false;
 		CountResult other = (CountResult) obj;
+		if (average == null) {
+			if (other.average != null)
+				return false;
+		} else if (!average.equals(other.average))
+			return false;
 		if (count != other.count)
 			return false;
 		if (unique != other.unique)

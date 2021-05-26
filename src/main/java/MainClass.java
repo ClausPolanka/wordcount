@@ -20,7 +20,8 @@ public class MainClass {
 
 		CountResult result = new WordCounter().countWords(input, stopWords);
 
-		System.out.print("Number of words: " + result.getCount() + ", unique:" + result.getUnique());
+		System.out.print("Number of words: " + result.getCount() + ", unique:" + result.getUnique()
+				+ "; average word length: " + result.getAverage().setScale(2) + " characters");
 	}
 
 }

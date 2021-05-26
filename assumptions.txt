@@ -12,3 +12,6 @@ iteration 4
 
 iteration 5
 - hyphen is considered part of the word just like the letters
+
+iteration 6
+- average result is to be displayed always till the 2. decimal

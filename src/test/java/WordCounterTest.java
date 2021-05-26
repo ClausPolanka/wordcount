@@ -14,19 +14,36 @@ class WordCounterTest {
 	void testWordSeparations() {
 		WordCounter sut = new WordCounter();
 		assertEquals(new CountResult(1, 1), sut.countWords("one", Collections.emptyList()));
-		assertEquals(new CountResult(1, 1), sut.countWords("one.", Collections.emptyList()));
 		assertEquals(new CountResult(3, 3), sut.countWords("one two three", Collections.emptyList()));
 		assertEquals(new CountResult(0, 0), sut.countWords("", Collections.emptyList()));
 		assertEquals(new CountResult(0, 0), sut.countWords("one,two,three", Collections.emptyList()));
 		assertEquals(new CountResult(3, 3), sut.countWords("one      two    three", Collections.emptyList()));
 		assertEquals(new CountResult(1, 1), sut.countWords("on1e tw2o three", Collections.emptyList()));
 		assertEquals(new CountResult(0, 0), sut.countWords(null, Collections.emptyList()));
+	}
 
+	@Test
+	void testWordsWithNewLine() {
+		WordCounter sut = new WordCounter();
 		assertEquals(new CountResult(3, 3), sut.countWords("one two\nthree", Collections.emptyList()));
 		assertEquals(new CountResult(3, 3), sut.countWords("one \r\n\r\n\ntwo\nthree", Collections.emptyList()));
+	}
 
-		assertEquals(new CountResult(2, 2), sut.countWords("Humpty-Dumpty", Arrays.asList("on", "a")));
-		assertEquals(new CountResult(9, 7), sut
+	@Test
+	void testWordsWithDot() {
+		WordCounter sut = new WordCounter();
+		assertEquals(new CountResult(1, 1), sut.countWords("one.", Collections.emptyList()));
+		assertEquals(new CountResult(3, 2), sut.countWords("one.one.two", Collections.emptyList()));
+		assertEquals(new CountResult(3, 2), sut.countWords("one. one two", Collections.emptyList()));
+		assertEquals(new CountResult(3, 2), sut.countWords("...one. one two...", Collections.emptyList()));
+
+	}
+
+	@Test
+	void testWordsWithMinus() {
+		WordCounter sut = new WordCounter();
+		assertEquals(new CountResult(1, 1), sut.countWords("Humpty-Dumpty", Arrays.asList("on", "a")));
+		assertEquals(new CountResult(7, 6), sut
 				.countWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.", Arrays.asList("on", "a")));
 	}
 

@@ -9,3 +9,6 @@ iteration 3
 iteration 4
 - '-' and '.' is now considered as a separator additionally
 - individuality is considered case sensitive
+
+iteration 5
+- hyphen is considered part of the word just like the letters

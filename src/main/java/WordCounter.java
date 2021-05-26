@@ -13,7 +13,7 @@ public class WordCounter {
 			return new CountResult(0, 0);
 		}
 
-		String[] parts = input.split("[\s\r\n\\.-]");
+		String[] parts = input.split("[\s\r\n\\.]");
 
 		Set<String> uniqueWords = new HashSet<>();
 		Long count = Arrays.stream(parts).filter(s -> isWord(s)).filter(s -> notAStopWord(s, stopwords))
@@ -27,7 +27,7 @@ public class WordCounter {
 	}
 
 	private boolean isWord(String input) {
-		return input.matches("[a-zA-Z]+");
+		return input.matches("[a-zA-Z-]+");
 	}
 
 }

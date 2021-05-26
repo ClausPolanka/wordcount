@@ -5,3 +5,7 @@ iteration 2
 iteration 3
 - file name in the paramerter is correct and file exists
 - stopword file exists
+
+iteration 4
+- '-' and '.' is now considered as a separator additionally
+- individuality is considered case sensitive

@@ -1,17 +1,25 @@
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import data.CountResult;
 
 public class WordCounter {
 
-	public long countWords(String input, List<String> stopwords) {
+	public CountResult countWords(String input, List<String> stopwords) {
 
 		if (input == null) {
-			return 0;
+			return new CountResult(0, 0);
 		}
 
-		String[] parts = input.split("[\s\r\n]");
+		String[] parts = input.split("[\s\r\n\\.-]");
 
-		return Arrays.stream(parts).filter(s -> isWord(s)).filter(s -> notAStopWord(s, stopwords)).count();
+		Set<String> uniqueWords = new HashSet<>();
+		Long count = Arrays.stream(parts).filter(s -> isWord(s)).filter(s -> notAStopWord(s, stopwords))
+				.peek(s -> uniqueWords.add(s)).count();
+
+		return new CountResult(count, uniqueWords.size());
 	}
 
 	private boolean notAStopWord(String word, List<String> stopwords) {

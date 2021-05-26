@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.util.List;
 
+import data.CountResult;
+
 public class MainClass {
 
 	public static void main(String... args) throws IOException {
@@ -16,9 +18,9 @@ public class MainClass {
 
 		List<String> stopWords = wordCountFileReader.readWordsFromFile("stopwords.txt");
 
-		long result = new WordCounter().countWords(input, stopWords);
+		CountResult result = new WordCounter().countWords(input, stopWords);
 
-		System.out.print("Number of words: " + result);
+		System.out.print("Number of words: " + result.getCount() + ", unique:" + result.getUnique());
 	}
 
 }

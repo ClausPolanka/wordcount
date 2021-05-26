@@ -15,3 +15,9 @@ iteration 5
 
 iteration 6
 - average result is to be displayed always till the 2. decimal
+
+iteration 7
+- swithing indexing is always with a parameter '-index'
+- indexing function is additional to the filename parameter
+- order of the parameters is <filname - optional> <-index - optional>
+- index is alphabetically sorted

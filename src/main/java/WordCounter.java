@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,10 +10,10 @@ import data.CountResult;
 
 public class WordCounter {
 
-	public CountResult countWords(String input, List<String> stopwords) {
+	public CountResult getWordStatistics(String input, List<String> stopwords) {
 
 		if (input == null) {
-			return new CountResult(0, 0, BigDecimal.ZERO);
+			return new CountResult(0, 0, BigDecimal.ZERO, Collections.emptyList());
 		}
 
 		String[] parts = input.split("[\s\r\n\\.]");
@@ -23,7 +24,8 @@ public class WordCounter {
 
 		BigDecimal average = new BigDecimal(words.stream().mapToDouble(String::length).average().orElse(0));
 
-		return new CountResult(words.size(), uniqueWords.size(), average);
+		Collections.sort(words, String.CASE_INSENSITIVE_ORDER);
+		return new CountResult(words.size(), uniqueWords.size(), average, words);
 	}
 
 	private boolean notAStopWord(String word, List<String> stopwords) {

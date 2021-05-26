@@ -1,18 +1,29 @@
 package data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class CountResult {
 
 	private long count;
 	private long unique;
 	private BigDecimal average;
+	private List<String> words;
 
-	public CountResult(long count, long unique, BigDecimal average) {
+	public CountResult(long count, long unique, BigDecimal average, List<String> words) {
 		super();
 		this.count = count;
 		this.unique = unique;
 		this.average = average;
+		this.words = words;
+	}
+
+	public List<String> getWords() {
+		return words;
+	}
+
+	public void setWords(List<String> words) {
+		this.words = words;
 	}
 
 	public long getCount() {

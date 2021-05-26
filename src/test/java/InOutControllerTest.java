@@ -5,12 +5,12 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-class InputControllerTest {
+class InOutControllerTest {
 
 	@Test
 	void testFileNameGiven() throws IOException {
 		WordCountFileReader wordCountFileReader = new WordCountFileReader();
-		InputController sut = new InputController(wordCountFileReader);
+		InOutController sut = new InOutController(wordCountFileReader, new ConsoleAdapter());
 
 		String result = sut.getInput("mytexttest.txt");
 		assertEquals("Mary had\r\n" + "a little\r\n" + "lamb 2", result);
@@ -19,7 +19,7 @@ class InputControllerTest {
 	@Test
 	void testNoFileNameGiven() throws IOException {
 		WordCountFileReader wordCountFileReader = new WordCountFileReader();
-		InputController sut = new InputController(wordCountFileReader);
+		InOutController sut = new InOutController(wordCountFileReader, new ConsoleAdapter());
 
 		// set stdin
 		System.setIn(new ByteArrayInputStream("Mary had a little lamb".getBytes()));

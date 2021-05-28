@@ -12,9 +12,4 @@ public class StandardInAndOutputUserInterface implements UserInterface{
         String input = scanner.nextLine();
         return input;
     }
-
-    @Override
-    public void show(long count) {
-        System.out.println("Number of words: " + count);
-    }
 }

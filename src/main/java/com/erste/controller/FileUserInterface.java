@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class FileUserInterface implements UserInterface{
 
-    String fileName;
+    private String fileName;
 
     public FileUserInterface(String fileName) {
         this.fileName = fileName;
@@ -31,5 +31,9 @@ public class FileUserInterface implements UserInterface{
             e.printStackTrace();
         }
         return wordsAsString;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

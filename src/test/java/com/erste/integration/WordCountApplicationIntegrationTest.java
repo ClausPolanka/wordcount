@@ -59,4 +59,20 @@ public class WordCountApplicationIntegrationTest {
         assertTrue(getOutput().contains(expectedMessage));
     }
 
+    @Test
+    public void testFileInputForWordCounterApplication() {
+        String fileName = "mytext.txt";
+        String expectedMessage = "Number of words: 4";
+        WordCounterApplication.main(new String[]{fileName});
+        assertTrue(getOutput().contains(expectedMessage));
+    }
+
+    @Test
+    public void testNotExistingFileInputForWordCounterApplication() {
+        String fileName = "text.txt";
+        String expectedMessage = "Number of words: 0";
+        WordCounterApplication.main(new String[]{fileName});
+        assertTrue(getOutput().contains(expectedMessage));
+    }
+
 }

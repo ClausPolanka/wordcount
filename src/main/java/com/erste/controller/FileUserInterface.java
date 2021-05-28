@@ -15,6 +15,9 @@ public class FileUserInterface implements UserInterface{
     @Override
     public String getInput() {
         String wordsAsString = "";
+        if (fileName == null) {
+            return wordsAsString;
+        }
         try {
             File myObj = new File(fileName);
             Scanner myReader = new Scanner(myObj);
@@ -24,7 +27,7 @@ public class FileUserInterface implements UserInterface{
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred, file is not found");
             e.printStackTrace();
         }
         return wordsAsString;

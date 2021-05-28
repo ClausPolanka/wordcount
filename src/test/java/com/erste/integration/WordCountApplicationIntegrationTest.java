@@ -42,9 +42,18 @@ public class WordCountApplicationIntegrationTest {
     }
 
     @Test
-    public void testWordCounterApplication() {
+    public void testWordCounterApplicationWithStopWords() {
         String input = "Mary had a little lamb";
-        String expectedMessage ="Number of words: 5";
+        String expectedMessage = "Number of words: 4";
+        provideInput(input);
+        WordCounterApplication.main(new String[0]);
+        assertTrue(getOutput().contains(expectedMessage));
+    }
+
+    @Test
+    public void testWordCounterApplicationWithoutStopWords() {
+        String input = "Mary has many little lambs";
+        String expectedMessage = "Number of words: 5";
         provideInput(input);
         WordCounterApplication.main(new String[0]);
         assertTrue(getOutput().contains(expectedMessage));

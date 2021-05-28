@@ -16,6 +16,10 @@ public class WordCountManager {
     }
 
     public long countWords(String input, String stopWords) {
+        if (input == null) {
+            return 0;
+        }
+
         if (stopWords == null) {
             return countWords(input);
         }
@@ -24,7 +28,7 @@ public class WordCountManager {
         Set<String> stopWordsAsSet = new HashSet<>(Arrays.asList(stopWordsAsArray));
         String[] potentialWords = input.split("\\s");
 
-        return Arrays.stream(potentialWords).filter(pw -> pw.matches("[a-zA-Z]+")).filter(pw -> !stopWords.contains(pw)).count();
+        return Arrays.stream(potentialWords).filter(pw -> pw.matches("[a-zA-Z]+")).filter(pw -> !stopWordsAsSet.contains(pw)).count();
     }
 
 }

@@ -8,6 +8,7 @@ public class WordCounterApplication {
     public static void main(String[] args) {
         WordCountManager wordCountManager = new WordCountManager();
         UserInterface userInterface = new StandardInAndOutputUserInterface(wordCountManager);
-
+        userInterface.getInput();
+        userInterface.getOutput();
     }
 }

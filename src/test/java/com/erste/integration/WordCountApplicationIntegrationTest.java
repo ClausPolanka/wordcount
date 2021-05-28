@@ -44,7 +44,7 @@ public class WordCountApplicationIntegrationTest {
     @Test
     public void testWordCounterApplicationWithStopWords() {
         String input = "Mary had a little lamb";
-        String expectedMessage = "Number of words: 4";
+        String expectedMessage = "Number of words: 4, unique: 4";
         provideInput(input);
         WordCounterApplication.main(new String[0]);
         assertTrue(getOutput().contains(expectedMessage));
@@ -53,7 +53,7 @@ public class WordCountApplicationIntegrationTest {
     @Test
     public void testWordCounterApplicationWithoutStopWords() {
         String input = "Mary has many little lambs";
-        String expectedMessage = "Number of words: 5";
+        String expectedMessage = "Number of words: 5, unique: 5";
         provideInput(input);
         WordCounterApplication.main(new String[0]);
         assertTrue(getOutput().contains(expectedMessage));
@@ -62,7 +62,7 @@ public class WordCountApplicationIntegrationTest {
     @Test
     public void testFileInputForWordCounterApplication() {
         String fileName = "mytext.txt";
-        String expectedMessage = "Number of words: 4";
+        String expectedMessage = "Number of words: 4, unique: 4";
         WordCounterApplication.main(new String[]{fileName});
         assertTrue(getOutput().contains(expectedMessage));
     }
@@ -70,8 +70,17 @@ public class WordCountApplicationIntegrationTest {
     @Test
     public void testNotExistingFileInputForWordCounterApplication() {
         String fileName = "text.txt";
-        String expectedMessage = "Number of words: 0";
+        String expectedMessage = "Number of words: 0, unique: 0";
         WordCounterApplication.main(new String[]{fileName});
+        assertTrue(getOutput().contains(expectedMessage));
+    }
+
+    @Test
+    public void testForUniqueWordCountsForWordCounterApplication() {
+        String input = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
+        String expectedMessage = "Number of words: 9, unique: 7";
+        provideInput(input);
+        WordCounterApplication.main(new String[0]);
         assertTrue(getOutput().contains(expectedMessage));
     }
 

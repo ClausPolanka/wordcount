@@ -29,8 +29,8 @@ public class WordCounterApplication {
         }
 
         long count = wordCountManager.countWords(input, stopWords);
-
-        userInterface.show(count);
+        long uniqueCount = wordCountManager.countUniqueWords(input, stopWords);
+        userInterface.show(count, uniqueCount);
     }
 
 }

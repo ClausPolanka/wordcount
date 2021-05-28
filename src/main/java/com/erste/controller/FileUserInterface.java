@@ -33,7 +33,4 @@ public class FileUserInterface implements UserInterface{
         return wordsAsString;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
 }

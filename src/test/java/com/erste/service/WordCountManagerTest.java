@@ -1,5 +1,6 @@
 package com.erste.service;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -24,7 +25,7 @@ public class WordCountManagerTest {
     }
 
     @ParameterizedTest
-    @CsvSource(delimiter = '|', value = {"apple apple|2", "app3le pear|1", "apple3     333 222|0", "   apple !apple apple3 pear|2"})
+    @CsvSource(delimiter = '|', value = {"apple apple|2", "app3le pear|1", "apple3     333 222|0", "   apple !apple apple3 pear|3"})
     public void testForMultipleWordInputs(String input, long expectedValue) {
         long wordCount = wordCountManager.countWords(input);
         assertEquals(wordCount, expectedValue);
@@ -47,6 +48,19 @@ public class WordCountManagerTest {
     public void testForMultipleWordsAsInputAndMultipleWordsAsStopWords(String input, String stopWords, long expectedValue) {
         long wordCount = wordCountManager.countWords(input, stopWords);
         assertEquals(wordCount, expectedValue);
+    }
+
+    @ParameterizedTest
+    @CsvSource(delimiter = '|', value =
+            {"apple apple banana strawberry|strawberry|2",
+                    "apple apple apple|apple|0",
+                    "apple apple apple||1",
+                    "apple apple banana banana||2",
+                    "apple. banana?||2"
+            })
+    public void testForUniqueCount(String input, String stopWords, long expectedValue) {
+        long uniqueWordCount = wordCountManager.countUniqueWords("apple apple", "banana");
+        assertEquals(uniqueWordCount, 1L);
     }
 
 }

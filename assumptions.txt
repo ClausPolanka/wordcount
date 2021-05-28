@@ -1,0 +1,2 @@
+I assumed that only special charachters would need to be removed from the inputs.
+So if a word is containing a number, then it would still not be counted in the word count.

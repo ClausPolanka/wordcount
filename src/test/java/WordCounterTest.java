@@ -20,9 +20,15 @@ public class WordCounterTest {
     }
 
     @Test
-    public void okCorrectCountWordsSeperatedByStroke() {
+    public void okCorrectCountWordContainingByStroke() {
         WordCounter wordCounter = new WordCounter(new HashSet<>());
-        assertEquals(new CountingResult(2,1), wordCounter.countWords("Test-Test"));
+        assertEquals(new CountingResult(1,1), wordCounter.countWords("Test-Test"));
+    }
+
+    @Test
+    public void okCorrectCountInvalidWordEndingWithHyphen() {
+        WordCounter wordCounter = new WordCounter(new HashSet<>());
+        assertEquals(new CountingResult(0,0), wordCounter.countWords("Test-"));
     }
 
     @Test

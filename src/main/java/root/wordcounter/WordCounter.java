@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 public class WordCounter {
 
-    public static final String WORD_SEPARATOR_REGEX = "\\s+|-";
-    public static final Pattern WORD_REGEX = Pattern.compile("[a-zA-Z]+\\.?");
+    public static final String WORD_SEPARATOR_REGEX = "\\s+";
+    public static final Pattern WORD_REGEX = Pattern.compile("[a-zA-Z]+-?[a-zA-Z]+\\.?");
 
     private final Set<String> stopWords;
 

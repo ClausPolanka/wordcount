@@ -19,6 +19,24 @@ public class WordCounterTest {
     }
 
     @Test
+    public void okCorrectCountWordsSeperatedByStroke() {
+        WordCounter wordCounter = new WordCounter(new HashSet<>());
+        assertEquals(1, wordCounter.countWords("Test-Test"));
+    }
+
+    @Test
+    public void okCorrectCountWordWithPointAtTheEnd() {
+        WordCounter wordCounter = new WordCounter(new HashSet<>());
+        assertEquals(1, wordCounter.countWords("Test."));
+    }
+
+    @Test
+    public void okCorrectCountWordWithPointInTheMiddle() {
+        WordCounter wordCounter = new WordCounter(new HashSet<>());
+        assertEquals(1, wordCounter.countWords("Test.t"));
+    }
+
+    @Test
     public void okCorrectCountMultipleWords() {
         WordCounter wordCounter = new WordCounter(new HashSet<>());
         assertEquals(2, wordCounter.countWords("Test     test"));

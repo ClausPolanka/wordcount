@@ -31,7 +31,7 @@ public class WordCounterUITest {
 
         ui.countWords();
 
-        assertEquals("Number of words: 4", output.getText());
+        assertEquals("Number of words: 4, unique: 4", output.getText());
     }
 
     @Test
@@ -49,7 +49,19 @@ public class WordCounterUITest {
 
         ui.countWords();
 
-        assertEquals("Number of words: 4", output.getText());
+        assertEquals("Number of words: 4 , unique: 4", output.getText());
+    }
+
+    @Test
+    public void okTestCorrectCountsIteration4() {
+        MockOutput output = new MockOutput();
+        StringInput input = new StringInput("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.");
+        WordCounterUI ui = new WordCounterUI(input, output,
+                new WordCounter(new HashSet<>(Arrays.asList("the", "a", "on", "off"))));
+
+        ui.countWords();
+
+        assertEquals("Number of words: 9, unique: 7", output.getText());
     }
 
 }

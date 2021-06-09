@@ -7,9 +7,9 @@ import root.ui.WordCounterUIInterface;
 
 public class WordCounterUI implements WordCounterUIInterface {
 
-    private WordInputInterface input;
-    private OutputInterface output;
-    private WordCounterInterface wordCounter;
+    private final WordInputInterface input;
+    private final OutputInterface output;
+    private final WordCounterInterface wordCounter;
 
     public WordCounterUI(WordInputInterface input, OutputInterface output, WordCounterInterface wordCounter) {
         this.input = input;

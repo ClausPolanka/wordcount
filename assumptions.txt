@@ -1,0 +1,3 @@
+[2]
+stopwords.txt: filename does not change
+stopwords.txt: if the file is not present, the application should be able to run as well

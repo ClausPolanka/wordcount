@@ -19,7 +19,6 @@ public class WordCounterUI implements WordCounterUIInterface {
 
     @Override
     public void countWords() {
-        this.output.print("Enter text: ");
         long number = wordCounter.countWords(this.input.getInput());
         this.output.print("Number of words: " + number);
     }

@@ -1,3 +1,5 @@
 [2]
 stopwords.txt: filename does not change
 stopwords.txt: if the file is not present, the application should be able to run as well
+[3]
+if the provided file is not present, then the user is informed and the console is used for test input

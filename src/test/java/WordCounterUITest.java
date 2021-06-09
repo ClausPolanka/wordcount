@@ -18,7 +18,7 @@ public class WordCounterUITest {
 
         ui.countWords();
 
-        assertEquals("Enter text: Number of words: 4", output.getText());
+        assertEquals("Number of words: 4", output.getText());
     }
 
 }

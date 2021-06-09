@@ -1,9 +1,6 @@
 package root.wordcounter;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -21,23 +18,27 @@ public class WordCounter {
     }
 
     public CountingResult countWords(String text) {
-        String[] wordCandidates = text.split(WORD_SEPARATOR_REGEX);
-        Set<String> uniqueWords;
+        final String[] wordCandidates = text.split(WORD_SEPARATOR_REGEX);
 
-        List<String> words = Arrays.stream(wordCandidates).filter(word -> WORD_REGEX.matcher(word).matches())
+        final List<String> words = Arrays.stream(wordCandidates).filter(word -> WORD_REGEX.matcher(word).matches())
                 .filter(word -> !this.stopWords.contains(word))
                 .collect(Collectors.toList());
 
-        uniqueWords = new HashSet<>(words);
+        final Set<String> uniqueWords = new HashSet<>(words);
+        final List<String> index = new ArrayList<>(uniqueWords);
 
-        int totalWordLength = words.stream().map(String::length).reduce(Integer::sum).orElse(0);
-        int numWords = words.size();
-        double averageWordLen = 0;
+        index.sort(String::compareTo);
+
+        return new CountingResult(words.size(), uniqueWords.size(), getAverage(words), index);
+    }
+
+    private double getAverage(List<String> words) {
+        final int totalWordLength = words.stream().map(String::length).reduce(Integer::sum).orElse(0);
+        final int numWords = words.size();
 
         if(numWords > 0) {
-            averageWordLen = ((double) totalWordLength) / numWords;
+            return  ((double) totalWordLength) / numWords;
         }
-
-        return new CountingResult(numWords, uniqueWords.size(), averageWordLen);
+        return 0;
     }
 }

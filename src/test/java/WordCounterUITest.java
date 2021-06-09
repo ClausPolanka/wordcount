@@ -54,7 +54,7 @@ public class WordCounterUITest {
 
         ui.countWords();
 
-        assertEquals("Number of words: 4, unique: 4; average word length: 4"+ decimalSeparator +"25 characters", output.getText());
+        assertEquals("Number of words: 4, unique: 4; average word length: 4" + decimalSeparator + "25 characters", output.getText());
     }
 
     @Test
@@ -66,7 +66,25 @@ public class WordCounterUITest {
 
         ui.countWords();
 
-        assertEquals("Number of words: 7, unique: 6; average word length: 6"+ decimalSeparator +"71 characters", output.getText());
+        assertEquals("Number of words: 7, unique: 6; average word length: 6" + decimalSeparator + "71 characters", output.getText());
+    }
+
+    @Test
+    public void okTestCorrectCountsPrintIndex() {
+        MockOutput output = new MockOutput();
+        StringInput input = new StringInput("Mary had a little lamb");
+        WordCounterUI ui = new WordCounterUI(input, output,
+                new WordCounter(new HashSet<>(Arrays.asList("the", "a", "on", "off"))));
+
+        ui.countWords();
+
+        assertEquals("Number of words: 4, unique: 4; average word length: 4"
+                        + decimalSeparator + "25 characters" +
+                        System.lineSeparator() + "Index:" +
+                        System.lineSeparator() + "lamb" +
+                        System.lineSeparator() + "little" +
+                        System.lineSeparator() + "Mary"
+                , output.getText());
     }
 
 }

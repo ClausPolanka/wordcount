@@ -13,7 +13,7 @@ public class WordCounterUI {
     }
 
     public void countWords() {
-        long number = wordCounter.countWords(this.input.getInput());
-        this.output.print("Number of words: " + number);
+        CountingResult result = wordCounter.countWords(this.input.getInput());
+        this.output.print("Number of words: " + result.getNumOfWords() + ", unique: " + result.getNumUniqueWords());
     }
 }

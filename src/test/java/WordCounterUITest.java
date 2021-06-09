@@ -49,7 +49,7 @@ public class WordCounterUITest {
 
         ui.countWords();
 
-        assertEquals("Number of words: 4 , unique: 4", output.getText());
+        assertEquals("Number of words: 4, unique: 4", output.getText());
     }
 
     @Test

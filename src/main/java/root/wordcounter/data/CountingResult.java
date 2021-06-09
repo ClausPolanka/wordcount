@@ -1,8 +1,7 @@
-package root.wordcounter;
+package root.wordcounter.data;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class CountingResult {
 

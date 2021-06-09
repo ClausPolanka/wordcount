@@ -16,13 +16,9 @@ public class InputFactory {
     }
 
 
-    public InputInterface createInput(String[] args) {
-        if(args != null) {
-            List<String> argList = new ArrayList<>(Arrays.asList(args));
-            argList.remove("-index");
-            if(!argList.isEmpty()) {
-                return new FileInput(args[0]);
-            }
+    public InputInterface createInput(String filename) {
+        if(filename != null) {
+            return new FileInput(filename);
         }
         return new ConsoleInput(this.outputInterface);
     }

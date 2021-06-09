@@ -1,5 +1,7 @@
 package root.wordcounter;
 
+import root.wordcounter.data.CountingResult;
+
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -20,14 +22,15 @@ public class WordCounter {
     public CountingResult countWords(String text) {
         final String[] wordCandidates = text.split(WORD_SEPARATOR_REGEX);
 
-        final List<String> words = Arrays.stream(wordCandidates).filter(word -> WORD_REGEX.matcher(word).matches())
+        final List<String> words = Arrays.stream(wordCandidates)
+                .filter(word -> WORD_REGEX.matcher(word).matches())
                 .filter(word -> !this.stopWords.contains(word))
                 .collect(Collectors.toList());
 
         final Set<String> uniqueWords = new HashSet<>(words);
-        final List<String> index = new ArrayList<>(uniqueWords);
 
-        index.sort(String::compareTo);
+        final List<String> index = new ArrayList<>(uniqueWords);
+        index.sort(String::compareToIgnoreCase);
 
         return new CountingResult(words.size(), uniqueWords.size(), getAverage(words), index);
     }

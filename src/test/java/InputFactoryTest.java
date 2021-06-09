@@ -12,7 +12,7 @@ public class InputFactoryTest {
     public void okCreateInputNoArgs() {
         InputFactory factory = new InputFactory(new MockOutput());
 
-        assertEquals(factory.createInput(new String[]{}).getClass(), ConsoleInput.class);
+        assertEquals(factory.createInput(null).getClass(), ConsoleInput.class);
     }
 
     @Test
@@ -26,14 +26,14 @@ public class InputFactoryTest {
     public void okCreateInputArgs() {
         InputFactory factory = new InputFactory(new MockOutput());
 
-        assertEquals(factory.createInput(new String[]{"src/main/resources/mytext.txt"}).getClass(), FileInput.class);
+        assertEquals(factory.createInput("src/main/resources/mytext.txt").getClass(), FileInput.class);
     }
 
     @Test
     public void okCreateInvalidInputArgs() {
         MockOutput output = new MockOutput();
         InputFactory factory = new InputFactory(new MockOutput());
-        factory.createInput(new String[]{"invalidFile.txt"});
+        factory.createInput("invalidFile.txt");
 
     }
 

@@ -13,3 +13,7 @@ average from all legal words is calculated
 if no words are provided the average is zero
 avg is rounded to 2 positions
 decimal separator based on locate
+[7]
+The -index args can be at arbitrary position
+The first non -index argument is assumed as filename
+printIndex as Parameter if in future wordcount is called multiple times with and without index

@@ -34,7 +34,7 @@ public class WordCounterUITest {
         WordCounterUI ui = new WordCounterUI(input, output,
                 new WordCounter(new HashSet<>(Arrays.asList("the", "a", "on", "off"))));
 
-        ui.countWords();
+        ui.countWords(false);
 
         assertEquals("Number of words: 4, unique: 4; average word length: 4" + decimalSeparator + "25 characters", output.getText());
     }
@@ -52,7 +52,7 @@ public class WordCounterUITest {
         WordCounterUI ui = new WordCounterUI(new FileInput(tempFile.toString()), output,
                 new WordCounter(new HashSet<>(Arrays.asList("the", "a", "on", "off"))));
 
-        ui.countWords();
+        ui.countWords(false);
 
         assertEquals("Number of words: 4, unique: 4; average word length: 4" + decimalSeparator + "25 characters", output.getText());
     }
@@ -64,7 +64,7 @@ public class WordCounterUITest {
         WordCounterUI ui = new WordCounterUI(input, output,
                 new WordCounter(new HashSet<>(Arrays.asList("the", "a", "on", "off"))));
 
-        ui.countWords();
+        ui.countWords(false);
 
         assertEquals("Number of words: 7, unique: 6; average word length: 6" + decimalSeparator + "71 characters", output.getText());
     }
@@ -76,11 +76,12 @@ public class WordCounterUITest {
         WordCounterUI ui = new WordCounterUI(input, output,
                 new WordCounter(new HashSet<>(Arrays.asList("the", "a", "on", "off"))));
 
-        ui.countWords();
+        ui.countWords(true);
 
         assertEquals("Number of words: 4, unique: 4; average word length: 4"
                         + decimalSeparator + "25 characters" +
                         System.lineSeparator() + "Index:" +
+                        System.lineSeparator() + "had" +
                         System.lineSeparator() + "lamb" +
                         System.lineSeparator() + "little" +
                         System.lineSeparator() + "Mary"

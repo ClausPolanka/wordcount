@@ -1,4 +1,4 @@
-package root.service;
+package root.wordcounter;
 
 public interface OutputInterface {
 

@@ -1,4 +1,4 @@
-package root.service;
+package root.wordcounter;
 
 import java.util.Set;
 

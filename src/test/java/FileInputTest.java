@@ -1,34 +1,43 @@
-import mocks.MockOutput;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import root.service.WordInputInterface;
-import root.service.impl.ConsoleWordInput;
-import root.service.impl.FileWordInput;
-import root.service.impl.InvalidUserInputException;
+import org.junit.jupiter.api.io.TempDir;
+import root.wordcounter.InputInterface;
+import root.infrastructure.FileInput;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FileInputTest {
 
+    @TempDir
+    Path tempDir;
+
     @Test
-    public void okReadFile() throws InvalidUserInputException {
-        WordInputInterface input = new FileWordInput("src/main/resources/mytext.txt");
+    public void okReadFile() throws IOException {
+
+        Path tempFile = Files.createFile(tempDir.resolve("test.tmp"));
+
+        PrintWriter testWriter = new PrintWriter(new FileOutputStream(tempFile.toFile()));
+        testWriter.write("Mary had" + System.lineSeparator() + "a little" + System.lineSeparator() + "lamb");
+        testWriter.close();
+
+
+        InputInterface input = new FileInput(tempFile.toString());
 
         String text = input.getInput();
 
-        assertEquals("Mary had\n" + "a little\n" + "lamb", text);
+        assertEquals("Mary had" + System.lineSeparator() + "a little" + System.lineSeparator() + "lamb",
+                text);
 
     }
 
     @Test
-    public void nokReadInvalidFile() throws InvalidUserInputException {
+    public void nokReadInvalidFile() {
 
-        Assertions.assertThrows(InvalidUserInputException.class, () -> {
-            WordInputInterface input = new FileWordInput("invalidFile.txt");
-        });
+        InputInterface input = new FileInput("invalidFile.txt");
+        assertEquals("", input.getInput());
 
 
     }

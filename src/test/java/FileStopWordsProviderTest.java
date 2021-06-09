@@ -1,9 +1,8 @@
 import org.junit.jupiter.api.Test;
-import root.service.StopWordsProviderInterface;
-import root.service.impl.FileStopWordsProvider;
+import root.wordcounter.StopWordsProviderInterface;
+import root.infrastructure.FileStopWordsProvider;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 

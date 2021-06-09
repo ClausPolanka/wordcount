@@ -1,0 +1,19 @@
+package root.wordcounter;
+
+public class WordCounterUI {
+
+    private final InputInterface input;
+    private final OutputInterface output;
+    private final WordCounter wordCounter;
+
+    public WordCounterUI(InputInterface input, OutputInterface output, WordCounter wordCounter) {
+        this.input = input;
+        this.output = output;
+        this.wordCounter = wordCounter;
+    }
+
+    public void countWords() {
+        long number = wordCounter.countWords(this.input.getInput());
+        this.output.print("Number of words: " + number);
+    }
+}

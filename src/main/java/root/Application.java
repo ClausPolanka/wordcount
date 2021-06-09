@@ -1,24 +1,23 @@
 package root;
 
-import root.service.InputFactory;
-import root.service.OutputInterface;
-import root.service.WordInputInterface;
-import root.service.impl.ConsoleOutput;
-import root.service.impl.ConsoleWordInput;
-import root.service.impl.DefaultWordCounter;
-import root.service.impl.FileStopWordsProvider;
-import root.ui.WordCounterUIInterface;
-import root.ui.impl.WordCounterUI;
+import root.wordcounter.InputFactory;
+import root.wordcounter.OutputInterface;
+import root.wordcounter.InputInterface;
+import root.infrastructure.ConsoleOutput;
+import root.wordcounter.WordCounter;
+import root.infrastructure.FileStopWordsProvider;
+import root.wordcounter.WordCounterUI;
 
 public class Application {
 
     public static void main(String[] args) {
         OutputInterface output = new ConsoleOutput();
         InputFactory factory = new InputFactory(output);
-        WordInputInterface input = factory.createInput(args);
+        InputInterface input = factory.createInput(args);
+        FileStopWordsProvider stopWordsProvider = new FileStopWordsProvider();
 
-        WordCounterUIInterface ui = new WordCounterUI(input, output,
-                new DefaultWordCounter(new FileStopWordsProvider()));
+        WordCounterUI ui = new WordCounterUI(input, output,
+                new WordCounter(stopWordsProvider.getStopWords()));
         ui.countWords();
     }
 

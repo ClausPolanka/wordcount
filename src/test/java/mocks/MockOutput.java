@@ -1,6 +1,6 @@
 package mocks;
 
-import root.service.OutputInterface;
+import root.wordcounter.OutputInterface;
 
 public class MockOutput implements OutputInterface {
 

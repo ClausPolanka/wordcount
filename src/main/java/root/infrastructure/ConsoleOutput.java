@@ -1,6 +1,6 @@
-package root.service.impl;
+package root.infrastructure;
 
-import root.service.OutputInterface;
+import root.wordcounter.OutputInterface;
 
 public class ConsoleOutput implements OutputInterface {
 

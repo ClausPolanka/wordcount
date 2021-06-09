@@ -1,8 +1,8 @@
 package mocks;
 
-import root.service.WordInputInterface;
+import root.wordcounter.InputInterface;
 
-public class StringInput implements WordInputInterface {
+public class StringInput implements InputInterface {
 
     private String input;
 

@@ -1,43 +1,40 @@
 import mocks.MockOutput;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import root.service.InputFactory;
-import root.service.WordInputInterface;
-import root.service.impl.ConsoleWordInput;
-import root.service.impl.FileWordInput;
-import root.service.impl.InvalidUserInputException;
+import root.wordcounter.InputFactory;
+import root.infrastructure.ConsoleInput;
+import root.infrastructure.FileInput;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InputFactoryTest {
 
     @Test
-    public void okCreateInputNoArgs() throws InvalidUserInputException {
+    public void okCreateInputNoArgs() {
         InputFactory factory = new InputFactory(new MockOutput());
 
-        assertEquals(factory.createInput(new String[]{}).getClass(), ConsoleWordInput.class);
+        assertEquals(factory.createInput(new String[]{}).getClass(), ConsoleInput.class);
     }
 
     @Test
-    public void okCreateInputNullArgs() throws InvalidUserInputException {
+    public void okCreateInputNullArgs() {
         InputFactory factory = new InputFactory(new MockOutput());
 
-        assertEquals(factory.createInput(null).getClass(), ConsoleWordInput.class);
+        assertEquals(factory.createInput(null).getClass(), ConsoleInput.class);
     }
 
     @Test
-    public void okCreateInputArgs() throws InvalidUserInputException {
+    public void okCreateInputArgs() {
         InputFactory factory = new InputFactory(new MockOutput());
 
-        assertEquals(factory.createInput(new String[]{"src/main/resources/mytext.txt"}).getClass(), FileWordInput.class);
+        assertEquals(factory.createInput(new String[]{"src/main/resources/mytext.txt"}).getClass(), FileInput.class);
     }
 
     @Test
-    public void okCreateInvalidInputArgs() throws InvalidUserInputException {
+    public void okCreateInvalidInputArgs() {
         MockOutput output = new MockOutput();
         InputFactory factory = new InputFactory(new MockOutput());
         factory.createInput(new String[]{"invalidFile.txt"});
-        
+
     }
 
 }

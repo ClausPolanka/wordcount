@@ -20,7 +20,6 @@ public class FileInput implements InputInterface {
 
     @Override
     public String getInput() {
-        StringBuilder text = new StringBuilder();
         try {
             List<String> lines = new ArrayList<>(Files.readAllLines(new File(file).toPath()));
             return String.join(System.lineSeparator(), lines);

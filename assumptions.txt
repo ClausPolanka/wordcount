@@ -8,3 +8,8 @@ if the provided file is not present, then the user is informed and the console i
 "." at the end of a word is also a valid word (. is part of the word), but . as separator is invalid
 [5]
 "-" must be between characters
+[6]
+average from all legal words is calculated
+if no words are provided the average is zero
+avg is rounded to 2 positions
+decimal separator based on locate

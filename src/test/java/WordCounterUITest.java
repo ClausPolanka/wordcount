@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import root.infrastructure.FileInput;
 import root.wordcounter.WordCounter;
-import root.infrastructure.FileStopWordsProvider;
 import root.wordcounter.WordCounterUI;
 
 import java.io.FileOutputStream;
@@ -12,12 +11,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WordCounterUITest {
+
+    private final DecimalFormat format = (DecimalFormat) DecimalFormat.getInstance();
+    private final DecimalFormatSymbols symbols = format.getDecimalFormatSymbols();
+    private final char decimalSeparator = symbols.getDecimalSeparator();
 
     @TempDir
     Path tempDir;
@@ -31,7 +36,7 @@ public class WordCounterUITest {
 
         ui.countWords();
 
-        assertEquals("Number of words: 4, unique: 4", output.getText());
+        assertEquals("Number of words: 4, unique: 4; average word length: 4" + decimalSeparator + "25 characters", output.getText());
     }
 
     @Test
@@ -49,7 +54,7 @@ public class WordCounterUITest {
 
         ui.countWords();
 
-        assertEquals("Number of words: 4, unique: 4", output.getText());
+        assertEquals("Number of words: 4, unique: 4; average word length: 4"+ decimalSeparator +"25 characters", output.getText());
     }
 
     @Test
@@ -61,7 +66,7 @@ public class WordCounterUITest {
 
         ui.countWords();
 
-        assertEquals("Number of words: 7, unique: 6", output.getText());
+        assertEquals("Number of words: 7, unique: 6; average word length: 6"+ decimalSeparator +"71 characters", output.getText());
     }
 
 }

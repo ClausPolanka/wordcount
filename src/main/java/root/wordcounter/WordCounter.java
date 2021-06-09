@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 public class WordCounter {
 
     public static final String WORD_SEPARATOR_REGEX = "\\s+";
+
+    //hyphen between characters and point at the end optional
     public static final Pattern WORD_REGEX = Pattern.compile("[a-zA-Z]+-?[a-zA-Z]+\\.?");
 
     private final Set<String> stopWords;
@@ -28,6 +30,14 @@ public class WordCounter {
 
         uniqueWords = new HashSet<>(words);
 
-        return new CountingResult(words.size(), uniqueWords.size());
+        int totalWordLength = words.stream().map(String::length).reduce(Integer::sum).orElse(0);
+        int numWords = words.size();
+        double averageWordLen = 0;
+
+        if(numWords > 0) {
+            averageWordLen = ((double) totalWordLength) / numWords;
+        }
+
+        return new CountingResult(numWords, uniqueWords.size(), averageWordLen);
     }
 }

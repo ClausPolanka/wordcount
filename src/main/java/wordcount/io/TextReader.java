@@ -1,9 +1,10 @@
 package wordcount.io;
 
+import wordcount.error.WrappedException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 
 public class TextReader implements ITextReader {
     InputStreamReader is;

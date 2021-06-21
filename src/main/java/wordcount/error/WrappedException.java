@@ -1,4 +1,6 @@
-package wordcount.io;
+package wordcount.error;
+
+import wordcount.io.Errors;
 
 public class WrappedException extends RuntimeException {
 

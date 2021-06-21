@@ -1,6 +1,7 @@
 package wordcount.io;
 
 import org.junit.jupiter.api.Test;
+import wordcount.error.WrappedException;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
@@ -16,17 +17,18 @@ class TextReaderTest {
 
         ITextReader textReader = new TextReader(is);
 
-       assertEquals( "Hello World", textReader.readText());
+        assertEquals( "Hello World", textReader.readText());
 
 
     }
 
     @Test
-    void readTextShowThrowExceptionIfInputStreamIsNull() {
+    void readTextShouldThrowExceptionIfInputStreamIsNull() {
         ITextReader textReader = new TextReader(null);
 
-        final WrappedException wrappedException = assertThrows(WrappedException.class,
+       assertThrows(WrappedException.class,
                 textReader::readText);
+
 
 
     }

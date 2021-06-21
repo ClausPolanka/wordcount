@@ -8,7 +8,7 @@ public class WordCountPrinter {
     }
 
     public static void printCount(WordCounter.CountResult count) {
-        System.out.print(String.format("Total count is: %s; the unique count is: %s", count.total(), count.unique()));
+        System.out.print(String.format("Number of words: %s, unique is: %s", count.total(), count.unique()));
     }
 
 }

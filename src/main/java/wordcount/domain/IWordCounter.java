@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface IWordCounter {
 
-    long countWords(String textToCount, List<String> stopwordList);
+    WordCounter.CountResult countWords(String textToCount, List<String> stopwordList);
 
 }

@@ -26,9 +26,9 @@ public class TextServiceFacade implements ITextService {
 
       
     @Override
-    public long count(Optional<String> fileName)  {
+    public WordCounter.CountResult count(Optional<String> fileName)  {
 
-        long result;
+        WordCounter.CountResult result;
 
         if (isAbsent(fileName)) {
         InputStreamReader isr = new InputStreamReader(System.in);
@@ -51,13 +51,13 @@ public class TextServiceFacade implements ITextService {
         return !fileName.isPresent();
     }
 
-    long countFromConsole(InputStreamReader isr) {
+    WordCounter.CountResult countFromConsole(InputStreamReader isr) {
         System.out.println("Write your text: \n");
 
          return computeCount(isr);
      }
 
-    private long computeCount(InputStreamReader is) {
+    private WordCounter.CountResult computeCount(InputStreamReader is) {
         ITextReader textReader = new TextReader(is);
 
         StopWordReader stopwordReader = new StopWordReader(resourceFetcher);
@@ -68,7 +68,7 @@ public class TextServiceFacade implements ITextService {
         return wordCounter.countWords(textReader.readText(), stopwordList);
     }
 
-    long countFromFile(InputStreamReader is) {
+    WordCounter.CountResult countFromFile(InputStreamReader is) {
         return computeCount(is);
     }
     

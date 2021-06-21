@@ -1,6 +1,6 @@
 package wordcount.error;
 
-import wordcount.io.Errors;
+import wordcount.io.ErrorCode;
 
 public class WrappedException extends RuntimeException {
 
@@ -9,7 +9,7 @@ public class WrappedException extends RuntimeException {
         super(message);
     }
 
-    public WrappedException(Errors message, Throwable cause) {
+    public WrappedException(ErrorCode message, Throwable cause) {
         super(message.name(), cause);
     }
 }

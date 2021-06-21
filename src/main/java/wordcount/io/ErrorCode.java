@@ -1,6 +1,6 @@
 package wordcount.io;
 
-public enum Errors {
+public enum ErrorCode {
 
     READ_TEXT_ERROR,
     TEXT_INPUT_IS_NULL,

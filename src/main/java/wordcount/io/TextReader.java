@@ -14,7 +14,7 @@ public class TextReader implements ITextReader {
        this.is = is;
 
        if(is == null) {
-           throw new WrappedException(Errors.TEXT_INPUT_IS_NULL.name());
+           throw new WrappedException(ErrorCode.TEXT_INPUT_IS_NULL.name());
        }
 
     }
@@ -29,7 +29,7 @@ public class TextReader implements ITextReader {
 
 
         } catch(IOException ex) {
-            throw new WrappedException(Errors.READ_TEXT_ERROR, ex);
+            throw new WrappedException(ErrorCode.READ_TEXT_ERROR, ex);
         }
 
         return result;

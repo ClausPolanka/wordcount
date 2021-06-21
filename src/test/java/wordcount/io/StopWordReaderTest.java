@@ -1,6 +1,7 @@
 package wordcount.io;
 
 import org.junit.jupiter.api.Test;
+import utils.ResourceFetcher;
 
 import java.util.List;
 
@@ -11,9 +12,10 @@ class StopWordReaderTest {
 
     @Test
     void shouldReturnCorrectListOfStopwords() {
-       StopWordReader stopWordReader = new StopWordReader();
+        var resourceFetcher = new ResourceFetcher();
+       StopWordReader stopwordReader = new StopWordReader(resourceFetcher);
         var expected = List.of("the", "a", "on", "off");
-       assertArrayEquals(expected.toArray(),  stopWordReader.readStopWords().toArray());
+       assertArrayEquals(expected.toArray(),  stopwordReader.readStopWords().toArray());
     }
 
 }

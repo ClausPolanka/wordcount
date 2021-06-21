@@ -1,5 +1,6 @@
 package wordcount.io;
 
+import utils.ResourceFetcher;
 import wordcount.error.WrappedException;
 
 import java.io.BufferedReader;
@@ -14,6 +15,13 @@ import java.util.stream.Collectors;
 
 public class StopWordReader implements IStopWordReader {
 
+    final ResourceFetcher resourceFetcher;
+
+    public StopWordReader(ResourceFetcher resourceFetcher) {
+        this.resourceFetcher = resourceFetcher;
+    }
+
+
     public List<String> readStopWords()  {
         URL resource = StopWordReader.class.getClassLoader().getResource("stopwords.txt");
         File file;
@@ -22,7 +30,7 @@ public class StopWordReader implements IStopWordReader {
 
         }
         catch(URISyntaxException ex) {
-            throw new WrappedException(Errors.ERRORS_ACCESSING_RESOURCE_STOPWORD_READER.name());
+            throw new WrappedException(ErrorCode.ERRORS_ACCESSING_RESOURCE_STOPWORD_READER.name());
         }
 
         try (BufferedReader reader =
@@ -31,7 +39,7 @@ public class StopWordReader implements IStopWordReader {
         return reader.lines().collect(Collectors.toList());
 
         } catch(IOException ex) {
-            throw new WrappedException(Errors.ERRORS_IN_STOPWORD_READER.name());
+            throw new WrappedException(ErrorCode.ERRORS_IN_STOPWORD_READER.name());
         }
     }
 

@@ -1,5 +1,6 @@
 package wordcount;
 
+import utils.ResourceFetcher;
 import wordcount.application.ITextService;
 import wordcount.application.TextServiceFacade;
 import wordcount.io.WordCountPrinter;
@@ -11,7 +12,9 @@ public class WordCountApplication {
 
     public static void main(String... args) {
 
-        ITextService textService = new TextServiceFacade();
+        ResourceFetcher resourceFetcher = new ResourceFetcher();
+
+        ITextService textService = new TextServiceFacade(resourceFetcher);
 
         if (args.length > 0) {
             WordCountPrinter.printCount(textService.count(Optional.of(args[0])));

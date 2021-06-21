@@ -1,8 +1,7 @@
 package wordcount.error;
 
 import org.junit.jupiter.api.Test;
-import wordcount.error.WrappedException;
-import wordcount.io.Errors;
+import wordcount.io.ErrorCode;
 
 import java.io.IOException;
 
@@ -26,7 +25,7 @@ class WrappedExceptionTest {
     void assertWrappedExceptionWithMessageAndWrappedError() {
 
         final WrappedException wrappedException = assertThrows(WrappedException.class,
-                ()-> { throw new WrappedException(Errors.READ_TEXT_ERROR, new IOException());});
+                ()-> { throw new WrappedException(ErrorCode.READ_TEXT_ERROR, new IOException());});
 
         assertEquals(IOException.class, wrappedException.getCause().getClass());
    }

@@ -1,10 +1,10 @@
 package wordcount.domain;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import utils.ResourceFetcher;
 import wordcount.io.StopWordReader;
 
 import java.util.Arrays;
@@ -24,7 +24,8 @@ class WordCounterTest {
     @ParameterizedTest
     @MethodSource("paramsforcCountWords")
     void countWords(String text, Long count) {
-        StopWordReader sr = new StopWordReader();
+        ResourceFetcher resourceFetcher = new ResourceFetcher();
+        StopWordReader sr = new StopWordReader(resourceFetcher);
         assertEquals(count, wc.countWords(text,  sr.readStopWords()));
 
     }

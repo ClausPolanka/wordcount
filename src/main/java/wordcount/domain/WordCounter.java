@@ -8,7 +8,7 @@ public class WordCounter implements IWordCounter {
 
     @Override
     public long countWords(String textToCount) {
-    String[] words =  textToCount.split("/\\s+");
+    String[] words =  textToCount.split("\\s+");
     return Arrays.stream(words).filter(this::isValid).count();
     }
 

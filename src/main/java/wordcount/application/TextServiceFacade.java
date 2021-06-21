@@ -7,7 +7,7 @@ import wordcount.io.TextReader;
 
 import java.io.InputStreamReader;
 
-public class TextService implements ITextService {
+public class TextServiceFacade implements ITextService {
 
 
     @Override

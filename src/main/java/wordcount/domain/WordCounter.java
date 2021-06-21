@@ -55,8 +55,8 @@ public class WordCounter implements IWordCounter {
     }
 
     public static class CountResult {
-       private Long total;
-       private Long unique;
+       private final Long total;
+       private final Long unique;
 
         public Long total() {
             return total;

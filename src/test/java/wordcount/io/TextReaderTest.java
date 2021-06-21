@@ -20,4 +20,14 @@ class TextReaderTest {
 
 
     }
+
+    @Test
+    void readTextShowThrowExceptionIfInputStreamIsNull() {
+        ITextReader textReader = new TextReader(null);
+
+        final WrappedException wrappedException = assertThrows(WrappedException.class,
+                textReader::readText);
+
+
+    }
 }

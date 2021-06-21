@@ -22,7 +22,7 @@ public class TextReader implements ITextReader {
             result = reader.readLine();
 
 
-        } catch(IOException ex) {
+        } catch(IOException | NullPointerException ex) {
             throw new WrappedException(Errors.READ_TEXT_ERROR, ex);
         }
 

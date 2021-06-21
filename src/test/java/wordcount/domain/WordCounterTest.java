@@ -41,9 +41,10 @@ class WordCounterTest {
                {"whatever on", 1L, 1L},
                {"whatever off", 1L, 1L},
                {"whatever whatever off", 2L, 1L},
+               {"whatever- whatever off", 1L, 1L},
+               {"whatever-whatever off", 1L, 1L},
                {"Hello Hello off", 2L, 1L}
-       }
-       );
+       });
     }
 
     @ParameterizedTest

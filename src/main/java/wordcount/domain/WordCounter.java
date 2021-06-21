@@ -45,7 +45,7 @@ public class WordCounter implements IWordCounter {
     }
 
     public boolean isValid(String word) {
-        Pattern p = Pattern.compile("^[a-zA-Z]+$");
+        Pattern p = Pattern.compile("^[a-zA-Z]+(-[a-zA-Z]+)*$");
         final Matcher matcher = p.matcher(word);
         return matcher.find();
     }

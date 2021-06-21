@@ -7,15 +7,15 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StopWordReaderTest {
+class StopwordReaderTest {
 
 
     @Test
     void shouldReturnCorrectListOfStopwords() {
         var resourceFetcher = new ResourceFetcher();
-       StopWordReader stopwordReader = new StopWordReader(resourceFetcher);
+       StopwordReader stopwordReader = new StopwordReader(resourceFetcher);
         var expected = List.of("the", "a", "on", "off");
-       assertArrayEquals(expected.toArray(),  stopwordReader.readStopWords().toArray());
+       assertArrayEquals(expected.toArray(),  stopwordReader.readStopwords().toArray());
     }
 
 }

@@ -13,32 +13,31 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StopWordReader implements IStopWordReader {
+public class StopwordReader implements IStopwordReader {
 
     final ResourceFetcher resourceFetcher;
 
-    public StopWordReader(ResourceFetcher resourceFetcher) {
+    public StopwordReader(ResourceFetcher resourceFetcher) {
         this.resourceFetcher = resourceFetcher;
     }
 
 
-    public List<String> readStopWords()  {
-        URL resource = StopWordReader.class.getClassLoader().getResource("stopwords.txt");
+    public List<String> readStopwords() {
+        URL resource = StopwordReader.class.getClassLoader().getResource("stopwords.txt");
         File file;
         try {
-             file = Paths.get(resource.toURI()).toFile();
+            file = Paths.get(resource.toURI()).toFile();
 
-        }
-        catch(URISyntaxException ex) {
+        } catch (URISyntaxException ex) {
             throw new WrappedException(ErrorCode.ERRORS_ACCESSING_RESOURCE_STOPWORD_READER.name());
         }
 
         try (BufferedReader reader =
                      new BufferedReader(new FileReader(file.getCanonicalPath()))) {
 
-        return reader.lines().collect(Collectors.toList());
+            return reader.lines().collect(Collectors.toList());
 
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             throw new WrappedException(ErrorCode.ERRORS_IN_STOPWORD_READER.name());
         }
     }

@@ -23,7 +23,7 @@ public class WordCounter implements IWordCounter {
 
         String[] words = textToCount.split("\\s+");
 
-        return  CountResult.of(computeTotal(stopWordList, words), computeUniqueCount(stopWordList, words));
+        return CountResult.of(computeTotal(stopWordList, words), computeUniqueCount(stopWordList, words));
 
     }
 
@@ -55,8 +55,8 @@ public class WordCounter implements IWordCounter {
     }
 
     public static class CountResult {
-       private final Long total;
-       private final Long unique;
+        private final Long total;
+        private final Long unique;
 
         public Long total() {
             return total;

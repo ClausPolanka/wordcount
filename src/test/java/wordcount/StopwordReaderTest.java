@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
-public class StopWordReaderTest {
+public class StopwordReaderTest {
     private ByteArrayOutputStream byteArrayOutputStream;
     private PrintStream console;
     @BeforeEach

@@ -11,11 +11,11 @@ public class TextReader implements ITextReader {
 
 
     public TextReader(InputStreamReader is) {
-       this.is = is;
+        this.is = is;
 
-       if(is == null) {
-           throw new WrappedException(ErrorCode.TEXT_INPUT_IS_NULL.name());
-       }
+        if (is == null) {
+            throw new WrappedException(ErrorCode.TEXT_INPUT_IS_NULL.name());
+        }
 
     }
 
@@ -28,7 +28,7 @@ public class TextReader implements ITextReader {
             result = reader.readLine();
 
 
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             throw new WrappedException(ErrorCode.READ_TEXT_ERROR, ex);
         }
 

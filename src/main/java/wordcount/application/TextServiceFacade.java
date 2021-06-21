@@ -6,8 +6,8 @@ import wordcount.domain.WordCounter;
 import wordcount.error.WrappedException;
 import wordcount.io.ErrorCode;
 import wordcount.io.ITextReader;
+import wordcount.io.StopwordReader;
 import wordcount.io.TextReader;
-import wordcount.io.StopWordReader;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,27 +24,26 @@ public class TextServiceFacade implements ITextService {
         this.resourceFetcher = resourceFetcher;
     }
 
-      
+
     @Override
-    public WordCounter.CountResult count(Optional<String> fileName)  {
+    public WordCounter.CountResult count(Optional<String> fileName) {
 
         WordCounter.CountResult result;
 
         if (isAbsent(fileName)) {
-        InputStreamReader isr = new InputStreamReader(System.in);
-           result =  countFromConsole(isr);
-        } else  {
+            InputStreamReader isr = new InputStreamReader(System.in);
+            result = countFromConsole(isr);
+        } else {
             File file = resourceFetcher.getFileFromResources(fileName, ErrorCode.ERRORS_ACCESSING_RESOURCE_TEXT_SERVICE_FACADE);
             try {
                 FileInputStream fileInputStream = new FileInputStream(file);
                 result = countFromFile(new InputStreamReader(fileInputStream));
             } catch (FileNotFoundException e) {
-              throw new WrappedException(ErrorCode.FILE_CANNOT_BE_NULL_TEXT_SERVICE_FACADE.name());
+                throw new WrappedException(ErrorCode.FILE_CANNOT_BE_NULL_TEXT_SERVICE_FACADE.name());
             }
         }
         return result;
     }
-
 
 
     private boolean isAbsent(Optional<String> fileName) {
@@ -54,14 +53,14 @@ public class TextServiceFacade implements ITextService {
     WordCounter.CountResult countFromConsole(InputStreamReader isr) {
         System.out.println("Write your text: \n");
 
-         return computeCount(isr);
-     }
+        return computeCount(isr);
+    }
 
     private WordCounter.CountResult computeCount(InputStreamReader is) {
         ITextReader textReader = new TextReader(is);
 
-        StopWordReader stopwordReader = new StopWordReader(resourceFetcher);
-        var stopwordList = Optional.of(stopwordReader.readStopWords()).orElse(Collections.emptyList());
+        StopwordReader stopwordReader = new StopwordReader(resourceFetcher);
+        var stopwordList = Optional.of(stopwordReader.readStopwords()).orElse(Collections.emptyList());
 
         IWordCounter wordCounter = new WordCounter();
 
@@ -71,6 +70,6 @@ public class TextServiceFacade implements ITextService {
     WordCounter.CountResult countFromFile(InputStreamReader is) {
         return computeCount(is);
     }
-    
+
 
 }

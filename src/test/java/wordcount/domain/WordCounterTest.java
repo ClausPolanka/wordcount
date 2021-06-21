@@ -5,7 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import utils.ResourceFetcher;
-import wordcount.io.StopWordReader;
+import wordcount.io.StopwordReader;
 
 import java.util.Arrays;
 
@@ -25,8 +25,8 @@ class WordCounterTest {
     @MethodSource("paramsforcCountWords")
     void countWords(String text, Long total, Long unique) {
         ResourceFetcher resourceFetcher = new ResourceFetcher();
-        StopWordReader sr = new StopWordReader(resourceFetcher);
-        final WordCounter.CountResult result = wc.countWords(text, sr.readStopWords());
+        StopwordReader sr = new StopwordReader(resourceFetcher);
+        final WordCounter.CountResult result = wc.countWords(text, sr.readStopwords());
         assertEquals(total, result.total());
         assertEquals(unique, result.unique());
 

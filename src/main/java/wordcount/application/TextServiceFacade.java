@@ -7,6 +7,8 @@ import wordcount.io.StopWordReader;
 import wordcount.io.TextReader;
 
 import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.Optional;
 
 public class TextServiceFacade implements ITextService {
 
@@ -18,11 +20,11 @@ public class TextServiceFacade implements ITextService {
         ITextReader textReader = new TextReader(new InputStreamReader(System.in));
 
         StopWordReader stopWordReader = new StopWordReader();
-        var stopwordList = stopWordReader.readStopWords();
+        var stopwordList = Optional.of(stopWordReader.readStopWords()).orElse(Collections.emptyList());
 
         IWordCounter wordCounter = new WordCounter();
 
-        return wordCounter.countWords(textReader.readText());
+        return wordCounter.countWords(textReader.readText(), stopwordList);
 
     }
 }

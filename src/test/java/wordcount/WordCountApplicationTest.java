@@ -19,7 +19,7 @@ public class WordCountApplicationTest {
     }
 
     @Test
-    void appTest()  {
+    void appTestFromConsoleShouldComputeWordsCorrectly()  {
 
         final InputStream input = new ByteArrayInputStream("asd".getBytes(StandardCharsets.UTF_8));
         final InputStream old = System.in;
@@ -35,6 +35,11 @@ public class WordCountApplicationTest {
             System.setIn(old);
         }
 
+    }
+
+    @Test
+    void appTestFromFileShouldComputeWordsCorrectly()  {
+        WordCountApplication.main("mytext.txt");
     }
 
 }

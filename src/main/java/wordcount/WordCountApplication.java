@@ -4,6 +4,8 @@ import wordcount.application.ITextService;
 import wordcount.application.TextServiceFacade;
 import wordcount.io.WordCountPrinter;
 
+import java.util.Optional;
+
 public class WordCountApplication {
 
 
@@ -11,7 +13,10 @@ public class WordCountApplication {
 
                 ITextService textService = new TextServiceFacade();
 
-                WordCountPrinter.printCount(textService.count());
+                if(args.length > 0) {
+                        WordCountPrinter.printCount(textService.count(Optional.of(args[0])));
+                }
+                WordCountPrinter.printCount(textService.count(Optional.ofNullable(null)));
 
         }
 

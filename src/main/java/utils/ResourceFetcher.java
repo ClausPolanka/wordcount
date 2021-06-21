@@ -13,9 +13,9 @@ import java.util.Optional;
 public class ResourceFetcher {
 
     public File getFileFromResources(Optional<String> fileName, ErrorCode code) {
-        URL resource = StopwordReader.class.getClassLoader().getResource(fileName.get());
         File file;
         try {
+            URL resource = StopwordReader.class.getClassLoader().getResource(fileName.get());
             file = Paths.get(resource.toURI()).toFile();
 
         } catch (URISyntaxException ex) {

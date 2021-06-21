@@ -23,21 +23,26 @@ class WordCounterTest {
 
     @ParameterizedTest
     @MethodSource("paramsforcCountWords")
-    void countWords(String text, Long count) {
+    void countWords(String text, Long total, Long unique) {
         ResourceFetcher resourceFetcher = new ResourceFetcher();
         StopWordReader sr = new StopWordReader(resourceFetcher);
-        assertEquals(count, wc.countWords(text,  sr.readStopWords()));
+        final WordCounter.CountResult result = wc.countWords(text, sr.readStopWords());
+        assertEquals(total, result.total());
+        assertEquals(unique, result.unique());
 
     }
     public static Iterable<Object[]> paramsforcCountWords() {
        return Arrays.asList(new Object[][] {
-               {"Hello Text", 2L},
-               {"whatever $asdas", 1L},
-               {"tru1e true", 1L},
-               {"whatever the", 1L},
-               {"whatever a", 1L},
-               {"whatever on", 1L},
-               {"whatever off", 1L}}
+               {"Hello Text", 2L, 2L},
+               {"whatever $asdas", 1L, 1L},
+               {"tru1e true", 1L, 1L},
+               {"whatever the", 1L, 1L},
+               {"whatever a", 1L, 1L},
+               {"whatever on", 1L, 1L},
+               {"whatever off", 1L, 1L},
+               {"whatever whatever off", 2L, 1L},
+               {"Hello Hello off", 2L, 1L}
+       }
        );
     }
 

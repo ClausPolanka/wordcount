@@ -24,12 +24,8 @@ class TextReaderTest {
 
     @Test
     void readTextShouldThrowExceptionIfInputStreamIsNull() {
-        ITextReader textReader = new TextReader(null);
-
        assertThrows(WrappedException.class,
-                textReader::readText);
-
-
+               ()-> new TextReader(null));
 
     }
 }

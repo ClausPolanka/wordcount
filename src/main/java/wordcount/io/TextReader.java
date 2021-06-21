@@ -12,6 +12,11 @@ public class TextReader implements ITextReader {
 
     public TextReader(InputStreamReader is) {
        this.is = is;
+
+       if(is == null) {
+           throw new WrappedException(Errors.TEXT_INPUT_IS_NULL.name());
+       }
+
     }
 
     public String readText() {
@@ -23,7 +28,7 @@ public class TextReader implements ITextReader {
             result = reader.readLine();
 
 
-        } catch(IOException | NullPointerException ex) {
+        } catch(IOException ex) {
             throw new WrappedException(Errors.READ_TEXT_ERROR, ex);
         }
 

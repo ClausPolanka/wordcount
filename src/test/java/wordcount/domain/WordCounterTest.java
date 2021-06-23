@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import utils.ResourceFetcher;
+import wordcount.utils.ResourceFetcher;
 import wordcount.io.StopwordReader;
 
 import java.util.Arrays;

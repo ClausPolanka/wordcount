@@ -1,6 +1,5 @@
 package wordcount.application;
 
-import utils.ResourceFetcher;
 import wordcount.domain.IWordCounter;
 import wordcount.domain.WordCounter;
 import wordcount.error.WrappedException;
@@ -8,6 +7,7 @@ import wordcount.io.ErrorCode;
 import wordcount.io.ITextReader;
 import wordcount.io.StopwordReader;
 import wordcount.io.TextReader;
+import wordcount.utils.ResourceFetcher;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,7 +34,7 @@ public class TextServiceFacade implements ITextService {
             InputStreamReader isr = new InputStreamReader(System.in);
             result = countFromConsole(isr);
         } else {
-            File file = resourceFetcher.getFileFromResources(fileName, ErrorCode.ERRORS_ACCESSING_RESOURCE_TEXT_SERVICE_FACADE);
+            File file = resourceFetcher.getFileFromResources(fileName.get(), ErrorCode.ERRORS_ACCESSING_RESOURCE_TEXT_SERVICE_FACADE);
             try {
                 FileInputStream fileInputStream = new FileInputStream(file);
                 result = countFromFile(new InputStreamReader(fileInputStream));

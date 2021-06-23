@@ -1,7 +1,7 @@
 package wordcount.io;
 
 import org.junit.jupiter.api.Test;
-import utils.ResourceFetcher;
+import wordcount.utils.ResourceFetcher;
 
 import java.util.List;
 

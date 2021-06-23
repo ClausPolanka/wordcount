@@ -1,15 +1,12 @@
 package wordcount.io;
 
-import utils.ResourceFetcher;
 import wordcount.error.WrappedException;
+import wordcount.utils.ResourceFetcher;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,14 +20,8 @@ public class StopwordReader implements IStopwordReader {
 
 
     public List<String> readStopwords() {
-        URL resource = StopwordReader.class.getClassLoader().getResource("stopwords.txt");
-        File file;
-        try {
-            file = Paths.get(resource.toURI()).toFile();
 
-        } catch (URISyntaxException ex) {
-            throw new WrappedException(ErrorCode.ERRORS_ACCESSING_RESOURCE_STOPWORD_READER.name());
-        }
+        File file = resourceFetcher.getFileFromResources("stopwords.txt", ErrorCode.ERRORS_ACCESSING_RESOURCE_STOPWORD_READER);
 
         try (BufferedReader reader =
                      new BufferedReader(new FileReader(file.getCanonicalPath()))) {

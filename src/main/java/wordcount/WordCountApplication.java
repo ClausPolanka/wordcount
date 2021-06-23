@@ -1,9 +1,9 @@
 package wordcount;
 
-import utils.ResourceFetcher;
 import wordcount.application.ITextService;
 import wordcount.application.TextServiceFacade;
 import wordcount.io.WordCountPrinter;
+import wordcount.utils.ResourceFetcher;
 
 import java.util.Optional;
 

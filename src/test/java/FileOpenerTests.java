@@ -1,3 +1,4 @@
+import exceptions.FormatException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +14,6 @@ public class FileOpenerTests {
     private static final String WRONG_FILE_FORMAT = "file.jpg";
 
     private static final String STOP_WORDS_FILE_NAME = "stopwords.txt";
-
-    private static final String STOP_WORD_MARY = "Mary";
 
     private static final String STOP_WORD_THE = "the";
 
@@ -55,7 +54,6 @@ public class FileOpenerTests {
         List<String> stopWordList = new ArrayList<>();
         List<String> returnedList = fileOpener.openTextFileFromResources(STOP_WORDS_FILE_NAME);
 
-        stopWordList.add(STOP_WORD_MARY);
         stopWordList.add(STOP_WORD_THE);
         stopWordList.add(STOP_WORD_A);
         stopWordList.add(STOP_WORD_ON);

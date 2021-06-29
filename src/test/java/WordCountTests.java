@@ -1,3 +1,4 @@
+import exceptions.FormatException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,16 +57,16 @@ public class WordCountTests {
 
     @Test
     public void checkTextWithMultipleWordsAndExcludedWords() throws FileNotFoundException, FormatException {
-        Assert.assertEquals(3, this.wordCount.getNumberOfWords(TEXT, true));
+        Assert.assertEquals(4, this.wordCount.getNumberOfWords(TEXT, true));
     }
 
     @Test
     public void checkTextWithNonWordsAndExcludedWords() throws FileNotFoundException, FormatException {
-        Assert.assertEquals(1, this.wordCount.getNumberOfWords(NON_TEXT, true));
+        Assert.assertEquals(2, this.wordCount.getNumberOfWords(NON_TEXT, true));
     }
 
     @Test
     public void checkWhenTextHasTwoSpacesAndExcludedWords() throws FileNotFoundException, FormatException {
-        Assert.assertEquals(3, this.wordCount.getNumberOfWords(TWO_SPACES_TEXT, true));
+        Assert.assertEquals(4, this.wordCount.getNumberOfWords(TWO_SPACES_TEXT, true));
     }
 }

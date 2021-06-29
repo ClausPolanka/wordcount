@@ -1,3 +1,5 @@
+import exceptions.FormatException;
+
 import java.io.FileNotFoundException;
 import java.util.List;
 
@@ -32,6 +34,19 @@ public class WordCount {
         }
 
         return count;
+    }
+
+    public int getNumberOfWordsFromFile(String wordFileName) throws FileNotFoundException, FormatException {
+
+        FileOpener fileOpener = new FileOpener();
+        List<String> lines = fileOpener.openTextFileFromResources(wordFileName);
+        int sum = 0;
+
+        for (String line : lines){
+            sum += getNumberOfWords(line, true);
+        }
+
+        return sum;
     }
 
     private boolean isWord(String word){

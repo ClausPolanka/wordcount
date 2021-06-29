@@ -1,3 +1,5 @@
+import exceptions.FormatException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -7,16 +9,22 @@ import java.util.Scanner;
 
 public class FileOpener {
 
+    private static final String TXT_FORMAT = ".txt";
+
+    private static final String FILE_NOT_IN_TXT_FORMAT_MESSAGE = "File must be in .txt format";
+
+    private static final String FILE_NOT_FOUND_MESSAGE = "File not found";
+
     public List<String> openTextFileFromResources(String fileName) throws FileNotFoundException, FormatException {
 
         List<String> lines = new ArrayList<>();
 
         if (fileName == null) {
-            throw new FileNotFoundException();
+            throw new FileNotFoundException(FILE_NOT_FOUND_MESSAGE);
         }
 
-        if (!fileName.endsWith(".txt")){
-            throw new FormatException("File must be in .txt format");
+        if (!fileName.endsWith(TXT_FORMAT)){
+            throw new FormatException(FILE_NOT_IN_TXT_FORMAT_MESSAGE);
         }
 
         URL url = getClass().getResource(fileName);
@@ -31,8 +39,7 @@ public class FileOpener {
                 lines.add(scanner.nextLine());
             }
         } else{
-
-            throw new FileNotFoundException();
+            throw new FileNotFoundException(FILE_NOT_FOUND_MESSAGE);
         }
 
         return lines;

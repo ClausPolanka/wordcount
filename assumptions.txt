@@ -1,0 +1,2 @@
+Assuming that each word in stopwords.txt file is separated by line.
+Assuming that stop words are case sensitive.

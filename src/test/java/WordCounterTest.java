@@ -30,6 +30,7 @@ public class WordCounterTest {
     public void given_Text_Digit_Input_CountWordsTest() {
         String testWord_With_Digit = "Welcome to George Family 123 876 45 ";
         Assertions.assertEquals(4, counter.countWords());
+
     }
 
     @Test

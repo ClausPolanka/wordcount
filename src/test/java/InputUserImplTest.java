@@ -8,10 +8,10 @@ import java.io.InputStream;
 
 public class InputUserImplTest {
 
-    InputUserImpl  inputUser;
+    InputUserImpl inputUser;
 
     @BeforeEach
-    public void setUp()  {
+    public void setUp() {
         inputUser = new InputUserImpl();
     }
 
@@ -20,6 +20,6 @@ public class InputUserImplTest {
         String input = " Welcome to George Test";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        Assertions.assertEquals(input,inputUser.getUserInput());
+        Assertions.assertEquals(input, inputUser.getUserInput());
     }
 }

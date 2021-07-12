@@ -1,0 +1,3 @@
+White space is considered as delimiter
+If words contains digits/ special characters, it will not be counted(ex: meenakshi9, George,)
+Stop words start with lowercase only

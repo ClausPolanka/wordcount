@@ -1,32 +1,22 @@
 package com.wordcount;
 
-import java.util.Arrays;
-
+import java.util.List;
 
 public class WordCounter {
 
-    public static final String DELIMITER = " ";
+    private InputUserImpl userInput;
+    private ProcessDataImpl processUserInput;
 
-    /***
-     * Count number of words from the input text
-     * @param wordInput is a scanner input
-     * @return number of words
-     */
-    public long countWords(String wordInput) {
-        String[] splitInput = wordInput.split(DELIMITER);
-        //List wordList = Arrays.asList(splitInput);
-        return Arrays.stream(splitInput)
-                .filter(s -> !s.isEmpty())
-                .filter(this::containsOnlyLetters).count();
+    public WordCounter(InputUserImpl userInput, ProcessDataImpl processUserInput) {
+        this.userInput = userInput;
+        this.processUserInput = processUserInput;
     }
 
-    /**
-     * checks if the input parameter is contains only letter
-     * @param word should contain only letters
-     * @return should true/false
-     */
-    private boolean containsOnlyLetters(String word) {
-        return word.chars().allMatch(Character::isLetter);
+    public void countWords() {
+        System.out.print("Enter text: ");
+        String userGivenInput = userInput.getUserInput();
+        List<String> userWord = processUserInput.processUserInput(userGivenInput);
+        System.out.print("Number of words:" + userWord.size());
     }
 }
 

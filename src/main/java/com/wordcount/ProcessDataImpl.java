@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ProcessDataImpl {
     private static final String DELIMITER = "\\s+";
-    private static final String PATH_STOP_WORD = "src/main/java/resources/stopwords.txt";
+    private static final String PATH_STOP_WORD = "src/resources/stopwords.txt";
 
     public List<String> processUserInput(String input) {
         StopWordArchive stopWordArchive = new StopWordArchive();

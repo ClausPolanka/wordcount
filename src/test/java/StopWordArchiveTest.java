@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class StopWordArchiveTest {
 
-    private static final String PATH_STOP_WORD = "src/main/java/resources/stopwords.txt";
+    private static final String PATH_STOP_WORD = "src/resources/stopwords.txt";
     StopWordArchive stopWordArchive;
 
     @BeforeEach

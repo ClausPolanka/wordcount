@@ -1,0 +1,16 @@
+# 1st iteration assumptions
+
+## Words
+* Word
+* word
+* WORD
+* abc
+* a
+
+## Non-words
+* 123
+* 1
+* special/punctuation chars
+* a-z
+* A-Z
+

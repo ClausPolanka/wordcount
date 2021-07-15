@@ -8,7 +8,8 @@ public class InputInterface {
         System.out.println("Enter text:");
         String text = scanner.nextLine();
 
-        Foo f = new Foo();
+        StopWords stopWords = new StopWords();
+        Foo f = new Foo(stopWords.stopWordsAsList());
         int wordCount = f.countWords(text);
 
         System.out.println("Number of words: " + wordCount);

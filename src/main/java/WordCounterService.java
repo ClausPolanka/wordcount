@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,6 +6,7 @@ public class WordCounterService {
     private final String[] stopWords;
     private int uniqueWordCount = 0;
     private int totalWordCount = 0;
+    private Double averageWordLength;
 
     public WordCounterService() {
         this.stopWords = new String[]{};
@@ -29,6 +27,18 @@ public class WordCounterService {
 
         HashSet<String> uniqueWordSet = new HashSet<>(Arrays.asList(strings));
         uniqueWordCount = uniqueWordSet.size();
+
+        calculateAverageWordLength(strings);
+    }
+
+    private void calculateAverageWordLength(String[] strings) {
+        List<Integer> wordLengths = new ArrayList<>();
+        for(String word: strings) {
+            wordLengths.add(word.length());
+        };
+
+        OptionalDouble average = wordLengths.stream().mapToInt(Integer::intValue).average();
+        this.averageWordLength = average.orElse(0d);
     }
 
     private boolean emptyInput(String input) {
@@ -77,4 +87,10 @@ public class WordCounterService {
     public int getTotalWordCount() {
         return totalWordCount;
     }
+
+    public double getAverageWordLength() {
+        return averageWordLength;
+    }
+
+
 }

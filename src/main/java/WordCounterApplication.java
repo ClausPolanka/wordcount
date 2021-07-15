@@ -1,3 +1,5 @@
+import java.util.Locale;
+
 public class WordCounterApplication {
 
     private final String[] args;
@@ -10,12 +12,13 @@ public class WordCounterApplication {
         InputHandler handler = InputHandlerFactory.create(args);
         String text = handler.getInputText();
         StopWords stopWords = new StopWords();
-        WordCounterService f = new WordCounterService(stopWords.stopWordsAsList());
-        f.countWords(text);
-        int wordCount = f.getTotalWordCount();
-        int uniqueWordCount = f.getUniqueWordCount();
+        WordCounterService wordCounterService = new WordCounterService(stopWords.stopWordsAsList());
+        wordCounterService.countWords(text);
+        int wordCount = wordCounterService.getTotalWordCount();
+        int uniqueWordCount = wordCounterService.getUniqueWordCount();
+        double averageLength = wordCounterService.getAverageWordLength();
 
-        return "Number of words: " + wordCount + ", unique: " + uniqueWordCount;
+        return String.format(Locale.GERMAN,"Number of words: %d, unique: %d, average word length: %.2f", wordCount, uniqueWordCount, averageLength);
     }
 
 }

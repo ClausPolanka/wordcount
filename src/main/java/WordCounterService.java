@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WordCounterService {
     private final String[] stopWords;
+    private int uniqueWordCount;
 
     public WordCounterService() {
         this.stopWords = new String[]{};
@@ -19,11 +22,14 @@ public class WordCounterService {
             return 0;
         }
 
-        String[] strings = input.split("\\s");
+        String[] strings = input.split("[\\s-]");
         strings = removeStopWords(strings);
+        strings = removeNonWords(strings);
 
-        int nonWords = countNonWords(strings);
-        return strings.length - nonWords;
+        HashSet<String> uniqueWordSet = new HashSet<>(Arrays.asList(strings));
+        uniqueWordCount = uniqueWordSet.size();
+
+        return strings.length;
     }
 
     private boolean emptyInput(String input) {
@@ -54,22 +60,26 @@ public class WordCounterService {
         return isStopWord;
     }
 
-    private int countNonWords(String[] strings) {
-        int nonWords = 0;
+    private String[] removeNonWords(String[] words) {
+        List<String> result = new ArrayList<>();
 
-        for (String word: strings) {
-            if (isNonWord(word)) {
-                nonWords ++;
+        for (String word: words) {
+            if (isWord(word)) {
+                result.add(word);
             }
         }
 
-        return nonWords;
+        return result.toArray(new String[0]);
     }
 
-    private boolean isNonWord(String word) {
-        Pattern pattern = Pattern.compile("[a-zA-Z,:\\.;?!]+");
+    private boolean isWord(String word) {
+        Pattern pattern = Pattern.compile("[a-zA-Z,:\\.;?!\\-]+");
         Matcher result = pattern.matcher(word);
 
-        return !result.matches();
+        return result.matches();
+    }
+
+    public int getUniqueWordCount() {
+        return uniqueWordCount;
     }
 }

@@ -22,3 +22,7 @@
 # 3rd iteration assumptions
 
 * There exists a file in /tmp/text.txt which is used by the test case.
+
+# 4th iteration assumptions
+
+* Words which have a hyphen in the middle are counted as 1.

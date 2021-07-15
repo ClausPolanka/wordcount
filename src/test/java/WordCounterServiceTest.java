@@ -137,4 +137,33 @@ public class WordCounterServiceTest {
         //when
         Assertions.assertEquals(3, wordCount);
     }
+
+    @Test
+    public void givenATextAndTheStopWordsList_theCountShouldReturnNine() {
+        // given
+        String text = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
+        String[] stopWords = new String[]{"the", "a", "on", "off"};
+
+        //when
+        int wordCount = new WordCounterService(stopWords).countWords(text);
+
+        //when
+        Assertions.assertEquals(9, wordCount);
+    }
+
+    @Test
+    public void givenATextAndTheStopWordsList_theCountShouldReturnTheNumberOfUniqueWords() {
+        // given
+        String text = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
+        String[] stopWords = new String[]{"the", "a", "on", "off"};
+
+        //when
+        WordCounterService wordCounter = new WordCounterService(stopWords);
+        int wordCount = wordCounter.countWords(text);
+        int uniqueWordCount = wordCounter.getUniqueWordCount();
+
+        //when
+        Assertions.assertEquals(9, wordCount);
+        Assertions.assertEquals(7, uniqueWordCount);
+    }
 }

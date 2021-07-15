@@ -7,7 +7,8 @@ import java.util.regex.Pattern;
 
 public class WordCounterService {
     private final String[] stopWords;
-    private int uniqueWordCount;
+    private int uniqueWordCount = 0;
+    private int totalWordCount = 0;
 
     public WordCounterService() {
         this.stopWords = new String[]{};
@@ -17,35 +18,37 @@ public class WordCounterService {
         this.stopWords = stopWords;
     }
 
-    public int countWords(String input) {
+    public void countWords(String input) {
         if (emptyInput(input)) {
-            return 0;
+            return;
         }
 
         String[] strings = input.split("[\\s-]");
-        strings = removeStopWords(strings);
-        strings = removeNonWords(strings);
+        strings = removeWrongWordsAndStripSymbols(strings);
+        totalWordCount = strings.length;
 
         HashSet<String> uniqueWordSet = new HashSet<>(Arrays.asList(strings));
         uniqueWordCount = uniqueWordSet.size();
-
-        return strings.length;
     }
 
     private boolean emptyInput(String input) {
         return input == null || input.trim().equals("");
     }
 
-    private String[] removeStopWords(String[] words) {
+    private String[] removeWrongWordsAndStripSymbols(String[] words) {
         List<String> result = new ArrayList<>();
 
         for (String word: words) {
-            if (!isStopWord(word)) {
-                result.add(word);
+            if (isWord(word) && !isStopWord(word)) {
+                result.add(stripSymbols(word));
             }
         }
 
         return result.toArray(new String[0]);
+    }
+
+    private String stripSymbols(String word) {
+        return word.replaceAll("[\\.,:;!?]", "");
     }
 
     private boolean isStopWord(String word) {
@@ -60,18 +63,6 @@ public class WordCounterService {
         return isStopWord;
     }
 
-    private String[] removeNonWords(String[] words) {
-        List<String> result = new ArrayList<>();
-
-        for (String word: words) {
-            if (isWord(word)) {
-                result.add(word);
-            }
-        }
-
-        return result.toArray(new String[0]);
-    }
-
     private boolean isWord(String word) {
         Pattern pattern = Pattern.compile("[a-zA-Z,:\\.;?!\\-]+");
         Matcher result = pattern.matcher(word);
@@ -81,5 +72,9 @@ public class WordCounterService {
 
     public int getUniqueWordCount() {
         return uniqueWordCount;
+    }
+
+    public int getTotalWordCount() {
+        return totalWordCount;
     }
 }

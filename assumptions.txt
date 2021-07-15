@@ -21,8 +21,17 @@
 
 # 3rd iteration assumptions
 
-* There exists a file in /tmp/text.txt which is used by the test case.
+* There exists a file in /tmp/text.txt which is used by the test case. And the file should contain the following
+
+```
+Eni is working with Erste team
+```
 
 # 4th iteration assumptions
 
 * Words which have a hyphen in the middle are counted as 1.
+* The file /tmp/text-2.txt is expected to exist and contain
+
+```
+Eni is working with the Erste backend team. Eni hopes to join Erste.
+```

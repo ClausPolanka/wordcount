@@ -11,9 +11,11 @@ public class WordCounterApplication {
         String text = handler.getInputText();
         StopWords stopWords = new StopWords();
         WordCounterService f = new WordCounterService(stopWords.stopWordsAsList());
-        int wordCount = f.countWords(text);
+        f.countWords(text);
+        int wordCount = f.getTotalWordCount();
+        int uniqueWordCount = f.getUniqueWordCount();
 
-        return "Number of words: " + wordCount;
+        return "Number of words: " + wordCount + ", unique: " + uniqueWordCount;
     }
 
 }

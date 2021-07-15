@@ -23,7 +23,7 @@ class FileInputHandlerTest {
         String text = fileInputHandler.getInputText();
 
         // then
-        Assertions.assertEquals("Eni is working with Erste team", text);te
+        Assertions.assertEquals("Eni is working with Erste team", text);
     }
 
 }

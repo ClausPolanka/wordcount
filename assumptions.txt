@@ -6,11 +6,12 @@
 * WORD
 * abc
 * a
+* a word ending with a punctuation chars (comma or dot)
 
 ## Non-words
 * 123
 * 1
 * special/punctuation chars
 * a-z
-* A-Z
+* A-Z (a word which has a special char in the middle)
 

@@ -15,3 +15,6 @@
 * a-z
 * A-Z (a word which has a special char in the middle)
 
+# 2nd iteration assumptions
+
+* The file stopwords.txt is not provided by the user but included in the application.

@@ -172,7 +172,7 @@ public class WordCounterServiceTest {
         int wordCount = wordCounter.getTotalWordCount();
 
         //when
-        Assertions.assertEquals(9, wordCount);
+        Assertions.assertEquals(7, wordCount);
     }
 
     @Test
@@ -188,8 +188,42 @@ public class WordCounterServiceTest {
         int uniqueWordCount = wordCounter.getUniqueWordCount();
 
         //when
-        Assertions.assertEquals(9, wordCount);
-        Assertions.assertEquals(7, uniqueWordCount);
+        Assertions.assertEquals(7, wordCount);
+        Assertions.assertEquals(6, uniqueWordCount);
+    }
+
+    @Test
+    public void givenATextWithADashedWordAndTheStopWordsList_theCountShouldReturnOne() {
+        // given
+        String text = "Humpty-Dumpty";
+        String[] stopWords = new String[0];
+
+        //when
+        WordCounterService wordCounter = new WordCounterService(stopWords);
+        wordCounter.countWords(text);
+        int wordCount = wordCounter.getTotalWordCount();
+        int uniqueWordCount = wordCounter.getUniqueWordCount();
+
+        //when
+        Assertions.assertEquals(1, wordCount);
+        Assertions.assertEquals(1, uniqueWordCount);
+    }
+
+    @Test
+    public void givenATextWithADashAndTheStopWordsList_theCountShouldReturnOne() {
+        // given
+        String text = "-Dumpty";
+        String[] stopWords = new String[0];
+
+        //when
+        WordCounterService wordCounter = new WordCounterService(stopWords);
+        wordCounter.countWords(text);
+        int wordCount = wordCounter.getTotalWordCount();
+        int uniqueWordCount = wordCounter.getUniqueWordCount();
+
+        //when
+        Assertions.assertEquals(1, wordCount);
+        Assertions.assertEquals(1, uniqueWordCount);
     }
 
     @Test

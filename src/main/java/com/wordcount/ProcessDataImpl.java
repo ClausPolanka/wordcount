@@ -6,11 +6,12 @@ public class ProcessDataImpl {
     private static final String DELIMITER = "\\s+";
     private static final String PATH_STOP_WORD = "src/resources/stopwords.txt";
 
+
     public List<String> processUserInput(String input) {
         StopWordArchive stopWordArchive = new StopWordArchive();
         List<String> wordList = new ArrayList<>();
         List<String> validWordList = new ArrayList<>();
-        Set<String> excludeWordList = stopWordArchive.getExcludeWords(PATH_STOP_WORD);
+        Set<String> excludeWordList = stopWordArchive.getAllWords(PATH_STOP_WORD);
 
         if (input != null) {
             String[] words = input.split(DELIMITER);
@@ -25,6 +26,4 @@ public class ProcessDataImpl {
         }
         return validWordList;
     }
-
-
 }

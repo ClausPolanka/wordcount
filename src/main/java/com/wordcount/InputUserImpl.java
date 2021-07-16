@@ -12,7 +12,7 @@ public class InputUserImpl implements InputUser {
     @Override
     public String getUserInput() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.println("Enter text: ");
+        System.out.println("word count: ");
         return scanner.nextLine();
     }
 }

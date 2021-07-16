@@ -15,14 +15,14 @@ public class StopWordArchiveTest {
 
     @Test
     public void getExcludeWords_Size_Test()   {
-        Assertions.assertEquals(4,stopWordArchive.getExcludeWords(PATH_STOP_WORD).size());
-        Assertions.assertTrue(stopWordArchive.getExcludeWords(PATH_STOP_WORD).contains("off"));
+        Assertions.assertEquals(4,stopWordArchive.getAllWords(PATH_STOP_WORD).size());
+        Assertions.assertTrue(stopWordArchive.getAllWords(PATH_STOP_WORD).contains("off"));
     }
 
     @Test
     public void getExcludeWords_Content_Test()   {
-        Assertions.assertTrue(stopWordArchive.getExcludeWords(PATH_STOP_WORD).contains("off"));
-        Assertions.assertFalse(stopWordArchive.getExcludeWords(PATH_STOP_WORD).contains("car"));
+        Assertions.assertTrue(stopWordArchive.getAllWords(PATH_STOP_WORD).contains("off"));
+        Assertions.assertFalse(stopWordArchive.getAllWords(PATH_STOP_WORD).contains("car"));
     }
 
 

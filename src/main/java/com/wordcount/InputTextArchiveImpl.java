@@ -19,8 +19,8 @@ public class InputTextArchiveImpl implements WordFileResources {
                     .flatMap(line -> Stream.of(line.split("\\W+")));
             wordSet = words.collect(Collectors.toSet());
         } catch (IOException e) {
-            System.out.println("Failed to load"  +path + "file." +path + "is therefore empty");
-        }
+            System.out.println("Failed to load: "  +path + "." +" File name seems to wrong or file can be empty");
+         }
         return wordSet;
     }
 

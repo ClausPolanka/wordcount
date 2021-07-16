@@ -11,7 +11,6 @@ public class ProcessTextDataImpl implements ProcessData {
     public List<String> processUserInput(String input) {
         InputTextArchiveImpl inputTextArchive = new InputTextArchiveImpl();
         StopWordArchive stopWordArchive = new StopWordArchive();
-        List<String> wordList = new ArrayList<>();
         List<String> validWordList = new ArrayList<>();
         Set<String> wordTotalList = inputTextArchive.getAllWords(ROOT_PATH + input);
         Set<String> excludedWordList = stopWordArchive.getAllWords(PATH_STOP_WORD);

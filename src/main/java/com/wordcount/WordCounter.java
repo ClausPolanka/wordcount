@@ -9,8 +9,6 @@ public class WordCounter {
     private final ProcessDataImpl processUserInput;
     private final ProcessTextDataImpl processTextDataInput;
 
-
-
     public WordCounter(InputUserImpl userInput, ProcessDataImpl processUserInput, ProcessTextDataImpl processTextDataInput) {
         this.userInput = userInput;
         this.processUserInput = processUserInput;
@@ -28,7 +26,6 @@ public class WordCounter {
             String userGivenInput = userInput.getUserInput();
             textWord = processUserInput.processUserInput(userGivenInput);
         }
-
         System.out.print("Number of words:" + textWord.size());
     }
 }

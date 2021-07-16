@@ -23,4 +23,34 @@ public class InputTextFileImplTest {
         System.setIn(in);
         Assertions.assertNotNull(textFile.getUserInput());
     }
+    @Test
+    public void getUserInputTest2() {
+        String input = "mytext.txt";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        Assertions.assertTrue(textFile.getUserInput().contains(input));
+    }
+
+    @Test
+    public void getUserInputTest3() {
+        String input = "mytext.txt";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        Assertions.assertTrue(textFile.getUserInput().contains(input));
+    }
+
+    @Test
+    public void givenWrongFile_getUserInputTest() {
+        String input = "text.txt";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        Assertions.assertNull(textFile.getUserInput());
+    }
+    @Test
+    public void given_No_File_getUserInputTest() {
+        String input = " ";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        Assertions.assertNull(textFile.getUserInput());
+    }
 }

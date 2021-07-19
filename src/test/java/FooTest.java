@@ -74,4 +74,17 @@ public class FooTest {
         // then
         Assertions.assertEquals(14, wordCount);
     }
+
+    @Test
+    public void givenATextOf2WordsAndAStopWordsList_theCountShouldReturnOne() {
+        // given
+        String text = "an apple";
+        String[] stopWords = new String[]{"an"};
+
+        //when
+        int wordCount = new Foo(stopWords).countWords(text);
+
+        //when
+        Assertions.assertEquals(1, wordCount);
+    }
 }

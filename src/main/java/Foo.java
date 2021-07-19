@@ -1,5 +1,11 @@
 
 public class Foo {
+    private final String[] stopWords;
+
+    public Foo(String[] stopWords) {
+        this.stopWords = stopWords;
+    }
+
     public int countWords(String input) {
         String[] strings = input.split("\\s");
 

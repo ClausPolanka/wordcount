@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Foo {
+public class WordCounterService {
     private final String[] stopWords;
 
-    public Foo() {
+    public WordCounterService() {
         this.stopWords = new String[]{};
     }
 
-    public Foo(String[] stopWords) {
+    public WordCounterService(String[] stopWords) {
         this.stopWords = stopWords;
     }
 

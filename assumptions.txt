@@ -18,3 +18,7 @@
 # 2nd iteration assumptions
 
 * The file stopwords.txt is not provided by the user but included in the application.
+
+# 3rd iteration assumptions
+
+* There exists a file in /tmp/text.txt which is used by the test case.

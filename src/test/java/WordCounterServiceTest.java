@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class FooTest {
+public class WordCounterServiceTest {
 
     @Test
     public void givenOneLetterWord_ShouldReturnOne() {
@@ -9,7 +9,7 @@ public class FooTest {
         String input = "a";
 
         // when
-        int wordCount = new Foo().countWords(input);
+        int wordCount = new WordCounterService().countWords(input);
 
         // then
         Assertions.assertEquals(1, wordCount);
@@ -21,7 +21,7 @@ public class FooTest {
         String input = "an";
 
         // when
-        int wordCount = new Foo().countWords(input);
+        int wordCount = new WordCounterService().countWords(input);
 
         // then
         Assertions.assertEquals(1, wordCount);
@@ -33,7 +33,7 @@ public class FooTest {
         String input = "a book";
 
         // when
-        int wordCount = new Foo().countWords(input);
+        int wordCount = new WordCounterService().countWords(input);
 
         // then
         Assertions.assertEquals(2, wordCount);
@@ -45,7 +45,7 @@ public class FooTest {
         String input = "Mary had a little lamb";
 
         // when
-        int wordCount = new Foo().countWords(input);
+        int wordCount = new WordCounterService().countWords(input);
 
         // then
         Assertions.assertEquals(5, wordCount);
@@ -57,7 +57,7 @@ public class FooTest {
         String input = "Mary had a little lamb, but I didn't.";
 
         // when
-        int wordCount = new Foo().countWords(input);
+        int wordCount = new WordCounterService().countWords(input);
 
         // then
         Assertions.assertEquals(7, wordCount);
@@ -69,7 +69,7 @@ public class FooTest {
         String input = "Mary is a little girl, something else. The guys are playing outside, but I'm not.";
 
         // when
-        int wordCount = new Foo().countWords(input);
+        int wordCount = new WordCounterService().countWords(input);
 
         // then
         Assertions.assertEquals(14, wordCount);
@@ -82,7 +82,7 @@ public class FooTest {
         String[] stopWords = new String[]{"an"};
 
         //when
-        int wordCount = new Foo(stopWords).countWords(text);
+        int wordCount = new WordCounterService(stopWords).countWords(text);
 
         //when
         Assertions.assertEquals(1, wordCount);
@@ -95,7 +95,7 @@ public class FooTest {
         String[] stopWords = new String[]{"an", "apple"};
 
         //when
-        int wordCount = new Foo(stopWords).countWords(text);
+        int wordCount = new WordCounterService(stopWords).countWords(text);
 
         //when
         Assertions.assertEquals(0, wordCount);
@@ -108,7 +108,7 @@ public class FooTest {
         String[] stopWords = new String[]{"the", "a", "on", "off"};
 
         //when
-        int wordCount = new Foo(stopWords).countWords(text);
+        int wordCount = new WordCounterService(stopWords).countWords(text);
 
         //when
         Assertions.assertEquals(3, wordCount);

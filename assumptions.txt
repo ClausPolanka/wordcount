@@ -40,3 +40,8 @@ Eni is working with the Erste backend team. Eni hopes to join Erste.
 
 * Dashed words are counted as 1
 * Words starting with a dash (e.g. -Dumpty) are counted as 1
+
+# 6th iteration
+
+* Average word count is using the German Locale so the decimal separator is a comma
+* If no word is provided (word length 0) the average will also be 0, instead of Nan or similar.

@@ -240,4 +240,20 @@ public class WordCounterServiceTest {
         //when
         Assertions.assertEquals(1, uniqueWordCount);
     }
+
+    @Test
+    public void givenAOneWordText_whenPerformingTheCount_thenTheAverageIsReturned() {
+        //given
+        String text = "Erste";
+
+        //when
+        WordCounterService wordCounter = new WordCounterService(new String[0]);
+        wordCounter.countWords(text);
+        double average = wordCounter.getAverageWordLength();
+
+        //then
+        Assertions.assertEquals(5, average);
+
+    }
+
 }

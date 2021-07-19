@@ -87,4 +87,30 @@ public class FooTest {
         //when
         Assertions.assertEquals(1, wordCount);
     }
+
+    @Test
+    public void givenATextOf2StopWordsAndAStopWordsList_theCountShouldReturnZero() {
+        // given
+        String text = "an apple";
+        String[] stopWords = new String[]{"an", "apple"};
+
+        //when
+        int wordCount = new Foo(stopWords).countWords(text);
+
+        //when
+        Assertions.assertEquals(0, wordCount);
+    }
+
+    @Test
+    public void givenATextAndTheStopWordsList_theCountShouldReturnThree() {
+        // given
+        String text = "provided in the file „stopwords.txt“";
+        String[] stopWords = new String[]{"the", "a", "on", "off"};
+
+        //when
+        int wordCount = new Foo(stopWords).countWords(text);
+
+        //when
+        Assertions.assertEquals(3, wordCount);
+    }
 }

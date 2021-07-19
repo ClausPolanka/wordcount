@@ -1,10 +1,14 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WordCounterService {
     private final String[] stopWords;
+    private int uniqueWordCount = 0;
+    private int totalWordCount = 0;
 
     public WordCounterService() {
         this.stopWords = new String[]{};
@@ -14,32 +18,37 @@ public class WordCounterService {
         this.stopWords = stopWords;
     }
 
-    public int countWords(String input) {
+    public void countWords(String input) {
         if (emptyInput(input)) {
-            return 0;
+            return;
         }
 
-        String[] strings = input.split("\\s");
-        strings = removeStopWords(strings);
+        String[] strings = input.split("[\\s-]");
+        strings = removeWrongWordsAndStripSymbols(strings);
+        totalWordCount = strings.length;
 
-        int nonWords = countNonWords(strings);
-        return strings.length - nonWords;
+        HashSet<String> uniqueWordSet = new HashSet<>(Arrays.asList(strings));
+        uniqueWordCount = uniqueWordSet.size();
     }
 
     private boolean emptyInput(String input) {
         return input == null || input.trim().equals("");
     }
 
-    private String[] removeStopWords(String[] words) {
+    private String[] removeWrongWordsAndStripSymbols(String[] words) {
         List<String> result = new ArrayList<>();
 
         for (String word: words) {
-            if (!isStopWord(word)) {
-                result.add(word);
+            if (isWord(word) && !isStopWord(word)) {
+                result.add(stripSymbols(word));
             }
         }
 
         return result.toArray(new String[0]);
+    }
+
+    private String stripSymbols(String word) {
+        return word.replaceAll("[\\.,:;!?]", "");
     }
 
     private boolean isStopWord(String word) {
@@ -54,22 +63,18 @@ public class WordCounterService {
         return isStopWord;
     }
 
-    private int countNonWords(String[] strings) {
-        int nonWords = 0;
-
-        for (String word: strings) {
-            if (isNonWord(word)) {
-                nonWords ++;
-            }
-        }
-
-        return nonWords;
-    }
-
-    private boolean isNonWord(String word) {
-        Pattern pattern = Pattern.compile("[a-zA-Z,:\\.;?!]+");
+    private boolean isWord(String word) {
+        Pattern pattern = Pattern.compile("[a-zA-Z,:\\.;?!\\-]+");
         Matcher result = pattern.matcher(word);
 
-        return !result.matches();
+        return result.matches();
+    }
+
+    public int getUniqueWordCount() {
+        return uniqueWordCount;
+    }
+
+    public int getTotalWordCount() {
+        return totalWordCount;
     }
 }

@@ -9,9 +9,11 @@ public class WordCounterServiceTest {
         String input = "";
 
         // when
-        int wordCount = new WordCounterService().countWords(input);
+        WordCounterService wordCounter = new WordCounterService();
+        wordCounter.countWords(input);
+        int wordCount = wordCounter.getTotalWordCount();
 
-        // then
+                // then
         Assertions.assertEquals(0, wordCount);
     }
 
@@ -21,7 +23,9 @@ public class WordCounterServiceTest {
         String input = "a";
 
         // when
-        int wordCount = new WordCounterService().countWords(input);
+        WordCounterService wordCounter = new WordCounterService();
+        wordCounter.countWords(input);
+        int wordCount = wordCounter.getTotalWordCount();
 
         // then
         Assertions.assertEquals(1, wordCount);
@@ -33,7 +37,9 @@ public class WordCounterServiceTest {
         String input = "an";
 
         // when
-        int wordCount = new WordCounterService().countWords(input);
+        WordCounterService wordCounter = new WordCounterService();
+        wordCounter.countWords(input);
+        int wordCount = wordCounter.getTotalWordCount();
 
         // then
         Assertions.assertEquals(1, wordCount);
@@ -45,7 +51,9 @@ public class WordCounterServiceTest {
         String input = "a book";
 
         // when
-        int wordCount = new WordCounterService().countWords(input);
+        WordCounterService wordCounter = new WordCounterService();
+        wordCounter.countWords(input);
+        int wordCount = wordCounter.getTotalWordCount();
 
         // then
         Assertions.assertEquals(2, wordCount);
@@ -57,7 +65,9 @@ public class WordCounterServiceTest {
         String input = "Mary had a little lamb";
 
         // when
-        int wordCount = new WordCounterService().countWords(input);
+        WordCounterService wordCounter = new WordCounterService();
+        wordCounter.countWords(input);
+        int wordCount = wordCounter.getTotalWordCount();
 
         // then
         Assertions.assertEquals(5, wordCount);
@@ -69,7 +79,9 @@ public class WordCounterServiceTest {
         String input = "Number of words: 6";
 
         // when
-        int wordCount = new WordCounterService().countWords(input);
+        WordCounterService wordCounter = new WordCounterService();
+        wordCounter.countWords(input);
+        int wordCount = wordCounter.getTotalWordCount();
 
         // then
         Assertions.assertEquals(3, wordCount);
@@ -81,7 +93,9 @@ public class WordCounterServiceTest {
         String input = "Mary had a little lamb, but I didn't.";
 
         // when
-        int wordCount = new WordCounterService().countWords(input);
+        WordCounterService wordCounter = new WordCounterService();
+        wordCounter.countWords(input);
+        int wordCount = wordCounter.getTotalWordCount();
 
         // then
         Assertions.assertEquals(7, wordCount);
@@ -93,7 +107,9 @@ public class WordCounterServiceTest {
         String input = "Mary is a little girl, something else. The guys are playing outside, but I'm not.";
 
         // when
-        int wordCount = new WordCounterService().countWords(input);
+        WordCounterService wordCounter = new WordCounterService();
+        wordCounter.countWords(input);
+        int wordCount = wordCounter.getTotalWordCount();
 
         // then
         Assertions.assertEquals(14, wordCount);
@@ -106,7 +122,9 @@ public class WordCounterServiceTest {
         String[] stopWords = new String[]{"an"};
 
         //when
-        int wordCount = new WordCounterService(stopWords).countWords(text);
+        WordCounterService wordCounter = new WordCounterService(stopWords);
+        wordCounter.countWords(text);
+        int wordCount = wordCounter.getTotalWordCount();
 
         //when
         Assertions.assertEquals(1, wordCount);
@@ -119,7 +137,9 @@ public class WordCounterServiceTest {
         String[] stopWords = new String[]{"an", "apple"};
 
         //when
-        int wordCount = new WordCounterService(stopWords).countWords(text);
+        WordCounterService wordCounter = new WordCounterService(stopWords);
+        wordCounter.countWords(text);
+        int wordCount = wordCounter.getTotalWordCount();
 
         //when
         Assertions.assertEquals(0, wordCount);
@@ -132,9 +152,58 @@ public class WordCounterServiceTest {
         String[] stopWords = new String[]{"the", "a", "on", "off"};
 
         //when
-        int wordCount = new WordCounterService(stopWords).countWords(text);
+        WordCounterService wordCounter = new WordCounterService(stopWords);
+        wordCounter.countWords(text);
+        int wordCount = wordCounter.getTotalWordCount();
 
         //when
         Assertions.assertEquals(3, wordCount);
+    }
+
+    @Test
+    public void givenATextAndTheStopWordsList_theCountShouldReturnNine() {
+        // given
+        String text = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
+        String[] stopWords = new String[]{"the", "a", "on", "off"};
+
+        //when
+        WordCounterService wordCounter = new WordCounterService(stopWords);
+        wordCounter.countWords(text);
+        int wordCount = wordCounter.getTotalWordCount();
+
+        //when
+        Assertions.assertEquals(9, wordCount);
+    }
+
+    @Test
+    public void givenATextAndTheStopWordsList_theCountShouldReturnTheNumberOfUniqueWords() {
+        // given
+        String text = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.";
+        String[] stopWords = new String[]{"the", "a", "on", "off"};
+
+        //when
+        WordCounterService wordCounter = new WordCounterService(stopWords);
+        wordCounter.countWords(text);
+        int wordCount = wordCounter.getTotalWordCount();
+        int uniqueWordCount = wordCounter.getUniqueWordCount();
+
+        //when
+        Assertions.assertEquals(9, wordCount);
+        Assertions.assertEquals(7, uniqueWordCount);
+    }
+
+    @Test
+    public void givenATextWithTwoWordsAndTheStopWordsList_theCountShouldReturnTheNumberOfUniqueWordsOne() {
+        // given
+        String text = "Erste Erste.";
+        String[] stopWords = new String[0];
+
+        //when
+        WordCounterService wordCounter = new WordCounterService(stopWords);
+        wordCounter.countWords(text);
+        int uniqueWordCount = wordCounter.getUniqueWordCount();
+
+        //when
+        Assertions.assertEquals(1, uniqueWordCount);
     }
 }

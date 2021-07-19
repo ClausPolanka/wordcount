@@ -4,6 +4,18 @@ import org.junit.jupiter.api.Test;
 public class WordCounterServiceTest {
 
     @Test
+    public void givenAnEmptyString_ShouldReturnOne() {
+        //given
+        String input = "";
+
+        // when
+        int wordCount = new WordCounterService().countWords(input);
+
+        // then
+        Assertions.assertEquals(0, wordCount);
+    }
+
+    @Test
     public void givenOneLetterWord_ShouldReturnOne() {
         //given
         String input = "a";
@@ -49,6 +61,18 @@ public class WordCounterServiceTest {
 
         // then
         Assertions.assertEquals(5, wordCount);
+    }
+
+    @Test
+    public void givenATextOfThreeWords_ShouldReturnThree() {
+        //given
+        String input = "Number of words: 6";
+
+        // when
+        int wordCount = new WordCounterService().countWords(input);
+
+        // then
+        Assertions.assertEquals(3, wordCount);
     }
 
     @Test

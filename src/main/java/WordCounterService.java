@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WordCounterService {
     private final String[] stopWords;
@@ -13,14 +15,19 @@ public class WordCounterService {
     }
 
     public int countWords(String input) {
-        String[] strings = input.split("\\s");
+        if (emptyInput(input)) {
+            return 0;
+        }
 
+        String[] strings = input.split("\\s");
         strings = removeStopWords(strings);
 
-        // check special chars within the word
         int nonWords = countNonWords(strings);
-
         return strings.length - nonWords;
+    }
+
+    private boolean emptyInput(String input) {
+        return input == null || input.trim().equals("");
     }
 
     private String[] removeStopWords(String[] words) {
@@ -60,10 +67,9 @@ public class WordCounterService {
     }
 
     private boolean isNonWord(String word) {
-        String[] nonWordParts = word.split("\\W");
-        if (nonWordParts.length > 1) {
-            return true;
-        }
-        return false;
+        Pattern pattern = Pattern.compile("[a-zA-Z,:\\.;?!]+");
+        Matcher result = pattern.matcher(word);
+
+        return !result.matches();
     }
 }

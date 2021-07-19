@@ -63,4 +63,15 @@ public class FooTest {
         Assertions.assertEquals(7, wordCount);
     }
 
+    @Test
+    public void givenATextOf14WordsAccordingToAssumptions_ShouldReturn14() {
+        //given
+        String input = "Mary is a little girl, something else. The guys are playing outside, but I'm not.";
+
+        // when
+        int wordCount = new Foo().countWords(input);
+
+        // then
+        Assertions.assertEquals(14, wordCount);
+    }
 }

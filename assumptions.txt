@@ -29,9 +29,14 @@ Eni is working with Erste team
 
 # 4th iteration assumptions
 
-* Words which have a hyphen in the middle are counted as 1.
+* Words which have a hyphen in the middle are counted as 2.
 * The file /tmp/text-2.txt is expected to exist and contain
 
 ```
 Eni is working with the Erste backend team. Eni hopes to join Erste.
 ```
+
+# 5th iteration assumptions
+
+* Dashed words are counted as 1
+* Words starting with a dash (e.g. -Dumpty) are counted as 1

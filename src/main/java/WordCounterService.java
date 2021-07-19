@@ -23,7 +23,7 @@ public class WordCounterService {
             return;
         }
 
-        String[] strings = input.split("[\\s-]");
+        String[] strings = input.split("\\s");
         strings = removeWrongWordsAndStripSymbols(strings);
         totalWordCount = strings.length;
 
